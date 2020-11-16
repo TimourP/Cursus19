@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:28:00 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 19:50:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:01:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n);
 char	*ft_strnstr(char *str, char *to_find, size_t len);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 

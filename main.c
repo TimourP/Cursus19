@@ -14,5 +14,5 @@ char test(unsigned int i, char c)
 
 int		main(int argc, char **argv)
 {
-    printf("%s\n", ft_strjoin("hello", ""));
+    printf("%s\n", ft_substr("hello j'ai faim", 0, 0));
 }
