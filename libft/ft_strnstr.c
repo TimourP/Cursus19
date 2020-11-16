@@ -26,7 +26,7 @@ void	init_count(char *str1, char *str2, int *count1, int *count2)
 		*count2 = *count2 + 1;
 }
 
-char	*ft_strstr(char *str, char *to_find)
+char	*ft_strnstr(char *str, char *to_find, size_t len)
 {
 	int i;
 	int j;
@@ -42,7 +42,7 @@ char	*ft_strstr(char *str, char *to_find)
 	{
 		value = 1;
 		j = -1;
-		while (++j < findcount)
+		while (++j < findcount && j < len)
 		{
 			if (str[i + j] != to_find[j])
 				value = 0;

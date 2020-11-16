@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 10:43:57 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 15:01:47 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 14:32:12 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 15:03:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *str, int c)
+#include "libft.h"
+
+void	*ft_memset(void *str, int c, size_t len)
 {
 	int		i;
-	char	*point;
+	char	*new_str;
 
 	i = -1;
-	point = 0;
-	while (str[++i])
-		if (str[i] == c)
-			point = (char *)&str[i];
-	if (str[i] == 0 && c == 0)
-		return ((char *)&str[i]);
-	return (point);
+	new_str = (char *)str;
+	c = (unsigned char)c;
+	while (++i < len)
+		new_str[i] = c;
+	str = new_str;
+	return (str);
 }

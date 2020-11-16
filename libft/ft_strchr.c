@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 10:21:51 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 10:40:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 15:02:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ char	*ft_strchr(const char *str, int c)
 
 	i = -1;
 	while (str[++i])
-	{
 		if (str[i] == c)
 			return ((char *)&str[i]);
-	}
-	if (str[i] == 0 && c == 0){
+	if (str[i] == 0 && c == 0)
 		return ((char *)&str[i]);
-	}
 	return (0);
 }
