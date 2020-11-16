@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:47:18 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:37 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 16:56:50 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 17:26:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	write(1, &c, 1);
+	int i;
+	unsigned char	*ns1;
+	unsigned char	*ns2;
+
+	i = -1;
+	ns1 = (unsigned char *)s1;
+	ns2 = (unsigned char *)s2;
+	while (++i < n - 1 && ns1[i] == ns2[i])
+		;
+	return (ns1[i] - ns2[i]);
 }

@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/10 19:23:28 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:53 by tpetit           ###   ########.fr       */
+/*   Created: 2020/09/12 22:37:17 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 18:11:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(char *s1, char *s2)
-{
-	int i;
+#include "libft.h"
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
-	}
-	if (s1[i] != '\0')
-		return (s1[i]);
-	else if (s2[i] != '\0')
-		return (0 - s2[i]);
-	return (0);
+void	ft_putstr_fd(char *str, int fd)
+{
+	write(fd, str, ft_strlen(str));
 }

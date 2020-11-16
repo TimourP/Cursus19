@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:39:26 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:29:05 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 17:19:54 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 18:22:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	unsigned int	i;
-	int				end;
+#include "libft.h"
 
-	end = 1;
+void	*ft_calloc(size_t count, size_t size)
+{
+	char 	*dest;
+	size_t		i;
+
+	if (!(dest = malloc(count * size)))
+		return (0);
 	i = -1;
-	while (++i < n)
-	{
-		if (src[i] != '\0' && end)
-		{
-			dest[i] = src[i];
-		}
-		else if (end && src[i] == '\0')
-		{
-			dest[i] = '\0';
-			end = 0;
-		}
-		else
-			dest[i] = '\0';
-	}
+	while (++i < count * size)
+		dest[i] = 0;
 	return (dest);
 }

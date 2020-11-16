@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 15:35:49 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:29:01 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 18:18:37 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 18:31:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int i;
-	unsigned int dstsize;
+	unsigned int	i;
+	int				str_len;
+	char			*dest;
 
 	i = -1;
-	dstsize = 0;
-	while (dest[++i])
-		dstsize++;
-	i = -1;
-	while (src[++i] && nb--)
-		dest[dstsize + i] = src[i];
-	dest[dstsize + i] = '\0';
+	str_len = ft_strlen(s);
+	if (!(dest = malloc(sizeof(char) * (str_len + 1))))
+		return (NULL);
+	while (++i < str_len)
+		dest[i] = f(i, s[i]);
+	dest[i] = 0;
 	return (dest);
 }
