@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:19:54 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 18:22:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:08:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char 	*dest;
+	char		*dest;
 	size_t		i;
 
 	if (!(dest = malloc(count * size)))

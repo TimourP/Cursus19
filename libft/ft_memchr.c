@@ -6,17 +6,16 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:38:36 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 17:26:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:08:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*new_s;
-	size_t 			i;
+	size_t			i;
 
 	new_s = (unsigned char *)s;
 	i = -1;

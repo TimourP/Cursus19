@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:19:26 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 19:45:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:11:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		set_include(char c, char const *set)
 
 int		count_to_trim(char const *s1, char const *set)
 {
-	int i;
-	int count;
-	const int s1_len = (const int)ft_strlen(s1);
+	int			i;
+	int			count;
+	const int	s1_len = (const int)ft_strlen(s1);
 
 	count = 0;
 	i = -1;

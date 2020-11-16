@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:53:22 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 19:13:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:10:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ size_t	number_len(int n)
 	if (n < 0)
 		i = 1;
 	while (n && ++i)
-		n = n / 10;;
+		n = n / 10;
 	return (i);
 }
 
 char	*ft_iota(int n)
 {
 	const size_t	n_len = number_len(n);
-	char 			*num;
+	char			*num;
 	int				i;
 	int				neg;
 
