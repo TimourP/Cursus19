@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:55 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 10:04:35 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 10:08:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+int		ft_isascii(int c)
 {
-	int count;
-	int i;
-
-	count = 0;
-	i = -1;
-	while (src[++i] != '\0')
-	{
-		count++;
-	}
-	i = -1;
-	while (i++ < count)
-	{
-		dest[i] = src[i];
-	}
-	return (&dest[0]);
+	return ((0 <= c && c <= 255));
 }

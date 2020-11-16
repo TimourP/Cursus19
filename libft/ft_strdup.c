@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:55 by tpetit           ###   ########.fr       */
+/*   Created: 2020/09/15 20:55:24 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 09:28:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	int count;
-	int i;
+#include <stdlib.h>
 
-	count = 0;
+char	*ft_strdup(char *str)
+{
+	int		i;
+	char	*dest;
+
 	i = -1;
-	while (src[++i] != '\0')
-	{
-		count++;
-	}
+	while (str[++i])
+		;
+	i++;
+	if (!(dest = malloc(i * sizeof(char))))
+		return (NULL);
 	i = -1;
-	while (i++ < count)
-	{
-		dest[i] = src[i];
-	}
-	return (&dest[0]);
+	while (str[++i])
+		dest[i] = str[i];
+	dest[i] = '\0';
+	return (dest);
 }

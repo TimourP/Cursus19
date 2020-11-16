@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:55 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 10:43:57 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 10:46:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strrchr(const char *str, int c)
 {
-	int count;
 	int i;
+    char *point = 0;
 
-	count = 0;
 	i = -1;
-	while (src[++i] != '\0')
+	while (str[++i])
 	{
-		count++;
+		if (str[i] == c)
+			point = (char *)&str[i];
 	}
-	i = -1;
-	while (i++ < count)
-	{
-		dest[i] = src[i];
+	if (str[i] == 0 && c == 0){
+		return ((char *)&str[i]);
 	}
-	return (&dest[0]);
+	return (point);
 }

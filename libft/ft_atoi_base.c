@@ -6,114 +6,95 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 11:55:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/09/29 18:01:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 09:51:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int			test_base(char c, char *base)
-{
-	int i;
-
-	i = -1;
-	while (base[++i])
-	{
-		if (base[i] == c)
-			return (0);
-	}
-	return (1);
-}
-
-int			check_inbase(char *base, char c)
-{
-	int i;
-
-	i = -1;
-	while (base[++i])
-		if (base[i] == c)
-			return (1);
-	return (0);
-}
-
-int			test_error(char *base, int *baselen)
+int		is_valid(const char *base)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while (base[++i])
-		if (base[i] == '-' || base[i] == '+')
-			return (1);
-	if (i <= 1)
-		return (1);
-	i = -1;
+	j = 0;
+	if (!base[0] || !base[1])
+		return (0);
 	while (base[++i])
 	{
-		j = i;
-		while (base[j++])
+		while (base[j])
 		{
-			if (base[j] == base[i] && i != j)
-				return (1);
+			if (i != j && base[i] == base[j])
+				return (0);
+			j++;
 		}
+		j = 0;
 	}
-	i = -1;
-	while (base[++i])
-		;
-	*baselen = 0;
-	*baselen = i;
+	while (*base)
+	{
+		if (*base == '+' || *base == '-' || *base == ' ' || *base == '\t'
+			|| *base == '\n' || *base == '\v' || *base == '\f' || *base == '\r')
+			return (0);
+		base++;
+	}
+	return (1);
+}
+
+int		is_in_base(char c, char *base)
+{
+	while (*base)
+	{
+		if (c == *base)
+			return (1);
+		base++;
+	}
 	return (0);
 }
 
-int			calculate_to_add(char *base, int baselen, char c, int puiss)
+int		get_index(char c, char *base)
 {
-	int index;
 	int i;
-	int value;
+
+	i = 0;
+	while (base[i])
+	{
+		if (base[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int		base_len(char *base)
+{
+	int i;
 
 	i = -1;
 	while (base[++i])
-	{
-		if (base[i] == c)
-		{
-			index = i;
-			break ;
-		}
-	}
-	i = -1;
-	value = 1;
-	while (++i < puiss)
-	{
-		value *= baselen;
-	}
-	return (value * index);
+		;
+	return (i);
 }
 
-int			ft_atoi_base(char *str, char *base)
+int		ft_atoi_base(char *str, char *base)
 {
-	int	num;
-	int	neg;
-	int baselen;
-	int max;
+	unsigned int	num;
+	int				s;
 
-	neg = 0;
 	num = 0;
-	max = 0;
-	test_error(base, &baselen);
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
+	s = 1;
+	if (!is_valid(base))
+		return (0);
+	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
 		str++;
-	while (*str == '+' || *str == '-')
+	while (*str && (*str == '+' || *str == '-'))
 	{
-		neg = (*str == '-') ? !neg : neg;
+		if (*str == '-')
+			s *= -1;
 		str++;
 	}
-	while (check_inbase(base, str[++max]))
-		;
-	while (check_inbase(base, *str))
+	while (*str && is_in_base(*str, base))
 	{
-		num += calculate_to_add(base, baselen, *str, max - 1);
+		num = num * base_len(base) + get_index(*str, base);
 		str++;
-		max--;
 	}
-	return (neg ? -num : num);
+	return (num * s);
 }

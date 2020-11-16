@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 21:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:55 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 10:21:51 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 10:40:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strchr(const char *str, int c)
 {
-	int count;
 	int i;
 
-	count = 0;
 	i = -1;
-	while (src[++i] != '\0')
+	while (str[++i])
 	{
-		count++;
+		if (str[i] == c)
+			return ((char *)&str[i]);
 	}
-	i = -1;
-	while (i++ < count)
-	{
-		dest[i] = src[i];
+	if (str[i] == 0 && c == 0){
+		return ((char *)&str[i]);
 	}
-	return (&dest[0]);
+	return (0);
 }

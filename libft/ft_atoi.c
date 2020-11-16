@@ -6,13 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 23:08:29 by tpetit            #+#    #+#             */
-/*   Updated: 2020/09/26 04:25:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/16 09:28:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int			ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int	num;
 	int	neg;
