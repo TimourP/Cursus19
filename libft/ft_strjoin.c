@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 18:18:37 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 18:33:37 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/16 19:46:51 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 19:51:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned int	i;
-	int				str_len;
-	char			*dest;
+	int		i;
+	char	*conc_str;
 
-	i = -1;
-	str_len = ft_strlen(s);
-	if (!(dest = malloc(sizeof(char) * (str_len + 1))))
+	i = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!(conc_str = malloc(sizeof(char) * i)))
 		return (NULL);
-	while (++i < str_len)
-		dest[i] = f(i, s[i]);
-	dest[i] = 0;
-	return (dest);
+	conc_str[i - 1] = 0;
+	i = -1;
+	while (s1[++i])
+		conc_str[i] = s1[i];
+	i = -1;
+	while (s2[++i])
+		conc_str[i + ft_strlen(s1)] = s2[i];
+	return (conc_str);
 }
