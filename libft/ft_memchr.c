@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:38:36 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 13:11:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 16:33:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t			i;
 
 	new_s = (unsigned char *)s;
-	c = (unsigned char) c;
+	c = (unsigned char)c;
 	i = -1;
 	while ((int)++i < (int)n)
 	{

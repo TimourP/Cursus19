@@ -15,5 +15,6 @@ char test(unsigned int i, char c)
 
 int		main(int argc, char **argv)
 {
-    printf("%s\n", ft_strtrim("   \t  \n\n \t\t  \n\n\nHello \t  Please\n Trim me !", " \t\n"));
+    printf("%s\n", ft_itoa(-6579));
+    
 }

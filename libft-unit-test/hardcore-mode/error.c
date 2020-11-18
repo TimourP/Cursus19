@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
+/*   By: inyancat <inyancat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 10:04:35 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:33:45 by tpetit           ###   ########.fr       */
+/*   Created  2016/11/11 16:47:32 by inyancat          #+#    #+#             */
+/*   Updated  2016/11/12 20:21:42 by inyancat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "utils.h"
+#include <stdarg.h>
+extern int g_log_fd;
 
-int		ft_isascii(int c)
+void error(int code, int a, const char *pattern, ...)
 {
-	return ((int)(0 <= c && c <= 127));
+	va_list	va;
+
+	va_start(va, pattern);
+	(void)a;
+	vdprintf(g_log_fd, pattern, va);
+	dprintf(g_log_fd, "\n");
+	va_end(va);
+	exit(code);
 }

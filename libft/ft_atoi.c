@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 23:08:29 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 13:03:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 16:34:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(char *str)
 {
 	unsigned long int	num;
-	int				neg;
+	int					neg;
 
 	neg = 1;
 	num = 0;

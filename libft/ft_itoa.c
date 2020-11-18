@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:53:22 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:10:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 16:32:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	*ft_itoa(int n)
 	neg = 0;
 	if (n < 0)
 		neg = 1;
-	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n==0)))))
+	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)))))
 		return (NULL);
-	num[n_len + (int)(n==0)] = 0;
+	num[n_len + (int)(n == 0)] = 0;
 	if (neg)
 		num[0] = '-';
 	if (n == 0)

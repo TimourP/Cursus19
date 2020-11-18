@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 15:47:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 16:32:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,28 @@ int		*calc_len(char *str, char c, int count)
 
 char	**split_main(char *str, int count, int *count_array, char c)
 {
-	int i;
-	int j;
-	int curr_word;
-	char **final_array;
-	char *pending_str;
+	int		ij[2];
+	int		curr_word;
+	char	**final_array;
+	char	*pending_str;
 
 	if (!(final_array = malloc(sizeof(char*) * (count + 1))))
 		return (0);
-	i = -1;
+	ij[0] = -1;
 	curr_word = 0;
-	while (str[++i])
+	while (str[++ij[0]])
 	{
-		if (str[i] != c)
+		if (str[ij[0]] != c)
 		{
-			j = -1;
+			ij[1] = -1;
 			if (!(pending_str = malloc(sizeof(char) * count_array[curr_word])))
 				return (0);
-			while (++j < count_array[curr_word])
-				pending_str[j] = str[j + i];
+			while (++ij[1] < count_array[curr_word])
+				pending_str[ij[1]] = str[j + ij[0]];
 			pending_str[count_array[curr_word]] = 0;
 			final_array[curr_word] = pending_str;
 			curr_word++;
-			i += j - 1;
+			ij[0] += ij[1] - 1;
 		}
 	}
 	return (final_array);
