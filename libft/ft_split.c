@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:32:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 16:35:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**split_main(char *str, int count, int *count_array, char c)
 			if (!(pending_str = malloc(sizeof(char) * count_array[curr_word])))
 				return (0);
 			while (++ij[1] < count_array[curr_word])
-				pending_str[ij[1]] = str[j + ij[0]];
+				pending_str[ij[1]] = str[ij[1] + ij[0]];
 			pending_str[count_array[curr_word]] = 0;
 			final_array[curr_word] = pending_str;
 			curr_word++;
