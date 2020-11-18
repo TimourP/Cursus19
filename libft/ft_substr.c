@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:53:46 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 11:23:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 14:43:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		str_len = len;
 	else
 		to_add = to_add + 1;
+	if (start >= (unsigned int)str_len)
+		str_len = 0;
 	if (!(str = malloc(sizeof(char) * (str_len + 1))))
 		return (NULL);
-	while (s[++i + start] && --str_len + to_add > -1)
+	while (s[++i + start] && (size_t)i < str_len + to_add)
 		str[i] = s[i + start];
 	str[i] = 0;
 	return (str);

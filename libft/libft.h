@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:28:00 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 12:42:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:51:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int		ft_atoi(char *str);
 void    ft_bzero(void *str, size_t len);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_iota(int n);
+char	*ft_itoa(int n);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

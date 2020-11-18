@@ -6,89 +6,96 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 20:12:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:47:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int		count_words(char *str, char c)
 {
 	int i;
-	int inword;
 	int count;
 
-	i = -1;
-	inword = 0;
+	i = 0;
 	count = 0;
-	while (str[++i])
+	while (++i < (int)ft_strlen(str))
 	{
-		if (str[i] == c)
-		{
-			if (inword)
-			{
-				inword = 0;
-				count++;
-			}
-		}
-		else if (!inword)
-			inword = 1;
+		if (str[i] == c && str[i - 1] != c)
+			count++;
 	}
-	if (i > 0 && str[i - 1] != c)
+	if (str[i - 1] != c)
 		count++;
 	return (count);
 }
 
-void	add_word(int *ijcw, char *str, char **dest, char c)
+int		*calc_len(char *str, char c, int count)
 {
-	char *currdst;
+	int i;
+	int j;
+	int curr_word;
+	int *count_array;
 
-	ijcw[1] = -1;
-	if (str[ijcw[0] + 1] == 0)
+	i = -1;
+	curr_word = 0;
+	if (!(count_array = malloc(sizeof(int) * count)))
+		return (0);
+	while (str[++i] && curr_word < count)
 	{
-		ijcw[2]++;
-		ijcw[0]++;
-	}
-	currdst = malloc(sizeof(char) * (ijcw[2] + 1));
-	while (++ijcw[1] < ijcw[2])
-	{
-		if (str[ijcw[0] - ijcw[2] + ijcw[1]] != c)
-			currdst[ijcw[1]] = str[ijcw[0] - ijcw[2] + ijcw[1]];
-	}
-	currdst[ijcw[1]] = 0;
-	dest[ijcw[3]] = currdst;
-	ijcw[3]++;
-	ijcw[2] = 0;
-}
-
-void	ret_world(char **dest, char *str, char c)
-{
-	int		ijcw[4];
-
-	ijcw[0] = -1;
-	ijcw[3] = 0;
-	ijcw[2] = 0;
-	while (str[++ijcw[0]])
-	{
-		if (str[ijcw[0]] != c && str[ijcw[0] + 1])
-			ijcw[2]++;
-		else if (ijcw[2])
+		j = -1;
+		while (str[++j + i] != c && str[j + i])
+			;
+		if (j)
 		{
-			add_word(ijcw, str, dest, c);
+			count_array[curr_word] = j;
+			curr_word++;
+			i = i + j;
 		}
 	}
+	return (count_array);
+}
+
+char	**split_main(char *str, int count, int *count_array, char c)
+{
+	int i;
+	int j;
+	int curr_word;
+	char **final_array;
+	char *pending_str;
+
+	if (!(final_array = malloc(sizeof(char*) * (count + 1))))
+		return (0);
+	i = -1;
+	curr_word = 0;
+	while (str[++i])
+	{
+		if (str[i] != c)
+		{
+			j = -1;
+			if (!(pending_str = malloc(sizeof(char) * count_array[curr_word])))
+				return (0);
+			while (++j < count_array[curr_word])
+				pending_str[j] = str[j + i];
+			pending_str[count_array[curr_word]] = 0;
+			final_array[curr_word] = pending_str;
+			curr_word++;
+			i += j - 1;
+		}
+	}
+	return (final_array);
 }
 
 char	**ft_split(char *str, char c)
 {
-	char	**dest;
-	int		count;
+	const int	word_count = count_words(str, c);
+	int			*count_array;
+	char		**final_array;
 
-	count = count_words(str, c);
-	if (!(dest = malloc(sizeof(char *) * (count + 1))))
-		return (NULL);
-	if (count)
-		ret_world(dest, str, c);
-	dest[count] = 0;
-	return (dest);
+	if (!(count_array = calc_len(str, c, word_count)))
+		return (0);
+	final_array = split_main(str, word_count, count_array, c);
+	final_array[word_count] = 0;
+	free(count_array);
+	return (final_array);
 }
