@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 15:03:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:21:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	*ft_memset(void *str, int c, size_t len)
 {
-	int		i;
-	char	*new_str;
+	size_t			i;
+	unsigned char	*new_str;
 
 	i = -1;
-	new_str = (char *)str;
+	new_str = (unsigned char *)str;
 	c = (unsigned char)c;
 	while (++i < len)
 		new_str[i] = c;

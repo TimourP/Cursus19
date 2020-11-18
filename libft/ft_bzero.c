@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:45:45 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 14:59:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:17:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *str, size_t len)
 {
-	int		i;
+	size_t	i;
 	char	*new_str;
 
 	i = -1;

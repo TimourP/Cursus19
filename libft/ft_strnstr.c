@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:09:13 by tpetit            #+#    #+#             */
-/*   Updated: 2020/09/24 18:59:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:23:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	init_count(char *str1, char *str2, int *count1, int *count2)
+void	init_count(char *str1, char *str2, size_t *count1, size_t *count2)
 {
 	int i;
 
@@ -28,11 +28,11 @@ void	init_count(char *str1, char *str2, int *count1, int *count2)
 
 char	*ft_strnstr(char *str, char *to_find, size_t len)
 {
-	int i;
-	int j;
-	int value;
-	int strcount;
-	int findcount;
+	size_t	i;
+	size_t	j;
+	int		value;
+	size_t	strcount;
+	size_t	findcount;
 
 	if (*to_find == '\0')
 		return (str);

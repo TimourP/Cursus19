@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:52:57 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 20:09:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:24:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, void *src, size_t n)
 {
-	int			i;
+	size_t		i;
 	char		*new_dst;
 	char		*new_src;
 

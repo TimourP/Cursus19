@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 15:46:09 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 20:09:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:20:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char	*new_dst;
-	char	*new_src;
-	int		i;
+	unsigned char	*new_dst;
+	unsigned char	*new_src;
+	size_t			i;
 
 	c = (unsigned char)c;
 	new_src = (unsigned char*)src;

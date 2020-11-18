@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:53:46 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 20:11:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:23:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	int		i;
-	int		str_len;
+	size_t	str_len;
 	char	*str;
 	int		to_add;
 

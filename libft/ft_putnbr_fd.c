@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 12:35:42 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 18:14:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:21:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putchar(char c, int fd)
 {
-	write(1, &c, 1);
+	write(fd, &c, 1);
 }
 
 void	ft_print(unsigned int nbr, int fd)
