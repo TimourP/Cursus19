@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:28:00 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:28:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 17:29:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ int				ft_atoi(char *str);
 void			ft_bzero(void *str, size_t len);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_itoa(int n);
+void			ft_lstadd_back(t_list **alst, t_list *new);
+void			ft_lstadd_front(t_list **alst, t_list *new);
+void			ft_lstiter(t_list *lst, void (*f)(void *));
+t_list			*ft_lstlast(t_list *lst);
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstnew(void *content);
+int				ft_lstsize(t_list *lst);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);

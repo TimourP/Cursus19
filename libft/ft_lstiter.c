@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 12:35:42 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:12:14 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/18 17:16:58 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/18 17:17:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print(unsigned int nbr, int fd)
+void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (nbr)
-	{
-		ft_print(nbr / 10, fd);
-		ft_putchar_fd('0' + nbr % 10, fd);
-	}
-}
+    t_list *tmp;
 
-void	ft_putnbr_fd(int nb, int fd)
-{
-	unsigned int	newnb;
-
-	if (nb == 0)
-		ft_putchar_fd('0', fd);
-	if (nb < 0)
+	tmp = lst;
+	while (tmp && tmp->next)
 	{
-		newnb = -nb;
-		ft_putchar_fd('-', fd);
+		f(tmp->content);
+		tmp = tmp->next;
 	}
-	else
-		newnb = nb;
-	ft_print(newnb, fd);
+	if (tmp)
+		f(tmp->content);
 }

@@ -32,7 +32,14 @@ SRCS =	ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c
-
+SRCSB = ft_lstadd_back.c \
+		ft_lstadd_front.c \
+		ft_lstiter.c \
+		ft_lstlast.c \
+		ft_lstmap.c \
+		ft_lstnew.c \
+		ft_lstsize.c
+OBJSB = ${SRCSB:.c=.o}
 OBJS = ${SRCS:.c=.o}
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -42,6 +49,9 @@ all : ${NAME}
 
 allup : all clean
 
+bonus : ${NAME} ${OBJSB}
+	ar -rcs ${NAME} ${OBJSB}
+
 ${NAME} : ${OBJS}
 	ar -rcs ${NAME} ${OBJS}
 
@@ -49,7 +59,7 @@ ${OBJS} :
 	${CC} ${FLAGS} -c -I./includes ${@:.o=.c} -o $@
 
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} ${OBJSB}
 
 fclean : clean
 	rm -f ${NAME}

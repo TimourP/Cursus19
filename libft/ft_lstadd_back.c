@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 12:35:42 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:12:14 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/18 16:59:25 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/18 17:01:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print(unsigned int nbr, int fd)
+void ft_lstadd_back(t_list **alst, t_list *new)
 {
-	if (nbr)
-	{
-		ft_print(nbr / 10, fd);
-		ft_putchar_fd('0' + nbr % 10, fd);
-	}
-}
+    t_list *tmp;
 
-void	ft_putnbr_fd(int nb, int fd)
-{
-	unsigned int	newnb;
-
-	if (nb == 0)
-		ft_putchar_fd('0', fd);
-	if (nb < 0)
-	{
-		newnb = -nb;
-		ft_putchar_fd('-', fd);
-	}
-	else
-		newnb = nb;
-	ft_print(newnb, fd);
+    if (!alst || !*alst)
+    {
+        if (!alst)
+            return ;
+        *alst = new;
+        return ;
+    }
+    tmp = *alst;
+	while (tmp->next)
+		tmp = tmp->next;
+    tmp->next = new;
 }

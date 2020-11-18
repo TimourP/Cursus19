@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 12:35:42 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:12:14 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/18 16:53:47 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/18 16:55:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print(unsigned int nbr, int fd)
+void ft_lstadd_front(t_list **alst, t_list *new)
 {
-	if (nbr)
+	if (new)
 	{
-		ft_print(nbr / 10, fd);
-		ft_putchar_fd('0' + nbr % 10, fd);
+		if (*alst)
+			new->next = *alst;
+		*alst = new;
 	}
-}
-
-void	ft_putnbr_fd(int nb, int fd)
-{
-	unsigned int	newnb;
-
-	if (nb == 0)
-		ft_putchar_fd('0', fd);
-	if (nb < 0)
-	{
-		newnb = -nb;
-		ft_putchar_fd('-', fd);
-	}
-	else
-		newnb = nb;
-	ft_print(newnb, fd);
 }
