@@ -40,6 +40,8 @@ NAME = libft.a
 
 all : ${NAME}
 
+allup : all clean
+
 ${NAME} : ${OBJS}
 	ar -rcs ${NAME} ${OBJS}
 
@@ -54,4 +56,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re allup

@@ -6,11 +6,12 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 10:04:35 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 10:08:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/18 11:57:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 int		ft_isascii(int c)
 {
-	return ((0 <= c && c <= 255));
+	return ((int)(0 <= c && c <= 127));
 }
