@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:05:25 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/21 18:07:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/21 18:11:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	(*del)(lst->content);
 	free(lst);

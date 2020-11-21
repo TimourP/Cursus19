@@ -6,15 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:16:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:17:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/21 18:16:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    t_list *tmp;
+	t_list *tmp;
 
 	tmp = lst;
 	while (tmp && tmp->next)

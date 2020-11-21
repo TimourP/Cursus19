@@ -6,16 +6,16 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:56:34 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:07:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/21 18:18:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-    if (lst)
-            return (1 + ft_lstsize(lst -> next));
-        else
-            return (0);
+	if (lst)
+		return (1 + ft_lstsize(lst->next));
+	else
+		return (0);
 }
