@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:09:13 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 12:30:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/19 10:48:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 	int	i;
 	int	j;
 	int	value;
-	int str_len;
 	int to_find_len;
 
 	i = -1;
-	str_len = (int)ft_strlen(str);
 	to_find_len = (int)ft_strlen(to_find);
 	while (++i < (int)len - to_find_len + 1)
 	{
