@@ -4,17 +4,20 @@
 #include <string.h>
 #include <ctype.h>
 
-char test(unsigned int i, char c)
-{
-    if (c < 90)
-    {
-        return c + 32;
-    }
-    return c;
+void *test(void *test){
+    return "hello";
 }
 
 int		main(int argc, char **argv)
 {
-    printf("%s\n", ft_itoa(-6579));
+    t_list *list = ft_lstnew("hella");
+    t_list *new_list = ft_lstmap(list, test, test);
+    t_list *tmp = new_list;
+
+    while (tmp)
+    {
+        tmp->next ? printf("%s => ", tmp->content) : printf("%s", tmp->content);
+        tmp = tmp->next;
+    }
     
 }
