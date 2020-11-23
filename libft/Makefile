@@ -55,10 +55,10 @@ bonus : $(NAME) $(OBJSB)
 	ar -rcs $(NAME) $(OBJSB)
 
 $(NAME) : $(OBJS)
-	ar -rcs ${NAME} ${OBJS}
+	ar -rcs $(NAME) $(OBJS)
 
-$(OBJS) :
-	$(CC) $(FLAGS) -c -I./includes $(@:.o=.c) -o $@
+%.o : %.c
+	$(CC) $(FLAGS) -c $(@:.o=.c) -o $@
 
 clean:
 	rm -f $(OBJS) $(OBJSB)
