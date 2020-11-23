@@ -41,30 +41,30 @@ SRCSB = ft_lstadd_back.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
 		ft_lstsize.c
-OBJSB = ${SRCSB:.c=.o}
-OBJS = ${SRCS:.c=.o}
+OBJSB = $(SRCSB:.c=.o)
+OBJS = $(SRCS:.c=.o)
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
-all : ${NAME}
+all : $(NAME)
 
 allup : all clean
 
-bonus : ${NAME} ${OBJSB}
-	ar -rcs ${NAME} ${OBJSB}
+bonus : $(NAME) $(OBJSB)
+	ar -rcs $(NAME) $(OBJSB)
 
-$(NAME) : ${OBJS}
+$(NAME) : $(OBJS)
 	ar -rcs ${NAME} ${OBJS}
 
-${OBJS} :
-	${CC} ${FLAGS} -c -I./includes ${@:.o=.c} -o $@
+$(OBJS) :
+	$(CC) $(FLAGS) -c -I./includes $(@:.o=.c) -o $@
 
 clean:
-	rm -f ${OBJS} ${OBJSB}
+	rm -f $(OBJS) $(OBJSB)
 
 fclean : clean
-	rm -f ${NAME}
+	rm -f $(NAME)
 
 re : fclean all
 
