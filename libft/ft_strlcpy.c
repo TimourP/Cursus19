@@ -6,17 +6,21 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 09:40:04 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 15:02:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 10:37:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, char *src, unsigned int size)
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
 	size_t			srcsize;
 	unsigned int	i;
 
+	if (size == 0)
+		return (ft_strlen((const char *)src));
+	if (!src)
+		return (0);
 	srcsize = ft_strlen(src);
 	if (srcsize + 1 < size)
 	{

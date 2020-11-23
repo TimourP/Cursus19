@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 12:35:42 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 17:12:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 10:44:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print(unsigned int nbr, int fd)
+static void	ft_print(unsigned int nbr, int fd)
 {
 	if (nbr)
 	{
@@ -21,7 +21,7 @@ void	ft_print(unsigned int nbr, int fd)
 	}
 }
 
-void	ft_putnbr_fd(int nb, int fd)
+void		ft_putnbr_fd(int nb, int fd)
 {
 	unsigned int	newnb;
 

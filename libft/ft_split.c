@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:35:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 10:43:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int		count_words(char *str, char c)
+static int	count_words(char *str, char c)
 {
 	int i;
 	int count;
@@ -30,7 +30,7 @@ int		count_words(char *str, char c)
 	return (count);
 }
 
-int		*calc_len(char *str, char c, int count)
+static int	*calc_len(char *str, char c, int count)
 {
 	int i;
 	int j;
@@ -56,7 +56,7 @@ int		*calc_len(char *str, char c, int count)
 	return (count_array);
 }
 
-char	**split_main(char *str, int count, int *count_array, char c)
+static char	**split_main(char *str, int count, int *count_array, char c)
 {
 	int		ij[2];
 	int		curr_word;
@@ -85,12 +85,15 @@ char	**split_main(char *str, int count, int *count_array, char c)
 	return (final_array);
 }
 
-char	**ft_split(char *str, char c)
+char		**ft_split(char *str, char c)
 {
-	const int	word_count = count_words(str, c);
+	int			word_count;
 	int			*count_array;
 	char		**final_array;
 
+	if (!str)
+		return (NULL);
+	word_count = count_words(str, c);
 	if (!(count_array = calc_len(str, c, word_count)))
 		return (0);
 	final_array = split_main(str, word_count, count_array, c);

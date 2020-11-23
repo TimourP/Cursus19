@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:53:22 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:32:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 10:43:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-size_t	number_len(int n)
+static size_t	number_len(int n)
 {
 	int i;
 
@@ -25,7 +25,7 @@ size_t	number_len(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	const size_t	n_len = number_len(n);
 	char			*num;
