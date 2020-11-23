@@ -6,12 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:19:26 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 10:45:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 16:26:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	set_include(char c, char const *set)
 {

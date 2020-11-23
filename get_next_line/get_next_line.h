@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 10:04:35 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 16:25:47 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/23 13:01:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isascii(int c)
-{
-	return ((int)(0 <= c && c <= 127));
-}
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include <unistd.h>
+# include <fcntl.h>
+
+#endif

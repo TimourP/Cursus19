@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:28:00 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 10:35:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 15:12:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			**ft_split(char *str, char c);
 char			*ft_strchr(const char *str, int c);
 char			*ft_strdup(char *str);
 char			*ft_strjoin(char const *s1, char const *s2);
-size_t			ft_strlcat(char *dest, char *src, unsigned int size);
+size_t			ft_strlcat(char *dest, char *src, size_t size);
 size_t			ft_strlcpy(char *dest, char *src, size_t size);
 size_t			ft_strlen(const char *str);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));

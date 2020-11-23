@@ -6,12 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:53:22 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 10:43:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 16:25:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static size_t	number_len(int n)
 {

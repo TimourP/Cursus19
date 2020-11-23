@@ -6,16 +6,16 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 18:01:30 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 11:02:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/23 15:11:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
-	unsigned int	i;
-	size_t			tot;
+	size_t	i;
+	size_t	tot;
 
 	if (ft_strlen(dest) < size)
 		tot = ft_strlen(src) + ft_strlen(dest);
