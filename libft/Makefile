@@ -54,7 +54,7 @@ allup : all clean
 bonus : ${NAME} ${OBJSB}
 	ar -rcs ${NAME} ${OBJSB}
 
-${NAME} : ${OBJS}
+$(NAME) : ${OBJS}
 	ar -rcs ${NAME} ${OBJS}
 
 ${OBJS} :
