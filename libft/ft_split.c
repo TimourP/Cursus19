@@ -6,11 +6,12 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 14:39:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/26 11:31:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	count_words(char *str, char c)
 {
@@ -55,12 +56,23 @@ static int	*calc_len(char *str, char c, int count)
 	return (count_array);
 }
 
+static char	**free_all(char **tab, int index)
+{
+	int i;
+
+	i = -1;
+	while (++i < index)
+		free(tab[i]);
+	free(tab);
+	return (0);
+}
+
 static char	**split_main(char *str, int count, int *count_array, char c)
 {
 	int		ij[2];
 	int		curr_word;
 	char	**final_array;
-	char	*pending_str;
+	char	*p_str;
 
 	if (!(final_array = malloc(sizeof(char*) * (count + 1))))
 		return (0);
@@ -71,12 +83,12 @@ static char	**split_main(char *str, int count, int *count_array, char c)
 		if (str[ij[0]] != c)
 		{
 			ij[1] = -1;
-			if (!(pending_str = malloc(sizeof(char) * count_array[curr_word])))
-				return (0);
+			if (!(p_str = malloc(sizeof(char) * (count_array[curr_word] + 1))))
+				return (free_all(final_array, curr_word));
 			while (++ij[1] < count_array[curr_word])
-				pending_str[ij[1]] = str[ij[1] + ij[0]];
-			pending_str[count_array[curr_word]] = 0;
-			final_array[curr_word] = pending_str;
+				p_str[ij[1]] = str[ij[1] + ij[0]];
+			p_str[count_array[curr_word]] = 0;
+			final_array[curr_word] = p_str;
 			curr_word++;
 			ij[0] += ij[1] - 1;
 		}
@@ -95,7 +107,11 @@ char		**ft_split(char *str, char c)
 	word_count = count_words(str, c);
 	if (!(count_array = calc_len(str, c, word_count)))
 		return (0);
-	final_array = split_main(str, word_count, count_array, c);
+	if (!(final_array = split_main(str, word_count, count_array, c)))
+	{
+		free(count_array);
+		return (0);
+	}
 	final_array[word_count] = 0;
 	free(count_array);
 	return (final_array);
