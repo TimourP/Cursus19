@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/26 11:31:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/11/26 12:53:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static char	**split_main(char *str, int count, int *count_array, char c)
 	return (final_array);
 }
 
-char		**ft_split(char *str, char c)
+char		**ft_split(char const *str, char c)
 {
 	int			word_count;
 	int			*count_array;
