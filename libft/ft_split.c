@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/26 12:53:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 13:29:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static int	count_words(char *str, char c)
+static int	count_words(char const *str, char c)
 {
 	int i;
 	int count;
@@ -30,7 +30,7 @@ static int	count_words(char *str, char c)
 	return (count);
 }
 
-static int	*calc_len(char *str, char c, int count)
+static int	*calc_len(char const *str, char c, int count)
 {
 	int i;
 	int j;
@@ -67,7 +67,7 @@ static char	**free_all(char **tab, int index)
 	return (0);
 }
 
-static char	**split_main(char *str, int count, int *count_array, char c)
+static char	**split_main(char const *str, int count, int *count_array, char c)
 {
 	int		ij[2];
 	int		curr_word;

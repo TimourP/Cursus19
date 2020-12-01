@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 11:13:19 by tpetit            #+#    #+#              #
-#    Updated: 2020/11/26 11:13:21 by tpetit           ###   ########.fr        #
+#    Updated: 2020/12/01 13:45:04 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SRCSB = ft_lstadd_back.c \
 OBJSB = $(SRCSB:.c=.o)
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
 all : $(NAME)
@@ -69,9 +69,6 @@ bonus : $(NAME) $(OBJSB)
 
 $(NAME) : $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
-
-%.o : %.c
-	$(CC) $(FLAGS) -c $(@:.o=.c) -o $@
 
 clean:
 	rm -f $(OBJS) $(OBJSB)
