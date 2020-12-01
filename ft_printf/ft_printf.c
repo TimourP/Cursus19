@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 14:32:12 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/01 11:10:31 by tpetit           ###   ########.fr       */
+/*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/21 18:35:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdarg.h>
+#include <stdio.h>
 
-void	*ft_memset(void *str, int c, size_t len)
+int	ft_printf(const char *format, ...)
 {
-	size_t			i;
-	unsigned char	*new_str;
+	int i;
+	va_list argc;
 
+	va_start(argc, 3);
+	printf("%s\n", va_arg(argc, char*));
+	printf("%s\n", va_arg(argc, char*));
+	printf("%s\n", va_arg(argc, char*));
 	i = -1;
-	new_str = (unsigned char *)str;
-	c = (unsigned char)c;
-	while (++i < len)
-		new_str[i] = c;
-	return (str);
+
+	va_end(argc);
 }

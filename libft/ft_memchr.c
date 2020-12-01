@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:38:36 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/18 16:33:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 10:58:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while ((int)++i < (int)n)
 	{
 		if (new_s[i] == c)
-			return (&new_s[i]);
+			return ((void *)&new_s[i]);
 	}
 	return (0);
 }

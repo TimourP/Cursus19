@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:46:51 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 10:11:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 11:16:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (s1)
 	{
-		i = ft_strlen(s1) + ft_strlen(s2) + 1;
-		if (!(conc_str = malloc(sizeof(char) * i)))
+		i = ft_strlen(s1) + ft_strlen(s2);
+		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 			return (NULL);
-		conc_str[i - 1] = 0;
+		conc_str[i] = 0;
 		i = -1;
 		while (s1[++i])
 			conc_str[i] = s1[i];

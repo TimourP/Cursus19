@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:16:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/21 18:16:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 10:39:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	t_list *tmp;
 
 	tmp = lst;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
 		f(tmp->content);
 		tmp = tmp->next;
 	}
-	if (tmp)
-		f(tmp->content);
 }

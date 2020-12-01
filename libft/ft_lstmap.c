@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:21:26 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/26 10:53:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 10:43:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*tmp;
 	t_list	*new_element;
 
-	render_list = lst ? ft_lstnew(f(lst->content)) : 0;
+	if (!(new_element = ft_lstnew(f(lst->content))) || !lst || !f || !del)
+		return (NULL);
+	render_list = new_element;
 	tmp = lst;
 	while (tmp && tmp->next)
 	{

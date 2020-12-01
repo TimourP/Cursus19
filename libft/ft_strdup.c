@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:55:24 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:28:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 11:15:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*ft_strdup(char *str)
 	i = -1;
 	while (str[++i])
 		;
-	i++;
-	if (!(dest = malloc(i * sizeof(char))))
+	if (!(dest = malloc((i + 1) * sizeof(char))))
 		return (NULL);
 	i = -1;
 	while (str[++i])
