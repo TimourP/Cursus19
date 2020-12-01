@@ -6,10 +6,9 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 11:13:19 by tpetit            #+#    #+#              #
-#    Updated: 2020/12/01 13:45:04 by tpetit           ###   ########.fr        #
+#    Updated: 2020/12/01 14:17:00 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 SRCS =	ft_atoi.c \
 		ft_bzero.c \
@@ -62,8 +61,6 @@ NAME = libft.a
 
 all : $(NAME)
 
-allup : all clean
-
 bonus : $(NAME) $(OBJSB)
 	ar -rcs $(NAME) $(OBJSB)
 
@@ -78,4 +75,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re allup
+.PHONY : all clean fclean re
