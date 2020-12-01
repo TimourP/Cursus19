@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:17 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/24 16:47:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/01 15:32:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,25 @@ char	*ft_strrchr(const char *str, int c)
 	return (point);
 }
 
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	unsigned char	*new_dst;
+	unsigned char	*new_src;
+	size_t			i;
+
+	c = (unsigned char)c;
+	new_src = (unsigned char*)src;
+	new_dst = (unsigned char*)dst;
+	i = -1;
+	while (++i < n)
+	{
+		new_dst[i] = new_src[i];
+		if (new_dst[i] == c)
+			return ((void*)(&new_dst[i + 1]));
+	}
+	return (0);
+}
+
 int		get_next_line(int fd, char **line)
 {
 	static char	str[MAX_FD][BUFFER_SIZE + 1] = {0};
@@ -147,6 +166,32 @@ int		get_next_line(int fd, char **line)
 			printf("%s\n", buffer);
 			ft_strncat(str[fd], ft_strchr(buffer, '\n') + 1, BUFFER_SIZE);
 			ft_strncat(*line, buffer, ft_strchrn(buffer, '\n'));
+			break;
+		}
+	}
+	return (0);
+}
+
+int		get_next_line2(int fd, char **line)
+{
+	static char	str[MAX_FD][BUFFER_SIZE + 1] = {0};
+	char		buffer[BUFFER_SIZE + 1];
+	ssize_t		cp_len;
+
+	*line[0] = 0;
+	if (str[fd][0])
+	{
+		ft_strlcpy(str[fd], (char*)ft_memccpy(*line, str[fd], '\n', ft_strlen(str[fd])), ft_strlen(str[fd]));
+	}
+	while ((cp_len = read(fd, buffer, BUFFER_SIZE)))
+	{
+		buffer[cp_len] = 0;
+		if (!ft_strchr(buffer, '\n'))
+			ft_strncat(*line, buffer, cp_len);
+		else
+		{
+			ft_strncat(str[fd], ft_strchr(buffer, '\n'), BUFFER_SIZE);
+			ft_memccpy(*line, buffer, '\n', cp_len);
 			break;
 		}
 	}
