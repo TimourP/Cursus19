@@ -3,7 +3,8 @@
 
 int main(void)
 {
-    t_list *nd1 = ft_lstnew("hello");
-    ft_lstiter(nd1, NULL);
+    char **test;
+
+    char test = ft_split("hello hello", "\0");
     return 0;
 }
