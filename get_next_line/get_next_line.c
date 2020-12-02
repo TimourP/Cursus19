@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:17 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 11:10:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:45:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_next_line(int fd, char **line)
 {
-	static char	str[MAX_FD][BUFFER_SIZE + 1] = {0};
+	static char	str[MAX_FD][BUFFER_SIZE + 1];
 	char		buffer[BUFFER_SIZE + 1];
 	char		*tmp;
 	ssize_t		cp_len;

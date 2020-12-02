@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:53:47 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/21 18:12:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 13:52:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	ft_lstadd_front(t_list **alst, t_list *new)
 {
 	if (new)
 	{
-		if (*alst)
-			new->next = *alst;
-		*alst = new;
+		if (alst)
+		{
+			if (*alst)
+				new->next = *alst;
+			*alst = new;
+		}
 	}
 }

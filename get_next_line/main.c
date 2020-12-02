@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 11:03:52 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 11:04:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:40:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(void)
 {
 	int i;
 	int j;
-	char *li = malloc(1000000000);
+	char *li = malloc(10000);
 	int value;
 
 	i = open("./test.txt", O_RDONLY);
@@ -25,7 +25,7 @@ int		main(void)
 
 	for (int u = 0; u < 50 ; u++)
 	{
-		value = get_next_line(j, (char**)&li);
+		value = get_next_line(i, (char**)&li);
 		printf("%d %d : %s\n", u, value, li);
 	}
 	close(i);
