@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:55:24 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 12:05:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:19:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *str)
 {
