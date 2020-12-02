@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/16 09:29:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:13:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(char *s1, char *s2, unsigned int n)
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
 	while (1)
 	{

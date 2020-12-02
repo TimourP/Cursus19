@@ -6,12 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/01 14:41:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 11:50:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	count_words(char const *str, char c)
 {

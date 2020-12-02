@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:09:13 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/01 13:59:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:15:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char *str, char *to_find, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,7 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 			if (str[i + j] != to_find[j])
 				value = 0;
 		if (value)
-			return (&str[i]);
+			return ((char *)&str[i]);
 	}
 	return (0);
 }
