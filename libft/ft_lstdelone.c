@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:05:25 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 13:57:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/03 09:10:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (del)
-	{
 		del(lst->content);
-		free(lst);
-	}
+	free(lst);
 }
