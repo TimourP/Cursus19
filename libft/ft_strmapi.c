@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:18:37 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 10:06:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:32:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		dest[i] = 0;
 		return (dest);
 	}
-	return (0);
+	return (NULL);
 }

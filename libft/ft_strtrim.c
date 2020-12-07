@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:19:26 by tpetit            #+#    #+#             */
-/*   Updated: 2020/11/23 16:26:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:33:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ char		*ft_strtrim(char const *s1, char const *set)
 		}
 		return (trim_str);
 	}
-	return (0);
+	return (NULL);
 }

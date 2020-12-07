@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 12:13:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:33:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
 			n--;
 		}
 		else
-			return ((unsigned char)(*s1) - (unsigned char)(*s2));
+			return ((int)((unsigned char)(*s1) - (unsigned char)(*s2)));
 	}
 }

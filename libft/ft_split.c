@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 15:17:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/03 11:00:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,17 @@ char		**ft_split(char const *str, char c)
 	if (!str[0])
 	{
 		if (!(final_array = malloc(sizeof(char*) * 1)))
-			return (0);
+			return (NULL);
 		final_array[0] = 0;
 		return (final_array);
 	}
 	word_count = count_words(str, c);
 	if (!(count_array = calc_len(str, c, word_count)))
-		return (0);
+		return (NULL);
 	if (!(final_array = split_main(str, word_count, count_array, c)))
 	{
 		free(count_array);
-		return (0);
+		return (NULL);
 	}
 	final_array[word_count] = 0;
 	free(count_array);

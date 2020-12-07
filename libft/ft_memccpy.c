@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 15:46:09 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/01 13:28:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/03 10:59:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		if (new_dst[i] == c)
 			return ((void*)(&new_dst[i + 1]));
 	}
-	return (0);
+	return (NULL);
 }

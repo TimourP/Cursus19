@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:28:00 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 12:14:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:18:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct	s_list
 {

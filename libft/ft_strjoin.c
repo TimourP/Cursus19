@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:46:51 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/01 11:16:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:32:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 			conc_str[i + ft_strlen(s1)] = s2[i];
 		return (conc_str);
 	}
-	return (0);
+	return (NULL);
 }

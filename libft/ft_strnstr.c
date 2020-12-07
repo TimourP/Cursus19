@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:09:13 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 12:15:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2020/12/07 08:33:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 		if (value)
 			return ((char *)&str[i]);
 	}
-	return (0);
+	return (NULL);
 }
