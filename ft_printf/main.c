@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:09:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 18:33:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/04 18:43:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "ft_printf.h"
 
 int main(void){
-	int test = -1;
-	ft_printf("%u\n", test);
-	printf("%u\n", test);
+	int test = 646469;
+	ft_printf("%X\n", test);
+	printf("%X\n", test);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 18:33:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/04 18:37:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int ft_stringify(ft_printf_data *print_variables){
 	else if (print_variables->current_char == 'u')
 		convert_u(print_variables);
 	else if (print_variables->current_char == 'x')
-		;
+		convert_x(print_variables);
 	else if (print_variables->current_char == 'X')
-		;
+		convert_X(print_variables);
 	else if (print_variables->current_char == '%')
 		print_variables->current_str = ft_strdup("%");
 	return (1);
