@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 16:03:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/04 16:55:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,41 @@ int is_in_str(char *str, char c){
 	return (0);
 }
 
+size_t	ft_strlen(const char *str)
+{
+	size_t i;
+
+	i = -1;
+	while (str[++i])
+		;
+	return (i);
+}
+
 void write_and_add(char c, int *count){
 	write(1, &c, 1);
 	(*count)++;
+}
+
+void write_str_and_add(ft_printf_data *print_variables, int *count){
+	write(1, print_variables->current_str, ft_strlen(print_variables->current_str));
+	(*count) += ft_strlen(print_variables->current_str);
+}
+
+int init_data(ft_printf_data *print_variables){
+	return (1);
+}
+
+int add_converter_and_check(ft_printf_data *print_variables, char c)
+{
+	if (!is_in_str("cspdiuxX%", c))
+		return (0);
+	print_variables->current_char = c;
+	return (1);
+}
+
+void print_struct(ft_printf_data *print_variables){
+	printf("\n");
+	printf("curr char : %c\n", print_variables->current_char);
 }
 
 int ft_printf_loop(ft_printf_data *print_variables, const char *str){
@@ -37,11 +69,18 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 	{
 		if (str[i] != '%')
 			write_and_add(str[i], &charnum);
-		else
+		else if (++i)
 		{
-			/* code */
+			init_data(print_variables);
+			while (is_in_str("0123456789-.*", str[i]))
+			{
+				i++;
+			}
+			if (!add_converter_and_check(print_variables, str[i]))
+				return (-1);
+			ft_stringify(print_variables);
+			write_str_and_count(print_variables, &charnum);
 		}
-		
 	}
 	return (charnum);
 }
