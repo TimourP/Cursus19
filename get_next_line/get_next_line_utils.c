@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 11:06:59 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/02 11:07:32 by tpetit           ###   ########.fr       */
+/*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
+/*   Updated: 2020/12/23 11:03:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,53 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void	*ft_memccat(void *dst, const void *src, int c)
+size_t	ft_strlen_until(const char *str, char c)
 {
-	unsigned char	*new_dst;
-	unsigned char	*new_src;
-	int				i;
-	int				j;
+	size_t i;
 
-	c = (unsigned char)c;
-	new_src = (unsigned char*)src;
-	new_dst = (unsigned char*)dst;
-	i = (int)ft_strlen((const char*)new_dst) - 1;
-	j = -1;
-	while (new_src[++j] && ++i > -1)
+	i = -1;
+	while (str[++i] && str[i] != c)
+		;
+	return (i);
+}
+
+char	*ft_strdup_until(char *src, char c)
+{
+	int		i;
+	char	*dest;
+
+	i = -1;
+	while (src[++i] && src[i] != c)
+		;
+	if (!(dest = malloc((i + 1) * sizeof(char))))
 	{
-		if (new_src[j] == c)
-		{
-			new_dst[i] = 0;
-			return (&new_src[j + 1]);
-		}
-		new_dst[i] = new_src[j];
+		errno = ENOMEM;
+		return (NULL);
 	}
-	new_dst[i + 1] = 0;
-	return (0);
+	i = -1;
+	while (src[++i] && src[i] != c)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
+}
+
+void	ft_strcpy_from(char *dst, char *src, char c)
+{
+	int i;
+	int j;
+	int start;
+
+	i = -1;
+	j = -1;
+	start = 0;
+	while (src[++i])
+	{
+		if (start)
+			dst[++j] = src[i];
+		else if (src[i] == c)
+			start = 1;
+	}
+	dst[j + 1] = 0;
 }
 
 int		ft_is_in_str(char *str, char c)
@@ -58,48 +82,27 @@ int		ft_is_in_str(char *str, char c)
 	return (0);
 }
 
-size_t	ft_strlcpy(char *dest, char *src, size_t size)
+char	*ft_strjoin_until(char *s1, char *s2, char c)
 {
-	size_t			srcsize;
-	unsigned int	i;
+	int			i;
+	char		*conc_str;
+	const int 	is_freeable = s1 ? ft_strlen(s1) : 0;
 
-	if (size == 0)
-		return (ft_strlen((const char *)src));
-	if (!src)
-		return (0);
-	srcsize = ft_strlen(src);
-	if (srcsize + 1 < size)
+	if (s1)
 	{
+		i = ft_strlen(s1) + ft_strlen_until(s2, c);
+		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+			return (NULL);
+		conc_str[i] = 0;
 		i = -1;
-		while (++i < srcsize + 1)
-			dest[i] = src[i];
-	}
-	else if (size)
-	{
+		while (s1[++i])
+			conc_str[i] = s1[i];
 		i = -1;
-		while (++i < size - 1)
-			dest[i] = src[i];
-		dest[i] = '\0';
+		while (s2[++i] && s2[i] != c)
+			conc_str[i + ft_strlen(s1)] = s2[i];
+		if (is_freeable)
+			free(s1);
+		return (conc_str);
 	}
-	return (srcsize);
-}
-
-size_t	ft_strlcat(char *dest, char *src, size_t size)
-{
-	size_t	i;
-	size_t	tot;
-
-	if (ft_strlen(dest) < size)
-		tot = ft_strlen(src) + ft_strlen(dest);
-	else
-		tot = size + ft_strlen(src);
-	while (*(dest++) && size)
-		size--;
-	dest--;
-	i = -1;
-	while (src[++i] && i < size - 1 && size)
-		dest[i] = src[i];
-	if (size)
-		dest[i] = 0;
-	return (tot);
+	return (ft_strdup_until(s2, c));
 }

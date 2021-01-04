@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 11:06:17 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/03 10:05:57 by tpetit           ###   ########.fr       */
+/*   Created: 2020/12/23 09:49:11 by tpetit            #+#    #+#             */
+/*   Updated: 2020/12/23 11:12:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ int		get_next_line(int fd, char **line)
 {
 	static char	str[MAX_FD][BUFFER_SIZE + 1];
 	char		buffer[BUFFER_SIZE + 1];
-	char		*tmp;
 	ssize_t		cp_len;
 
-	*line[0] = 0;
+	if (!line)
+		return (-1);
+	*line = NULL;
 	if (str[fd][0])
 	{
-		tmp = ft_memccat(*line, str[fd], '\n');
-		if (tmp)
-			ft_strlcpy(str[fd], tmp, BUFFER_SIZE);
-		else
-			str[fd][0] = 0;
+		*line = ft_strdup_until(str[fd], '\n');
+		ft_strcpy_from(str[fd], str[fd], '\n');
 	}
 	if (str[fd][0])
 		return (1);
@@ -34,21 +32,13 @@ int		get_next_line(int fd, char **line)
 	{
 		buffer[cp_len] = 0;
 		if (!ft_is_in_str(buffer, '\n'))
-			ft_strlcat(*line, buffer, 10000);
+			*line = ft_strjoin_until(*line, buffer, 0);
 		else
 		{
-			if (buffer[0] == '\n')
-			{
-				str[fd][0] = '\n';
-				str[fd][1] = 0;
-				ft_strlcat(str[fd], ft_memccat(*line, buffer, '\n'),
-							BUFFER_SIZE);
-			}
-			else
-				ft_strlcpy(str[fd], ft_memccat(*line, buffer, '\n'),
-							BUFFER_SIZE);
-			break ;
+			*line = ft_strjoin_until(*line, buffer, '\n');
+			ft_strcpy_from(str[fd], buffer, '\n');
+			return (1);
 		}
 	}
-	return (cp_len < BUFFER_SIZE ? 0 : 1);
+	return (0);
 }
