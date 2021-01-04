@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 16:50:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/04 18:33:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <errno.h>
 
 typedef struct	ft_printf_data
 {
@@ -26,5 +27,16 @@ typedef struct	ft_printf_data
 }				ft_printf_data;
 
 int	ft_printf(const char *format, ...);
+
+int convert_s(ft_printf_data *print_variables);
+int convert_c(ft_printf_data *print_variables);
+int convert_d(ft_printf_data *print_variables);
+int convert_p(ft_printf_data *print_variables);
+int convert_u(ft_printf_data *print_variables);
+
+char	*ft_strdup(const char *str);
+char	*ft_itoa_base(int n, int base_len, const char *base);
+char	*ft_itoa_base_p(unsigned long long int n, int base_len, const char *base);
+char	*ft_itoa_base_u(unsigned int n, int base_len, const char *base);
 
 #endif

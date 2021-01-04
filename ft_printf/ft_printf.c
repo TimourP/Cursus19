@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 16:55:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/04 18:33:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ void write_and_add(char c, int *count){
 	(*count)++;
 }
 
-void write_str_and_add(ft_printf_data *print_variables, int *count){
-	write(1, print_variables->current_str, ft_strlen(print_variables->current_str));
-	(*count) += ft_strlen(print_variables->current_str);
+void write_str_and_count(ft_printf_data *print_variables, int *count){
+	if (print_variables->current_char){
+		write(1, print_variables->current_str, ft_strlen(print_variables->current_str));
+		(*count) += ft_strlen(print_variables->current_str);
+	}
 }
 
 int init_data(ft_printf_data *print_variables){
@@ -57,6 +59,28 @@ int add_converter_and_check(ft_printf_data *print_variables, char c)
 void print_struct(ft_printf_data *print_variables){
 	printf("\n");
 	printf("curr char : %c\n", print_variables->current_char);
+}
+
+int ft_stringify(ft_printf_data *print_variables){
+	if (print_variables->current_char == 's')
+		convert_s(print_variables);
+	else if (print_variables->current_char == 'c')
+		convert_c(print_variables);
+	else if (print_variables->current_char == 'd')
+		convert_d(print_variables);
+	if (print_variables->current_char == 'p')
+		convert_p(print_variables);
+	else if (print_variables->current_char == 'i')
+		convert_d(print_variables);
+	else if (print_variables->current_char == 'u')
+		convert_u(print_variables);
+	else if (print_variables->current_char == 'x')
+		;
+	else if (print_variables->current_char == 'X')
+		;
+	else if (print_variables->current_char == '%')
+		print_variables->current_str = ft_strdup("%");
+	return (1);
 }
 
 int ft_printf_loop(ft_printf_data *print_variables, const char *str){
