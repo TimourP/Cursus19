@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/23 11:03:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 14:13:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,25 @@ void	ft_strcpy_from(char *dst, char *src, char c)
 	dst[j + 1] = 0;
 }
 
+char	*ft_strcpy(char *dest, char *src)
+{
+	int count;
+	int i;
+
+	count = 0;
+	i = -1;
+	while (src[++i])
+	{
+		count++;
+	}
+	i = -1;
+	while (i++ < count)
+	{
+		dest[i] = src[i];
+	}
+	return (dest);
+}
+
 int		ft_is_in_str(char *str, char c)
 {
 	int	i;
@@ -86,7 +105,6 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 {
 	int			i;
 	char		*conc_str;
-	const int 	is_freeable = s1 ? ft_strlen(s1) : 0;
 
 	if (s1)
 	{
@@ -100,8 +118,7 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 		i = -1;
 		while (s2[++i] && s2[i] != c)
 			conc_str[i + ft_strlen(s1)] = s2[i];
-		if (is_freeable)
-			free(s1);
+		free(s1);
 		return (conc_str);
 	}
 	return (ft_strdup_until(s2, c));

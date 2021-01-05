@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 13:11:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 14:14:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_strdup_until(char *src, char c);
 void	ft_strcpy_from(char *dst, char *src, char c);
 int		ft_is_in_str(char *str, char c);
 char	*ft_strjoin_until(char *s1, char *s2, char c);
+char	*ft_strcpy(char *dest, char *src);
 
 #endif
 
