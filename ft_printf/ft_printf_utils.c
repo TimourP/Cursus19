@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 11:52:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 12:00:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 17:57:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,13 @@ char *ft_strjoin(char *first_string, char *second_string)
 	}
 	return (ft_strdup(second_string));
 }
+
+// char *join_back(char *malloced, char *add)
+// {
+	
+// }
+
+// char *join_front(char *malloced, char *add)
+// {
+	
+// }

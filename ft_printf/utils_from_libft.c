@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:09:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 11:58:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 18:41:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,27 @@ char	*ft_strdup(const char *str)
 		dest[i] = str[i];
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	ft_atoi(const char *str, int *index)
+{
+	unsigned long long	num;
+	int					length;
+
+	num = 0;
+	length = -1;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+	{	
+		str++;
+		(*index)++;
+	}
+	while (*str == '-')
+		str++;
+	while (*str >= '0' && *str <= '9' && ++length > -1)
+	{
+		num = 10 * num + (*str - '0');
+		(*index)++;
+		str++;
+	}
+	return ((int)num);
 }

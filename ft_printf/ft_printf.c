@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/04 18:37:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 18:43:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void write_str_and_count(ft_printf_data *print_variables, int *count){
 }
 
 int init_data(ft_printf_data *print_variables){
+	print_variables->current_char = 0;
+	print_variables->current_str = NULL;
+	print_variables->minus = 0;
+	print_variables->dot = 0;
+	print_variables->min_length = 0;
+	print_variables->zero = 0;
+	print_variables->precision = -1;
 	return (1);
 }
 
@@ -57,8 +64,13 @@ int add_converter_and_check(ft_printf_data *print_variables, char c)
 }
 
 void print_struct(ft_printf_data *print_variables){
-	printf("\n");
 	printf("curr char : %c\n", print_variables->current_char);
+	printf("curr str : %s\n", print_variables->current_str);
+	printf("minus : %d\n", print_variables->minus);
+	printf("min len : %d\n", print_variables->min_length);
+	printf("zero : %d\n", print_variables->zero);
+	printf("dot : %d\n", print_variables->dot);
+	printf("curr precision : %d\n", print_variables->precision);
 }
 
 int ft_stringify(ft_printf_data *print_variables){
@@ -83,6 +95,36 @@ int ft_stringify(ft_printf_data *print_variables){
 	return (1);
 }
 
+int fill_data(ft_printf_data *print_variables, const char* flags_set)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = 0;
+	while (flags_set[len] && is_in_str("0123456789-.*", flags_set[len]))
+		len++;
+	while (flags_set[i] && is_in_str("0123456789-.*", flags_set[i]))
+	{
+		if (flags_set[i] == '-' && i == 0)
+			print_variables->minus = 1;
+		if (i == 0 && flags_set[0] != '0')
+			print_variables->min_length = ft_atoi(&flags_set[i], &i);
+		if (flags_set[i] == '.')
+		{
+			print_variables->dot = 1;
+			print_variables->precision = ft_atoi(&flags_set[i + 1], &i);
+		}
+		if (flags_set[i] == '0')
+		{
+			print_variables->zero = 1;
+			print_variables->precision = ft_atoi(&flags_set[i + 1], &i);
+		}
+		i++;
+	}
+	return (len);
+}
+
 int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 	int charnum;
 	int i;
@@ -96,16 +138,14 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 		else if (++i)
 		{
 			init_data(print_variables);
-			while (is_in_str("0123456789-.*", str[i]))
-			{
-				i++;
-			}
+			i += fill_data(print_variables, &str[i]);
 			if (!add_converter_and_check(print_variables, str[i]))
 				return (-1);
 			ft_stringify(print_variables);
 			write_str_and_count(print_variables, &charnum);
 		}
 	}
+	print_struct(print_variables);
 	return (charnum);
 }
 
