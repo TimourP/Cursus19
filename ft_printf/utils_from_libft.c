@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:09:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:41:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 18:55:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ char	*ft_strdup(const char *str)
 	return (dest);
 }
 
-int	ft_atoi(const char *str, int *index)
+int	ft_atoi(const char *str, int *index, ft_printf_data *print_variables)
 {
 	unsigned long long	num;
 	int					length;
@@ -160,6 +160,11 @@ int	ft_atoi(const char *str, int *index)
 	}
 	while (*str == '-')
 		str++;
+	if (*str == '*')
+	{
+		(*index)++;
+		return (va_arg(print_variables->argc, int));
+	}
 	while (*str >= '0' && *str <= '9' && ++length > -1)
 	{
 		num = 10 * num + (*str - '0');

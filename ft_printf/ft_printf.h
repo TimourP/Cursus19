@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:40:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 18:52:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ char	*ft_itoa_base(int n, int base_len, const char *base);
 char	*ft_itoa_base_p(unsigned long long int n, int base_len, const char *base);
 char	*ft_itoa_base_u(unsigned int n, int base_len, const char *base);
 size_t	ft_strlen(const char *str);
-int		ft_atoi(const char *str, int *index);
+int		ft_atoi(const char *str, int *index, ft_printf_data *print_variables);
 
 #endif

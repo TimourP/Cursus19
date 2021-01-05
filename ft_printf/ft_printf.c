@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:43:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/05 18:52:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int ft_stringify(ft_printf_data *print_variables){
 		convert_c(print_variables);
 	else if (print_variables->current_char == 'd')
 		convert_d(print_variables);
-	if (print_variables->current_char == 'p')
+	else if (print_variables->current_char == 'p')
 		convert_p(print_variables);
 	else if (print_variables->current_char == 'i')
 		convert_d(print_variables);
@@ -109,16 +109,16 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 		if (flags_set[i] == '-' && i == 0)
 			print_variables->minus = 1;
 		if (i == 0 && flags_set[0] != '0')
-			print_variables->min_length = ft_atoi(&flags_set[i], &i);
+			print_variables->min_length = ft_atoi(&flags_set[i], &i, print_variables);
 		if (flags_set[i] == '.')
 		{
 			print_variables->dot = 1;
-			print_variables->precision = ft_atoi(&flags_set[i + 1], &i);
+			print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
 		}
 		if (flags_set[i] == '0')
 		{
 			print_variables->zero = 1;
-			print_variables->precision = ft_atoi(&flags_set[i + 1], &i);
+			print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
 		}
 		i++;
 	}
@@ -143,9 +143,9 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 				return (-1);
 			ft_stringify(print_variables);
 			write_str_and_count(print_variables, &charnum);
+			print_struct(print_variables);
 		}
 	}
-	print_struct(print_variables);
 	return (charnum);
 }
 
