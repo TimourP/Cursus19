@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 11:52:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 12:16:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 13:27:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,27 @@ char *string_with_length(char c, int length)
 		str[i] = c;
 	str[i] = 0;
 	return (str);
+}
+
+int	free_and_return(char *to_free, int to_return)
+{
+	free(to_free);
+	return (to_return);
+}
+
+int convert_width(ft_printf_data *print_variables)
+{
+	char *space_string;
+	const int remaining_length = print_variables->min_length - ft_strlen(print_variables->current_str);
+
+	if (!(space_string = string_with_length(' ', remaining_length > 0 ? remaining_length : 0)))
+		return (free_and_return(space_string, 0));
+	if (print_variables->minus)
+	{
+		if (!(print_variables->current_str = join_back(print_variables->current_str, space_string)))
+			return (free_and_return(space_string, 0));
+	}
+	else if (!(print_variables->current_str = join_front(print_variables->current_str, space_string)))
+		return (free_and_return(space_string, 0));
+	return (free_and_return(space_string, 1));
 }

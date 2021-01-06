@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 12:16:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 13:27:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_printf(const char *format, ...);
 char *join_front(char *malloced, char *add);
 char *join_back(char *malloced, char *add);
 char *string_with_length(char c, int length);
+int	free_and_return(char *to_free, int to_return);
+int convert_width(ft_printf_data *print_variables);
 
 int convert_s(ft_printf_data *print_variables);
 int convert_c(ft_printf_data *print_variables);
