@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:09:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 13:32:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:47:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "ft_printf.h"
 
 int main(void){
-	int test = 0;
-	//ft_printf("%p\n", &test);
-	ft_printf("%-30c\n", '6');
+	printf("%-3.2d %10.42d ", 1, -1);
+	
 	return (0);
 }

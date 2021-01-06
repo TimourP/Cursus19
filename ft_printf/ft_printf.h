@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 13:27:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:08:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ char	*ft_itoa_base_u(unsigned int n, int base_len, const char *base);
 size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str, int *index, ft_printf_data *print_variables);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strdup_spec(const char *str);
 
 #endif

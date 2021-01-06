@@ -6,13 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 12:37:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:27:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int is_in_str(char *str, char c){
+int is_in_str(char *str, char c)
+{
 	int i;
 
 	i = -1;
@@ -32,19 +33,22 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void write_and_add(char c, int *count){
+void write_and_add(char c, int *count)
+{
 	write(1, &c, 1);
 	(*count)++;
 }
 
-void write_str_and_count(ft_printf_data *print_variables, int *count){
+void write_str_and_count(ft_printf_data *print_variables, int *count)
+{
 	if (print_variables->current_char){
 		write(1, print_variables->current_str, ft_strlen(print_variables->current_str));
 		(*count) += ft_strlen(print_variables->current_str);
 	}
 }
 
-int init_data(ft_printf_data *print_variables){
+int init_data(ft_printf_data *print_variables)
+{
 	print_variables->current_char = 0;
 	print_variables->current_str = NULL;
 	print_variables->minus = 0;
@@ -63,7 +67,8 @@ int add_converter_and_check(ft_printf_data *print_variables, char c)
 	return (1);
 }
 
-void print_struct(ft_printf_data *print_variables){
+void print_struct(ft_printf_data *print_variables)
+{
 	printf("curr char : %c\n", print_variables->current_char);
 	printf("curr str : %s\n", print_variables->current_str);
 	printf("minus : %d\n", print_variables->minus);
@@ -73,7 +78,8 @@ void print_struct(ft_printf_data *print_variables){
 	printf("curr precision : %d\n", print_variables->precision);
 }
 
-int ft_stringify(ft_printf_data *print_variables){
+int ft_stringify(ft_printf_data *print_variables)
+{
 	if (print_variables->current_char == 's')
 		return (convert_s(print_variables));
 	else if (print_variables->current_char == 'c')
@@ -94,6 +100,19 @@ int ft_stringify(ft_printf_data *print_variables){
 		if (!(print_variables->current_str = ft_strdup("%")))
 			return (-1);
 	return (1);
+}
+
+int check_negative(int len, ft_printf_data *print_variables)
+{
+	if (print_variables->min_length < 0)
+	{
+		print_variables->min_length = 0 - print_variables->min_length;
+		if (!print_variables->minus)
+			print_variables->minus = 1;
+	}
+	if (print_variables->precision < 0)
+		print_variables->precision = -1;
+	return (len);
 }
 
 int fill_data(ft_printf_data *print_variables, const char* flags_set)
@@ -123,10 +142,11 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 		}
 		i++;
 	}
-	return (len);
+	return (check_negative(len, print_variables));
 }
 
-int ft_printf_loop(ft_printf_data *print_variables, const char *str){
+int ft_printf_loop(ft_printf_data *print_variables, const char *str)
+{
 	int charnum;
 	int i;
 
@@ -145,7 +165,6 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 			if (!ft_stringify(print_variables))
 				return (-1);
 			write_str_and_count(print_variables, &charnum);
-			//print_struct(print_variables);
 		}
 	}
 	return (charnum);

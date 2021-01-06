@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_from_libft.c                                 :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:09:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 12:04:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:08:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,13 @@ char	*ft_strdup(const char *str)
 		dest[i] = str[i];
 	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strdup_spec(const char *str)
+{
+	if (!str)
+		return (ft_strdup("(null)"));
+	return (ft_strdup(str));
 }
 
 int	ft_atoi(const char *str, int *index, ft_printf_data *print_variables)
