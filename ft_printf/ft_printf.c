@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:52:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 12:37:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,24 @@ void print_struct(ft_printf_data *print_variables){
 
 int ft_stringify(ft_printf_data *print_variables){
 	if (print_variables->current_char == 's')
-		convert_s(print_variables);
+		return (convert_s(print_variables));
 	else if (print_variables->current_char == 'c')
-		convert_c(print_variables);
+		return (convert_c(print_variables));
 	else if (print_variables->current_char == 'd')
-		convert_d(print_variables);
+		return (convert_d(print_variables));
 	else if (print_variables->current_char == 'p')
-		convert_p(print_variables);
+		return (convert_p(print_variables));
 	else if (print_variables->current_char == 'i')
-		convert_d(print_variables);
+		return (convert_d(print_variables));
 	else if (print_variables->current_char == 'u')
-		convert_u(print_variables);
+		return (convert_u(print_variables));
 	else if (print_variables->current_char == 'x')
-		convert_x(print_variables);
+		return (convert_x(print_variables));
 	else if (print_variables->current_char == 'X')
-		convert_X(print_variables);
+		return (convert_X(print_variables));
 	else if (print_variables->current_char == '%')
-		print_variables->current_str = ft_strdup("%");
+		if (!(print_variables->current_str = ft_strdup("%")))
+			return (-1);
 	return (1);
 }
 
@@ -141,9 +142,10 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str){
 			i += fill_data(print_variables, &str[i]);
 			if (!add_converter_and_check(print_variables, str[i]))
 				return (-1);
-			ft_stringify(print_variables);
+			if (!ft_stringify(print_variables))
+				return (-1);
 			write_str_and_count(print_variables, &charnum);
-			print_struct(print_variables);
+			//print_struct(print_variables);
 		}
 	}
 	return (charnum);

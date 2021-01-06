@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:09:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:59:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 12:38:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 #include "ft_printf.h"
 
 int main(void){
-	printf("%d\n", ft_printf("%-*.*s", 22, 421, "lk"));
+	ft_printf("%s\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:09:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:55:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 12:04:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,4 +172,32 @@ int	ft_atoi(const char *str, int *index, ft_printf_data *print_variables)
 		str++;
 	}
 	return ((int)num);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	int		i;
+	size_t	str_len;
+	char	*str;
+
+	if (!s)
+		return (0);
+	if (start > ft_strlen(s))
+	{
+		if (!(str = malloc(sizeof(char))))
+			return (NULL);
+		str[0] = 0;
+	}
+	else
+	{
+		i = -1;
+		str_len = len < ft_strlen(s) - start ? len : ft_strlen(s) - start;
+		if (!(str = malloc(sizeof(char) * (str_len + 1))))
+			return (NULL);
+		while (s[++i] && i < (int)len)
+			str[i] = s[start + i];
+		str[str_len] = 0;
+		free(s);
+	}
+	return (str);
 }

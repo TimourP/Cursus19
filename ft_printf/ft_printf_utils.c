@@ -6,41 +6,68 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 11:52:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 17:57:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 12:16:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_strjoin(char *first_string, char *second_string)
+char *join_back(char *malloced, char *add)
 {
 	int		i;
 	char	*conc_str;
 
-	if (first_string)
+	if (malloced)
 	{
-		i = ft_strlen(first_string) + ft_strlen(second_string);
+		i = ft_strlen(malloced) + ft_strlen(add);
 		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 			return (NULL);
 		conc_str[i] = 0;
 		i = -1;
-		while (first_string[++i])
-			conc_str[i] = first_string[i];
+		while (malloced[++i])
+			conc_str[i] = malloced[i];
 		i = -1;
-		while (second_string[++i])
-			conc_str[i + ft_strlen(first_string)] = second_string[i];
-		free(first_string);
+		while (add[++i])
+			conc_str[i + ft_strlen(malloced)] = add[i];
+		free(malloced);
 		return (conc_str);
 	}
-	return (ft_strdup(second_string));
+	return (add ? ft_strdup(add) : NULL);
 }
 
-// char *join_back(char *malloced, char *add)
-// {
-	
-// }
+char *join_front(char *malloced, char *add)
+{
+	int		i;
+	char	*conc_str;
 
-// char *join_front(char *malloced, char *add)
-// {
-	
-// }
+	if (malloced)
+	{
+		i = ft_strlen(malloced) + ft_strlen(add);
+		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+			return (NULL);
+		conc_str[i] = 0;
+		i = -1;
+		while (add[++i])
+			conc_str[i] = add[i];
+		i = -1;
+		while (malloced[++i])
+			conc_str[i + ft_strlen(add)] = malloced[i];
+		free(malloced);
+		return (conc_str);
+	}
+	return (add ? ft_strdup(add) : NULL);
+}
+
+char *string_with_length(char c, int length)
+{
+	int i;
+	char *str;
+
+	i = -1;
+	if (!(str = malloc(sizeof(char) * (length + 1))))
+		return (NULL);
+	while (++i < length)
+		str[i] = c;
+	str[i] = 0;
+	return (str);
+}

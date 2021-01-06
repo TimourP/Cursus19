@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 18:52:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/06 12:16:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct	ft_printf_data
 }				ft_printf_data;
 
 int	ft_printf(const char *format, ...);
+char *join_front(char *malloced, char *add);
+char *join_back(char *malloced, char *add);
+char *string_with_length(char c, int length);
 
 int convert_s(ft_printf_data *print_variables);
 int convert_c(ft_printf_data *print_variables);
@@ -48,5 +51,6 @@ char	*ft_itoa_base_p(unsigned long long int n, int base_len, const char *base);
 char	*ft_itoa_base_u(unsigned int n, int base_len, const char *base);
 size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str, int *index, ft_printf_data *print_variables);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif
