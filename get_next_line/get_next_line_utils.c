@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/05 15:35:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/09 20:27:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,30 @@ char	*ft_strdup_until(char *src, char c)
 	return (dest);
 }
 
-void	ft_strcpy_from(char *dst, char *src, char c)
+char	*ft_strdup_from(char *src, char c)
 {
-	int i;
-	int j;
-	int start;
+	int		i;
+	int		start;
+	char	*dest;
 
 	i = -1;
-	j = -1;
-	start = 0;
-	while (src[++i])
+	start = -1;
+	while (src[++start] && src[start] != c)
+		;
+	start++;
+	while (src[++i + start])
+		;
+	if (!(dest = malloc((i + 1) * sizeof(char))))
 	{
-		if (start)
-			dst[++j] = src[i];
-		else if (src[i] == c)
-			start = 1;
-	}
-	dst[j + 1] = 0;
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int count;
-	int i;
-
-	count = 0;
-	i = -1;
-	while (src[++i])
-	{
-		count++;
+		errno = ENOMEM;
+		free(src);
+		return (NULL);
 	}
 	i = -1;
-	while (i++ < count)
-	{
-		dest[i] = src[i];
-	}
+	while (src[++i + start])
+		dest[i] = src[i + start];
+	dest[i] = '\0';
+	free(src);
 	return (dest);
 }
 
@@ -123,3 +112,4 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 	}
 	return (ft_strdup_until(s2, c));
 }
+
