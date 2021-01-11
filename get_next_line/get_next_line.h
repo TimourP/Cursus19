@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/09 20:05:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 09:52:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MAX_FD 1024
 
 int		get_next_line(int fd, char **line);
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen_until(const char *str, char c);
 char	*ft_strdup_until(char *src, char c);
 void	ft_strcpy_from(char *dst, char *src, char c);
 int		ft_is_in_str(char *str, char c);

@@ -6,21 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/09 20:27:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 10:55:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = -1;
-	while (str[++i])
-		;
-	return (i);
-}
 
 size_t	ft_strlen_until(const char *str, char c)
 {
@@ -55,26 +45,22 @@ char	*ft_strdup_until(char *src, char c)
 char	*ft_strdup_from(char *src, char c)
 {
 	int		i;
+	int		len;
 	int		start;
 	char	*dest;
 
-	i = -1;
-	start = -1;
-	while (src[++start] && src[start] != c)
-		;
-	start++;
-	while (src[++i + start])
-		;
-	if (!(dest = malloc((i + 1) * sizeof(char))))
+	start = src ? ft_strlen_until(src, c) + 1 : 0;
+	len = src ? ft_strlen_until(src, 0) - start : 0;
+	if (!(dest = malloc((len + 1) * sizeof(char))))
 	{
 		errno = ENOMEM;
 		free(src);
 		return (NULL);
 	}
 	i = -1;
-	while (src[++i + start])
+	while (++i < len)
 		dest[i] = src[i + start];
-	dest[i] = '\0';
+	dest[i] = 0;
 	free(src);
 	return (dest);
 }
@@ -97,7 +83,7 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 
 	if (s1)
 	{
-		i = ft_strlen(s1) + ft_strlen_until(s2, c);
+		i = ft_strlen_until(s1, 0) + ft_strlen_until(s2, c);
 		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 			return (NULL);
 		conc_str[i] = 0;
@@ -106,7 +92,7 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 			conc_str[i] = s1[i];
 		i = -1;
 		while (s2[++i] && s2[i] != c)
-			conc_str[i + ft_strlen(s1)] = s2[i];
+			conc_str[i + ft_strlen_until(s1, 0)] = s2[i];
 		free(s1);
 		return (conc_str);
 	}
