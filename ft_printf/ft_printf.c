@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 17:27:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 16:18:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void write_and_add(char c, int *count)
 void write_str_and_count(ft_printf_data *print_variables, int *count)
 {
 	if (print_variables->current_char){
+		if (print_variables->current_char == 'c')
+		{
+			write(1, print_variables->current_str, print_variables->min_length > 1 ? print_variables->min_length : 1);
+			(*count) += print_variables->min_length > 1 ? print_variables->min_length : 1;
+			return ;
+		}
 		write(1, print_variables->current_str, ft_strlen(print_variables->current_str));
 		(*count) += ft_strlen(print_variables->current_str);
 	}
