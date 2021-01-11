@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/11 09:52:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 12:00:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <limits.h>
 
 # include <stdio.h>
 
-# define MAX_FD 1024
+# define MAX_FD OPEN_MAX
 
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen_until(const char *str, char c);

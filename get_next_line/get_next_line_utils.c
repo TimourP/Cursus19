@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/11 10:55:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 11:58:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 	}
 	return (ft_strdup_until(s2, c));
 }
-
