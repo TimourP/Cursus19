@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:43:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 17:47:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 18:16:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ int convert_d(ft_printf_data *print_variables)
 	nb = va_arg(print_variables->argc, int);
 	if (!(print_variables->current_str = ft_itoa_base(nb, 10, "0123456789")))
 		return (0);
-	if (print_variables->dot)
+	if (print_variables->dot || print_variables->zero)
 	{
-		if (nb > 0)
+		if (nb == 0 && print_variables->precision == 0)
+			print_variables->current_str = ft_strdup("");
+		else if (nb >= 0)
 		{
 			if (!(convert_d_precision(print_variables)))
 				return (0);
 		}
-		else
-		{
+		else if (nb < 0)
 			if (!(convert_d_precision_neg(print_variables)))
 				return (0);
-		}
 	}
 	if (print_variables->min_length)
 		if (!convert_width(print_variables))

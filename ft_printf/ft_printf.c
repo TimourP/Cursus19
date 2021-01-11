@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/11 16:18:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/11 18:17:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ int add_converter_and_check(ft_printf_data *print_variables, char c)
 
 void print_struct(ft_printf_data *print_variables)
 {
-	printf("curr char : %c\n", print_variables->current_char);
+	printf("\n\ncurr char : %c\n", print_variables->current_char);
 	printf("curr str : %s\n", print_variables->current_str);
 	printf("minus : %d\n", print_variables->minus);
 	printf("min len : %d\n", print_variables->min_length);
 	printf("zero : %d\n", print_variables->zero);
 	printf("dot : %d\n", print_variables->dot);
-	printf("curr precision : %d\n", print_variables->precision);
+	printf("curr precision : %d\n\n\n", print_variables->precision);
 }
 
 int ft_stringify(ft_printf_data *print_variables)
@@ -138,13 +138,23 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 			print_variables->min_length = ft_atoi(&flags_set[i], &i, print_variables);
 		if (flags_set[i] == '.')
 		{
+			if (print_variables->precision != -1)
+				print_variables->min_length = print_variables->precision;
 			print_variables->dot = 1;
 			print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
 		}
-		if (flags_set[i] == '0')
+		if (flags_set[i] == '0' && !print_variables->dot && !print_variables->min_length)
 		{
-			print_variables->zero = 1;
-			print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
+			if (flags_set[i + 1] && flags_set[i + 1] != '-')
+			{
+				print_variables->zero = 1;
+				print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
+			}
+			else
+			{
+				print_variables->minus = 1;
+				print_variables->min_length = ft_atoi(&flags_set[i + 1], &i, print_variables);
+			}
 		}
 		i++;
 	}
@@ -171,6 +181,7 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str)
 			if (!ft_stringify(print_variables))
 				return (-1);
 			write_str_and_count(print_variables, &charnum);
+			//print_struct(print_variables);
 		}
 	}
 	return (charnum);
