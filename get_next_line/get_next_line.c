@@ -6,19 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:32:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 12:38:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	free_and_return(char *to_free, int to_return)
-{
-	free(to_free);
-	return (to_return);
-}
-
-int	get_next_line_end(int cp_len, char *str[], char **line)
+static int	get_next_line_end(int cp_len, char *str[], char **line)
 {
 	int ret;
 
@@ -50,7 +44,10 @@ int	get_next_line(int fd, char **line)
 	{
 		buffer[cp_len] = 0;
 		if (!(str[0] = ft_strjoin_until(str[0], buffer, 0)))
-			return (free_and_return(buffer, -1));
+		{
+			free(buffer);
+			return (-1);
+		}
 		if (ft_is_in_str(buffer, '\n'))
 			break ;
 	}

@@ -6,17 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:24:01 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:27:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 12:38:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-int	free_and_return(char *to_free, int to_return)
-{
-	free(to_free);
-	return (to_return);
-}
 
 int	get_next_line_end(int fd, int cp_len, char *str[], char **line)
 {
@@ -50,7 +44,10 @@ int	get_next_line(int fd, char **line)
 	{
 		buffer[cp_len] = 0;
 		if (!(str[fd] = ft_strjoin_until(str[fd], buffer, 0)))
-			return (free_and_return(buffer, -1));
+		{
+			free(buffer);
+			return (-1);
+		}
 		if (ft_is_in_str(buffer, '\n'))
 			break ;
 	}
