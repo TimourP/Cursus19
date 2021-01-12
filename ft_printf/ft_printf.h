@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 14:04:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:04:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ int convert_width(ft_printf_data *print_variables);
 
 int convert_s(ft_printf_data *print_variables);
 int convert_c(ft_printf_data *print_variables);
+int convert_percent(ft_printf_data *print_variables);
 int convert_d(ft_printf_data *print_variables);
 int convert_p(ft_printf_data *print_variables);
 int convert_u(ft_printf_data *print_variables);
 int convert_x(ft_printf_data *print_variables);
-int convert_X(ft_printf_data *print_variables);
+int convert_upperx(ft_printf_data *print_variables);
 
 char	*ft_strdup(const char *str);
 char	*ft_itoa_base(int n, int base_len, const char *base);

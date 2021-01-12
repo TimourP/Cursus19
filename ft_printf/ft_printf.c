@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 15:22:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:02:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,9 @@ int ft_stringify(ft_printf_data *print_variables)
 	else if (print_variables->current_char == 'x')
 		return (convert_x(print_variables));
 	else if (print_variables->current_char == 'X')
-		return (convert_X(print_variables));
+		return (convert_upperx(print_variables));
 	else if (print_variables->current_char == '%')
-		if (!(print_variables->current_str = ft_strdup("%")))
-			return (-1);
+		return (convert_percent(print_variables));
 	return (1);
 }
 
@@ -193,7 +192,6 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str)
 			if (!ft_stringify(print_variables))
 				return (-1);
 			write_str_and_count(print_variables, &charnum);
-			//print_struct(print_variables);
 		}
 	}
 	return (charnum);

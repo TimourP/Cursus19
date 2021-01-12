@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 18:37:03 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 15:25:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 16:01:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_X_precision(ft_printf_data *print_variables)
+static int	convert_upperx_precision(ft_printf_data *print_variables)
 {
 	char	*space_string;
 	int		remaining_length;
@@ -28,7 +28,7 @@ static int	convert_X_precision(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_X(ft_printf_data *print_variables)
+int			convert_upperx(ft_printf_data *print_variables)
 {
 	int nb;
 
@@ -39,7 +39,7 @@ int			convert_X(ft_printf_data *print_variables)
 		if (nb == 0 && print_variables->precision != -1 && print_variables->dot)
 			print_variables->current_str =
 			ft_strdup(string_with_length('0', print_variables->precision));
-		else if (!(convert_X_precision(print_variables)))
+		else if (!(convert_upperx_precision(print_variables)))
 			return (0);
 	}
 	if (print_variables->min_length)
