@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 15:11:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:22:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 {
 	int i;
 	int len;
+	int curr_nbr;
 
 	i = 0;
 	len = 0;
@@ -138,10 +139,15 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 			print_variables->min_length = ft_atoi(&flags_set[i], &i, print_variables);
 		if (flags_set[i] == '.')
 		{
+			curr_nbr = ft_atoi(&flags_set[i + 1], &i, print_variables);
 			if (print_variables->precision != -1)
 				print_variables->min_length = print_variables->precision;
-			print_variables->dot = 1;
-			print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
+			
+			if (curr_nbr >= 0)
+			{
+				print_variables->precision = curr_nbr;
+				print_variables->dot = 1;
+			}
 		}
 		if (flags_set[i] == '0' && !print_variables->dot && !print_variables->min_length)
 		{
