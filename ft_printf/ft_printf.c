@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 14:12:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:11:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,12 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 			{
 				print_variables->zero = 1;
 				print_variables->precision = ft_atoi(&flags_set[i + 1], &i, print_variables);
+				if (print_variables->precision < 0)
+				{
+					print_variables->minus = 1;
+					print_variables->min_length = print_variables->precision;
+					print_variables->precision = -1;
+				}
 			}
 			else
 			{

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 18:25:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 14:41:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:03:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			convert_u(ft_printf_data *print_variables)
 	print_variables->current_str = ft_itoa_base_u(nb, 10, "0123456789");
 	if (print_variables->dot || print_variables->zero)
 	{
-		if (nb == 0)
+		if (nb == 0 && print_variables->precision != -1)
 			print_variables->current_str =
 			ft_strdup(string_with_length('0', print_variables->precision));
 		else if (!(convert_u_precision(print_variables)))
