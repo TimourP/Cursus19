@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:09:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 17:23:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:28:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 #include "ft_printf.h"
 
 int main(void){
-	printf("percent 1 %012%");
+	ft_printf("\n%d\n", ft_printf("%f", 16));
 	return (0);
 }
