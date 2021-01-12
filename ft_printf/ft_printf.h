@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/06 17:08:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 14:04:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	ft_printf_data
 	int precision;
 	int dot;
 	int zero;
+	int minus_but_dot;
 }				ft_printf_data;
 
 int	ft_printf(const char *format, ...);

@@ -6,12 +6,12 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/01/06 17:09:56 by tpetit           ###   ########.fr        #
+#    Updated: 2021/01/12 14:22:13 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	convert_c.c \
-		convert_d.c \
+		convert_di.c \
 		convert_p.c \
 		convert_s.c \
 		convert_u.c \
