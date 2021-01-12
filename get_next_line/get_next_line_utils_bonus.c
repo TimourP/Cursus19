@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:24:04 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:25:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 13:31:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strdup_until(char *src, char c)
 	i = -1;
 	while (src[++i] && src[i] != c)
 		;
-	if (!(dest = malloc((i + 1) * sizeof(char))))
+	if (!(dest = (char*)malloc((i + 1) * sizeof(char))))
 	{
 		errno = ENOMEM;
 		return (NULL);
@@ -51,7 +51,7 @@ char	*ft_strdup_from(char *src, char c)
 
 	start = src ? ft_strlen_until(src, c) + 1 : 0;
 	len = src ? ft_strlen_until(src, 0) - start : 0;
-	if (!(dest = malloc((len + 1) * sizeof(char))))
+	if (!(dest = (char*)malloc((len + 1) * sizeof(char))))
 	{
 		errno = ENOMEM;
 		free(src);
@@ -84,7 +84,7 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 	if (s1)
 	{
 		i = ft_strlen_until(s1, 0) + ft_strlen_until(s2, c);
-		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+		if (!(conc_str = (char*)malloc(sizeof(char) * (i + 1))))
 			return (NULL);
 		conc_str[i] = 0;
 		i = -1;

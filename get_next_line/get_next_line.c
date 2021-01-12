@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:43:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 13:30:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			get_next_line(int fd, char **line)
 	if (!str[0])
 		str[0] = ft_strdup_until("", 0);
 	if (fd < 0 || fd > MAX_FD ||
-		!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+		!(buffer = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	while ((cp_len = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
