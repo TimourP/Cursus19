@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:38:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 12:43:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_next_line_end(int cp_len, char *str[], char **line)
 	return (1);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	*str[1];
 	char		*buffer;

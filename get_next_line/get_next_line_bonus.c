@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:24:01 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 12:38:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 12:43:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	get_next_line_end(int fd, int cp_len, char *str[], char **line)
+static int	get_next_line_end(int fd, int cp_len, char *str[], char **line)
 {
 	int ret;
 
@@ -29,7 +29,7 @@ int	get_next_line_end(int fd, int cp_len, char *str[], char **line)
 	return (1);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	*str[MAX_FD];
 	char		*buffer;

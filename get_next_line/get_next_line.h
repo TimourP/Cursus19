@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/11 12:00:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 12:43:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-
-# include <stdio.h>
 
 # define MAX_FD OPEN_MAX
 
