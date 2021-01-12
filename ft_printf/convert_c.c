@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:37:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/11 16:13:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/12 13:47:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *join_back_c(char *malloced, char *add)
+static char	*join_back_c(char *malloced, char *add)
 {
 	int		i;
 	char	*conc_str;
@@ -33,24 +33,27 @@ char *join_back_c(char *malloced, char *add)
 	return (add ? ft_strdup(add) : NULL);
 }
 
-int convert_c_width(ft_printf_data *print_variables)
+static int	convert_c_width(ft_printf_data *print_variables)
 {
-	char *space_string;
-	int remaining_length = print_variables->min_length - 1;
+	char		*space_string;
+	const int	remaining_length = print_variables->min_length - 1;
 
-	if (!(space_string = string_with_length(' ', remaining_length > 0 ? remaining_length : 0)))
+	if (!(space_string = string_with_length(' ',
+		remaining_length > 0 ? remaining_length : 0)))
 		return (free_and_return(space_string, 0));
 	if (print_variables->minus)
 	{
-		if (!(print_variables->current_str = join_back_c(print_variables->current_str, space_string)))
+		if (!(print_variables->current_str =
+			join_back_c(print_variables->current_str, space_string)))
 			return (free_and_return(space_string, 0));
 	}
-	else if (!(print_variables->current_str = join_front(print_variables->current_str, space_string)))
+	else if (!(print_variables->current_str =
+		join_front(print_variables->current_str, space_string)))
 		return (free_and_return(space_string, 0));
 	return (free_and_return(space_string, 1));
 }
 
-int convert_c(ft_printf_data *print_variables)
+int			convert_c(ft_printf_data *print_variables)
 {
 	char *str;
 
