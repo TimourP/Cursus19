@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:36:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:59:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 14:32:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ char			*join_back(char *malloced, char *add);
 char			*string_with_length(char c, int length);
 int				free_and_return(char *to_free, int to_return);
 int				convert_width(t_printf_data *print_variables);
+int				check_negative(int len, t_printf_data *print_variables);
+int				ft_stringify(t_printf_data *print_variables);
+void			print_struct(t_printf_data *print_variables);
+int				add_converter_and_check(t_printf_data *print_variables, char c);
+int				init_data(t_printf_data *print_variables);
+void			write_str_and_count(t_printf_data *print_variables, int *count);
+void			write_and_add(char c, int *count);
+int				is_in_str(char *str, char c);
 
 int				convert_s(t_printf_data *print_variables);
 int				convert_c(t_printf_data *print_variables);

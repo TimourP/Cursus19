@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/01/13 14:01:04 by tpetit           ###   ########.fr        #
+#    Updated: 2021/01/13 14:30:46 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS =	convert_c.c \
 		convert_x.c \
 		convert_upperx.c \
 		ft_printf_utils.c \
+		ft_printf_utils2.c \
+		ft_printf_utils3.c \
 		ft_printf.c \
 		libft_utils.c \
 		libft_utils2.c \
