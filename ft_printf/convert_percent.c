@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:54:44 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 17:24:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_percent_dot_flag(ft_printf_data *print_variables)
+static int	convert_percent_dot_flag(t_printf_data *print_variables)
 {
 	char *zerostring;
 
@@ -23,7 +23,7 @@ static int	convert_percent_dot_flag(ft_printf_data *print_variables)
 	return (1);
 }
 
-int			convert_percent(ft_printf_data *print_variables)
+int			convert_percent(t_printf_data *print_variables)
 {
 	print_variables->current_str = ft_strdup("%");
 	if (print_variables->zero && print_variables->precision != -1)

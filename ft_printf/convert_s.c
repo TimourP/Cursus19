@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 16:59:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 13:49:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_s_dot_flag(ft_printf_data *print_variables)
+static int	convert_s_dot_flag(t_printf_data *print_variables)
 {
 	if (!(print_variables->current_str = ft_substr(print_variables->current_str,
 		0, print_variables->precision)))
@@ -20,7 +20,7 @@ static int	convert_s_dot_flag(ft_printf_data *print_variables)
 	return (1);
 }
 
-int			convert_s(ft_printf_data *print_variables)
+int			convert_s(t_printf_data *print_variables)
 {
 	if (!(print_variables->current_str =
 		ft_strdup_spec(va_arg(print_variables->argc, char*))))

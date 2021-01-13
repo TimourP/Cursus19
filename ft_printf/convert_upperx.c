@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_xk.c                                       :+:      :+:    :+:   */
+/*   convert_upperx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 18:37:03 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 16:01:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_upperx_precision(ft_printf_data *print_variables)
+static int	convert_upperx_precision(t_printf_data *print_variables)
 {
 	char	*space_string;
 	int		remaining_length;
@@ -28,7 +28,7 @@ static int	convert_upperx_precision(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_upperx(ft_printf_data *print_variables)
+int			convert_upperx(t_printf_data *print_variables)
 {
 	int nb;
 

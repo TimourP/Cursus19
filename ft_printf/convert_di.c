@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:43:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 15:19:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_d_precision_neg(ft_printf_data *print_variables)
+static int	convert_d_precision_neg(t_printf_data *print_variables)
 {
 	char		*space_string;
 	const	int to_r = print_variables->zero && !print_variables->dot;
@@ -35,7 +35,7 @@ static int	convert_d_precision_neg(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-static int	convert_d_precision(ft_printf_data *print_variables)
+static int	convert_d_precision(t_printf_data *print_variables)
 {
 	char	*space_string;
 	int		remaining_length;
@@ -51,7 +51,7 @@ static int	convert_d_precision(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_d(ft_printf_data *print_variables)
+int			convert_d(t_printf_data *print_variables)
 {
 	int nb;
 

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/01/12 17:01:57 by tpetit           ###   ########.fr        #
+#    Updated: 2021/01/13 14:01:04 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	convert_c.c \
 		ft_printf_utils.c \
 		ft_printf.c \
 		libft_utils.c \
+		libft_utils2.c \
 
 OBJSB = $(SRCSB:.c=.o)
 OBJS = $(SRCS:.c=.o)

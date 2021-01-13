@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:09:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:42:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:50:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 
 int main(void){
-	printf("|->%d\n", ft_printf("%% *.5i 42 == |% *.5d|", 4, 42));
-	   printf("|->%d\n", printf("%% *.5i 42 == |% *.5d|", 4, 42));
+	printf("|->%d\n", ft_printf("%------------7d", 5));
+	   printf("|->%d\n", printf("%------------7d", 5));
 	return (0);
 }

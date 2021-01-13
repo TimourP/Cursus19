@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:37:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 13:47:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*join_back_c(char *malloced, char *add)
 	return (add ? ft_strdup(add) : NULL);
 }
 
-static int	convert_c_width(ft_printf_data *print_variables)
+static int	convert_c_width(t_printf_data *print_variables)
 {
 	char		*space_string;
 	const int	remaining_length = print_variables->min_length - 1;
@@ -53,7 +53,7 @@ static int	convert_c_width(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_c(ft_printf_data *print_variables)
+int			convert_c(t_printf_data *print_variables)
 {
 	char *str;
 

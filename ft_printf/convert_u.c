@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 18:25:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 15:25:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_u_precision(ft_printf_data *print_variables)
+static int	convert_u_precision(t_printf_data *print_variables)
 {
 	char	*space_string;
 	int		remaining_length;
@@ -28,7 +28,7 @@ static int	convert_u_precision(ft_printf_data *print_variables)
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_u(ft_printf_data *print_variables)
+int			convert_u(t_printf_data *print_variables)
 {
 	int nb;
 

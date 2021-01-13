@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:43:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/12 13:50:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:58:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	convert_p(ft_printf_data *print_variables)
+int	convert_p(t_printf_data *print_variables)
 {
 	unsigned long long int	pointer_value;
 	char					*number;

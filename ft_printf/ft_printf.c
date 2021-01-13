@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:44:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/01/13 13:57:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void write_and_add(char c, int *count)
 	(*count)++;
 }
 
-void write_str_and_count(ft_printf_data *print_variables, int *count)
+void write_str_and_count(t_printf_data *print_variables, int *count)
 {
 	if (print_variables->current_char){
 		if (print_variables->current_char == 'c')
@@ -53,7 +53,7 @@ void write_str_and_count(ft_printf_data *print_variables, int *count)
 	}
 }
 
-int init_data(ft_printf_data *print_variables)
+int init_data(t_printf_data *print_variables)
 {
 	print_variables->current_char = 0;
 	print_variables->current_str = NULL;
@@ -65,7 +65,7 @@ int init_data(ft_printf_data *print_variables)
 	return (1);
 }
 
-int add_converter_and_check(ft_printf_data *print_variables, char c)
+int add_converter_and_check(t_printf_data *print_variables, char c)
 {
 	if (!is_in_str("cspdiuxX%", c))
 		return (0);
@@ -73,7 +73,7 @@ int add_converter_and_check(ft_printf_data *print_variables, char c)
 	return (1);
 }
 
-void print_struct(ft_printf_data *print_variables)
+void print_struct(t_printf_data *print_variables)
 {
 	printf("\n\ncurr char : %c\n", print_variables->current_char);
 	printf("curr str : %s\n", print_variables->current_str);
@@ -84,7 +84,7 @@ void print_struct(ft_printf_data *print_variables)
 	printf("curr precision : %d\n\n\n", print_variables->precision);
 }
 
-int ft_stringify(ft_printf_data *print_variables)
+int ft_stringify(t_printf_data *print_variables)
 {
 	if (print_variables->current_char == 's')
 		return (convert_s(print_variables));
@@ -107,7 +107,7 @@ int ft_stringify(ft_printf_data *print_variables)
 	return (1);
 }
 
-int check_negative(int len, ft_printf_data *print_variables)
+int check_negative(int len, t_printf_data *print_variables)
 {
 	if (print_variables->min_length < 0)
 	{
@@ -120,7 +120,7 @@ int check_negative(int len, ft_printf_data *print_variables)
 	return (len);
 }
 
-int fill_data(ft_printf_data *print_variables, const char* flags_set)
+int fill_data(t_printf_data *print_variables, const char* flags_set)
 {
 	int i;
 	int len;
@@ -172,7 +172,7 @@ int fill_data(ft_printf_data *print_variables, const char* flags_set)
 	return (check_negative(len, print_variables));
 }
 
-int ft_printf_loop(ft_printf_data *print_variables, const char *str)
+int ft_printf_loop(t_printf_data *print_variables, const char *str)
 {
 	int charnum;
 	int i;
@@ -200,9 +200,9 @@ int ft_printf_loop(ft_printf_data *print_variables, const char *str)
 int	ft_printf(const char *format, ...)
 {
 	int charnum;
-	ft_printf_data *print_variables;
+	t_printf_data *print_variables;
 
-	if (!(print_variables = malloc(sizeof(ft_printf_data))))
+	if (!(print_variables = malloc(sizeof(t_printf_data))))
 		return (-1);
 	va_start(print_variables->argc, format);
 	charnum = ft_printf_loop(print_variables, format);
