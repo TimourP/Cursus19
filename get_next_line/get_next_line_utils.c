@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/20 14:38:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/14 13:48:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	*ft_strdup_from(char *src, char c)
 	len = src ? ft_strlen_until(src, 0) - start : 0;
 	if (!(dest = malloc((len + 1) * sizeof(char))))
 	{
-		errno = ENOMEM;
 		free(src);
+		errno = ENOMEM;
 		return (NULL);
 	}
 	i = -1;
@@ -95,23 +95,22 @@ char	*ft_strjoin_until(char *s1, char *s2, char c)
 	int			i;
 	char		*conc_str;
 
-	if (s1)
+	if (!s1)
+		return (ft_strdup_until(s2, c));
+	i = ft_strlen_until(s1, 0) + ft_strlen_until(s2, c);
+	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 	{
-		i = ft_strlen_until(s1, 0) + ft_strlen_until(s2, c);
-		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
-		{
-			free(s1);
-			return (NULL);
-		}
-		conc_str[i] = 0;
-		i = -1;
-		while (s1[++i])
-			conc_str[i] = s1[i];
-		i = -1;
-		while (s2[++i] && s2[i] != c)
-			conc_str[i + ft_strlen_until(s1, 0)] = s2[i];
 		free(s1);
-		return (conc_str);
+		return (NULL);
 	}
-	return (ft_strdup_until(s2, c));
+	conc_str[i] = 0;
+	i = -1;
+	while (s1[++i])
+		conc_str[i] = s1[i];
+	i = -1;
+	while (s2[++i] && s2[i] != c)
+		conc_str[i + ft_strlen_until(s1, 0)] = s2[i];
+	free(s1);
+	return (conc_str);
+	
 }

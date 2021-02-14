@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/20 14:52:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/14 13:40:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			get_next_line(int fd, char **line)
 	char		*buffer;
 	ssize_t		cp_len;
 
-	if (!line || BUFFER_SIZE <= 0 || fd < 0 || fd > MAX_FD ||
+	if (!line || BUFFER_SIZE <= 0 || read(fd, NULL, 0) != 0 ||
 		!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	while ((cp_len = read(fd, buffer, BUFFER_SIZE)) > 0)
