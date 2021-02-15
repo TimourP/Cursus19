@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:01 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/15 10:45:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/15 10:57:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	get_next_line_end(int cp_len, char **str, char **line)
+static int	get_next_line_end(int cp_len, char *str[], char **line)
 {
 	int ret;
 
@@ -31,7 +31,7 @@ static int	get_next_line_end(int cp_len, char **str, char **line)
 
 int			get_next_line(int fd, char **line)
 {
-	static char	*str;
+	static char	*str[MAX_FD];
 	char		*buffer;
 	ssize_t		cp_len;
 
@@ -41,7 +41,7 @@ int			get_next_line(int fd, char **line)
 	while ((cp_len = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[cp_len] = 0;
-		if (!(str = ft_strjoin_until(str, buffer, 0)))
+		if (!(str[fd] = ft_strjoin_until(str[fd], buffer, 0)))
 		{
 			free(buffer);
 			return (-1);
@@ -50,5 +50,5 @@ int			get_next_line(int fd, char **line)
 			break ;
 	}
 	free(buffer);
-	return (get_next_line_end(cp_len, &str, line));
+	return (get_next_line_end(cp_len, &(str[fd]), line));
 }
