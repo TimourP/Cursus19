@@ -12,16 +12,10 @@ int main(void)
 
 	while (++j < 20)
 	{
-		value = get_next_line(i, &line);
+		value = get_next_line(-1, &line);
 		printf("%d :\t()%d %s\n", j, value, line);
 		if (line)
 			free(line);
 	}
-	
-	while (1)
-	{
-		/* code */
-	}
-	
 
 }
