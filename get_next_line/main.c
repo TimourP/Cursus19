@@ -8,11 +8,14 @@ int main(void)
 	int value;
 	char *line;
 
+	line = NULL;
+
 	while (++j < 20)
 	{
 		value = get_next_line(i, &line);
 		printf("%d :\t()%d %s\n", j, value, line);
-		free(line);
+		if (line)
+			free(line);
 	}
 	
 	while (1)
