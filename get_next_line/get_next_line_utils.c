@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:49:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/15 10:58:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/16 13:15:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*ft_strdup_until(char *src, char c)
 		;
 	if (!(dest = (char*)malloc((i + 1) * sizeof(char))))
 	{
-		errno = ENOMEM;
 		return (NULL);
 	}
 	i = -1;
@@ -68,7 +67,6 @@ char	*ft_strdup_from(char *src, char c)
 	if (!(dest = malloc((len + 1) * sizeof(char))))
 	{
 		free(src);
-		errno = ENOMEM;
 		return (NULL);
 	}
 	i = -1;

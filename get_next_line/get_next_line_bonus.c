@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:01 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/15 10:57:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/16 13:31:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	get_next_line_end(int cp_len, char *str[], char **line)
 {
@@ -38,7 +38,8 @@ int			get_next_line(int fd, char **line)
 	if (!line || BUFFER_SIZE <= 0 || read(fd, NULL, 0) != 0 ||
 		!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
-	while ((cp_len = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while ((!str[fd] || !ft_is_in_str(str[fd], '\n')) &&
+		(cp_len = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[cp_len] = 0;
 		if (!(str[fd] = ft_strjoin_until(str[fd], buffer, 0)))

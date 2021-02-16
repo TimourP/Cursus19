@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:06:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/20 14:45:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/16 13:15:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <stdlib.h>
-# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 
