@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:01 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/16 13:31:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/18 12:43:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static int	get_next_line_end(int cp_len, char *str[], char **line)
+static int	get_next_line_end(int cp_len, char **str, char **line)
 {
 	int ret;
 
@@ -25,7 +25,11 @@ static int	get_next_line_end(int cp_len, char *str[], char **line)
 	if (!(*str = ft_strdup_from(*str, '\n')))
 		return (-1);
 	if (cp_len == 0 && ft_strlen_until(*str, 0) == 0)
+	{
 		return (ret);
+		if (ret == 0)
+			free(*str);
+	}
 	return (1);
 }
 
