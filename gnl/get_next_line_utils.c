@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 11:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 16:58:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 17:04:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int is_in_str(char *str, char c)
+int		is_in_str(char *str, char c)
 {
 	int i;
 
@@ -24,7 +24,7 @@ int is_in_str(char *str, char c)
 	return (0);
 }
 
-size_t ft_strlen_until(char *str, char c)
+size_t	ft_strlen_until(char *str, char c)
 {
 	size_t i;
 
@@ -51,7 +51,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	conc_str[len] = 0;
 	i = -1;
 	len = ft_strlen_until(s1, 0);
-	
 	if (len > 0)
 		while (++i < len)
 			conc_str[i] = s1[i];
@@ -79,7 +78,6 @@ char	*ft_strdup_until(char *src, char c)
 		dest[i] = src[i];
 	return (dest);
 }
-
 
 char	*ft_strdup_from(char *str, int from)
 {

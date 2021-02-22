@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 11:20:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 16:57:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 17:05:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	if (!(save = ft_strdup_from(save, ft_strlen_until(save, '\n') + 1)))
 		return (-1);
-	return(cp_len == 0 ? 0 : 1);
+	return (cp_len == 0 ? 0 : 1);
 }
