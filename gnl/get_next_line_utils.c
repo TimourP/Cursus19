@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 11:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 17:04:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 17:31:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		is_in_str(char *str, char c)
 	int i;
 
 	i = -1;
+	if (!str)
+		return (0);
 	while (str[++i])
 		if (str[i] == c)
 			return (1);
@@ -68,7 +70,12 @@ char	*ft_strdup_until(char *src, char c)
 	char	*dest;
 
 	if (!src)
-		return (NULL);
+	{
+		if (!(dest = malloc(sizeof(char))))
+			return (NULL);
+		dest[0] = 0;
+		return (dest);
+	}
 	i = ft_strlen_until(src, c);
 	if (!(dest = (char*)malloc((i + 1) * sizeof(char))))
 		return (NULL);
@@ -84,12 +91,11 @@ char	*ft_strdup_from(char *str, int from)
 	int		i;
 	char	*dest;
 
-	if (!str)
-		return (NULL);
-	if (!is_in_str(str, '\n'))
+	if (!str || !is_in_str(str, '\n'))
 	{
 		free(str);
-		str = malloc(sizeof(char));
+		if (!(str = malloc(sizeof(char))))
+			return (NULL);
 		str[0] = 0;
 		return (str);
 	}
