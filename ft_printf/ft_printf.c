@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 14:31:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 19:18:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int		ft_printf(const char *format, ...)
 	va_start(print_variables->argc, format);
 	charnum = ft_printf_loop(print_variables, format);
 	va_end(print_variables->argc);
+	free(print_variables);
 	return (charnum);
 }

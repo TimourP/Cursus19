@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 17:21:09 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 09:50:56 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 09:32:40 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 10:48:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int main(void)
 {
-	char test[10] = "%11.10d";
-	printf(test, 12);
-	ft_printf(test, 12);
+	char test[10] = "%.1s\n";
+	printf("flags : %s\n", test);
+	printf(test, "12");
+	printf("return : %d\n", ft_printf(test, "12"));
 	return (0);
 }

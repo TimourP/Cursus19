@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 11:52:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:57:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 19:11:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@ char	*join_back(char *malloced, char *add)
 	int		i;
 	char	*conc_str;
 
-	if (malloced)
+	if (!malloced)
+		return (add ? ft_strdup(add) : NULL);
+	i = ft_strlen(malloced) + ft_strlen(add);
+	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 	{
-		i = ft_strlen(malloced) + ft_strlen(add);
-		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
-			return (NULL);
-		conc_str[i] = 0;
-		i = -1;
-		while (malloced[++i])
-			conc_str[i] = malloced[i];
-		i = -1;
-		while (add[++i])
-			conc_str[i + ft_strlen(malloced)] = add[i];
 		free(malloced);
-		return (conc_str);
+		return (NULL);
 	}
-	return (add ? ft_strdup(add) : NULL);
+	conc_str[i] = 0;
+	i = -1;
+	while (malloced[++i])
+		conc_str[i] = malloced[i];
+	i = -1;
+	while (add[++i])
+		conc_str[i + ft_strlen(malloced)] = add[i];
+	free(malloced);
+	return (conc_str);
 }
 
 char	*join_front(char *malloced, char *add)
@@ -40,22 +41,24 @@ char	*join_front(char *malloced, char *add)
 	int		i;
 	char	*conc_str;
 
-	if (malloced)
+	if (!malloced)
+		return (add ? ft_strdup(add) : NULL);
+	i = ft_strlen(malloced) + ft_strlen(add);
+	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
 	{
-		i = ft_strlen(malloced) + ft_strlen(add);
-		if (!(conc_str = malloc(sizeof(char) * (i + 1))))
-			return (NULL);
-		conc_str[i] = 0;
-		i = -1;
-		while (add[++i])
-			conc_str[i] = add[i];
-		i = -1;
-		while (malloced[++i])
-			conc_str[i + ft_strlen(add)] = malloced[i];
 		free(malloced);
-		return (conc_str);
+		return (NULL);
 	}
-	return (add ? ft_strdup(add) : NULL);
+	conc_str[i] = 0;
+	i = -1;
+	while (add[++i])
+		conc_str[i] = add[i];
+	i = -1;
+	while (malloced[++i])
+		conc_str[i + ft_strlen(add)] = malloced[i];
+	free(malloced);
+	return (conc_str);
+	
 }
 
 char	*string_with_length(char c, int length)

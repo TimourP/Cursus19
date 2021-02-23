@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 17:43:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:58:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/22 19:16:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ int			convert_d(t_printf_data *print_variables)
 	if (print_variables->dot || print_variables->zero)
 	{
 		if (nb == 0 && print_variables->precision != -1 && print_variables->dot)
+		{
+			free(print_variables->current_str);
 			print_variables->current_str = ft_strdup(string_with_length('0',
 			print_variables->precision));
+		}
 		else if (nb >= 0)
 		{
 			if (!(convert_d_precision(print_variables)))
