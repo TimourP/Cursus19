@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:32:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:44:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 11:58:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ int				ft_stringify(t_printf_data *pf_var);
 void			write_and_add(int *count, char c);
 void			write_str_and_add(t_printf_data *pf_var, int *count);
 char			*ft_substr(char *s, unsigned int start, size_t len);
+char			*ft_strdup_spec(const char *str);
+char			*ft_strdup(const char *str);
+int				free_and_return(char *to_free, int ret);
+char			*join_back(char *malloced, char *add);
+char			*join_front(char *malloced, char *add);
+char			*string_with_length(char c, int length);
 
 int				convert_s(t_printf_data *pf_var);
 int				convert_c(t_printf_data *pf_var);
@@ -51,7 +57,6 @@ int				convert_p(t_printf_data *pf_var);
 int				convert_u(t_printf_data *pf_var);
 int				convert_x(t_printf_data *pf_var);
 int				convert_upperx(t_printf_data *pf_var);
-char			*ft_strdup_spec(const char *str);
-char			*ft_strdup(const char *str);
+int				convert_width(t_printf_data *pf_var);
 
 #endif

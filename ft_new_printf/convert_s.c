@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:23:03 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:48:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 11:56:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ static int	convert_s_dot_flag(t_printf_data *pr_var)
 	if (!(pr_var->current_str = ft_substr(pr_var->current_str,
 		0, pr_var->precision)))
 		return (0);
+	if (pr_var->width)
+		if (!convert_width(pr_var))
+			return (0);
 	return (1);
 }
 
