@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 12:21:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:08:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		check_negative(t_printf_data *pf_var, int len)
 	}
 	if (pf_var->precision < 0)
 		pf_var->precision = -1;
+	if (pf_var->dot && pf_var->zero)
+		pf_var->zero = 0;
 	return (len);
 }
 

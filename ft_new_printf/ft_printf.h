@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:32:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:58:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:32:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int				free_and_return(char *to_free, int ret);
 char			*join_back(char *malloced, char *add);
 char			*join_front(char *malloced, char *add);
 char			*string_with_length(char c, int length);
+char			*ft_itoa_base(int n, int base_len, const char *base);
+char			*ft_itoa_base_u(unsigned int n, int base_len, const char *base);
 
 int				convert_s(t_printf_data *pf_var);
 int				convert_c(t_printf_data *pf_var);
