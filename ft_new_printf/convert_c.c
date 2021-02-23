@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:24:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 12:50:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:52:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			convert_c(t_printf_data *pf_var)
 {
-	char *str;
-	int diff;
+	char	*str;
+	int		diff;
 
 	if (!(str = malloc(sizeof(char) * 2)))
 		return (0);
