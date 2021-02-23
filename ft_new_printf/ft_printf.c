@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 10:50:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 10:55:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 			if (!ft_stringify(pf_var))
 				return (-1);
 		}
-		
 	}
 	return (0);
 }
 
 int		ft_printf(const char *format, ...)
 {
-	int 			print_len;
+	int				print_len;
 	t_printf_data	*pf_var;
 
 	if (!(pf_var = malloc(sizeof(t_printf_data))))

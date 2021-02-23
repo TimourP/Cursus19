@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 10:51:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 10:57:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int init_struct(t_printf_data *pf_var)
+int		init_struct(t_printf_data *pf_var)
 {
 	if (pf_var->current_str)
 		free(pf_var->current_str);
@@ -26,7 +26,7 @@ int init_struct(t_printf_data *pf_var)
 	return (1);
 }
 
-size_t ft_strlen_until(char *str, char c)
+size_t	ft_strlen_until(char *str, char c)
 {
 	int i;
 
@@ -38,7 +38,7 @@ size_t ft_strlen_until(char *str, char c)
 	return (i);
 }
 
-int is_in_str(char *str, char c)
+int		is_in_str(char *str, char c)
 {
 	int i;
 
@@ -55,26 +55,20 @@ int		ft_pf_atoi(t_printf_data *pr_var, const char *str, int *index)
 {
 	unsigned long long	num;
 	int					length;
-	int neg;
+	int					neg;
 
 	num = 0;
 	neg = 1;
 	length = -1;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-	{
+	while (((*str >= 9 && *str <= 13) || *str == ' ') && ((*index)++ || 1))
 		str++;
-		(*index)++;
-	}
 	while ((*str == '-' || *str == '0') && ((*index)++ || 1))
 	{
 		str++;
 		neg = -1;
 	}
-	if (*str == '*')
-	{
-		(*index)++;
+	if (*str == '*' && ((*index)++ || 1))
 		return (va_arg(pr_var->argc, int));
-	}
 	while (*str >= '0' && *str <= '9' && ++length > -1)
 	{
 		num = 10 * num + (*str - '0');
@@ -86,6 +80,7 @@ int		ft_pf_atoi(t_printf_data *pr_var, const char *str, int *index)
 
 int		ft_stringify(t_printf_data *pf_var)
 {
+	return (1);
 	if (pf_var->current_char == 's')
 		return (convert_s(pf_var));
 	else if (pf_var->current_char == 'c')
@@ -107,7 +102,7 @@ int		ft_stringify(t_printf_data *pf_var)
 	return (1);
 }
 
-void print_struct(t_printf_data *pf_var)
+void	print_struct(t_printf_data *pf_var)
 {
 	printf("curr str : %s\n", pf_var->current_str);
 	printf("curr char : %c\n", pf_var->current_char);
