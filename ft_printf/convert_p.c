@@ -5,26 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 17:43:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 13:58:23 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 14:37:52 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 14:43:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	convert_p(t_printf_data *print_variables)
+int	convert_p(t_printf_data *pf_var)
 {
 	unsigned long long int	pointer_value;
 	char					*number;
 
-	pointer_value = va_arg(print_variables->argc, unsigned long long int);
+	pointer_value = va_arg(pf_var->argc, unsigned long long int);
 	number = ft_itoa_base_p(pointer_value, 16, "0123456789abcdef");
-	print_variables->current_str = ft_strdup("0x");
-	print_variables->current_str =
-		join_back(print_variables->current_str, number);
+	pf_var->current_str = ft_strdup("0x");
+	pf_var->current_str = join_back(pf_var->current_str, number);
 	free(number);
-	if (print_variables->min_length)
-		if (!convert_width(print_variables))
+	if (pf_var->width)
+		if (!convert_width(pf_var))
 			return (0);
 	return (1);
 }

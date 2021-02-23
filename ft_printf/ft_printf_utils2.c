@@ -5,76 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 14:28:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/01/13 14:29:32 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 11:47:10 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 12:20:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		init_data(t_printf_data *print_variables)
+void	print_struct(t_printf_data *pf_var)
 {
-	print_variables->current_char = 0;
-	print_variables->current_str = NULL;
-	print_variables->minus = 0;
-	print_variables->dot = 0;
-	print_variables->min_length = 0;
-	print_variables->zero = 0;
-	print_variables->precision = -1;
-	return (1);
+	printf("curr str : %s\n", pf_var->current_str);
+	printf("curr char : %c\n", pf_var->current_char);
+	printf("minus : %d\n", pf_var->minus);
+	printf("width : %d\n", pf_var->width);
+	printf("zero : %d\n", pf_var->zero);
+	printf("dot : %d\n", pf_var->dot);
+	printf("curr precision : %d\n", pf_var->precision);
 }
 
-int		add_converter_and_check(t_printf_data *print_variables, char c)
+int		free_and_return(char *to_free, int ret)
 {
-	if (!is_in_str("cspdiuxX%", c))
-		return (0);
-	print_variables->current_char = c;
-	return (1);
+	free(to_free);
+	return (ret);
 }
 
-void	print_struct(t_printf_data *print_variables)
+int		convert_width(t_printf_data *pf_var)
 {
-	printf("\n\ncurr char : %c\n", print_variables->current_char);
-	printf("curr str : %s\n", print_variables->current_str);
-	printf("minus : %d\n", print_variables->minus);
-	printf("min len : %d\n", print_variables->min_length);
-	printf("zero : %d\n", print_variables->zero);
-	printf("dot : %d\n", print_variables->dot);
-	printf("curr precision : %d\n\n\n", print_variables->precision);
-}
+	char	*space_string;
+	char	char_to_fill;
+	int		remaining_length;
 
-int		ft_stringify(t_printf_data *print_variables)
-{
-	if (print_variables->current_char == 's')
-		return (convert_s(print_variables));
-	else if (print_variables->current_char == 'c')
-		return (convert_c(print_variables));
-	else if (print_variables->current_char == 'd')
-		return (convert_d(print_variables));
-	else if (print_variables->current_char == 'p')
-		return (convert_p(print_variables));
-	else if (print_variables->current_char == 'i')
-		return (convert_d(print_variables));
-	else if (print_variables->current_char == 'u')
-		return (convert_u(print_variables));
-	else if (print_variables->current_char == 'x')
-		return (convert_x(print_variables));
-	else if (print_variables->current_char == 'X')
-		return (convert_upperx(print_variables));
-	else if (print_variables->current_char == '%')
-		return (convert_percent(print_variables));
-	return (1);
-}
-
-int		check_negative(int len, t_printf_data *print_variables)
-{
-	if (print_variables->min_length < 0)
+	char_to_fill = pf_var->zero && !pf_var->minus ? '0' : ' ';
+	remaining_length = pf_var->width - ft_strlen(pf_var->current_str);
+	if (!(space_string = string_with_length(char_to_fill,
+		remaining_length > 0 ? remaining_length : 0)))
+		return (free_and_return(space_string, 0));
+	if (pf_var->minus)
 	{
-		print_variables->min_length = 0 - print_variables->min_length;
-		if (!print_variables->minus)
-			print_variables->minus = 1;
+		if (!(pf_var->current_str =
+			join_back(pf_var->current_str, space_string)))
+			return (free_and_return(space_string, 0));
 	}
-	if (print_variables->precision < 0)
-		print_variables->precision = -1;
-	return (len);
+	else if (!(pf_var->current_str =
+			join_front(pf_var->current_str, space_string)))
+		return (free_and_return(space_string, 0));
+	return (free_and_return(space_string, 1));
+}
+
+char	*join_back(char *malloced, char *add)
+{
+	int		i;
+	char	*conc_str;
+
+	if (!malloced)
+		return (add ? ft_strdup(add) : NULL);
+	i = ft_strlen(malloced) + ft_strlen(add);
+	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+	{
+		free(malloced);
+		return (NULL);
+	}
+	conc_str[i] = 0;
+	i = -1;
+	while (malloced[++i])
+		conc_str[i] = malloced[i];
+	i = -1;
+	while (add[++i])
+		conc_str[i + ft_strlen(malloced)] = add[i];
+	free(malloced);
+	return (conc_str);
+}
+
+char	*join_front(char *malloced, char *add)
+{
+	int		i;
+	char	*conc_str;
+
+	if (!malloced)
+		return (add ? ft_strdup(add) : NULL);
+	i = ft_strlen(malloced) + ft_strlen(add);
+	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+	{
+		free(malloced);
+		return (NULL);
+	}
+	conc_str[i] = 0;
+	i = -1;
+	while (add[++i])
+		conc_str[i] = add[i];
+	i = -1;
+	while (malloced[++i])
+		conc_str[i + ft_strlen(add)] = malloced[i];
+	free(malloced);
+	return (conc_str);
 }

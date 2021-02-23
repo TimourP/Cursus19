@@ -5,24 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 17:43:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 19:16:24 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 13:10:24 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 14:59:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_d_precision_neg(t_printf_data *print_variables)
+static void	edit_di_values(t_printf_data *pf_var)
+{
+	if (pf_var->zero && !pf_var->dot && pf_var->width)
+	{
+		pf_var->precision = pf_var->width;
+		pf_var->width = 0;
+		pf_var->dot = 1;
+		pf_var->zero = 0;
+	}
+}
+
+static int	convert_di_precision_neg(t_printf_data *pf_var)
 {
 	char		*space_string;
-	const	int to_r = print_variables->zero && !print_variables->dot;
+	const	int to_r = pf_var->zero && !pf_var->dot;
 	int			remaining_length;
 	char		*new_str;
 
-	remaining_length = print_variables->precision -
-		ft_strlen(print_variables->current_str) + 1 - to_r;
-	new_str = ft_strdup(&(print_variables->current_str)[1]);
-	free(print_variables->current_str);
+	edit_di_values(pf_var);
+	remaining_length = pf_var->precision -
+		ft_strlen(pf_var->current_str) + 1 - to_r;
+	new_str = ft_strdup(&(pf_var->current_str)[1]);
+	free(pf_var->current_str);
 	if (!(space_string = string_with_length('0',
 		remaining_length > 0 ? remaining_length : 0)))
 		return (free_and_return(space_string, 0));
@@ -30,54 +42,56 @@ static int	convert_d_precision_neg(t_printf_data *print_variables)
 		return (free_and_return(space_string, 0));
 	if (!(new_str = join_front(new_str, "-")))
 		return (free_and_return(space_string, 0));
-	print_variables->current_str = ft_strdup(new_str);
+	pf_var->current_str = ft_strdup(new_str);
 	free(new_str);
 	return (free_and_return(space_string, 1));
 }
 
-static int	convert_d_precision(t_printf_data *print_variables)
+static int	convert_di_precision(t_printf_data *pf_var)
 {
 	char	*space_string;
 	int		remaining_length;
 
-	remaining_length = print_variables->precision -
-		ft_strlen(print_variables->current_str);
+	remaining_length = pf_var->precision - ft_strlen(pf_var->current_str);
 	if (!(space_string = string_with_length('0',
 		remaining_length > 0 ? remaining_length : 0)))
 		return (free_and_return(space_string, 0));
-	else if (!(print_variables->current_str =
-		join_front(print_variables->current_str, space_string)))
+	else if (!(pf_var->current_str =
+		join_front(pf_var->current_str, space_string)))
 		return (free_and_return(space_string, 0));
 	return (free_and_return(space_string, 1));
 }
 
-int			convert_d(t_printf_data *print_variables)
+int			deal_di_flags(t_printf_data *pf_var, int nb)
 {
-	int nb;
-
-	nb = va_arg(print_variables->argc, int);
-	if (!(print_variables->current_str =
-		ft_itoa_base(nb, 10, "0123456789")))
-		return (0);
-	if (print_variables->dot || print_variables->zero)
+	if (pf_var->dot || pf_var->zero)
 	{
-		if (nb == 0 && print_variables->precision != -1 && print_variables->dot)
+		if (nb == 0 && pf_var->precision != -1 && pf_var->dot)
 		{
-			free(print_variables->current_str);
-			print_variables->current_str = ft_strdup(string_with_length('0',
-			print_variables->precision));
+			free(pf_var->current_str);
+			pf_var->current_str = string_with_length('0', pf_var->precision);
 		}
 		else if (nb >= 0)
 		{
-			if (!(convert_d_precision(print_variables)))
+			if (!(convert_di_precision(pf_var)))
 				return (0);
 		}
 		else if (nb < 0)
-			if (!(convert_d_precision_neg(print_variables)))
+			if (!(convert_di_precision_neg(pf_var)))
 				return (0);
 	}
-	if (print_variables->min_length)
-		if (!convert_width(print_variables))
+	if (pf_var->width)
+		if (!convert_width(pf_var))
 			return (0);
 	return (1);
+}
+
+int			convert_di(t_printf_data *pf_var)
+{
+	int nb;
+
+	nb = va_arg(pf_var->argc, int);
+	if (!(pf_var->current_str = ft_itoa_base(nb, 10, "0123456789")))
+		return (0);
+	return (deal_di_flags(pf_var, nb));
 }

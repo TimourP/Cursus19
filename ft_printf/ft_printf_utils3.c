@@ -5,56 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 14:30:56 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 19:17:38 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 11:58:45 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 14:48:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_in_str(char *str, char c)
+char			*string_with_length(char c, int length)
+{
+	int		i;
+	char	*str;
+
+	i = -1;
+	if (!(str = malloc(sizeof(char) * (length + 1))))
+		return (NULL);
+	while (++i < length)
+		str[i] = c;
+	str[i] = 0;
+	return (str);
+}
+
+static size_t	number_len(int n, int base_len)
 {
 	int i;
 
-	i = -1;
-	while (str[++i])
-		if (str[i] == c)
-			return (1);
-	return (0);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = -1;
-	while (str[++i])
-		;
+	i = 0;
+	if (n < 0)
+		i = 1;
+	while (n && ++i)
+		n = n / base_len;
 	return (i);
 }
 
-void	write_and_add(char c, int *count)
+static size_t	number_len_u(unsigned int n, int base_len)
 {
-	write(1, &c, 1);
-	(*count)++;
+	int i;
+
+	i = 0;
+	if (n < 0)
+		i = 1;
+	while (n && ++i)
+		n = n / base_len;
+	return (i);
 }
 
-void	write_str_and_count(t_printf_data *print_variables, int *count)
+char			*ft_itoa_base(int n, int base_len, const char *base)
 {
-	if (print_variables->current_char)
+	const size_t	n_len = number_len(n, base_len);
+	char			*num;
+	int				i;
+	int				neg;
+
+	i = -1;
+	neg = 0;
+	if (n < 0)
+		neg = 1;
+	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)))))
+		return (NULL);
+	num[n_len + (int)(n == 0)] = 0;
+	if (neg)
+		num[0] = '-';
+	if (n == 0)
+		num[0] = base[0];
+	while (n && ++i > -1)
 	{
-		if (print_variables->current_char == 'c')
-		{
-			write(1, print_variables->current_str,
-			print_variables->min_length > 1 ? print_variables->min_length : 1);
-			(*count) += print_variables->min_length > 1 ?
-			print_variables->min_length : 1;
-			free(print_variables->current_str);
-			return ;
-		}
-		write(1, print_variables->current_str,
-		ft_strlen(print_variables->current_str));
-		(*count) += ft_strlen(print_variables->current_str);
-		free(print_variables->current_str);
+		num[n_len - 1 - i] = neg ? base[n % base_len * -1] : base[n % base_len];
+		n = n / base_len;
 	}
+	return (num);
+}
+
+char			*ft_itoa_base_u(unsigned int n, int base_len, const char *base)
+{
+	const size_t	n_len = number_len_u(n, base_len);
+	char			*num;
+	int				i;
+	int				neg;
+
+	i = -1;
+	neg = 0;
+	if (n < 0)
+		neg = 1;
+	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)))))
+		return (NULL);
+	num[n_len + (int)(n == 0)] = 0;
+	if (neg)
+		num[0] = '-';
+	if (n == 0)
+		num[0] = base[0];
+	while (n && ++i > -1)
+	{
+		num[n_len - 1 - i] = neg ? base[n % base_len * -1] : base[n % base_len];
+		n = n / base_len;
+	}
+	return (num);
 }

@@ -5,116 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/21 18:23:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 19:18:08 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 15:56:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_data_end(t_printf_data *print_variables,
-			const char *flags_set, int *i)
+int		check_negative(t_printf_data *pf_var, int len)
 {
-	if (flags_set[*i] == '0' && !print_variables->dot
-		&& !print_variables->min_length)
+	if (pf_var->width < 0)
 	{
-		if (flags_set[*i + 1] && flags_set[*i + 1] != '-')
-		{
-			print_variables->zero = 1;
-			print_variables->precision =
-				ft_atoi(&flags_set[*i + 1], i, print_variables);
-			if (print_variables->precision < 0)
-			{
-				print_variables->minus = 1;
-				print_variables->min_length = print_variables->precision;
-				print_variables->precision = -1;
-			}
-		}
-		else
-		{
-			print_variables->minus = 1;
-			print_variables->min_length =
-				ft_atoi(&flags_set[*i + 1], i, print_variables);
-		}
+		pf_var->width = 0 - pf_var->width;
+		if (!pf_var->minus)
+			pf_var->minus = 1;
+		pf_var->zero = 0;
 	}
+	if (pf_var->precision < 0)
+	{
+		pf_var->precision = -1;
+		pf_var->dot = 0;
+	}
+	if (pf_var->dot && pf_var->zero)
+		pf_var->zero = 0;
+	return (len);
 }
 
-void	fill_data_dot(t_printf_data *print_variables,
-			const char *flags_set, int *i)
+int		fill_struct(t_printf_data *pf_var, const char *str)
 {
-	int curr_nbr;
-
-	curr_nbr = ft_atoi(&flags_set[*i + 1], i, print_variables);
-	if (print_variables->precision != -1)
-		print_variables->min_length = print_variables->precision;
-	if (curr_nbr >= 0)
-	{
-		print_variables->precision = curr_nbr;
-		print_variables->dot = 1;
-	}
-}
-
-int		fill_data(t_printf_data *print_variables, const char *flags_set)
-{
-	int i;
 	int len;
+	int i;
 
+	len = -1;
 	i = 0;
-	len = 0;
-	while (flags_set[len] && is_in_str("0123456789-.*", flags_set[len]))
-		len++;
-	while (flags_set[i] && is_in_str("0123456789-.*", flags_set[i]))
+	if (str[0] == '-')
+		pf_var->minus = 1;
+	pf_var->width = ft_pf_atoi(pf_var, &str[i], &i);
+	if (str[0] == '0')
+		pf_var->zero = 1;
+	while (str[++len] && is_in_str("0123456789-.*", str[len]))
+		;
+	while (str[i] && is_in_str("0123456789-.*", str[i]))
 	{
-		if (flags_set[i] == '-' && i == 0)
-			print_variables->minus = 1;
-		if (i == 0 && flags_set[0] != '0')
-			print_variables->min_length =
-				ft_atoi(&flags_set[i], &i, print_variables);
-		if (flags_set[i] == '.')
+		if (str[i] == '.')
 		{
-			fill_data_dot(print_variables, flags_set, &i);
+			pf_var->dot = 1;
+			pf_var->precision = ft_pf_atoi(pf_var, &str[i + 1], &i);
 		}
-		fill_data_end(print_variables, flags_set, &i);
 		i++;
 	}
-	return (check_negative(len, print_variables));
+	return (check_negative(pf_var, len));
 }
 
-int		ft_printf_loop(t_printf_data *print_variables, const char *str)
+int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 {
-	int charnum;
+	int print_len;
 	int i;
 
-	charnum = 0;
 	i = -1;
+	print_len = 0;
+	pf_var->current_str = NULL;
 	while (str[++i])
 	{
 		if (str[i] != '%')
-			write_and_add(str[i], &charnum);
-		else if (++i)
+			write_and_add(&print_len, str[i]);
+		else
 		{
-			init_data(print_variables);
-			i += fill_data(print_variables, &str[i]);
-			if (!add_converter_and_check(print_variables, str[i]))
+			i++;
+			init_struct(pf_var);
+			i += fill_struct(pf_var, &str[i]);
+			if (!is_in_str("cspdiuxX%", str[i]))
 				return (-1);
-			if (!ft_stringify(print_variables))
+			pf_var->current_char = str[i];
+			if (!ft_stringify(pf_var))
 				return (-1);
-			write_str_and_count(print_variables, &charnum);
+			write_str_and_add(pf_var, &print_len);
 		}
 	}
-	return (charnum);
+	return (print_len);
 }
 
 int		ft_printf(const char *format, ...)
 {
-	int				charnum;
-	t_printf_data	*print_variables;
+	int				print_len;
+	t_printf_data	*pf_var;
 
-	if (!(print_variables = malloc(sizeof(t_printf_data))))
+	if (!(pf_var = malloc(sizeof(t_printf_data))))
 		return (-1);
-	va_start(print_variables->argc, format);
-	charnum = ft_printf_loop(print_variables, format);
-	va_end(print_variables->argc);
-	free(print_variables);
-	return (charnum);
+	va_start(pf_var->argc, format);
+	print_len = ft_printf_loop(pf_var, format);
+	va_end(pf_var->argc);
+	free(pf_var->current_str);
+	free(pf_var);
+	return (print_len);
 }

@@ -5,100 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 11:52:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 19:11:14 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/23 15:17:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*join_back(char *malloced, char *add)
+int		init_struct(t_printf_data *pf_var)
 {
-	int		i;
-	char	*conc_str;
+	if (pf_var->current_str)
+		free(pf_var->current_str);
+	pf_var->current_char = 0;
+	pf_var->current_str = NULL;
+	pf_var->minus = 0;
+	pf_var->dot = 0;
+	pf_var->zero = 0;
+	pf_var->width = 0;
+	pf_var->precision = -1;
+	return (1);
+}
 
-	if (!malloced)
-		return (add ? ft_strdup(add) : NULL);
-	i = ft_strlen(malloced) + ft_strlen(add);
-	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+size_t	ft_strlen(const char *str)
+{
+	int i;
+
+	i = -1;
+	if (!str)
+		return (0);
+	while (str[++i])
+		;
+	return (i);
+}
+
+int		is_in_str(char *str, char c)
+{
+	int i;
+
+	i = -1;
+	if (!str)
+		return (0);
+	while (str[++i])
+		if (str[i] == c)
+			return (1);
+	return (0);
+}
+
+int		ft_pf_atoi(t_printf_data *pr_var, const char *str, int *index)
+{
+	unsigned long long	num;
+	int					length;
+	int					neg;
+
+	num = 0;
+	neg = 1;
+	length = -1;
+	while (((*str >= 9 && *str <= 13) || *str == ' ') && ((*index)++ || 1))
+		str++;
+	while ((*str == '-' || *str == '0') && ((*index)++ || 1))
 	{
-		free(malloced);
-		return (NULL);
+		str++;
+		if (*str == '-')
+			neg = -1;
 	}
-	conc_str[i] = 0;
-	i = -1;
-	while (malloced[++i])
-		conc_str[i] = malloced[i];
-	i = -1;
-	while (add[++i])
-		conc_str[i + ft_strlen(malloced)] = add[i];
-	free(malloced);
-	return (conc_str);
-}
-
-char	*join_front(char *malloced, char *add)
-{
-	int		i;
-	char	*conc_str;
-
-	if (!malloced)
-		return (add ? ft_strdup(add) : NULL);
-	i = ft_strlen(malloced) + ft_strlen(add);
-	if (!(conc_str = malloc(sizeof(char) * (i + 1))))
+	if (*str == '*' && ((*index)++ || 1))
+		return (va_arg(pr_var->argc, int) * neg);
+	while (*str >= '0' && *str <= '9' && ++length > -1)
 	{
-		free(malloced);
-		return (NULL);
+		num = 10 * num + (*str - '0');
+		(*index)++;
+		str++;
 	}
-	conc_str[i] = 0;
-	i = -1;
-	while (add[++i])
-		conc_str[i] = add[i];
-	i = -1;
-	while (malloced[++i])
-		conc_str[i + ft_strlen(add)] = malloced[i];
-	free(malloced);
-	return (conc_str);
-	
+	return ((int)(num * neg));
 }
 
-char	*string_with_length(char c, int length)
+int		ft_stringify(t_printf_data *pf_var)
 {
-	int		i;
-	char	*str;
-
-	i = -1;
-	if (!(str = malloc(sizeof(char) * (length + 1))))
-		return (NULL);
-	while (++i < length)
-		str[i] = c;
-	str[i] = 0;
-	return (str);
-}
-
-int		free_and_return(char *to_free, int to_return)
-{
-	free(to_free);
-	return (to_return);
-}
-
-int		convert_width(t_printf_data *print_variables)
-{
-	char	*space_string;
-	int		remaining_length;
-
-	remaining_length = print_variables->min_length -
-		ft_strlen(print_variables->current_str);
-	if (!(space_string = string_with_length(' ',
-		remaining_length > 0 ? remaining_length : 0)))
-		return (free_and_return(space_string, 0));
-	if (print_variables->minus)
-	{
-		if (!(print_variables->current_str =
-			join_back(print_variables->current_str, space_string)))
-			return (free_and_return(space_string, 0));
-	}
-	else if (!(print_variables->current_str =
-			join_front(print_variables->current_str, space_string)))
-		return (free_and_return(space_string, 0));
-	return (free_and_return(space_string, 1));
+	if (pf_var->current_char == 's')
+		return (convert_s(pf_var));
+	else if (pf_var->current_char == 'c')
+		return (convert_c(pf_var));
+	else if (pf_var->current_char == 'd')
+		return (convert_di(pf_var));
+	else if (pf_var->current_char == 'p')
+		return (convert_p(pf_var));
+	else if (pf_var->current_char == 'i')
+		return (convert_di(pf_var));
+	else if (pf_var->current_char == 'u')
+		return (convert_u(pf_var));
+	else if (pf_var->current_char == 'x')
+		return (convert_x(pf_var));
+	else if (pf_var->current_char == 'X')
+		return (convert_upperx(pf_var));
+	else if (pf_var->current_char == '%')
+		return (convert_percent(pf_var));
+	return (1);
 }
