@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:32:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:48:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:20:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 int	main(void)
 {
-	const char test[100] = "str => %.3s\n";
+	const char test[100] = "%s\n";
 
-	ft_printf(test, "hello");
-	printf("---------------------------------\n");
-	printf(test, "hello");
-	printf("flags => %s", test);
+	printf(" %*.5s %*.5s ", -10, "123", 10, "4567");
+	ft_printf(" %*.5s %*.5s ", -10, "123", 10, "4567");
 	return (0);
 }

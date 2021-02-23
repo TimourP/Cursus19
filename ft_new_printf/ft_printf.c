@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:39:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:21:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 			write_str_and_add(pf_var, &print_len);
 		}
 	}
-	return (0);
+	return (print_len);
 }
 
 int		ft_printf(const char *format, ...)
@@ -90,6 +90,7 @@ int		ft_printf(const char *format, ...)
 	va_start(pf_var->argc, format);
 	print_len = ft_printf_loop(pf_var, format);
 	va_end(pf_var->argc);
+	free(pf_var->current_str);
 	free(pf_var);
 	return (print_len);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:47:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:03:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int		ft_pf_atoi(t_printf_data *pr_var, const char *str, int *index)
 	while ((*str == '-' || *str == '0') && ((*index)++ || 1))
 	{
 		str++;
-		neg = -1;
+		if (*str == '-')
+			neg = -1;
 	}
 	if (*str == '*' && ((*index)++ || 1))
 		return (va_arg(pr_var->argc, int));

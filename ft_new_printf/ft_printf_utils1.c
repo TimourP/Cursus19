@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:47:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 11:48:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:06:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	write_str_and_add(t_printf_data *pf_var, int *count)
 	{
 		write(1, pf_var->current_str, ft_strlen(pf_var->current_str));
 		(*count) += ft_strlen(pf_var->current_str);
-		free(pf_var->current_str);
 	}
 }
 
