@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 10:55:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 11:39:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 	while (str[++i])
 	{
 		if (str[i] != '%')
-			;
+			write_and_add(&print_len, str[i]);
 		else
 		{
 			i++;
@@ -74,6 +74,7 @@ int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 			pf_var->current_char = str[i];
 			if (!ft_stringify(pf_var))
 				return (-1);
+			write_str_and_add(pf_var, &print_len);
 		}
 	}
 	return (0);

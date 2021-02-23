@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 10:57:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 11:47:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int		init_struct(t_printf_data *pf_var)
 	return (1);
 }
 
-size_t	ft_strlen_until(char *str, char c)
+size_t	ft_strlen(const char *str)
 {
 	int i;
 
 	i = -1;
 	if (!str)
 		return (0);
-	while (str[++i] && str[i] != c)
+	while (str[++i])
 		;
 	return (i);
 }
@@ -80,9 +80,10 @@ int		ft_pf_atoi(t_printf_data *pr_var, const char *str, int *index)
 
 int		ft_stringify(t_printf_data *pf_var)
 {
-	return (1);
 	if (pf_var->current_char == 's')
 		return (convert_s(pf_var));
+	else if (1)
+		return (1);
 	else if (pf_var->current_char == 'c')
 		return (convert_c(pf_var));
 	else if (pf_var->current_char == 'd')
@@ -100,15 +101,4 @@ int		ft_stringify(t_printf_data *pf_var)
 	else if (pf_var->current_char == '%')
 		return (convert_percent(pf_var));
 	return (1);
-}
-
-void	print_struct(t_printf_data *pf_var)
-{
-	printf("curr str : %s\n", pf_var->current_str);
-	printf("curr char : %c\n", pf_var->current_char);
-	printf("minus : %d\n", pf_var->minus);
-	printf("width : %d\n", pf_var->width);
-	printf("zero : %d\n", pf_var->zero);
-	printf("dot : %d\n", pf_var->dot);
-	printf("curr precision : %d\n", pf_var->precision);
 }
