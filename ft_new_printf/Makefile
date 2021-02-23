@@ -6,11 +6,12 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/23 11:59:52 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/23 12:46:53 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	convert_s.c \
+		convert_c.c \
 		ft_printf_utils.c \
 		ft_printf_utils1.c \
 		ft_printf_utils2.c \
