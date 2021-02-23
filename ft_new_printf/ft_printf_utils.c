@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 13:42:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:50:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ int		ft_stringify(t_printf_data *pf_var)
 		return (convert_c(pf_var));
 	else if (pf_var->current_char == 'd')
 		return (convert_d(pf_var));
-	else if (1)
-		return (1);
 	else if (pf_var->current_char == 'p')
 		return (convert_p(pf_var));
 	else if (pf_var->current_char == 'i')
 		return (convert_d(pf_var));
+	else if (1)
+		return (1);
 	else if (pf_var->current_char == 'u')
 		return (convert_u(pf_var));
 	else if (pf_var->current_char == 'x')

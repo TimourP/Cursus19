@@ -6,17 +6,19 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/23 13:32:31 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/23 14:48:56 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	convert_s.c \
 		convert_c.c \
 		convert_di.c \
+		convert_p.c \
 		ft_printf_utils.c \
 		ft_printf_utils1.c \
 		ft_printf_utils2.c \
 		ft_printf_utils3.c \
+		ft_printf_utils4.c \
 		ft_printf.c \
 
 OBJSB = $(SRCSB:.c=.o)

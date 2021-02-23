@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:58:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:33:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:48:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ char			*string_with_length(char c, int length)
 }
 
 static size_t	number_len(int n, int base_len)
+{
+	int i;
+
+	i = 0;
+	if (n < 0)
+		i = 1;
+	while (n && ++i)
+		n = n / base_len;
+	return (i);
+}
+
+static size_t	number_len_u(unsigned int n, int base_len)
 {
 	int i;
 
