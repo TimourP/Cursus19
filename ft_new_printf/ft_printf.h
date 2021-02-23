@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:32:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:49:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:56:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			*ft_itoa_base_p(unsigned long long int n,
 int				convert_s(t_printf_data *pf_var);
 int				convert_c(t_printf_data *pf_var);
 int				convert_percent(t_printf_data *pf_var);
-int				convert_d(t_printf_data *pf_var);
+int				convert_di(t_printf_data *pf_var);
 int				convert_p(t_printf_data *pf_var);
 int				convert_u(t_printf_data *pf_var);
 int				convert_x(t_printf_data *pf_var);

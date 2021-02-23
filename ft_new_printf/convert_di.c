@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 13:10:24 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:16:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:59:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,29 @@ static int	convert_di_precision(t_printf_data *pf_var)
 
 int			deal_di_flags(t_printf_data *pf_var, int nb)
 {
-	if (nb == 0 && pf_var->precision != -1 && pf_var->dot)
+	if (pf_var->dot || pf_var->zero)
 	{
-		free(pf_var->current_str);
-		pf_var->current_str = string_with_length('0', pf_var->precision);
+		if (nb == 0 && pf_var->precision != -1 && pf_var->dot)
+		{
+			free(pf_var->current_str);
+			pf_var->current_str = string_with_length('0', pf_var->precision);
+		}
+		else if (nb >= 0)
+		{
+			if (!(convert_di_precision(pf_var)))
+				return (0);
+		}
+		else if (nb < 0)
+			if (!(convert_di_precision_neg(pf_var)))
+				return (0);
 	}
-	else if (nb >= 0)
-	{
-		if (!(convert_di_precision(pf_var)))
-			return (0);
-	}
-	else if (nb < 0)
-		if (!(convert_di_precision_neg(pf_var)))
-			return (0);
 	if (pf_var->width)
 		if (!convert_width(pf_var))
 			return (0);
 	return (1);
 }
 
-int			convert_d(t_printf_data *pf_var)
+int			convert_di(t_printf_data *pf_var)
 {
 	int nb;
 
