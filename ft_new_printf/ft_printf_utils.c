@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 15:07:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/23 15:17:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ int		ft_stringify(t_printf_data *pf_var)
 		return (convert_x(pf_var));
 	else if (pf_var->current_char == 'X')
 		return (convert_upperx(pf_var));
-	else if (1)
-		return (1);
 	else if (pf_var->current_char == '%')
 		return (convert_percent(pf_var));
 	return (1);
