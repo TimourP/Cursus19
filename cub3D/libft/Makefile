@@ -6,13 +6,15 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 19:55:10 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/24 19:59:28 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/24 20:14:24 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	ft_lstadd_back.c \
 		ft_lstnew.c \
-		ft_lstsize.c
+		ft_lstsize.c \
+		ft_lstclear.c \
+		ft_lstdelone.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
