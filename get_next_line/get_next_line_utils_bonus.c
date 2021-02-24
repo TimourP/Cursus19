@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 18:25:12 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/22 18:25:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/24 12:06:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ char	*ft_strdup_until(char *src, char c)
 		return (NULL);
 	i = ft_strlen_until(src, c);
 	if (!(dest = (char*)malloc((i + 1) * sizeof(char))))
+	{
+		free(src);
 		return (NULL);
+	}
 	dest[i] = 0;
 	i = -1;
 	while (src[++i] && src[i] != c)

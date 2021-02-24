@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/22 18:25:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/24 14:18:13 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/22 11:20:52 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/22 18:26:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*save[OPEN_MAX];
+	static char	*save;
 	char		*buffer;
 	ssize_t		cp_len;
 
@@ -22,21 +22,21 @@ int		get_next_line(int fd, char **line)
 		!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	cp_len = 1;
-	while (!is_in_str(save[fd], '\n') && cp_len > 0)
+	while (!is_in_str(save, '\n') && cp_len > 0)
 	{
 		cp_len = read(fd, buffer, BUFFER_SIZE);
 		buffer[cp_len] = 0;
-		if (!(save[fd] = ft_strjoin(save[fd], buffer)))
+		if (!(save = ft_strjoin(save, buffer)))
 		{
 			free(buffer);
 			return (-1);
 		}
 	}
 	free(buffer);
-	if (cp_len < 0 || !(*line = ft_strdup_until(save[fd], '\n')))
+	if (cp_len < 0 || !(*line = ft_strdup_until(save, '\n')))
 		return (-1);
-	if (!(save[fd] = ft_strdup_from(save[fd],
-		ft_strlen_until(save[fd], '\n') + 1)) && cp_len != 0)
+	if (!(save = ft_strdup_from(save, ft_strlen_until(save, '\n') + 1))
+		&& cp_len != 0)
 		return (-1);
 	return (cp_len == 0 ? 0 : 1);
 }
