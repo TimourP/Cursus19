@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:43:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/24 09:20:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	convert_p(t_printf_data *pf_var)
 	pointer_value = va_arg(pf_var->argc, unsigned long long int);
 	number = ft_itoa_base_p(pointer_value, 16, "0123456789abcdef");
 	pf_var->current_str = ft_strdup("0x");
-	pf_var->current_str = join_back(pf_var->current_str, number);
+	if (!(pf_var->dot && pf_var->precision == 0 && pointer_value == 0))
+		pf_var->current_str = join_back(pf_var->current_str, number);
 	free(number);
 	if (pf_var->width)
 		if (!convert_width(pf_var))
