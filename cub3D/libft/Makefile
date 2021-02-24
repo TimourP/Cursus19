@@ -5,44 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/01/06 13:36:46 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/24 14:31:29 by tpetit           ###   ########.fr        #
+#    Created: 2021/02/24 19:55:10 by tpetit            #+#    #+#              #
+#    Updated: 2021/02/24 19:59:28 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	convert_s.c \
-		convert_c.c \
-		convert_di.c \
-		convert_p.c \
-		convert_u.c \
-		convert_x.c \
-		convert_upper_x.c \
-		convert_percent.c \
-		ft_printf_utils.c \
-		ft_printf_utils1.c \
-		ft_printf_utils2.c \
-		ft_printf_utils3.c \
-		ft_printf_utils4.c \
-		ft_printf.c \
+SRCS =	ft_lstadd_back.c \
+		ft_lstnew.c \
+		ft_lstsize.c
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-NAME = libftprintf.a
+NAME = libft.a
 
 all : $(NAME)
-
-allup : all clean
 
 $(NAME) : $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJSB)
 
 fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
 
-.PHONY : all clean fclean re allup
+.PHONY : all clean fclean re
