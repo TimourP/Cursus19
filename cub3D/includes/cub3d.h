@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:27:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 13:59:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_map
 */
 
 void			print_map_struct(t_map *c_map);
+void			print_map(t_map *c_map);
 
 /*
 ** parsing
@@ -58,5 +59,6 @@ int				get_colors(t_map *c_map, char *line, char param);
 
 char			*free_and_return_s(char *to_free, char *to_ret);
 int				free_and_return_i(char *to_free, int to_ret);
+void			free_split(char **to_free);
 
 #endif

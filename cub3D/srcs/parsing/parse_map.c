@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:28:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 14:06:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,55 @@ t_list	*list_from_file(char *map_path)
 	return (map_lst);
 }
 
-int		parse_map_to_str(t_map *c_map)
+int		get_bigger_line(t_list *map_list, int *lines_count)
 {
+	int max;
 
+	max = 0;
+	*lines_count = 0;
+	while (map_list && map_list->next && ft_strlen(map_list->content) > 0)
+	{
+		if ((int)ft_strlen(map_list->content) > max)
+			max = (int)ft_strlen(map_list->content);
+		map_list = map_list->next;
+		*lines_count += 1;
+	}
+	if (map_list && (int)ft_strlen(map_list->content) > max)
+		max = (int)ft_strlen(map_list->content);
+	if (map_list)
+		*lines_count += 1;
+	return (max);
+}
+
+int		parse_map_to_str(t_map *c_map, t_list *map_list)
+{
+	int			i;
+	int			j;
+
+	c_map->map_w = get_bigger_line(map_list, &(c_map->map_h));
+	if (!c_map->map_h || !(c_map->map = malloc(sizeof(char**) * c_map->map_h)))
+		return (0);
+	i = -1;
+	while (++i < c_map->map_h)
+	{
+		if (!(c_map->map[i] = malloc(sizeof(char) * (c_map->map_w + 1))))
+			return (0);
+	}
+	i = -1;
+	while (++i < c_map->map_h)
+	{
+		j = -1;
+		while (++j < c_map->map_w)
+		{
+			if ((int)ft_strlen(map_list->content) > j)
+				c_map->map[i][j] = map_list->content[j];
+			else
+				c_map->map[i][j] = '.';
+		}
+		c_map->map[i][j] = 0;
+		map_list = map_list->next;
+	}
+	return (1);
 }
 
 int		fill_map_struct(t_map *c_map, t_list *map_list)
@@ -69,8 +115,7 @@ int		fill_map_struct(t_map *c_map, t_list *map_list)
 			return (0);
 		map_list = map_list->next;
 	}
-	parse_map_to_str(map_list);
-	return (1);
+	return (parse_map_to_str(c_map, map_list));
 }
 
 int		parse_map(t_map *c_map, char *map_path)
@@ -82,7 +127,8 @@ int		parse_map(t_map *c_map, char *map_path)
 		return (0);
 	if (!(fill_map_struct(c_map, map_list)))
 		return (0);
-	print_map_struct(c_map);
+	//print_map_struct(c_map);
+	print_map(c_map);
 	ft_lstclear(&map_list, free);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:09:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 13:59:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ void	print_map_struct(t_map *c_map)
 	printf("east texture : %s\n", c_map->east_t);
 	printf("floor texture : %s\n", c_map->floor_t);
 	printf("ceiling texture : %s\n", c_map->ceiling_t);
+}
+
+void	print_map(t_map *c_map)
+{
+	int i;
+
+	i = -1;
+	while (++i < c_map->map_h)
+		printf("%s\n", c_map->map[i]);
 }

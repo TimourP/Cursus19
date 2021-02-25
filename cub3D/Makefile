@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/25 12:45:45 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 13:35:06 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ PARSING_SRCS	=	parse_map.c \
 					parse_lines.c \
 					init.c \
 
-UTILS_SRCS = free_and_return.c \
+UTILS_SRCS =	free_and_return.c \
+				free_split.c \
 
 SRCS	=	cub3d.c \
 			srcs/testing.c \
