@@ -6,12 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 10:11:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 14:20:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
+	while (*s1 && *s1 == ' ')
+		s1++;
 	while (1)
 	{
 		if ((!*s1 && !*s2) || !n)

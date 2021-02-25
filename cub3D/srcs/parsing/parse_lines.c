@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:17:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 14:22:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int		get_colors(t_map *c_map, char *line, char param)
 	char	**split_line;
 	int		rgb[3];
 
+	while (*line && *line == ' ')
+		line++;
 	if (!(trim_line = ft_strtrim(&line[2], " ")))
 		return (0);
 	c_map->map_h = 0;
@@ -89,6 +91,8 @@ int		get_textures(t_map *c_map, char *line, char param)
 {
 	char	*trim_line;
 
+	while (*line && *line == ' ')
+		line++;
 	if (!(trim_line = ft_strtrim(&line[2], " ")))
 		return (0);
 	set_correct_string(c_map, trim_line, param);

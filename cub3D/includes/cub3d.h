@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:59:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 14:28:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct	s_map
 {
 	int			screen_w;
 	int			screen_h;
-	int 		map_w;
-	int 		map_h;
+	int			map_w;
+	int			map_h;
 	char		*south_t;
 	char		*north_t;
 	char		*west_t;
@@ -52,6 +52,7 @@ void			get_screen_resolution(t_map *c_map, char *line);
 void			init_map_struct(t_map *c_map);
 int				get_textures(t_map *c_map, char *line, char param);
 int				get_colors(t_map *c_map, char *line, char param);
+int				map_error(t_map *c_map);
 
 /*
 ** utils

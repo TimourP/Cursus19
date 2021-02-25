@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/25 13:35:06 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 14:31:35 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ RESET		= $(shell tput -Txterm sgr0)
 PARSING_SRCS	=	parse_map.c \
 					parse_lines.c \
 					init.c \
+					map_error.c \
 
 UTILS_SRCS =	free_and_return.c \
 				free_split.c \
