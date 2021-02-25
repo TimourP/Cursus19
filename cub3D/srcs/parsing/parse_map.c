@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 14:32:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 16:25:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,6 @@ int		parse_map(t_map *c_map, char *map_path)
 		return (0);
 	if (!(fill_map_struct(c_map, map_list)))
 		return (0);
-	print_map(c_map);
-	print_map_struct(c_map);
-	printf("%s\n", !map_error(c_map) ? "Il y a une erreur\n" : "La map est ok");
 	ft_lstclear(&map_list, free);
 	return (1);
 }

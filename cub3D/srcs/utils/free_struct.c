@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 16:31:57 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/25 16:13:55 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/25 16:26:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main_error(int argc, char **argv)
+void	free_t_map(t_map *c_map)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	t_map c_map;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
-	if (!(init_raycasting(&c_map)))
-		return (-1);
-	free_t_map(&c_map);
-	c_map.west_t = NULL;
-	return (0);
+	free(c_map->south_t);
+	free(c_map->north_t);
+	free(c_map->west_t);
+	free(c_map->east_t);
+	free(c_map->sprite_t);
+	free(c_map->floor_t);
+	free(c_map->ceiling_t);
+	free_all(c_map->map, c_map->map_h);
 }

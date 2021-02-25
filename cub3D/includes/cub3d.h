@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 14:28:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 16:34:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,12 @@ int				map_error(t_map *c_map);
 char			*free_and_return_s(char *to_free, char *to_ret);
 int				free_and_return_i(char *to_free, int to_ret);
 void			free_split(char **to_free);
+void			free_t_map(t_map *c_map);
+
+/*
+** raycasting
+*/
+
+int				init_raycasting(t_map *c_map);
 
 #endif

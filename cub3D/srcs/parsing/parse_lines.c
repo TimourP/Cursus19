@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 14:22:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 16:12:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-char	*make_color_string(int rgb[])
+char	*make_color_string(int rgb[3])
 {
 	char	*current_color;
 	char	*color_string;
@@ -83,6 +83,7 @@ int		get_colors(t_map *c_map, char *line, char param)
 	rgb[1] = ft_atoi(split_line[1]);
 	rgb[2] = ft_atoi(split_line[2]);
 	set_correct_string(c_map, make_color_string(rgb), param);
+	free_split(split_line);
 	free(trim_line);
 	return (1);
 }
