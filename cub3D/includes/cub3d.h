@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 16:34:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/02/25 16:38:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct	s_map
 	char		*ceiling_t;
 	char		**map;
 }				t_map;
+
+typedef struct	s_ray
+{
+	t_map		c_map;
+	int			screen_w;
+	int			screen_h;
+}				t_ray;
 
 /*
 ** testing
