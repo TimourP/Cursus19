@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 12:58:07 by tpetit           ###   ########.fr       */
+/*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/25 10:11:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
-
-int	main_error(int argc, char **argv)
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	t_map c_map;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
+	while (1)
+	{
+		if ((!*s1 && !*s2) || !n)
+			return (0);
+		if (*s1 == *s2)
+		{
+			s1++;
+			s2++;
+			n--;
+		}
+		else
+			return ((int)((unsigned char)(*s1) - (unsigned char)(*s2)));
+	}
 }

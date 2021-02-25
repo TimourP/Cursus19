@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_and_return.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 12:58:07 by tpetit           ###   ########.fr       */
+/*   Created: 2021/02/25 12:35:55 by tpetit            #+#    #+#             */
+/*   Updated: 2021/02/25 12:37:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main_error(int argc, char **argv)
+char	*free_and_return_s(char *to_free, char *to_ret)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
+	free(to_free);
+	to_free = NULL;
+	return (to_ret);
 }
 
-int	main(int argc, char **argv)
+int		free_and_return_i(char *to_free, int to_ret)
 {
-	t_map c_map;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
+	free(to_free);
+	to_free = NULL;
+	return (to_ret);
 }

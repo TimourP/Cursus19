@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 19:55:10 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/25 10:05:32 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 12:08:21 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,12 @@ SRCS =	ft_lstadd_back.c \
 		ft_lstclear.c \
 		ft_lstdelone.c \
 		ft_lstprint.c \
+		ft_strncmp.c \
+		ft_strlen.c \
+		ft_atoi.c \
+		ft_strtrim.c \
+		ft_itoa_base.c \
+		ft_split.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc

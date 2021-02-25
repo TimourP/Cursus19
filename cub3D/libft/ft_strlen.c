@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 12:58:07 by tpetit           ###   ########.fr       */
+/*   Created: 2020/09/12 22:04:16 by tpetit            #+#    #+#             */
+/*   Updated: 2020/11/16 11:05:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "libft.h"
 
-int	main_error(int argc, char **argv)
+size_t	ft_strlen(const char *str)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
-}
+	size_t i;
 
-int	main(int argc, char **argv)
-{
-	t_map c_map;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
+	i = -1;
+	while (str[++i])
+		;
+	return (i);
 }

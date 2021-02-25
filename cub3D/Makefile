@@ -6,19 +6,25 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/25 10:04:49 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 12:45:45 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GREEN		= $(shell tput -Txterm setaf 2)
 RESET		= $(shell tput -Txterm sgr0)
 
-PARSING_SRCS	=	parse_map.c
+PARSING_SRCS	=	parse_map.c \
+					parse_lines.c \
+					init.c \
+
+UTILS_SRCS = free_and_return.c \
 
 SRCS	=	cub3d.c \
+			srcs/testing.c \
 			get_next_line/get_next_line_utils.c \
 			get_next_line/get_next_line.c \
 			$(addprefix srcs/parsing/, ${PARSING_SRCS}) \
+			$(addprefix srcs/utils/, ${UTILS_SRCS}) \
 
 OBJS	=	${SRCS:.c=.o}			
 
