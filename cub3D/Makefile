@@ -6,9 +6,12 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/24 20:06:53 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 10:04:49 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+GREEN		= $(shell tput -Txterm setaf 2)
+RESET		= $(shell tput -Txterm sgr0)
 
 PARSING_SRCS	=	parse_map.c
 
@@ -28,21 +31,22 @@ LIBFT_PATH	=	./libft
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				@make -C $(LIBFT_PATH)
-				@ar -rcs $(NAME) $(OBJS)
-				@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME)
+	@make -C $(LIBFT_PATH)
+	@ar -rcs $(NAME) $(OBJS)
+	@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME)
+	@echo "${GREEN}cub3d.a created${RESET}"
 
 clean:			
-				@rm -f $(OBJS)
-				@make clean -C $(LIBFT_PATH)
+	@rm -f $(OBJS)
+	@make clean -C $(LIBFT_PATH)
 
 fclean:
-				@rm -f $(OBJS)
-				@rm -f $(NAME)
-				@make fclean -C $(LIBFT_PATH)
+	@rm -f $(OBJS)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_PATH)
 
 allup : all clean
 
-re:				fclean all
+re:		fclean all
 
-.PHONY:			all clean fclean allup re
+.PHONY:	all clean fclean allup re
