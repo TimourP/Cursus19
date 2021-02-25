@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/02/25 14:31:35 by tpetit           ###   ########.fr        #
+#    Updated: 2021/02/25 14:46:02 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJS	=	${SRCS:.c=.o}
 NAME	=	cub3d.a
 LIBFT_NAME = libft.a
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAG	=	-Wall -Wextra -Werror
 LIBFT_PATH	=	./libft
 
 all:			$(NAME)
@@ -43,6 +43,9 @@ $(NAME):		$(OBJS)
 	@ar -rcs $(NAME) $(OBJS)
 	@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME)
 	@echo "${GREEN}cub3d.a created${RESET}"
+
+.c.o:
+	@gcc $(CFLAG) -c -I./ $< -o ${<:.c=.o}
 
 clean:			
 	@rm -f $(OBJS)
