@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 16:38:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 15:06:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ typedef struct	s_map
 
 typedef struct	s_ray
 {
-	t_map		c_map;
+	t_map		*c_map;
 	int			screen_w;
 	int			screen_h;
+	void		*mlx_ptr;
+	void		*mlx_win;
+	void		*mlx_img;
+	char		*img_addr;
+	int			img_bpp;
+	int			img_line_l;
+	int			img_edian;
+	int			player_posx;
+	int			player_posy;
 }				t_ray;
 
 /*
@@ -49,6 +58,7 @@ typedef struct	s_ray
 
 void			print_map_struct(t_map *c_map);
 void			print_map(t_map *c_map);
+void			print_ray_struct(t_ray *c_ray);
 
 /*
 ** parsing
@@ -74,6 +84,20 @@ void			free_t_map(t_map *c_map);
 ** raycasting
 */
 
-int				init_raycasting(t_map *c_map);
+int				init_raycasting(t_ray *c_ray, t_map *c_map);
+
+/*
+** moves
+*/
+
+int				get_entry(int key, t_ray *c_ray);
+int				exit_button(t_ray *c_ray);
+
+/*
+** drawing
+*/
+
+void			draw_rectangle(t_ray *c_ray, int xy[2], int width_height[2], int color);
+int				minimap(t_ray *c_ray);
 
 #endif

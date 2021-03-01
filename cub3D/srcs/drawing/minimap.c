@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 14:54:57 by tpetit           ###   ########.fr       */
+/*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
+/*   Updated: 2021/03/01 15:18:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main_error(int argc, char **argv)
+int	minimap(t_ray *c_ray)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
-}
+	int	xy[2] = {0, 0};
+	int	pl_xy[2] = {c_ray->player_posx, c_ray->player_posy};
+	int	w_h[2] = {10, 10};
+	int	w_h_m[2] = {c_ray->screen_w, c_ray->screen_h};
 
-int	main(int argc, char **argv)
-{
-	t_map c_map;
-	t_ray c_ray;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
-	if (!(init_raycasting(&c_ray, &c_map)))
-		return (-1);
-	mlx_loop(c_ray.mlx_ptr);
-	free_t_map(&c_map);
+	draw_rectangle(c_ray, xy, w_h_m, 0x00000000);
+	print_ray_struct(c_ray);
+	draw_rectangle(c_ray, pl_xy, w_h, 0x00FF0000);
+	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win, c_ray->mlx_img, 0, 0);
 	return (0);
 }

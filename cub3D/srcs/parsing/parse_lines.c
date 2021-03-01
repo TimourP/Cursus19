@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 16:12:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 12:30:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	get_screen_resolution(t_map *c_map, char *line)
 {
 	int i;
 
+	while (*line && *line == ' ')
+		line++;
 	i = 1;
 	c_map->screen_w = ft_atoi(&line[i]);
 	i += (int)number_len(c_map->screen_w, 10) + 1;
