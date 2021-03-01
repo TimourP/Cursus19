@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 14:54:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 19:27:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (!(init_raycasting(&c_ray, &c_map)))
 		return (-1);
+	minimap(&c_ray);
 	mlx_loop(c_ray.mlx_ptr);
 	free_t_map(&c_map);
 	return (0);

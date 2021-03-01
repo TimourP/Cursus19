@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 19:14:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 20:19:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	draw_map(t_ray *c_ray)
 		{
 			xy[0] = j * PLAYER_SPEED;
 			xy[1] = i * PLAYER_SPEED;
-			mapx = (p_xy[0] / PLAYER_SPEED - (c_ray->c_map->map_w * MINIMAP_SQUARE / PLAYER_SPEED / 2) + j) / (MINIMAP_SQUARE / PLAYER_SPEED) - 4;
-			mapy = (p_xy[1] / PLAYER_SPEED - (c_ray->c_map->map_h * MINIMAP_SQUARE / PLAYER_SPEED / 2) + i) / (MINIMAP_SQUARE / PLAYER_SPEED) - 8;
+			mapx = (p_xy[0] / PLAYER_SPEED - ((MINIMAP_WIDTH / PLAYER_SPEED) / 2) + j) / (MINIMAP_SQUARE / PLAYER_SPEED);
+			mapy = (p_xy[1] / PLAYER_SPEED - ((MINIMAP_HEIGHT/ PLAYER_SPEED) / 2) + i) / (MINIMAP_SQUARE / PLAYER_SPEED);
 			draw_rectangle(c_ray, xy, w_h, check_color(c_ray, mapx, mapy) ? COLOR_WHITE : COLOR_RED);
 			draw_rectangle(c_ray, test, testbis, COLOR_BLACK);
 		}

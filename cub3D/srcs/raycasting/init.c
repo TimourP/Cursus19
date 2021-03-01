@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 17:53:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 19:34:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ void	init_player(t_ray *c_ray)
 	while (++i < c_ray->c_map->map_h + 1)
 	{
 		j = -1;
-		printf("%d\n", i);
 		while (++j < c_ray->c_map->map_w + i)
 		{
 			if (is_in_str("NSEW", c_ray->c_map->map[i][j]))
 			{
-				c_ray->player_posx = j * MINIMAP_SQUARE;
-				c_ray->player_posy = i * MINIMAP_SQUARE;
+				c_ray->player_posx = j * PLAYER_SPEED;
+				c_ray->player_posy = i * PLAYER_SPEED;
 				return ;
 			}
-			printf("%c\n", c_ray->c_map->map[i][j]);
 		}
 	}
 	c_ray->player_posx = 100;
