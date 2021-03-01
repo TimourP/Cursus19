@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 15:00:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 19:15:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		draw_pixel(t_ray *c_ray, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void		draw_rectangle(t_ray *c_ray, int xy[2], int width_height[2], int color)
+void		draw_rectangle(t_ray *c_ray, const int xy[2], const int width_height[2], const int color)
 {
 	int			i;
 	int			j;

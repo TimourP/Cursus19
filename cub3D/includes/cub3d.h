@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 15:06:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 15:27:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				exit_button(t_ray *c_ray);
 ** drawing
 */
 
-void			draw_rectangle(t_ray *c_ray, int xy[2], int width_height[2], int color);
+void			draw_rectangle(t_ray *c_ray, const int xy[2], const int width_height[2], const int color);
 int				minimap(t_ray *c_ray);
 
 #endif

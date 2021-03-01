@@ -6,11 +6,27 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 15:17:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/01 19:03:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int		check_next_move(t_ray *c_ray, int is_x, int value)
+{
+	int	next_posx;
+	int	next_posy;
+
+	next_posx = c_ray->player_posx;
+	next_posy = c_ray->player_posy;
+	if (is_x)
+		next_posx += value;
+	else
+		next_posy += value;
+	if (!is_in_str("0NSEW", c_ray->c_map->map[next_posy / MINIMAP_SQUARE][next_posx / MINIMAP_SQUARE]))
+		return(0);
+	return (1);
+}
 
 int		get_entry(int key, t_ray *c_ray)
 {
@@ -19,14 +35,14 @@ int		get_entry(int key, t_ray *c_ray)
 		mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
 		exit(0);
 	}
-	if (key == KEY_UP_MOVE)
-		c_ray->player_posy -= 10;
-	if (key == KEY_DOWN_MOVE)
-		c_ray->player_posy += 10;
-	if (key == KEY_LEFT_MOVE)
-		c_ray->player_posx -= 10;
-	if (key == KEY_RIGHT_MOVE)
-		c_ray->player_posx += 10;
+	if (key == KEY_UP_MOVE && check_next_move(c_ray, 0, -PLAYER_SPEED))
+		c_ray->player_posy -= PLAYER_SPEED;
+	if (key == KEY_DOWN_MOVE && check_next_move(c_ray, 0, PLAYER_SPEED))
+		c_ray->player_posy += PLAYER_SPEED;
+	if (key == KEY_LEFT_MOVE && check_next_move(c_ray, 1, -PLAYER_SPEED))
+		c_ray->player_posx -= PLAYER_SPEED;
+	if (key == KEY_RIGHT_MOVE && check_next_move(c_ray, 1, PLAYER_SPEED))
+		c_ray->player_posx += PLAYER_SPEED;
 	minimap(c_ray);
 	return (1);
 }
