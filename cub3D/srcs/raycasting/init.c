@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:49:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 13:44:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	init_player(t_ray *c_ray)
 			}
 		}
 	}
-	c_ray->player_posx = 100;
-	c_ray->player_posy = 100;
+	c_ray->player_delx = PLAYER_SPEED * CASE_WIDTH;
+	c_ray->player_dely = PLAYER_SPEED * CASE_WIDTH;
+	c_ray->player_angle = 0;
 }
 
 int		init_raycasting(t_ray *c_ray, t_map *c_map)
@@ -48,7 +49,7 @@ int		init_raycasting(t_ray *c_ray, t_map *c_map)
 					c_map->screen_w, c_map->screen_h);
 	c_ray->img_addr = mlx_get_data_addr(c_ray->mlx_img, &c_ray->img_bpp,
 						&c_ray->img_line_l, &c_ray->img_edian);
-	print_ray_struct(c_ray);
+	print_ray_struct(c_ray, 1);
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, get_entry, c_ray);
 	mlx_hook(c_ray->mlx_win, CROSS_BTN_EVENT, 1L << 17, exit_button, c_ray);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:56:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 13:51:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "cub3d_macro.h"
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
@@ -50,6 +51,9 @@ typedef struct	s_ray
 	int			img_edian;
 	int			player_posx;
 	int			player_posy;
+	int			player_delx;
+	int			player_dely;
+	float		player_angle;
 }				t_ray;
 
 /*
@@ -58,7 +62,7 @@ typedef struct	s_ray
 
 void			print_map_struct(t_map *c_map);
 void			print_map(t_map *c_map);
-void			print_ray_struct(t_ray *c_ray);
+void			print_ray_struct(t_ray *c_ray, int only_ray);
 
 /*
 ** parsing
@@ -102,6 +106,8 @@ void			draw_rectangle(t_ray *c_ray, const int xy[2],
 				const int width_height[2], const int color);
 void			draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 				const int color, const int inner_width);
+void			draw_circle(t_ray *c_ray, const int xy[2],
+				const int radius, const int color);
 int				minimap(t_ray *c_ray);
 
 #endif

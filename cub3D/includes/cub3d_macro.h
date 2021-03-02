@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:33:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 13:33:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # define KEY_PRESS_EVENT 2
 # define CROSS_BTN_EVENT 17
 
-# define PLAYER_SPEED 10
+# define PLAYER_SPEED 0.3
 
-# define MINI_SQUARE 20
-# define MINI_WIDTH 440
-# define MINI_HEIGHT 240
+# define MINI_SQUARE CASE_WIDTH
+# define MINI_WIDTH 480
+# define MINI_HEIGHT 256
+
+# define CASE_WIDTH 16
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126
@@ -35,5 +37,9 @@
 # define COLOR_RED 0x00FF0000
 # define COLOR_BLACK 0x00000000
 # define COLOR_WHITE 0x00FFFFFF
+# define COLOR_MINIMAP_WALKABLE 0x00B3B6B7
+# define COLOR_MINIMAP_WALL 0x00DC7633
+
+# define PI 3.1415926535
 
 #endif
