@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/01 14:11:21 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/02 10:57:08 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ GREEN		= $(shell tput -Txterm setaf 2)
 RESET		= $(shell tput -Txterm sgr0)
 
 PARSING_SRCS	=	parse_map.c \
+					parse_map2.c \
 					parse_lines.c \
 					init.c \
 					map_error.c \

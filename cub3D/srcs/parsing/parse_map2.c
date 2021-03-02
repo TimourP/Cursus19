@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_struct.c                                      :+:      :+:    :+:   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 16:13:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:49:37 by tpetit           ###   ########.fr       */
+/*   Created: 2021/03/02 10:56:02 by tpetit            #+#    #+#             */
+/*   Updated: 2021/03/02 10:57:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	free_t_map(t_map *c_map)
+t_list		*list_from_file(char *map_path)
 {
-	free(c_map->south_t);
-	free(c_map->north_t);
-	free(c_map->west_t);
-	free(c_map->east_t);
-	free(c_map->sprite_t);
-	free(c_map->floor_t);
-	free(c_map->ceiling_t);
-	free_all(c_map->map, c_map->map_h);
+	int		fd;
+	int		ret;
+	char	*line;
+	t_list	*map_lst;
+	t_list	*new;
+
+	fd = open(map_path, O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) == 1)
+	{
+		if (!(new = ft_lstnew(line)))
+			return (NULL);
+		ft_lstadd_back(&map_lst, new);
+	}
+	if (ret == -1 || !(new = ft_lstnew(line)))
+		return (NULL);
+	ft_lstadd_back(&map_lst, new);
+	return (map_lst);
 }
