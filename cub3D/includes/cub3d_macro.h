@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 20:09:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:33:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 # define PLAYER_SPEED 10
 
-# define MINIMAP_SQUARE 20
-# define MINIMAP_WIDTH 400
-# define MINIMAP_HEIGHT 200
+# define MINI_SQUARE 20
+# define MINI_WIDTH 440
+# define MINI_HEIGHT 240
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126

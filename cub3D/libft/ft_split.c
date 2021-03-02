@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:45:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 16:18:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:28:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	*calc_len(char const *str, char c, int count)
 	return (count_array);
 }
 
-char	**free_all(char **tab, int index)
+char		**free_all(char **tab, int index)
 {
 	int i;
 

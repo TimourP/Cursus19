@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:06:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 12:14:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:29:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	number_len(int n, int base_len)
 	return (i);
 }
 
-char			*ft_itoa_base(int n, int base_len, const char *base)
+char	*ft_itoa_base(int n, int base_len, const char *base)
 {
 	const size_t	n_len = number_len(n, base_len);
 	char			*num;

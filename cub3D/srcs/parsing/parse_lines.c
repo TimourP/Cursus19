@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 12:30:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:41:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*make_color_string(int rgb[3])
 {
 	char	*current_color;
 	char	*color_string;
-	int 	i;
+	int		i;
 
 	if (!(color_string = malloc(sizeof(char) * 11)))
 		return (NULL);
@@ -99,5 +99,5 @@ int		get_textures(t_map *c_map, char *line, char param)
 	if (!(trim_line = ft_strtrim(&line[2], " ")))
 		return (0);
 	set_correct_string(c_map, trim_line, param);
-	return 1;
+	return (1);
 }

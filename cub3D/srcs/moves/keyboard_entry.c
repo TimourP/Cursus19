@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 20:06:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:37:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int		check_next_move(t_ray *c_ray, int is_x, int value)
 		next_posx += value;
 	else
 		next_posy += value;
-	if (!is_in_str("0NSEW", c_ray->c_map->map[next_posy / PLAYER_SPEED][next_posx / PLAYER_SPEED]))
-		return(0);
+	if (!is_in_str("0NSEW",
+		c_ray->c_map->map[next_posy / MINI_SQUARE][next_posx / MINI_SQUARE]))
+		return (0);
 	return (1);
 }
 

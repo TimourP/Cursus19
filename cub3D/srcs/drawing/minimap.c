@@ -6,11 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 20:19:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:36:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+const int	g_center_xy[2] = {MINI_WIDTH / 2, MINI_HEIGHT / 2};
+const int	g_player_w_h[2] = {PLAYER_SPEED, PLAYER_SPEED};
+const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
 
 int		check_color(t_ray *c_ray, int map_x, int map_y)
 {
@@ -23,63 +27,39 @@ int		check_color(t_ray *c_ray, int map_x, int map_y)
 
 void	draw_map(t_ray *c_ray)
 {
-	int 		i;
-	int 		j;
+	int			ij[2];
 	int			xy[2];
-	const int	w_h[2] = {PLAYER_SPEED, PLAYER_SPEED};
-	const int	p_xy[2] = {c_ray->player_posx, c_ray->player_posy};
-	const int	test[2] = {MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2};
-	const int	testbis[2] = {MINIMAP_SQUARE, MINIMAP_SQUARE};
-	int mapx;
-	int mapy;
+	const int	pxy[2] = {c_ray->player_posx, c_ray->player_posy};
+	int			mapx;
+	int			mapy;
 
-	i = -1;
-	while (++ i < MINIMAP_HEIGHT / PLAYER_SPEED)
+	ij[0] = -1;
+	while (++ij[0] < MINI_HEIGHT / MINI_SQUARE)
 	{
-		j = -1;
-		while (++j < MINIMAP_WIDTH / PLAYER_SPEED)
+		ij[1] = -1;
+		while (++ij[1] < MINI_WIDTH / MINI_SQUARE)
 		{
-			xy[0] = j * PLAYER_SPEED;
-			xy[1] = i * PLAYER_SPEED;
-			mapx = (p_xy[0] / PLAYER_SPEED - ((MINIMAP_WIDTH / PLAYER_SPEED) / 2) + j) / (MINIMAP_SQUARE / PLAYER_SPEED);
-			mapy = (p_xy[1] / PLAYER_SPEED - ((MINIMAP_HEIGHT/ PLAYER_SPEED) / 2) + i) / (MINIMAP_SQUARE / PLAYER_SPEED);
-			draw_rectangle(c_ray, xy, w_h, check_color(c_ray, mapx, mapy) ? COLOR_WHITE : COLOR_RED);
-			draw_rectangle(c_ray, test, testbis, COLOR_BLACK);
+			xy[0] = ij[1] * MINI_SQUARE - c_ray->player_posx % MINI_SQUARE;
+			xy[1] = ij[0] * MINI_SQUARE - c_ray->player_posy % MINI_SQUARE;
+			mapx = pxy[0] / MINI_SQUARE - MINI_WIDTH / MINI_SQUARE / 2 + ij[1];
+			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
+			draw_rectangle(c_ray, xy, g_minimap_square_w_h,
+				check_color(c_ray, mapx, mapy) ? COLOR_WHITE : COLOR_RED);
+			draw_rectangle(c_ray, g_center_xy, g_player_w_h, COLOR_BLACK);
 		}
 	}
 }
 
-void	d_map(t_ray *c_ray)
+int		minimap(t_ray *c_ray)
 {
-	int 		i;
-	int 		j;
-	int			xy[2];
-	const int	w_h[2] = {MINIMAP_SQUARE, MINIMAP_SQUARE};
+	const int	xy[2] = {0, 0};
+	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
+	const int	xy_wh[4] = {0, 0, MINI_WIDTH, MINI_HEIGHT};
 
-	i = -1;
-	while (++ i < c_ray->c_map->map_h)
-	{
-		j = -1;
-		while (++j < c_ray->c_map->map_w)
-		{
-			xy[0] = j * MINIMAP_SQUARE;
-			xy[1] = i * MINIMAP_SQUARE;
-			draw_rectangle(c_ray, xy, w_h, is_in_str("0NSEW", c_ray->c_map->map[i][j]) ? COLOR_WHITE : COLOR_RED);
-		}
-	}
-}
-
-int	minimap(t_ray *c_ray)
-{
-	int	xy[2] = {0, 0};
-	//int	pl_xy[2] = {c_ray->player_posx, c_ray->player_posy};
-	//int	w_h[2] = {MINIMAP_PLAYER_WIDTH, 10};
-	int	w_h_m[2] = {c_ray->screen_w, c_ray->screen_h};
-
-	draw_rectangle(c_ray, xy, w_h_m, 0x00000000);
-	//d_map(c_ray);
-	//draw_rectangle(c_ray, pl_xy, w_h, COLOR_BLACK);
+	draw_rectangle(c_ray, xy, w_h, 0x00000000);
 	draw_map(c_ray);
-	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win, c_ray->mlx_img, 0, 0);
+	draw_empty_rectangle(c_ray, xy_wh, 0x0050F000, MINI_SQUARE);
+	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
+		c_ray->mlx_img, 0, 0);
 	return (0);
 }
