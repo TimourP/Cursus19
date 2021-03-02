@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:36:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/02 10:59:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int		minimap(t_ray *c_ray)
 	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	const int	xy_wh[4] = {0, 0, MINI_WIDTH, MINI_HEIGHT};
 
-	draw_rectangle(c_ray, xy, w_h, 0x00000000);
+	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	draw_map(c_ray);
-	draw_empty_rectangle(c_ray, xy_wh, 0x0050F000, MINI_SQUARE);
+	draw_empty_rectangle(c_ray, xy_wh, COLOR_BLACK, MINI_SQUARE);
 	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
 		c_ray->mlx_img, 0, 0);
 	return (0);
