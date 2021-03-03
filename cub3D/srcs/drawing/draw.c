@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 14:46:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/03 13:28:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ void		draw_rectangle(t_ray *c_ray, const int xy[2],
 	int			j;
 	const int	screen_height = c_ray->screen_h;
 	const int	screen_width = c_ray->screen_w;
-	int x;
-	int y;
-	int xs;
-	int ys;
 
 	i = -1;
 	while (++i < width_height[1] && i + xy[1] < screen_height && xy[1] >= 0)
@@ -38,14 +34,65 @@ void		draw_rectangle(t_ray *c_ray, const int xy[2],
 		j = -1;
 		while (++j < width_height[0] && j + xy[0] < screen_width && xy[0] >= 0)
 		{
-			x = j + xy[0];
-			y = i + xy[1];
-			xs = x - (xy[0] + width_height[0] / 2);
-			ys = y - (xy[1] + width_height[1] / 2);
-			x = xy[0] + width_height[0] / 2 + xs * cos(1) - ys * sin(1);
-			y = xy[1] + width_height[1] / 2 + xs * sin(1) + ys * cos(1);
-			//printf("%d %d\n", x, y);
+			draw_pixel(c_ray, j + xy[0], i + xy[1], color);
+		}
+	}
+}
+
+void		draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
+			const int color, const float angle)
+{
+	int			i;
+	int			j;
+	const int	screen_height = c_ray->screen_h;
+	const int	screen_width = c_ray->screen_w;
+	float		x;
+	float		y;
+	float		xs;
+	float		ys;
+
+	i = -1;
+	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
+	{
+		j = -1;
+		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
+		{
+			x = j + xy_wh[0];
+			y = i + xy_wh[1];
+			xs = x - (xy_wh[0] + xy_wh[2] / 2);
+			ys = y - (xy_wh[1] + xy_wh[3] / 2);
+			x = xy_wh[0] + xy_wh[2] / 2 + xs * cos(angle) - ys * sin(angle);
+			y = xy_wh[1] + xy_wh[3] / 2 + xs * sin(angle) + ys * cos(angle);
 			draw_pixel(c_ray, x, y, color);
+		}
+	}
+}
+
+void		draw_player(t_ray *c_ray, const int xy_wh[4],
+			const int color, const float angle)
+{
+	int			i;
+	int			j;
+	const int	screen_height = c_ray->screen_h;
+	const int	screen_width = c_ray->screen_w;
+	float		a_v[4];
+
+	i = -1;
+	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
+	{
+		j = -1;
+		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
+		{
+			if (i + j > xy_wh[2] / 2 && !(j - i + 2 > xy_wh[2] / 2))
+			{
+				a_v[0] = j + xy_wh[0] - xy_wh[2] / 2;
+				a_v[1] = i + xy_wh[1] - xy_wh[3] / 2;
+				a_v[2] = a_v[0] - xy_wh[0];
+				a_v[3] = a_v[1] - xy_wh[1];
+				a_v[0] = xy_wh[0] + a_v[2] * cos(angle) - a_v[3] * sin(angle);
+				a_v[1] = xy_wh[1] + a_v[2] * sin(angle) + a_v[3] * cos(angle);
+				draw_pixel(c_ray, a_v[0], a_v[1], color);
+			}
 		}
 	}
 }

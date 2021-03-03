@@ -6,16 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 14:44:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/03 13:23:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-const int	g_center_xy[2] = {MINI_WIDTH / 2, MINI_HEIGHT / 2};
-const int	g_player_w_h[2] = {MINI_SQUARE * PLAYER_SPEED,
-	MINI_SQUARE * PLAYER_SPEED};
 const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
+const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT
+	/ 2, MINI_SQUARE, MINI_SQUARE};
 
 int		check_color(t_ray *c_ray, int map_x, int map_y)
 {
@@ -46,21 +45,19 @@ void	draw_map(t_ray *c_ray)
 			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
 			draw_rectangle(c_ray, xy, g_minimap_square_w_h, check_color(c_ray,
 					mapx, mapy) ? COLOR_MINIMAP_WALKABLE : COLOR_MINIMAP_WALL);
-			draw_rectangle(c_ray, g_center_xy, g_player_w_h, COLOR_BLACK);
 		}
 	}
+	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 }
 
 int		minimap(t_ray *c_ray)
 {
-	//const int	xy[2] = {0, 0};
-	const int	test[2] = {300, 300};
-	//const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
+	const int	xy[2] = {0, 0};
+	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	const int	xy_wh[4] = {0, 0, MINI_WIDTH, MINI_HEIGHT};
 
-	//draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
-	//draw_map(c_ray);
-	draw_rectangle(c_ray, test, test, COLOR_RED);
+	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
+	draw_map(c_ray);
 	draw_empty_rectangle(c_ray, xy_wh, COLOR_BLACK, MINI_SQUARE);
 	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
 		c_ray->mlx_img, 0, 0);
