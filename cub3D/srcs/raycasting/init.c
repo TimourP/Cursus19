@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/03 13:17:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/04 09:49:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_player(t_ray *c_ray)
 	int j;
 
 	i = -1;
-	c_ray->player_angle = PI / 2 * 1;
+	c_ray->player_angle = 0;
 	c_ray->player_delx = cos(c_ray->player_angle) * PLAYER_SPEED * CASE_WIDTH;
 	c_ray->player_dely = sin(c_ray->player_angle) * PLAYER_SPEED * CASE_WIDTH;
 	while (++i < c_ray->c_map->map_h + 1)

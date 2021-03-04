@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/03 13:21:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/04 10:06:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # define CROSS_BTN_EVENT 17
 
 # define PLAYER_SPEED 1
-# define PLAYER_ROTATION 0.1
+# define PLAYER_ROTATION 0.2 * PI
 
 # define MINI_SQUARE CASE_WIDTH
-# define MINI_WIDTH 480
-# define MINI_HEIGHT 256
+# define MINI_WIDTH 400
+# define MINI_HEIGHT 200
 
-# define CASE_WIDTH 16
+# define CASE_WIDTH 20
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126

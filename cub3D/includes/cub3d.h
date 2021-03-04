@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/03 10:51:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/04 09:52:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_ray
 void			print_map_struct(t_map *c_map);
 void			print_map(t_map *c_map);
 void			print_ray_struct(t_ray *c_ray, int only_ray);
+int				minimap_ray(t_ray *c_ray);
 
 /*
 ** parsing

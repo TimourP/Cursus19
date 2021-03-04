@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/02 10:57:08 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/04 10:04:45 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJS	=	${SRCS:.c=.o}
 NAME	=	cub3d.a
 LIBFT_NAME = libft.a
 CC		=	gcc
-CFLAG	=	-Wall -Wextra -Werror
+CFLAG	=	
 LIBFT_PATH	=	./libft
 
 all:			$(NAME)

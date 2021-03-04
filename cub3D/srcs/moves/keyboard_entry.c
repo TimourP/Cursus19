@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/03 13:14:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/04 10:38:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ int		get_entry(int key, t_ray *c_ray)
 	}
 	else
 		is_change = 0;
-	if (is_change)
+	if (is_change || 1)
+	{
 		minimap(c_ray);
-	print_ray_struct(c_ray, 1);
+		//minimap_ray(c_ray);
+	}
+	//print_ray_struct(c_ray, 1);
 	return (1);
 }
 
