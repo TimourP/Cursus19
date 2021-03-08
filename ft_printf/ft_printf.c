@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/08 14:22:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:22:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int			ft_printf(const char *format, ...)
 	int				print_len;
 	t_printf_data	*pf_var;
 
-	if (!(pf_var = malloc(sizeof(t_printf_data))))
+	if (!format || !(pf_var = malloc(sizeof(t_printf_data))))
 		return (-1);
 	va_start(pf_var->argc, format);
 	print_len = ft_printf_loop(pf_var, format);
