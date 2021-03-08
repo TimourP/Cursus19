@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:47:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 12:36:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:43:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*ft_strdup(const char *str)
 	i = ft_strlen(str);
 	if (!(dest = malloc((i + 1) * sizeof(char))))
 	{
-		errno = ENOMEM;
 		return (NULL);
 	}
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:23:03 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 12:05:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:41:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	convert_s_dot_flag(t_printf_data *pf_var)
 	return (1);
 }
 
-int			deal_s_flags(t_printf_data *pf_var)
+static int	deal_s_flags(t_printf_data *pf_var)
 {
 	if (pf_var->dot && pf_var->precision != -1)
 		if (!convert_s_dot_flag(pf_var))

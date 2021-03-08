@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/04 12:12:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:40:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		check_negative(t_printf_data *pf_var, int len)
+static int	check_negative(t_printf_data *pf_var, int len)
 {
 	if (pf_var->width < 0)
 	{
@@ -31,7 +31,7 @@ int		check_negative(t_printf_data *pf_var, int len)
 	return (len);
 }
 
-int		fill_struct(t_printf_data *pf_var, const char *str)
+static int	fill_struct(t_printf_data *pf_var, const char *str)
 {
 	int len;
 	int i;
@@ -57,7 +57,7 @@ int		fill_struct(t_printf_data *pf_var, const char *str)
 	return (check_negative(pf_var, len));
 }
 
-int		ft_printf_loop(t_printf_data *pf_var, const char *str)
+static int	ft_printf_loop(t_printf_data *pf_var, const char *str)
 {
 	int print_len;
 	int i;
@@ -85,7 +85,7 @@ int		ft_printf_loop(t_printf_data *pf_var, const char *str)
 	return (print_len);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	int				print_len;
 	t_printf_data	*pf_var;

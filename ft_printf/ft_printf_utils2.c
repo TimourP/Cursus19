@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:47:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 12:20:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:42:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	print_struct(t_printf_data *pf_var)
 int		free_and_return(char *to_free, int ret)
 {
 	free(to_free);
+	to_free = NULL;
 	return (ret);
 }
 

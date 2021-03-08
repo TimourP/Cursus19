@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:32:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:56:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:43:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
-# include <errno.h>
 
 typedef struct	s_printf_data
 {
