@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:24:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:33:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:35:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			deal_c_flags(t_printf_data *pf_var, int diff)
+int	deal_c_flags(t_printf_data *pf_var, int diff)
 {
 	if (pf_var->width)
 		if (!convert_width(pf_var))
@@ -24,12 +24,13 @@ int			deal_c_flags(t_printf_data *pf_var, int diff)
 	return (1);
 }
 
-int			convert_c(t_printf_data *pf_var)
+int	convert_c(t_printf_data *pf_var)
 {
 	char	*str;
 	int		diff;
 
-	if (!(str = malloc(sizeof(char) * 2)))
+	str = malloc(sizeof(char) * 2);
+	if (!(str))
 		return (0);
 	str[0] = va_arg(pf_var->argc, int);
 	str[1] = 0;

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 13:10:24 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:59:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:37:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	edit_di_values(t_printf_data *pf_var)
 static int	convert_di_precision_neg(t_printf_data *pf_var)
 {
 	char		*space_string;
-	const	int to_r = pf_var->zero && !pf_var->dot;
+	const int	to_r = pf_var->zero && !pf_var->dot;
 	int			remaining_length;
 	char		*new_str;
 
@@ -91,7 +91,8 @@ int			convert_di(t_printf_data *pf_var)
 	int nb;
 
 	nb = va_arg(pf_var->argc, int);
-	if (!(pf_var->current_str = ft_itoa_base(nb, 10, "0123456789")))
+	pf_var->current_str = ft_itoa_base(nb, 10, "0123456789");
+	if (!(pf_var->current_str))
 		return (0);
 	return (deal_di_flags(pf_var, nb));
 }
