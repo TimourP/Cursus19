@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/08 13:40:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:22:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	check_negative(t_printf_data *pf_var, int len)
+static void	check_negative(t_printf_data *pf_var)
 {
 	if (pf_var->width < 0)
 	{
@@ -26,9 +26,8 @@ static int	check_negative(t_printf_data *pf_var, int len)
 		pf_var->precision = -1;
 		pf_var->dot = 0;
 	}
-	if (pf_var->dot && pf_var->zero)
+	if (pf_var->dot && pf_var->zero && pf_var->current_char != '%')
 		pf_var->zero = 0;
-	return (len);
 }
 
 static int	fill_struct(t_printf_data *pf_var, const char *str)
@@ -54,7 +53,7 @@ static int	fill_struct(t_printf_data *pf_var, const char *str)
 		}
 		i++;
 	}
-	return (check_negative(pf_var, len));
+	return (len);
 }
 
 static int	ft_printf_loop(t_printf_data *pf_var, const char *str)
@@ -77,6 +76,7 @@ static int	ft_printf_loop(t_printf_data *pf_var, const char *str)
 			if (!is_in_str("cspdiuxX%", str[i]))
 				return (-1);
 			pf_var->current_char = str[i];
+			check_negative(pf_var);
 			if (!ft_stringify(pf_var))
 				return (-1);
 			write_str_and_add(pf_var, &print_len);
