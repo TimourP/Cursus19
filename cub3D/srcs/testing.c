@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 13:23:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:17:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	print_ray_struct(t_ray *c_ray, int only_ray)
 		print_map_struct(c_ray->c_map);
 		printf("------RAY------\n");
 	}
-	printf("player posx : %f\n", c_ray->player_posx);
-	printf("player posy : %f\n", c_ray->player_posy);
-	printf("player deltax : %f\n", c_ray->player_delx);
-	printf("player deltay : %f\n", c_ray->player_dely);
-	printf("player angle : %f\n", c_ray->player_angle);
+	printf("player posx : %.2f\n", c_ray->player_posx);
+	printf("player posy : %.2f\n", c_ray->player_posy);
+	printf("player deltax : %.2f\n", c_ray->player_delx);
+	printf("player deltay : %.2f\n", c_ray->player_dely);
+	printf("player angle : %.2f\n", c_ray->player_angle);
 }
 
 static int		check_color(t_ray *c_ray, int map_x, int map_y)
@@ -58,58 +58,3 @@ static int		check_color(t_ray *c_ray, int map_x, int map_y)
 		return (0);
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
-
-void	d_map(t_ray *c_ray)
-{
-	int 		i;
-	int 		j;
-	int			xy[2];
-	const int	w_h[2] = {MINI_SQUARE, MINI_SQUARE};
-
-	i = -1;
-	while (++ i < c_ray->c_map->map_h)
-	{
-		j = -1;
-		while (++j < c_ray->c_map->map_w)
-		{
-			xy[0] = j * MINI_SQUARE;
-			xy[1] = i * MINI_SQUARE;
-			draw_rectangle(c_ray, xy, w_h, is_in_str("0NSEW", c_ray->c_map->map[i][j]) ? COLOR_WHITE : COLOR_RED);
-		}
-	}
-}
-
-void	drawRay(t_ray *c_ray)
-{
-	int posx = c_ray->player_posx;
-	int posy = c_ray->player_posy;
-	float dirx = -1;
-	float diry = 0;
-	float planex = 0;
-	float planey = 0.66;
-	int i;
-
-	i = -1;
-	while (++i < c_ray->screen_w)
-	{
-		float camerax = 2 * i / (c_ray->screen_w - 1);
-		float rayDirx = dirx + planex * camerax;
-		float raydiry = diry + planey + camerax;
-	}
-	
-}
-
-int	minimap_ray(t_ray *c_ray)
-{
-	//int	xy[2] = {0, 0};
-	//int	pl_xy[2] = {c_ray->player_posx - MINI_SQUARE/2, c_ray->player_posy - MINI_SQUARE/2};
-	//int	w_h[2] = {MINI_SQUARE, MINI_SQUARE};
-	//int	w_h_m[2] = {c_ray->screen_w, c_ray->screen_h};
-
-	//draw_rectangle(c_ray, xy, w_h_m, 0x00000000);
-	//d_map(c_ray);
-	//draw_rectangle(c_ray, pl_xy, w_h, COLOR_BLACK);
-	//mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win, c_ray->mlx_img, 0, 0);
-	drawRay(c_ray);
-	return (0);
-} 

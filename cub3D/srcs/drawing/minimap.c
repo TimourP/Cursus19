@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 13:29:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:26:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	draw_map(t_ray *c_ray)
 	const int	pxy[2] = {c_ray->player_posx * MINI_SQUARE, c_ray->player_posy * MINI_SQUARE};
 	int			mapx;
 	int			mapy;
+	int test[3] = {MINI_WIDTH / 2, MINI_HEIGHT / 2, 100};
 
 	ij[0] = -1;
 	while (++ij[0] < MINI_HEIGHT / MINI_SQUARE)
@@ -48,6 +49,7 @@ void	draw_map(t_ray *c_ray)
 		}
 	}
 	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
+	draw_line(c_ray, test, c_ray->player_angle, COLOR_RED);
 }
 
 int		minimap(t_ray *c_ray)

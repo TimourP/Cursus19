@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 14:39:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:21:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,7 @@ void			draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
 void			draw_player(t_ray *c_ray, const int xy_wh[4],
 				const int color, float angle);
 int				minimap(t_ray *c_ray);
+void			draw_line(t_ray *c_ray, int x_y_l[3],
+				float angle, const int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 14:44:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:27:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # define PLAYER_ROTATION 0.05
 
 # define MINI_SQUARE CASE_WIDTH
-# define MINI_WIDTH 400
-# define MINI_HEIGHT 200
+# define MINI_WIDTH 800
+# define MINI_HEIGHT 400
 
-# define CASE_WIDTH 20
+# define CASE_WIDTH 40
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126

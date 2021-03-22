@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 14:50:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:37:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void		draw_rectangle(t_ray *c_ray, const int xy[2],
 	const int	screen_height = c_ray->screen_h;
 	const int	screen_width = c_ray->screen_w;
 
-	i = -1;
+	i = 0;
 	while (++i < width_height[1] && i + xy[1] < screen_height && xy[1] >= 0)
 	{
-		j = -1;
+		j = 0;
 		while (++j < width_height[0] && j + xy[0] < screen_width && xy[0] >= 0)
 		{
 			draw_pixel(c_ray, j + xy[0], i + xy[1], color);
@@ -68,21 +68,6 @@ void		draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
 	}
 }
 
-static float	reste_angle(float angle)
-{
-	int i;
-	int prec;
-
-	prec = 20;
-	i = -1;
-	while (++i < prec)
-	{
-		if (angle <= (i + 0.5) * PI * (2.0 / prec) && angle >= (i - 0.5) * PI * (2.0 / prec))
-			return (PI * i * (2.0 / prec));
-	}
-	return (0);
-}
-
 void		draw_player(t_ray *c_ray, const int xy_wh[4],
 			const int color, float angle)
 {
@@ -93,7 +78,6 @@ void		draw_player(t_ray *c_ray, const int xy_wh[4],
 	float		a_v[4];
 
 	i = -1;
-	angle = reste_angle(angle);
 	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
 	{
 		j = -1;
@@ -152,4 +136,18 @@ void		draw_circle(t_ray *c_ray, const int xy[2],
 				draw_pixel(c_ray, j + xy[0], i + xy[1], color);
 		}
 	}
+}
+
+void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
+{
+	float	dx;
+	float	dy;
+	int		i;
+
+	i = -1;
+	dx = cos(-angle + PI / 2);
+	dy = sin(-angle + PI / 2);
+	printf("je passe par la !!!\n");
+	while (++i < x_y_l[2])
+		draw_pixel(c_ray, x_y_l[0] + (i * dx), x_y_l[1] - (i * dy), color);
 }

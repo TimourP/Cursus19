@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 14:49:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 15:32:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ int		key_press(int key, t_ray *c_ray)
 	{
 		mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
 		exit(0);
-	}
-	if (key == 49)
-	{
-		printf("forward : %d\n", c_ray->go_forward);
-		printf("backward : %d\n", c_ray->go_backward);
-		printf("left : %d\n", c_ray->go_left);
-		printf("right : %d\n", c_ray->go_right);
-		printf("turn left : %d\n", c_ray->turn_left);
-		printf("turm right : %d\n", c_ray->turn_right);
-		
 	}
 	if (key == KEY_UP_MOVE)
 		c_ray->go_forward = 1;
@@ -72,6 +62,21 @@ int		key_release(int key, t_ray *c_ray)
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 0;
 	return (1);
+}
+
+static float	reste_angle(float angle)
+{
+	int i;
+	int prec;
+
+	prec = 20;
+	i = -1;
+	while (++i < prec)
+	{
+		if (angle <= (i + 0.5) * PI * (2.0 / prec) && angle >= (i - 0.5) * PI * (2.0 / prec))
+			return (PI * i * (2.0 / prec));
+	}
+	return (0);
 }
 
 int		get_next_frame(t_ray *c_ray)
