@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 15:37:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 18:10:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		draw_player(t_ray *c_ray, const int xy_wh[4],
 	float		a_v[4];
 
 	i = -1;
+	angle = angle + PI / 2;
 	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
 	{
 		j = -1;
@@ -145,9 +146,10 @@ void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
 	int		i;
 
 	i = -1;
-	dx = cos(-angle + PI / 2);
-	dy = sin(-angle + PI / 2);
-	printf("je passe par la !!!\n");
+	dx = cos(-angle);
+	dy = sin(-angle);
+	if (x_y_l[2] > 280)
+		x_y_l[2] = 280;
 	while (++i < x_y_l[2])
 		draw_pixel(c_ray, x_y_l[0] + (i * dx), x_y_l[1] - (i * dy), color);
 }
