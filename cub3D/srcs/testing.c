@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/04 10:36:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 13:23:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	print_ray_struct(t_ray *c_ray, int only_ray)
 		print_map_struct(c_ray->c_map);
 		printf("------RAY------\n");
 	}
-	printf("player posx : %d\n", c_ray->player_posx);
-	printf("player posy : %d\n", c_ray->player_posy);
-	printf("player deltax : %d\n", c_ray->player_delx);
-	printf("player deltay : %d\n", c_ray->player_dely);
+	printf("player posx : %f\n", c_ray->player_posx);
+	printf("player posy : %f\n", c_ray->player_posy);
+	printf("player deltax : %f\n", c_ray->player_delx);
+	printf("player deltay : %f\n", c_ray->player_dely);
 	printf("player angle : %f\n", c_ray->player_angle);
 }
 

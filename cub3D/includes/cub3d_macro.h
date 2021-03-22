@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/04 10:06:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 14:44:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define CUB3D_MACRO_H
 
 # define KEY_PRESS_EVENT 2
+# define KEY_RELEASE_EVENT 3
 # define CROSS_BTN_EVENT 17
 
-# define PLAYER_SPEED 1
-# define PLAYER_ROTATION 0.2 * PI
+# define PLAYER_SPEED 0.1
+# define PLAYER_ROTATION 0.05
 
 # define MINI_SQUARE CASE_WIDTH
 # define MINI_WIDTH 400

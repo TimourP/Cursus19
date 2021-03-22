@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/04 09:52:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 14:39:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,17 @@ typedef struct	s_ray
 	int			img_bpp;
 	int			img_line_l;
 	int			img_edian;
-	int			player_posx;
-	int			player_posy;
-	int			player_delx;
-	int			player_dely;
+	float		player_posx;
+	float		player_posy;
+	float		player_delx;
+	float		player_dely;
 	float		player_angle;
+	int			go_forward;
+	int			go_backward;
+	int			go_left;
+	int			go_right;
+	int			turn_left;
+	int			turn_right;
 }				t_ray;
 
 /*
@@ -96,7 +102,9 @@ int				init_raycasting(t_ray *c_ray, t_map *c_map);
 ** moves
 */
 
-int				get_entry(int key, t_ray *c_ray);
+int				key_press(int key, t_ray *c_ray);
+int				key_release(int key, t_ray *c_ray);
+int				get_next_frame(t_ray *c_ray);
 int				exit_button(t_ray *c_ray);
 
 /*
@@ -112,7 +120,7 @@ void			draw_circle(t_ray *c_ray, const int xy[2],
 void			draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
 				const int color, const float angle);
 void			draw_player(t_ray *c_ray, const int xy_wh[4],
-				const int color, const float angle);
+				const int color, float angle);
 int				minimap(t_ray *c_ray);
 
 #endif

@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"sstream": "c",
-		"bitset": "c"
+		"bitset": "c",
+		"__node_handle": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/04 09:48:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 13:29:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_map(t_ray *c_ray)
 {
 	int			ij[2];
 	int			xy[2];
-	const int	pxy[2] = {c_ray->player_posx, c_ray->player_posy};
+	const int	pxy[2] = {c_ray->player_posx * MINI_SQUARE, c_ray->player_posy * MINI_SQUARE};
 	int			mapx;
 	int			mapy;
 
@@ -39,8 +39,8 @@ void	draw_map(t_ray *c_ray)
 		ij[1] = -1;
 		while (++ij[1] < MINI_WIDTH / MINI_SQUARE)
 		{
-			xy[0] = ij[1] * MINI_SQUARE - c_ray->player_posx % MINI_SQUARE;
-			xy[1] = ij[0] * MINI_SQUARE - c_ray->player_posy % MINI_SQUARE;
+			xy[0] = ij[1] * MINI_SQUARE - (int)((c_ray->player_posx - (int)c_ray->player_posx) * MINI_SQUARE);
+			xy[1] = ij[0] * MINI_SQUARE - (int)((c_ray->player_posy - (int)c_ray->player_posy) * MINI_SQUARE);
 			mapx = pxy[0] / MINI_SQUARE - MINI_WIDTH / MINI_SQUARE / 2 + ij[1];
 			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
 			draw_rectangle(c_ray, xy, g_minimap_square_w_h, check_color(c_ray,
