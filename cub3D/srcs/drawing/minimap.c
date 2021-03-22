@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 19:20:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:15:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void drawRay(t_ray *c_ray)
 	int mapx;
 	int mapy;
 	int side;
-	//line_values[2] = (1 - d_x) * div_zero(MINI_SQUARE, cos(angle));
 	hit = 0;
 	mapx = (int)c_ray->player_posx;
 	mapy = (int)c_ray->player_posy;
@@ -90,15 +89,10 @@ void drawRay(t_ray *c_ray)
 			mapy += step_y;
 			side = 1;
 		}
-		if (c_ray->c_map->map[mapy][mapx] != 0)
-		{
+		if (mapx < 0 || mapy < 0 || !is_in_str("0NSEW", c_ray->c_map->map[mapy][mapx]))
 			hit = 1;
-			printf("%d %d\n", mapx, mapy);
-		}
 	}
-	
-	printf("%f %f\n", s_distx, s_distx);
-	line_values[2] = s_disty > s_distx ? s_distx * MINI_SQUARE : s_disty * MINI_SQUARE;
+	line_values[2] = (s_distx - d_distx) > (s_disty - d_disty) ? (s_distx - d_distx) * MINI_SQUARE : (s_disty - d_disty) * MINI_SQUARE;
 	draw_line(c_ray, line_values, angle, COLOR_RED);
 }
 
@@ -130,14 +124,9 @@ void	draw_map(t_ray *c_ray)
 
 int		minimap(t_ray *c_ray)
 {
-	const int	xy[2] = {0, 0};
-	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	const int	xy_wh[4] = {0, 0, MINI_WIDTH, MINI_HEIGHT};
 
-	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	draw_map(c_ray);
 	draw_empty_rectangle(c_ray, xy_wh, COLOR_BLACK, MINI_SQUARE);
-	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
-		c_ray->mlx_img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/04 10:04:45 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/22 19:58:48 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ MOVES_SRCS = keyboard_entry.c \
 
 DRAW_SRCS = draw.c \
 			minimap.c \
+			game.c \
 
 SRCS	=	cub3d.c \
 			srcs/testing.c \

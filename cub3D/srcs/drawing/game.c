@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 19:25:01 by tpetit           ###   ########.fr       */
+/*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
+/*   Updated: 2021/03/22 20:17:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main_error(int argc, char **argv)
+int	draw_game(t_ray *c_ray)
 {
-	if (argc != 2 || !argv[1])
-		return (0);
-	return (1);
-}
+	int i;
+	const int	xy[2] = {0, 0};
+	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 
-int	main(int argc, char **argv)
-{
-	t_map c_map;
-	t_ray c_ray;
-
-	if (!main_error(argc, argv))
-		return (-1);
-	if (!parse_map(&c_map, argv[1]))
-		return (-1);
-	if (!(init_raycasting(&c_ray, &c_map)))
-		return (-1);
-	print_map(&c_map);
-	mlx_loop(c_ray.mlx_ptr);
-	free_t_map(&c_map);
+	i = -1;
+	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
+	while (++i < c_ray->screen_w)
+	{
+		draw_vertical_line(c_ray, i, 720, COLOR_RED);
+	}
 	return (0);
 }

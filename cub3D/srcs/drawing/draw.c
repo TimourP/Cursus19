@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 18:10:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:13:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,20 @@ void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
 	i = -1;
 	dx = cos(-angle);
 	dy = sin(-angle);
-	if (x_y_l[2] > 280)
-		x_y_l[2] = 280;
+	if (x_y_l[2] > 140)
+		x_y_l[2] = 140;
 	while (++i < x_y_l[2])
 		draw_pixel(c_ray, x_y_l[0] + (i * dx), x_y_l[1] - (i * dy), color);
+}
+
+void	draw_vertical_line(t_ray *c_ray, const int x, const int length, const int color)
+{
+	int i;
+	const int offset = (c_ray->screen_h - length) / 2;
+
+	i = - 1;
+	while (++i < length)
+	{
+		draw_pixel(c_ray, x, i + offset, color);
+	}
 }
