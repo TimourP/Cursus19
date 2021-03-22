@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 19:49:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:19:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define PLAYER_SPEED 0.1
 # define PLAYER_ROTATION 0.05
 
-# define MINI_SQUARE 40
-# define MINI_WIDTH 480
-# define MINI_HEIGHT 320
+# define MINI_SQUARE 20
+# define MINI_WIDTH 240
+# define MINI_HEIGHT 160
 
 # define CASE_WIDTH 40
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 20:11:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:24:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void			draw_line(t_ray *c_ray, int x_y_l[3],
 int				draw_game(t_ray *c_ray);
 void			draw_vertical_line(t_ray *c_ray, const int x,
 				const int length, const int color);
+float			div_zero(float number1, float number2);
 
 #endif
