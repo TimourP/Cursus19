@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 13:33:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/25 13:34:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:22:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_split(char **to_free)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (to_free[++i])

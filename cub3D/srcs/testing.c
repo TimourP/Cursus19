@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 11:21:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:23:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_map_struct(t_map *c_map)
 
 void	print_map(t_map *c_map)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < c_map->map_h)

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/23 11:21:02 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/23 12:30:05 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,10 @@ UTILS_SRCS =	free_and_return.c \
 				free_split.c \
 				free_struct.c \
 
-RAYCASTING_SRCS = init.c \
+RAYCASTING_SRCS = 	init.c \
 
-MOVES_SRCS = keyboard_entry.c \
+MOVES_SRCS = 	keyboard_entry.c \
+				next_frame.c \
 
 DRAW_SRCS = draw.c \
 			draw2.c \
