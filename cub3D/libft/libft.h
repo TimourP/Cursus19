@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:54:04 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 17:44:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 10:10:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
@@ -38,5 +38,6 @@ char			**ft_split(char const *str, char c);
 size_t			number_len(int n, int base_len);
 char			**free_all(char **tab, int index);
 int				is_in_str(char *str, char c);
+int				ft_malloc(char *to_malloc, size_t size);
 
 #endif

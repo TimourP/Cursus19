@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:06:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:29:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 10:01:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	number_len(int n, int base_len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n < 0)
@@ -35,7 +35,8 @@ char	*ft_itoa_base(int n, int base_len, const char *base)
 	neg = 0;
 	if (n < 0)
 		neg = 1;
-	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)))))
+	num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)));
+	if (!num)
 		return (NULL);
 	num[n_len + (int)(n == 0)] = 0;
 	if (neg)
@@ -44,7 +45,7 @@ char	*ft_itoa_base(int n, int base_len, const char *base)
 		num[0] = base[0];
 	while (n && ++i > -1)
 	{
-		num[n_len - 1 - i] = neg ? base[n % base_len * -1] : base[n % base_len];
+		num[n_len - 1 - i] = base[n % base_len * (-1 * neg)];
 		n = n / base_len;
 	}
 	return (num);

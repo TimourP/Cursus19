@@ -6,15 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 11:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/24 14:01:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 10:51:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		is_in_str(char *str, char c)
+int	is_in_str(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!str)
@@ -27,7 +27,7 @@ int		is_in_str(char *str, char c)
 
 size_t	ft_strlen_until(char *str, char c)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	if (!str)
@@ -44,7 +44,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*conc_str;
 
 	len = ft_strlen_until(s1, 0) + ft_strlen_until(s2, 0);
-	if (!(conc_str = malloc(sizeof(char) * (len + 1))))
+	conc_str = malloc(sizeof(char) * (len + 1));
+	if (!conc_str)
 	{
 		free(s1);
 		return (NULL);
@@ -71,7 +72,8 @@ char	*ft_strdup_until(char *src, char c)
 	if (!src)
 		return (NULL);
 	i = ft_strlen_until(src, c);
-	if (!(dest = (char*)malloc((i + 1) * sizeof(char))))
+	dest = (char *)malloc((i + 1) * sizeof(char));
+	if (!dest)
 	{
 		free(src);
 		return (NULL);
@@ -96,7 +98,8 @@ char	*ft_strdup_from(char *str, int from)
 		return (NULL);
 	}
 	i = ft_strlen_until(str + from, 0);
-	if (!(dest = malloc((i + 1) * sizeof(char))))
+	dest = malloc((i + 1) * sizeof(char));
+	if (!dest)
 	{
 		free(str);
 		return (NULL);

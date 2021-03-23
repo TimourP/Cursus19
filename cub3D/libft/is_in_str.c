@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 17:43:49 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/01 17:44:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 10:03:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	is_in_str(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])

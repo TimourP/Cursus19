@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 19:25:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:07:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main_error(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_map c_map;
-	t_ray c_ray;
+	t_map	c_map;
+	t_ray	c_ray;
 
 	if (!main_error(argc, argv))
 		return (-1);

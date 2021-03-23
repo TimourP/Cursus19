@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 09:39:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:57:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int			screen_w;
 	int			screen_h;
@@ -37,7 +37,7 @@ typedef struct	s_map
 	char		**map;
 }				t_map;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_map		*c_map;
 	int			screen_w;
@@ -115,21 +115,21 @@ int				exit_button(t_ray *c_ray);
 */
 
 void			draw_rectangle(t_ray *c_ray, const int xy[2],
-				const int width_height[2], const int color);
+					const int width_height[2], const int color);
 void			draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
-				const int color, const int inner_width);
+					const int color, const int inner_width);
 void			draw_circle(t_ray *c_ray, const int xy[2],
-				const int radius, const int color);
+					const int radius, const int color);
 void			draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
-				const int color, const float angle);
+					const int color, const float angle);
 void			draw_player(t_ray *c_ray, const int xy_wh[4],
-				const int color, float angle);
+					const int color, float angle);
 int				minimap(t_ray *c_ray);
 void			draw_line(t_ray *c_ray, int x_y_l[3],
-				float angle, const int color);
+					float angle, const int color);
 int				draw_game(t_ray *c_ray);
 void			draw_vertical_line(t_ray *c_ray, const int x,
-				const int length, const int color);
+					const int length, const int color);
 float			div_zero(float number1, float number2);
 
 #endif
