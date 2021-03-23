@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 11:12:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:09:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	draw_vertical_line(t_ray *c_ray, const int x,
 	i--;
 	while (++i + offset < c_ray->screen_h)
 	{
-		draw_pixel(c_ray, x, i + offset, COLOR_MINIMAP_WALKABLE);
+		draw_pixel(c_ray, x, i + offset, c_ray->c_map->ceiling_t);
 	}
 }

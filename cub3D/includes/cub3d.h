@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 13:53:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:53:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_map
 	char		*west_t;
 	char		*east_t;
 	char		*sprite_t;
-	char		*floor_t;
-	char		*ceiling_t;
+	int			floor_t;
+	id_t		ceiling_t;
 	char		**map;
 }				t_map;
 
@@ -118,6 +118,7 @@ void			free_t_map(t_map *c_map);
 */
 
 int				init_raycasting(t_ray *c_ray, t_map *c_map);
+int				get_distance(t_ray *c_ray, float value, int *side);
 
 /*
 ** moves

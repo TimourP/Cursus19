@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:06:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 10:01:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:04:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_itoa_base(int n, int base_len, const char *base)
 		num[0] = base[0];
 	while (n && ++i > -1)
 	{
-		num[n_len - 1 - i] = base[n % base_len * (-1 * neg)];
+		num[n_len - 1 - i] = base[n % base_len * (1 + 2 * neg)];
 		n = n / base_len;
 	}
 	return (num);

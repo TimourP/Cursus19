@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:54:04 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 14:02:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:04:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int				is_in_str(char *str, char c);
 int				ft_malloc(char **to_malloc, size_t size);
 int				big_m(char ***to_malloc, size_t size);
 int				ft_int_malloc(int **to_malloc, size_t size);
+int				ft_atoi_base(char *str, char *base);
 
 #endif

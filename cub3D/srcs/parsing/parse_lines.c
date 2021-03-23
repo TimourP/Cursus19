@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 13:35:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:12:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,19 @@ char	*make_color_string(int rgb[3])
 	char	*color_string;
 	int		i;
 
-	color_string = malloc(sizeof(char) * 11);
+	color_string = malloc(sizeof(char) * 7);
 	if (!color_string)
 		return (NULL);
-	color_string[0] = '0';
-	color_string[1] = 'x';
-	color_string[2] = '0';
-	color_string[3] = '0';
 	i = -1;
 	while (++i < 3)
 	{
 		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
 		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
-		color_string[4 + i * 2] = current_color[0];
-		color_string[5 + i * 2] = current_color[1];
-		if (color_string[5 + i * 2] == 0)
-			color_string[5 + i * 2] = '0';
+		color_string[i * 2] = current_color[0];
+		color_string[1 + i * 2] = current_color[1];
+		if (color_string[1 + i * 2] == 0)
+			color_string[1 + i * 2] = '0';
 		free(current_color);
 	}
 	color_string[10] = 0;
@@ -66,9 +62,9 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 	if (param == 'S')
 		c_map->sprite_t = str;
 	if (param == 'c')
-		c_map->ceiling_t = str;
+		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
 	if (param == 'f')
-		c_map->floor_t = str;
+		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
 }
 
 int	get_colors(t_map *c_map, char *line, char param)

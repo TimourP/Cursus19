@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 19:55:10 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/23 10:12:11 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/23 15:04:34 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	ft_lstadd_back.c \
 		ft_strncmp.c \
 		ft_strlen.c \
 		ft_atoi.c \
+		ft_atoi_base.c \
 		ft_strtrim.c \
 		ft_itoa_base.c \
 		ft_split.c \

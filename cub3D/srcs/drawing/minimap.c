@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 12:09:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:57:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ float	div_zero(float number1, float number2)
 		return (1);
 	else
 		return (number1 / number2);
+}
+
+void	draw_all_lines(t_ray *c_ray)
+{
+	int			side;
+	int			line[3] = {MINI_WIDTH / 2, MINI_HEIGHT / 2, 0};
+	const int	wall_color[4] = {COLOR_BLUE, COLOR_RED, COLOR_YELLOW, COLOR_WHITE};
+	int i;
+
+	i = -1;
+	while (++i < c_ray->screen_w)
+	{
+		line[2] = get_distance(c_ray, (PI / 4) / (c_ray->screen_w)
+				* (i - c_ray->screen_w / 2), &side);
+		draw_line(c_ray, line, c_ray->player_angle + (PI / 4) / (c_ray->screen_w)
+				* (i - c_ray->screen_w / 2), wall_color[side]);
+	}
+	
 }
 
 void	draw_map(t_ray *c_ray)
@@ -59,6 +77,7 @@ void	draw_map(t_ray *c_ray)
 		}
 	}
 	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
+	draw_all_lines(c_ray);
 }
 
 int	minimap(t_ray *c_ray)

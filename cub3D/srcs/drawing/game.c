@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 11:55:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 15:53:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,29 @@ int	get_line_height(t_ray *c_ray, float value, int *side)
 	if (calc.line_height > c_ray->screen_h)
 		calc.line_height = c_ray->screen_h;
 	return (calc.line_height);
+}
+
+int	get_distance(t_ray *c_ray, float value, int *side)
+{
+	t_ray_calc	calc;
+
+	calc.hit = 0;
+	calc.mapx = (int)c_ray->player_posx;
+	calc.mapy = (int)c_ray->player_posy;
+	calc.angle = c_ray->player_angle + value;
+	if (calc.angle < 0)
+		calc.angle += 2 * PI;
+	if (calc.angle > 2 * PI)
+		calc.angle -= 2 * PI;
+	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
+	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
+	set_steps(c_ray, &calc);
+	set_hit(c_ray, &calc);
+	*side = get_side(&calc);
+	calc.final_dist = calc.s_disty - calc.d_disty;
+	if (calc.final_dist < calc.s_distx - calc.d_distx)
+		calc.final_dist = calc.s_distx - calc.d_distx;
+	return (calc.final_dist * MINI_SQUARE);
 }
 
 int	draw_game(t_ray *c_ray)
