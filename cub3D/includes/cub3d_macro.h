@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 20:19:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:47:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # define KEY_RELEASE_EVENT 3
 # define CROSS_BTN_EVENT 17
 
-# define PLAYER_SPEED 0.1
+# define PLAYER_SPEED 0.05
 # define PLAYER_ROTATION 0.05
+# define OFFSET_SPEED 5
+# define MAX_OFFSET 200
 
 # define MINI_SQUARE 20
 # define MINI_WIDTH 240
@@ -36,9 +38,11 @@
 # define KEY_LEFT_MOVE 0
 # define KEY_RIGHT_MOVE 2
 
-# define COLOR_RED 0x00FF0000
+# define COLOR_RED 0x00E74C3C
 # define COLOR_BLACK 0x00000000
 # define COLOR_WHITE 0x00FFFFFF
+# define COLOR_BLUE 0x005DADE2
+# define COLOR_YELLOW 0x00F1C40F
 # define COLOR_MINIMAP_WALKABLE 0x00B3B6B7
 # define COLOR_MINIMAP_WALL 0x00DC7633
 

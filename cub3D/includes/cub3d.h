@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 20:24:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:39:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct	s_ray
 	int			go_right;
 	int			turn_left;
 	int			turn_right;
+	int			look_offset;
+	int			look_up;
+	int			look_down;
 }				t_ray;
 
 /*

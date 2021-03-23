@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 20:16:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:47:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 	if (!is_in_str("0NSEW",
 		c_ray->c_map->map[(int)next_posy][(int)next_posx]))
 		return (0);
+	c_ray->player_posx += x_diff;
+	c_ray->player_posy += y_diff;
 	return (1);
 }
 
@@ -44,6 +46,10 @@ int		key_press(int key, t_ray *c_ray)
 		c_ray->turn_right = 1;
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 1;
+	else if (key == KEY_UP_ARROW)
+		c_ray->look_up = 1;
+	else if (key == KEY_DOWN_ARROW)
+		c_ray->look_down = 1;
 	return (1);
 }
 
@@ -61,6 +67,10 @@ int		key_release(int key, t_ray *c_ray)
 		c_ray->turn_right = 0;
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 0;
+	else if (key == KEY_UP_ARROW)
+		c_ray->look_up = 0;
+	else if (key == KEY_DOWN_ARROW)
+		c_ray->look_down = 0;
 	return (1);
 }
 
@@ -81,30 +91,19 @@ static float	reste_angle(float angle)
 
 int		get_next_frame(t_ray *c_ray)
 {
-	static float last_x;
-	static float last_y;
-	static float last_angle;
+	static float	last_x;
+	static float	last_y;
+	static float	last_angle;
+	static int		last_offset;
 
-	if (c_ray->go_forward && check_next_move(c_ray, c_ray->player_dely, -c_ray->player_delx))
-	{
-		c_ray->player_posx += c_ray->player_dely;
-		c_ray->player_posy += c_ray->player_delx;
-	}
-	if (c_ray->go_backward && check_next_move(c_ray, -c_ray->player_dely, c_ray->player_delx))
-	{
-		c_ray->player_posx -= c_ray->player_dely;
-		c_ray->player_posy -= c_ray->player_delx;
-	}
-	if (c_ray->go_left && check_next_move(c_ray, -c_ray->player_delx, -c_ray->player_dely))
-	{
-		c_ray->player_posx += c_ray->player_delx;
-		c_ray->player_posy -= c_ray->player_dely;
-	}
-	if (c_ray->go_right && check_next_move(c_ray, c_ray->player_delx, c_ray->player_dely))
-	{
-		c_ray->player_posx -= c_ray->player_delx;
-		c_ray->player_posy += c_ray->player_dely;
-	}
+	if (c_ray->go_forward)
+		check_next_move(c_ray, c_ray->player_dely, c_ray->player_delx);
+	if (c_ray->go_backward)
+		check_next_move(c_ray, -c_ray->player_dely, -c_ray->player_delx);
+	if (c_ray->go_left)
+		check_next_move(c_ray, c_ray->player_delx, -c_ray->player_dely);
+	if (c_ray->go_right)
+		check_next_move(c_ray, -c_ray->player_delx, c_ray->player_dely);
 	if (c_ray->turn_right)
 	{
 		c_ray->player_angle += PLAYER_ROTATION;
@@ -121,7 +120,12 @@ int		get_next_frame(t_ray *c_ray)
 		c_ray->player_delx = sin(c_ray->player_angle) * PLAYER_SPEED;
 		c_ray->player_dely = cos(c_ray->player_angle) * PLAYER_SPEED;
 	}
-	if (last_x != c_ray->player_posx || last_y != c_ray->player_posy || last_angle != c_ray->player_angle)
+	if (c_ray->look_up && c_ray->look_offset < MAX_OFFSET)
+		c_ray->look_offset += OFFSET_SPEED;
+	if (c_ray->look_down && c_ray->look_offset > -MAX_OFFSET)
+		c_ray->look_offset -= OFFSET_SPEED;
+	if (last_x != c_ray->player_posx || last_y != c_ray->player_posy ||
+		last_angle != c_ray->player_angle || last_offset != c_ray->look_offset)
 	{
 		draw_game(c_ray);
 		minimap(c_ray);
@@ -132,6 +136,7 @@ int		get_next_frame(t_ray *c_ray)
 	last_x = c_ray->player_posx;
 	last_y = c_ray->player_posy;
 	last_angle = c_ray->player_angle;
+	last_offset = c_ray->look_offset;
 	return (1);
 }
 

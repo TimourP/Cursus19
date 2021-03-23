@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 21:10:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:31:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void get_distance(t_ray *c_ray, float value, int x)
 	mapx = (int)c_ray->player_posx;
 	mapy = (int)c_ray->player_posy;
 	angle = c_ray->player_angle + value;
+	if (angle < 0)
+		angle += 2 * PI;
+	if (angle > 2 * PI)
+		angle -= 2 * PI;
 	d_distx = fabs(div_zero(1, cos(angle)));
 	d_disty = fabs(div_zero(1, cos(PI / 2 - angle)));
 	if (angle > 3 * PI / 2 || angle < PI / 2)
@@ -71,8 +75,10 @@ void get_distance(t_ray *c_ray, float value, int x)
 			hit = 1;
 	}
 	i = (s_distx - d_distx) > (s_disty - d_disty) ? (s_distx - d_distx) : (s_disty - d_disty);
-	int te = i < 1 ? 720 : 720 / i;
-	draw_vertical_line(c_ray, x, te, side ? COLOR_WHITE : COLOR_RED);
+	int te = c_ray->screen_h / i;
+	te = te / cos(c_ray->player_angle - angle);
+	te = te > c_ray->screen_h ? c_ray->screen_h : te;
+	draw_vertical_line(c_ray, x, te, side ? step_y > 0 ? COLOR_YELLOW : COLOR_WHITE : step_x > 0 ? COLOR_BLUE : COLOR_RED);
 }
 
 int	draw_game(t_ray *c_ray)

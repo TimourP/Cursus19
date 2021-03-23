@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 20:46:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 09:54:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,10 +160,11 @@ void	draw_vertical_line(t_ray *c_ray, const int x, const int length, const int c
 	const int offset = (c_ray->screen_h - length) / 2;
 
 	i = - 1;
-	while (++i < length)
+	while (++i < length && i + offset < c_ray->screen_h)
 	{
 		draw_pixel(c_ray, x, i + offset, color);
 	}
+	i--;
 	while (++i + offset < c_ray->screen_h)
 	{
 		draw_pixel(c_ray, x, i + offset, COLOR_MINIMAP_WALKABLE);
