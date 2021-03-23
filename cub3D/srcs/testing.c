@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/22 15:17:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:21:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,4 @@ void	print_ray_struct(t_ray *c_ray, int only_ray)
 	printf("player deltax : %.2f\n", c_ray->player_delx);
 	printf("player deltay : %.2f\n", c_ray->player_dely);
 	printf("player angle : %.2f\n", c_ray->player_angle);
-}
-
-static int		check_color(t_ray *c_ray, int map_x, int map_y)
-{
-	if (map_x < 0 || map_y < 0)
-		return (0);
-	if (map_x > c_ray->c_map->map_w - 1 || map_y > c_ray->c_map->map_h - 1)
-		return (0);
-	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }

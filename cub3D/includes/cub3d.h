@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 09:57:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:26:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ typedef struct s_ray
 	int			look_down;
 }				t_ray;
 
+typedef struct s_ray_calc
+{
+	float 		i;
+	float 		angle;
+	float 		d_disty;
+	float 		d_distx;
+	float 		s_disty;
+	float 		s_distx;
+	float		final_dist;
+	float		line_height;
+	int 		step_x;
+	int 		step_y;
+	int 		hit;
+	int 		mapx;
+	int 		mapy;
+	int 		side;
+}				t_ray_calc;
+
 /*
 ** testing
 */
@@ -120,8 +138,6 @@ void			draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 					const int color, const int inner_width);
 void			draw_circle(t_ray *c_ray, const int xy[2],
 					const int radius, const int color);
-void			draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
-					const int color, const float angle);
 void			draw_player(t_ray *c_ray, const int xy_wh[4],
 					const int color, float angle);
 int				minimap(t_ray *c_ray);
@@ -131,5 +147,6 @@ int				draw_game(t_ray *c_ray);
 void			draw_vertical_line(t_ray *c_ray, const int x,
 					const int length, const int color);
 float			div_zero(float number1, float number2);
+void			draw_pixel(t_ray *c_ray, int x, int y, int color);
 
 #endif

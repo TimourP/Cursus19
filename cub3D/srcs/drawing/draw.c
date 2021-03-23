@@ -6,21 +6,21 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 09:54:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:12:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void		draw_pixel(t_ray *c_ray, int x, int y, int color)
+void	draw_pixel(t_ray *c_ray, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = c_ray->img_addr + (y * c_ray->img_line_l + x * (c_ray->img_bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
-void		draw_rectangle(t_ray *c_ray, const int xy[2],
+void	draw_rectangle(t_ray *c_ray, const int xy[2],
 			const int width_height[2], const int color)
 {
 	int			i;
@@ -39,36 +39,7 @@ void		draw_rectangle(t_ray *c_ray, const int xy[2],
 	}
 }
 
-void		draw_rotate_rectangle(t_ray *c_ray, const int xy_wh[4],
-			const int color, const float angle)
-{
-	int			i;
-	int			j;
-	const int	screen_height = c_ray->screen_h;
-	const int	screen_width = c_ray->screen_w;
-	float		x;
-	float		y;
-	float		xs;
-	float		ys;
-
-	i = -1;
-	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
-	{
-		j = -1;
-		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
-		{
-			x = j + xy_wh[0];
-			y = i + xy_wh[1];
-			xs = x - (xy_wh[0] + xy_wh[2] / 2);
-			ys = y - (xy_wh[1] + xy_wh[3] / 2);
-			x = xy_wh[0] + xy_wh[2] / 2 + xs * cos(angle) - ys * sin(angle);
-			y = xy_wh[1] + xy_wh[3] / 2 + xs * sin(angle) + ys * cos(angle);
-			draw_pixel(c_ray, x, y, color);
-		}
-	}
-}
-
-void		draw_player(t_ray *c_ray, const int xy_wh[4],
+void	draw_player(t_ray *c_ray, const int xy_wh[4],
 			const int color, float angle)
 {
 	int			i;
@@ -98,7 +69,7 @@ void		draw_player(t_ray *c_ray, const int xy_wh[4],
 	}
 }
 
-void		draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
+void	draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 			const int color, const int inner_width)
 {
 	int			i;
@@ -112,14 +83,14 @@ void		draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 		j = -1;
 		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
 		{
-			if (i < inner_width || j < inner_width ||
-				j > xy_wh[2] - inner_width || i > xy_wh[3] - inner_width)
+			if (i < inner_width || j < inner_width
+				|| j > xy_wh[2] - inner_width || i > xy_wh[3] - inner_width)
 				draw_pixel(c_ray, j + xy_wh[0], i + xy_wh[1], color);
 		}
 	}
 }
 
-void		draw_circle(t_ray *c_ray, const int xy[2],
+void	draw_circle(t_ray *c_ray, const int xy[2],
 			const int radius, const int color)
 {
 	int			i;
@@ -137,37 +108,4 @@ void		draw_circle(t_ray *c_ray, const int xy[2],
 				draw_pixel(c_ray, j + xy[0], i + xy[1], color);
 		}
 	}
-}
-
-void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
-{
-	float	dx;
-	float	dy;
-	int		i;
-
-	i = -1;
-	dx = cos(-angle);
-	dy = sin(-angle);
-	if (x_y_l[2] > 80)
-		x_y_l[2] = 80;
-	while (++i < x_y_l[2])
-		draw_pixel(c_ray, x_y_l[0] + (i * dx), x_y_l[1] - (i * dy), color);
-}
-
-void	draw_vertical_line(t_ray *c_ray, const int x, const int length, const int color)
-{
-	int i;
-	const int offset = (c_ray->screen_h - length) / 2;
-
-	i = - 1;
-	while (++i < length && i + offset < c_ray->screen_h)
-	{
-		draw_pixel(c_ray, x, i + offset, color);
-	}
-	i--;
-	while (++i + offset < c_ray->screen_h)
-	{
-		draw_pixel(c_ray, x, i + offset, COLOR_MINIMAP_WALKABLE);
-	}
-	
 }

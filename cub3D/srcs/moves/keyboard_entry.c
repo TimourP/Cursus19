@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 09:47:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:22:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,6 @@ int		key_release(int key, t_ray *c_ray)
 	else if (key == KEY_DOWN_ARROW)
 		c_ray->look_down = 0;
 	return (1);
-}
-
-static float	reste_angle(float angle)
-{
-	int i;
-	int prec;
-
-	prec = 20;
-	i = -1;
-	while (++i < prec)
-	{
-		if (angle <= (i + 0.5) * PI * (2.0 / prec) && angle >= (i - 0.5) * PI * (2.0 / prec))
-			return (PI * i * (2.0 / prec));
-	}
-	return (0);
 }
 
 int		get_next_frame(t_ray *c_ray)
