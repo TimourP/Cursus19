@@ -6,15 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:56:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 13:49:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int			get_bigger_line(t_list *map_list, int *lines_count)
+int	get_bigger_line(t_list *map_list, int *lines_count)
 {
-	int max;
+	int	max;
 
 	max = 0;
 	*lines_count = 0;
@@ -32,17 +32,17 @@ int			get_bigger_line(t_list *map_list, int *lines_count)
 	return (max);
 }
 
-int			parse_map_to_str(t_map *c_map, t_list *map_list)
+int	parse_map_to_str(t_map *c_map, t_list *map_list)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	c_map->map_w = get_bigger_line(map_list, &(c_map->map_h));
-	if (!c_map->map_h || !(c_map->map = malloc(sizeof(char**) * c_map->map_h)))
+	if (!c_map->map_h || !big_m(&c_map->map, sizeof(char **) * c_map->map_h))
 		return (0);
 	i = -1;
 	while (++i < c_map->map_h)
-		if (!(c_map->map[i] = malloc(sizeof(char) * (c_map->map_w + 1))))
+		if (!ft_malloc(&c_map->map[i], sizeof(char) * (c_map->map_w + 1)))
 			return (0);
 	i = -1;
 	while (++i < c_map->map_h)
@@ -89,9 +89,9 @@ static int	fill_map_struct2(t_map *c_map, t_list *map_list)
 	return (error);
 }
 
-int			fill_map_struct(t_map *c_map, t_list *map_list)
+int	fill_map_struct(t_map *c_map, t_list *map_list)
 {
-	int error;
+	int	error;
 
 	error = 1;
 	while (map_list && map_list->next)
@@ -106,12 +106,13 @@ int			fill_map_struct(t_map *c_map, t_list *map_list)
 	return (parse_map_to_str(c_map, map_list));
 }
 
-int			parse_map(t_map *c_map, char *map_path)
+int	parse_map(t_map *c_map, char *map_path)
 {
-	t_list *map_list;
+	t_list	*map_list;
 
 	init_map_struct(c_map);
-	if (!(map_list = list_from_file(map_path)))
+	map_list = list_from_file(map_path);
+	if (!map_list)
 		return (0);
 	if (!(fill_map_struct(c_map, map_list)))
 		return (0);

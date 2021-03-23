@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 11:26:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 13:53:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,20 @@ typedef struct s_ray
 
 typedef struct s_ray_calc
 {
-	float 		i;
-	float 		angle;
-	float 		d_disty;
-	float 		d_distx;
-	float 		s_disty;
-	float 		s_distx;
+	float		i;
+	float		angle;
+	float		d_disty;
+	float		d_distx;
+	float		s_disty;
+	float		s_distx;
 	float		final_dist;
 	float		line_height;
-	int 		step_x;
-	int 		step_y;
-	int 		hit;
-	int 		mapx;
-	int 		mapy;
-	int 		side;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			mapx;
+	int			mapy;
+	int			side;
 }				t_ray_calc;
 
 /*

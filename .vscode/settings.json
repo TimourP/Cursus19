@@ -2,6 +2,8 @@
 	"files.associations": {
 		"sstream": "c",
 		"bitset": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"functional": "cpp",
+		"type_traits": "cpp"
 	}
 }

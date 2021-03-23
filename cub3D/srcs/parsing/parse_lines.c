@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/02 10:41:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/23 13:35:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*make_color_string(int rgb[3])
 	char	*color_string;
 	int		i;
 
-	if (!(color_string = malloc(sizeof(char) * 11)))
+	color_string = malloc(sizeof(char) * 11);
+	if (!color_string)
 		return (NULL);
 	color_string[0] = '0';
 	color_string[1] = 'x';
@@ -27,7 +28,8 @@ char	*make_color_string(int rgb[3])
 	i = -1;
 	while (++i < 3)
 	{
-		if (!(current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef")))
+		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
+		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
 		color_string[4 + i * 2] = current_color[0];
 		color_string[5 + i * 2] = current_color[1];
@@ -41,7 +43,7 @@ char	*make_color_string(int rgb[3])
 
 void	get_screen_resolution(t_map *c_map, char *line)
 {
-	int i;
+	int	i;
 
 	while (*line && *line == ' ')
 		line++;
@@ -69,7 +71,7 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 		c_map->floor_t = str;
 }
 
-int		get_colors(t_map *c_map, char *line, char param)
+int	get_colors(t_map *c_map, char *line, char param)
 {
 	char	*trim_line;
 	char	**split_line;
@@ -77,7 +79,8 @@ int		get_colors(t_map *c_map, char *line, char param)
 
 	while (*line && *line == ' ')
 		line++;
-	if (!(trim_line = ft_strtrim(&line[2], " ")))
+	trim_line = ft_strtrim(&line[2], " ");
+	if (!trim_line)
 		return (0);
 	c_map->map_h = 0;
 	split_line = ft_split(trim_line, ',');
@@ -90,13 +93,14 @@ int		get_colors(t_map *c_map, char *line, char param)
 	return (1);
 }
 
-int		get_textures(t_map *c_map, char *line, char param)
+int	get_textures(t_map *c_map, char *line, char param)
 {
 	char	*trim_line;
 
 	while (*line && *line == ' ')
 		line++;
-	if (!(trim_line = ft_strtrim(&line[2], " ")))
+	trim_line = ft_strtrim(&line[2], " ");
+	if (!trim_line)
 		return (0);
 	set_correct_string(c_map, trim_line, param);
 	return (1);
