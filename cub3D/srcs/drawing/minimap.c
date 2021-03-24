@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 17:14:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 17:52:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	draw_map(t_ray *c_ray)
 				g_minimap_color[check_color(c_ray, mapx, mapy)]);
 		}
 	}
-	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 	draw_all_lines(c_ray);
+	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 }
 
 int	minimap(t_ray *c_ray)

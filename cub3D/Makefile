@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/24 11:54:11 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/24 17:47:25 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 	@make -C $(LIBFT_PATH)
 	@ar -rcs $(NAME) $(OBJS)
-	@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME)
+	@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME) libmlx.a -o $(NAME)
 	@echo "${GREEN}cub3d.a created${RESET}"
 
 .c.o:
