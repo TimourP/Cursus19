@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 13:21:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 17:14:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
 const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT
 	/ 2, MINI_SQUARE, MINI_SQUARE};
+const int	g_minimap_color[3] = {COLOR_MINIMAP_WALL,
+	COLOR_MINIMAP_WALKABLE, COLOR_BLACK};
 
 int	check_color(t_ray *c_ray, int map_x, int map_y)
 {
 	if (map_x < 0 || map_y < 0)
-		return (0);
+		return (2);
 	if (map_x > c_ray->c_map->map_w - 1 || map_y > c_ray->c_map->map_h - 1)
-		return (0);
+		return (2);
+	if (c_ray->c_map->map[map_y][map_x] == ' ')
+		return (2);
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 
@@ -46,9 +50,9 @@ void	draw_all_lines(t_ray *c_ray)
 	line[1] = MINI_HEIGHT / 2;
 	while (++i < c_ray->screen_w / 10)
 	{
-		line[2] = get_distance(c_ray, (FOV) / (c_ray->screen_w)
+		line[2] = get_distance(c_ray, (PI / FOV) / (c_ray->screen_w)
 				* (i * 10 - c_ray->screen_w / 2), &side);
-		draw_line(c_ray, line, c_ray->player_angle + (FOV)
+		draw_line(c_ray, line, c_ray->player_angle + (PI / FOV)
 			/ (c_ray->screen_w) * (i * 10 - c_ray->screen_w / 2),
 			wall_color[side]);
 	}
@@ -75,8 +79,8 @@ void	draw_map(t_ray *c_ray)
 						- (int)c_ray->player_posy) * MINI_SQUARE);
 			mapx = pxy[0] / MINI_SQUARE - MINI_WIDTH / MINI_SQUARE / 2 + ij[1];
 			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
-			draw_rectangle(c_ray, xy, g_minimap_square_w_h, check_color(c_ray,
-					mapx, mapy) ? COLOR_MINIMAP_WALKABLE : COLOR_MINIMAP_WALL);
+			draw_rectangle(c_ray, xy, g_minimap_square_w_h,
+				g_minimap_color[check_color(c_ray, mapx, mapy)]);
 		}
 	}
 	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);

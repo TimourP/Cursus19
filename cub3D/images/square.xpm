@@ -2,8 +2,8 @@
 static char *_616509924251[] = {
 /* columns rows colors chars-per-pixel */
 "225 225 48 1 ",
-"  c #F90606",
-". c white",
+"  c #82E0AA",
+". c #EC7063",
 "X c #F90000",
 "o c snow",
 "O c #FC9E9E",

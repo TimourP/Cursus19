@@ -1,8 +1,8 @@
 R 1080 720
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO images/shrek.xpm
+SO images/square.xpm
+WE images/mlp.xpm
+EA images/haie.xpm
 S ./path_to_the_sprite_texture
 F 220,100,5
 C 225,30,0

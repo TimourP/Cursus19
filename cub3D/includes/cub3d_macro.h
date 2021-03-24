@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 14:12:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 17:12:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # define OFFSET_SPEED 20
 # define MAX_OFFSET 400
 
-# define FOV PI / 3
+# define PI 3.1415926535
+# define FOV 3
 
 # define MINI_SQUARE 20
 # define MINI_WIDTH 320
@@ -47,7 +48,5 @@
 # define COLOR_YELLOW 0x00F1C40F
 # define COLOR_MINIMAP_WALKABLE 0x00B3B6B7
 # define COLOR_MINIMAP_WALL 0x00DC7633
-
-# define PI 3.1415926535
 
 #endif
