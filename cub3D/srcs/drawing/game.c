@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 13:27:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 14:09:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,14 @@ int	draw_game(t_ray *c_ray)
 	{
 		i_value[1] = get_line_height(c_ray, (FOV) / (c_ray->screen_w)
 				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
-		if (side <= 3)
-			draw_vertical_texture(c_ray, i_value,
-				c_ray->c_map->north_t, y_value);
+		if (side == 0)
+			draw_vertical_texture(c_ray, i_value, c_ray->c_map->north_t, y_value);
+		else if (side == 1)
+			draw_vertical_texture(c_ray, i_value, c_ray->c_map->east_t, y_value);
+		else if (side == 2)
+			draw_vertical_texture(c_ray, i_value, c_ray->c_map->south_t, y_value);
+		else if (side == 3)
+			draw_vertical_texture(c_ray, i_value, c_ray->c_map->west_t, y_value);
 		else
 			draw_vertical_line(c_ray, i_value[0], i_value[1],
 				g_wall_color[side]);

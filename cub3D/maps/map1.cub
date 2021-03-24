@@ -2,7 +2,7 @@ R 1080 720
 NO images/square.xpm
 SO images/square.xpm
 WE images/square.xpm
-EA images/square.xpm
+EA images/haie.xpm
 S ./path_to_the_sprite_texture
 F 220,100,5
 C 52, 73, 94

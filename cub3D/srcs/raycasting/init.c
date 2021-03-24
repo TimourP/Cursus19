@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 12:39:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 14:03:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,18 @@ int	get_images(t_ray *c_ray, t_map *c_map)
 	c_map->east_t->addr = mlx_get_data_addr(c_map->east_t->mlx_img,
 			&c_map->east_t->bpp, &c_map->east_t->line_l,
 			&c_map->east_t->edian);
+	c_map->west_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			c_map->west_t->path, &c_map->west_t->width,
+			&c_map->west_t->height);
+	c_map->west_t->addr = mlx_get_data_addr(c_map->west_t->mlx_img,
+			&c_map->west_t->bpp, &c_map->west_t->line_l,
+			&c_map->west_t->edian);
+	c_map->south_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			c_map->south_t->path, &c_map->south_t->width,
+			&c_map->south_t->height);
+	c_map->south_t->addr = mlx_get_data_addr(c_map->south_t->mlx_img,
+			&c_map->south_t->bpp, &c_map->south_t->line_l,
+			&c_map->south_t->edian);
 	return (1);
 }
 
