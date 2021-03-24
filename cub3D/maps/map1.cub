@@ -1,8 +1,8 @@
 R 1080 720
 NO images/square.xpm
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO images/square.xpm
+WE images/square.xpm
+EA images/square.xpm
 S ./path_to_the_sprite_texture
 F 220,100,5
 C 52, 73, 94

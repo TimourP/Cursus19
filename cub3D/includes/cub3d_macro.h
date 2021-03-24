@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 09:54:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 12:34:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define PLAYER_ROTATION 0.05
 # define OFFSET_SPEED 20
 # define MAX_OFFSET 400
+
+# define FOV PI / 3
 
 # define MINI_SQUARE 20
 # define MINI_WIDTH 320

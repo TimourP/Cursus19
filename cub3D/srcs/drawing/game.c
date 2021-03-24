@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 12:19:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 13:27:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,47 @@ static void	set_hit(t_ray *c_ray, t_ray_calc *calc)
 
 static float	get_texture_value(t_ray *c_ray, t_ray_calc *calc)
 {
-	const float	angle = calc->angle - 3 * PI / 2;
-	float		text_value;
+	float	angle;
+	float	text_value;
 
-	text_value = sin(angle) * calc->final_dist + c_ray->player_posx
-		- (int)c_ray->player_posx;
-	c_ray->screen_h = (int)c_ray->screen_h;
 	if (get_side(calc) == 0)
 	{
+		angle = calc->angle + PI / 2;
+		text_value = sin(angle) * calc->final_dist
+			+ c_ray->player_posx - (int)c_ray->player_posx;
+		text_value -= (int)text_value;
 		if (text_value < 0)
-		{
-			text_value -= (int)text_value;
 			text_value = fabs(1 + text_value);
-		}
+	}
+	else if (get_side(calc) == 1)
+	{
+		angle = calc->angle;
+		text_value = sin(angle) * calc->final_dist
+			+ (c_ray->player_posy - (int)c_ray->player_posy);
+		if (text_value < 0)
+			text_value = 1.0 - fabs(text_value - (int)text_value);
 		else
-			text_value -= (int)text_value;
+			text_value = fabs(text_value - (int)text_value);
+	}
+	else if (get_side(calc) == 2)
+	{
+		angle = calc->angle - PI / 2;
+		text_value = sin(angle) * calc->final_dist
+			- (c_ray->player_posx - (int)c_ray->player_posx);
+		if (text_value < 0)
+			text_value = 1 - fabs(text_value - (int)text_value);
+		else
+			text_value = fabs(text_value - (int)text_value);
+	}
+	else if (get_side(calc) == 3)
+	{
+		angle = calc->angle + PI;
+		text_value = sin(angle) * calc->final_dist
+			- (c_ray->player_posy - (int)c_ray->player_posy);
+		if (text_value < 0)
+			text_value = 1 - fabs(text_value - (int)text_value);
+		else
+			text_value = fabs(text_value - (int)text_value);
 	}
 	return (text_value);
 }
@@ -116,7 +142,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
 	*text_value = get_texture_value(c_ray, &calc);
-	calc.line_height = c_ray->screen_h / calc.final_dist;
+	calc.line_height = c_ray->screen_h / calc.final_dist * 1.2;
 	calc.line_height = calc.line_height / cos(c_ray->player_angle - calc.angle);
 	if (calc.line_height > c_ray->screen_h * 3)
 		calc.line_height = c_ray->screen_h * 3;
@@ -158,9 +184,9 @@ int	draw_game(t_ray *c_ray)
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	while (++i_value[0] < c_ray->screen_w)
 	{
-		i_value[1] = get_line_height(c_ray, (PI / 4) / (c_ray->screen_w)
+		i_value[1] = get_line_height(c_ray, (FOV) / (c_ray->screen_w)
 				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
-		if (side == 0)
+		if (side <= 3)
 			draw_vertical_texture(c_ray, i_value,
 				c_ray->c_map->north_t, y_value);
 		else
