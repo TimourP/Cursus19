@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 12:05:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 09:54:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 
 # define PLAYER_SPEED 0.05
 # define PLAYER_ROTATION 0.05
-# define OFFSET_SPEED 5
-# define MAX_OFFSET 200
+# define OFFSET_SPEED 20
+# define MAX_OFFSET 400
 
 # define MINI_SQUARE 20
-# define MINI_WIDTH 240
-# define MINI_HEIGHT 160
+# define MINI_WIDTH 320
+# define MINI_HEIGHT 240
 
 # define CASE_WIDTH 40
 

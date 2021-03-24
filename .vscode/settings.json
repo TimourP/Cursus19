@@ -4,6 +4,25 @@
 		"bitset": "c",
 		"__node_handle": "c",
 		"functional": "cpp",
-		"type_traits": "cpp"
+		"type_traits": "cpp",
+		"__bit_reference": "c",
+		"__functional_base": "c",
+		"algorithm": "c",
+		"atomic": "c",
+		"chrono": "c",
+		"__memory": "c",
+		"optional": "c",
+		"iterator": "c",
+		"limits": "c",
+		"locale": "c",
+		"memory": "c",
+		"ratio": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"vector": "c",
+		"__locale": "c",
+		"__string": "c",
+		"string": "c",
+		"string_view": "c"
 	}
 }

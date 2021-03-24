@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 15:53:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 12:19:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,28 @@ static void	set_hit(t_ray *c_ray, t_ray_calc *calc)
 	}
 }
 
-int	get_line_height(t_ray *c_ray, float value, int *side)
+static float	get_texture_value(t_ray *c_ray, t_ray_calc *calc)
+{
+	const float	angle = calc->angle - 3 * PI / 2;
+	float		text_value;
+
+	text_value = sin(angle) * calc->final_dist + c_ray->player_posx
+		- (int)c_ray->player_posx;
+	c_ray->screen_h = (int)c_ray->screen_h;
+	if (get_side(calc) == 0)
+	{
+		if (text_value < 0)
+		{
+			text_value -= (int)text_value;
+			text_value = fabs(1 + text_value);
+		}
+		else
+			text_value -= (int)text_value;
+	}
+	return (text_value);
+}
+
+int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 {
 	t_ray_calc	calc;
 
@@ -94,10 +115,11 @@ int	get_line_height(t_ray *c_ray, float value, int *side)
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
+	*text_value = get_texture_value(c_ray, &calc);
 	calc.line_height = c_ray->screen_h / calc.final_dist;
 	calc.line_height = calc.line_height / cos(c_ray->player_angle - calc.angle);
-	if (calc.line_height > c_ray->screen_h)
-		calc.line_height = c_ray->screen_h;
+	if (calc.line_height > c_ray->screen_h * 3)
+		calc.line_height = c_ray->screen_h * 3;
 	return (calc.line_height);
 }
 
@@ -126,19 +148,24 @@ int	get_distance(t_ray *c_ray, float value, int *side)
 
 int	draw_game(t_ray *c_ray)
 {
-	int			i;
+	int			i_value[2];
 	const int	xy[2] = {0, 0};
 	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	int			side;
-	int			value;
+	float		y_value;
 
-	i = -1;
+	i_value[0] = -1;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
-	while (++i < c_ray->screen_w)
+	while (++i_value[0] < c_ray->screen_w)
 	{
-		value = get_line_height(c_ray, (PI / 4) / (c_ray->screen_w)
-				* (i - c_ray->screen_w / 2), &side);
-		draw_vertical_line(c_ray, i, value, g_wall_color[side]);
+		i_value[1] = get_line_height(c_ray, (PI / 4) / (c_ray->screen_w)
+				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
+		if (side == 0)
+			draw_vertical_texture(c_ray, i_value,
+				c_ray->c_map->north_t, y_value);
+		else
+			draw_vertical_line(c_ray, i_value[0], i_value[1],
+				g_wall_color[side]);
 	}
 	return (0);
 }

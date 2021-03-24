@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 15:12:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 10:02:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	get_screen_resolution(t_map *c_map, char *line)
 void	set_correct_string(t_map *c_map, char *str, char param)
 {
 	if (param == 'n')
-		c_map->north_t = str;
+		c_map->north_t->path = str;
 	if (param == 's')
-		c_map->south_t = str;
+		c_map->south_t->path = str;
 	if (param == 'e')
-		c_map->east_t = str;
+		c_map->east_t->path = str;
 	if (param == 'w')
-		c_map->west_t = str;
+		c_map->west_t->path = str;
 	if (param == 'S')
 		c_map->sprite_t = str;
 	if (param == 'c')

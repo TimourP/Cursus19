@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 15:53:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 12:20:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,31 @@
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 
+typedef struct s_image
+{
+	void		*mlx_img;
+	char		*addr;
+	char		*path;
+	int			bpp;
+	int			line_l;
+	int			edian;
+	int			width;
+	int			height;
+}				t_image;
+
 typedef struct s_map
 {
 	int			screen_w;
 	int			screen_h;
 	int			map_w;
 	int			map_h;
-	char		*south_t;
-	char		*north_t;
-	char		*west_t;
-	char		*east_t;
+	t_image		*south_t;
+	t_image		*north_t;
+	t_image		*west_t;
+	t_image		*east_t;
 	char		*sprite_t;
 	int			floor_t;
-	id_t		ceiling_t;
+	int			ceiling_t;
 	char		**map;
 }				t_map;
 
@@ -146,8 +158,12 @@ void			draw_line(t_ray *c_ray, int x_y_l[3],
 					float angle, const int color);
 int				draw_game(t_ray *c_ray);
 void			draw_vertical_line(t_ray *c_ray, const int x,
-					const int length, const int color);
+					int length, const int color);
+void			draw_vertical_texture(t_ray *c_ray, int x_len[2],
+					t_image *texture, float y_value);
 float			div_zero(float number1, float number2);
 void			draw_pixel(t_ray *c_ray, int x, int y, int color);
+void			get_pixel(t_image *image, int x,
+					int y, int *color);
 
 #endif
