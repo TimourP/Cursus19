@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 15:58:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:53:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,17 @@ int	get_images(t_ray *c_ray, t_map *c_map)
 	return (1);
 }
 
+int	get_sky(t_ray *c_ray)
+{
+	c_ray->sky = malloc(sizeof(t_image));
+	c_ray->sky->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/sky.xpm", &c_ray->sky->width, &c_ray->sky->height);
+	c_ray->sky->addr = mlx_get_data_addr(c_ray->sky->mlx_img,
+			&c_ray->sky->bpp, &c_ray->sky->line_l,
+			&c_ray->sky->edian);
+	return (1);
+}
+
 int	init_raycasting(t_ray *c_ray, t_map *c_map)
 {
 	c_ray->c_map = c_map;
@@ -94,6 +105,7 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 			&c_ray->img_line_l, &c_ray->img_edian);
 	if (!(get_images(c_ray, c_map)))
 		return (0);
+	get_sky(c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, key_press, c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_RELEASE_EVENT, 1L << 1, key_release, c_ray);
 	mlx_hook(c_ray->mlx_win, CROSS_BTN_EVENT, 1L << 17, exit_button, c_ray);

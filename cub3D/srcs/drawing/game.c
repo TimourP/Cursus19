@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 17:12:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:33:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int	draw_game(t_ray *c_ray)
 
 	i_value[0] = -1;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
+	draw_sky(c_ray);
 	while (++i_value[0] < c_ray->screen_w)
 	{
 		i_value[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 17:45:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 19:46:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_ray
 	int			look_offset;
 	int			look_up;
 	int			look_down;
+	t_image		*sky;
 }				t_ray;
 
 typedef struct s_ray_calc
@@ -165,5 +166,10 @@ float			div_zero(float number1, float number2);
 void			draw_pixel(t_ray *c_ray, int x, int y, int color);
 void			get_pixel(t_image *image, int x,
 					int y, int *color);
+void			draw_sky(t_ray *c_ray);
+
+# ifndef BONUS
+# 	define BONUS 0
+# endif
 
 #endif

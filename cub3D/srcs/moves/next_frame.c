@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 17:55:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 19:27:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
 	if (bool)
 	{
-		int t1;
-		int t2;
-		mlx_get_screen_size(c_ray->mlx_ptr, &t1, &t2);
 		draw_game(c_ray);
-		minimap(c_ray);
+		if (BONUS)
+			minimap(c_ray);
 		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
 			c_ray->mlx_img, 0, 0);
 	}

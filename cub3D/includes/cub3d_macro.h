@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 17:12:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/24 19:46:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@
 # define COLOR_BLUE 0x005DADE2
 # define COLOR_YELLOW 0x00F1C40F
 # define COLOR_MINIMAP_WALKABLE 0x00B3B6B7
-# define COLOR_MINIMAP_WALL 0x00DC7633
+# define COLOR_MINIMAP_WALL 0x00A04000
 
 #endif

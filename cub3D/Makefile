@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/24 17:47:25 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/24 19:49:17 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,9 @@ MOVES_SRCS = 	keyboard_entry.c \
 
 DRAW_SRCS = draw.c \
 			draw2.c \
-			minimap.c \
 			game.c \
+			sky.c \
+			minimap.c \
 
 SRCS	=	cub3d.c \
 			srcs/testing.c \
@@ -43,24 +44,27 @@ SRCS	=	cub3d.c \
 			$(addprefix srcs/moves/, ${MOVES_SRCS}) \
 			$(addprefix srcs/drawing/, ${DRAW_SRCS}) \
 
-OBJS	=	${SRCS:.c=.o}			
+OBJS	=	${SRCS:.c=.o}
 
-NAME	=	cub3d.a
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+
+NAME	=	cub3D
 LIBFT_NAME = libft.a
 CC		=	gcc
-CFLAG	=	#-Wall -Wextra -Werror
+CFLAGS	=	#-Wall -Wextra -Werror
 LIBFT_PATH	=	./libft
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME):
 	@make -C $(LIBFT_PATH)
-	@ar -rcs $(NAME) $(OBJS)
-	@$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) $(LIBFT_PATH)/$(LIBFT_NAME) libmlx.a -o $(NAME)
-	@echo "${GREEN}cub3d.a created${RESET}"
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@echo "${GREEN}cub3d created${RESET}"
 
-.c.o:
-	@gcc $(CFLAG) -c -I./ $< -o ${<:.c=.o}
+bonus:
+	@make -C $(LIBFT_PATH)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@echo "${GREEN}cub3d bonus created${RESET}"
 
 clean:			
 	@rm -f $(OBJS)
@@ -73,6 +77,6 @@ fclean:
 
 allup : all clean
 
-re:		fclean all clean
+re:		fclean all
 
 .PHONY:	all clean fclean allup re
