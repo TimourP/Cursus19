@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/24 19:49:17 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/25 11:13:41 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ SRCS	=	cub3d.c \
 
 OBJS	=	${SRCS:.c=.o}
 
+BONUS = -D BONUS=1
+LIGHT = -D LIGHT=1
+
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
 NAME	=	cub3D
@@ -61,9 +64,14 @@ $(NAME):
 	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 	@echo "${GREEN}cub3d created${RESET}"
 
+light:
+	@make -C $(LIBFT_PATH)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(LIGHT) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@echo "${GREEN}cub3d bonus created${RESET}"
+
 bonus:
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(BONUS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 	@echo "${GREEN}cub3d bonus created${RESET}"
 
 clean:			
@@ -79,4 +87,6 @@ allup : all clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean allup re
+rebonus: fclean bonus
+
+.PHONY:	all clean fclean allup re rebonus

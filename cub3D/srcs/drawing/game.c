@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 18:33:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/25 12:04:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,15 +141,16 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
-	*text_value = get_texture_value(c_ray, &calc);
+	if (!LIGHT)
+		*text_value = get_texture_value(c_ray, &calc);
 	calc.line_height = c_ray->screen_h / calc.final_dist * 1.2;
-	calc.line_height = calc.line_height / cos(c_ray->player_angle - calc.angle);
+	calc.line_height = calc.line_height / cos(calc.angle - c_ray->player_angle);
 	if (calc.line_height > c_ray->screen_h * 3)
 		calc.line_height = c_ray->screen_h * 3;
 	return (calc.line_height);
 }
 
-int	get_distance(t_ray *c_ray, float value, int *side)
+float	get_distance(t_ray *c_ray, float value, int *side)
 {
 	t_ray_calc	calc;
 
@@ -169,7 +170,7 @@ int	get_distance(t_ray *c_ray, float value, int *side)
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
-	return (calc.final_dist * MINI_SQUARE);
+	return (calc.final_dist);
 }
 
 int	draw_game(t_ray *c_ray)
@@ -182,18 +183,19 @@ int	draw_game(t_ray *c_ray)
 
 	i_value[0] = -1;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
-	draw_sky(c_ray);
+	if (BONUS)
+		draw_sky(c_ray);
 	while (++i_value[0] < c_ray->screen_w)
 	{
 		i_value[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)
 				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
-		if (side == 0)
+		if (!LIGHT && side == 0)
 			draw_vertical_texture(c_ray, i_value, c_ray->c_map->north_t, y_value);
-		else if (side == 1)
+		else if (!LIGHT && side == 1)
 			draw_vertical_texture(c_ray, i_value, c_ray->c_map->east_t, y_value);
-		else if (side == 2)
+		else if (!LIGHT && side == 2)
 			draw_vertical_texture(c_ray, i_value, c_ray->c_map->south_t, y_value);
-		else if (side == 3)
+		else if (!LIGHT && side == 3)
 			draw_vertical_texture(c_ray, i_value, c_ray->c_map->west_t, y_value);
 		else
 			draw_vertical_line(c_ray, i_value[0], i_value[1],

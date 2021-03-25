@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 19:37:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/25 12:07:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ void	draw_all_lines(t_ray *c_ray)
 	while (++i < c_ray->screen_w / 10)
 	{
 		line[2] = get_distance(c_ray, (PI / FOV) / (c_ray->screen_w)
-				* (i * 10 - c_ray->screen_w / 2), &side);
+				* (i * 10 - c_ray->screen_w / 2), &side) * MINI_SQUARE;
 		draw_line(c_ray, line, c_ray->player_angle + (PI / FOV)
 			/ (c_ray->screen_w) * (i * 10 - c_ray->screen_w / 2),
 			wall_color[side]);
 	}
+	//line[2] = get_distance(c_ray, 0, &side) * MINI_SQUARE;
+	//draw_line(c_ray, line, c_ray->player_angle, wall_color[side]);
 }
 
 void	draw_map(t_ray *c_ray)
