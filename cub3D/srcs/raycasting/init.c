@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 18:53:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/30 15:28:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_player(t_ray *c_ray)
 	int	j;
 
 	i = -1;
-	c_ray->player_angle = PI / 2;
+	c_ray->player_angle = -PI/2;
 	c_ray->player_delx = sin(c_ray->player_angle) * PLAYER_SPEED;
 	c_ray->player_dely = cos(c_ray->player_angle) * PLAYER_SPEED;
 	while (++i < c_ray->c_map->map_h + 1)
@@ -103,9 +103,9 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 			c_map->screen_w, c_map->screen_h);
 	c_ray->img_addr = mlx_get_data_addr(c_ray->mlx_img, &c_ray->img_bpp,
 			&c_ray->img_line_l, &c_ray->img_edian);
+	get_sky(c_ray);
 	if (!(get_images(c_ray, c_map)))
 		return (0);
-	get_sky(c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, key_press, c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_RELEASE_EVENT, 1L << 1, key_release, c_ray);
 	mlx_hook(c_ray->mlx_win, CROSS_BTN_EVENT, 1L << 17, exit_button, c_ray);

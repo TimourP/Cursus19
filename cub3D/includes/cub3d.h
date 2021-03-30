@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/25 11:22:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/30 14:16:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void			free_t_map(t_map *c_map);
 
 int				init_raycasting(t_ray *c_ray, t_map *c_map);
 float			get_distance(t_ray *c_ray, float value, int *side);
+float			get_absolute_distance(t_ray *c_ray, float angle);
 
 /*
 ** moves

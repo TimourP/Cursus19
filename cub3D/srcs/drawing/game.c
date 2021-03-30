@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/25 12:04:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/30 14:43:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,28 @@ float	get_distance(t_ray *c_ray, float value, int *side)
 	set_steps(c_ray, &calc);
 	set_hit(c_ray, &calc);
 	*side = get_side(&calc);
+	calc.final_dist = calc.s_disty - calc.d_disty;
+	if (calc.final_dist < calc.s_distx - calc.d_distx)
+		calc.final_dist = calc.s_distx - calc.d_distx;
+	return (calc.final_dist);
+}
+
+float	get_absolute_distance(t_ray *c_ray, float angle)
+{
+	t_ray_calc	calc;
+
+	calc.hit = 0;
+	calc.mapx = (int)c_ray->player_posx;
+	calc.mapy = (int)c_ray->player_posy;
+	calc.angle = angle;
+	if (calc.angle < 0)
+		calc.angle += 2 * PI;
+	if (calc.angle > 2 * PI)
+		calc.angle -= 2 * PI;
+	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
+	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
+	set_steps(c_ray, &calc);
+	set_hit(c_ray, &calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;

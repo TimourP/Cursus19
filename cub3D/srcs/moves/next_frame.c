@@ -6,18 +6,45 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/25 12:34:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/30 15:46:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+static void	check_next(t_ray *c_ray, float x_diff, float y_diff)
+{
+	const float min_dist = 0.3;
+	int value;
+
+	value = 1;
+	printf("%s\n", x_diff > 0 ? "mur droit" : "mur gauche");
+	printf("%s\n", y_diff < 0 ? "mur haut" : "mur bas");
+	if (x_diff > 0)
+	{
+		if (get_absolute_distance(c_ray, 0) < min_dist - x_diff)
+			value = 0;
+	}
+	else if (x_diff < 0)
+		if (get_absolute_distance(c_ray, PI) < min_dist + x_diff)
+			value = 0;
+	if (y_diff < 0)
+	{
+		if (get_absolute_distance(c_ray, -PI / 2) < min_dist - y_diff)
+			value = 0;
+	}
+	else if (y_diff > 0)
+		if (get_absolute_distance(c_ray, PI / 2) < min_dist + y_diff)
+			value = 0;
+	printf("%d\n", value);
+}
+
 static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 {
 	float		next_posx;
 	float		next_posy;
-	const float	to_add_y = 0.3 * (-1 + 2 * (y_diff > 0));
-	const float to_add_x = 0.3 * (-1 + 2 * (x_diff > 0));
+	const float	to_add_y = 0.0 * (-1 + 2 * (y_diff > 0));
+	const float to_add_x = 0.0 * (-1 + 2 * (x_diff > 0));
 
 	next_posx = c_ray->player_posx + x_diff + to_add_x;
 	next_posy = c_ray->player_posy + y_diff + to_add_y;
@@ -79,6 +106,14 @@ int	get_next_frame(t_ray *c_ray)
 	static float	last_angle;
 	static int		last_offset;
 
+	if (c_ray->go_forward)
+		check_next(c_ray, c_ray->player_dely, c_ray->player_delx);
+	if (c_ray->go_backward)
+		check_next(c_ray, -c_ray->player_dely, -c_ray->player_delx);
+	if (c_ray->go_left)
+		check_next(c_ray, c_ray->player_delx, -c_ray->player_dely);
+	if (c_ray->go_right)
+		check_next(c_ray, -c_ray->player_delx, c_ray->player_dely);
 	if (c_ray->go_forward)
 		check_next_move(c_ray, c_ray->player_dely, c_ray->player_delx);
 	if (c_ray->go_backward)
