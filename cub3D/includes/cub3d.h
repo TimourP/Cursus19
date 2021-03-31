@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 14:34:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 17:41:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct s_sprite
 	float		distance;
 	float		rend_from;
 	float		rend_to;
-	float		start_x;
+	int			start_x;
+	int			end_x;
 	int			map_x;
 	int			map_y;
 }				t_sprite;
@@ -112,6 +113,7 @@ typedef struct s_ray_calc
 	int			mapx;
 	int			mapy;
 	int			side;
+	int			x;
 }				t_ray_calc;
 
 /*

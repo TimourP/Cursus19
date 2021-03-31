@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 15:41:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 18:08:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,23 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 	int	sprite_height;
 	int color = 0;
 	float rapport;
+	int	endmstart;
 
 	while (c_list)
 	{
-		sprite_height = c_ray->screen_h / c_list->content->distance;
+		endmstart = c_list->content->end_x - c_list->content->start_x;
+		sprite_height = c_ray->screen_h / c_list->content->distance * 1.2;
 		rapport = (float)c_ray->c_map->sprite_t->height / sprite_height;
 		i = -1;
+		//ft_sprprint(c_ray->start_list);
 		while (++i < sprite_height)
 		{
 			j = -1;
 			while (++j < sprite_height)
 			{
 				get_pixel(c_ray->c_map->sprite_t, i * rapport, j * rapport, &color);
-				if (j + (c_ray->screen_h - sprite_height) / 2 > 0 && j + (c_ray->screen_h - sprite_height) / 2 < c_ray->screen_h && color != 1193046 && (i + c_list->content->start_x * c_ray->screen_w) < c_ray->screen_w)
-					draw_pixel(c_ray, i + c_list->content->start_x * c_ray->screen_w, j + (c_ray->screen_h - sprite_height) / 2, color);
+				if (j + (c_ray->screen_h - sprite_height) / 2 > 0 && j + (c_ray->screen_h - sprite_height) / 2 < c_ray->screen_h && color != 1193046 && (i + c_list->content->start_x + (endmstart - sprite_height) / 2) < c_ray->screen_w)
+					draw_pixel(c_ray, i + c_list->content->start_x + (endmstart - sprite_height) / 2, j + (c_ray->screen_h - sprite_height) / 2, color);
 			}
 		}
 		c_list = c_list->next;

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 16:24:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 18:08:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ static void	set_steps(t_ray *c_ray, t_ray_calc *calc)
 	}
 }
 
-static int	is_in_list(t_sprite_list *c_list, int mapx, int mapy)
+static int	is_in_list(t_sprite_list *c_list, int mapx, int mapy, t_sprite_list **current)
 {
 	while (c_list)
 	{
 		if (c_list->content->map_x == mapx && c_list->content->map_y == mapy)
+		{
+			*current = c_list;
 			return (1);
+		}
 		c_list = c_list->next;
 	}
 	return (0);
@@ -65,17 +68,20 @@ static int	is_in_list(t_sprite_list *c_list, int mapx, int mapy)
 static void	set_sprite(t_ray *c_ray, t_ray_calc *calc)
 {
 	t_sprite_list	*new_elem;
+	t_sprite_list	*current;
 	t_sprite		*new_sprite;
 
-	if (!is_in_list(c_ray->start_list, calc->mapx, calc->mapy))
+	if (!is_in_list(c_ray->start_list, calc->mapx, calc->mapy, &current))
 	{
 		new_sprite = malloc(sizeof(t_sprite));
 		new_sprite->map_x = calc->mapx;
 		new_sprite->map_y = calc->mapy;
-		new_sprite->distance = sqrt(pow((calc->mapx + 0.5 - c_ray->player_posx), 2) + pow((calc->mapy + 0.5 - c_ray->player_posy), 2));
-		new_sprite->start_x = calc->angle - c_ray->player_angle + (PI / FOV) / 2;
+		new_sprite->distance = sqrt(pow((calc->mapx + 0.5 - c_ray->player_posx), 2) + pow((calc->mapy + 0.5 - c_ray->player_posy), 2)) - 0.5;
+		new_sprite->start_x = calc->x;
 		new_elem = ft_sprnew(new_sprite);
 		ft_spradd_back(&c_ray->start_list, new_elem);
+	} else {
+		new_sprite->end_x = calc->x;
 	}
 }
 
@@ -157,6 +163,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	t_ray_calc	calc;
 
 	calc.hit = 0;
+	calc.x = *side;
 	calc.mapx = (int)c_ray->player_posx;
 	calc.mapy = (int)c_ray->player_posy;
 	calc.angle = c_ray->player_angle + value;
@@ -242,6 +249,7 @@ int	draw_game(t_ray *c_ray)
 		draw_sky(c_ray);
 	while (++i_value[0] < c_ray->screen_w)
 	{
+		side = i_value[0];
 		i_value[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)
 				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
 		if (!LIGHT && side == 0)
