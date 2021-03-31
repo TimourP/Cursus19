@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 10:56:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 13:52:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 09:47:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_list	*list_from_file(char *map_path)
 	if (!new)
 		return (NULL);
 	ft_lstadd_back(&map_lst, new);
+	close(fd);
 	return (map_lst);
 }

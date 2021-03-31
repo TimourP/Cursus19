@@ -6,19 +6,23 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 12:20:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 09:07:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+static int quit_properly(t_ray *c_ray)
+{
+	mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
+	free_t_map(c_ray->c_map);
+	exit(0);
+}
+
 int	key_press(int key, t_ray *c_ray)
 {
 	if (key == KEY_ESC)
-	{
-		mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
-		exit(0);
-	}
+		quit_properly(c_ray);
 	if (key == KEY_UP_MOVE)
 		c_ray->go_forward = 1;
 	else if (key == KEY_DOWN_MOVE)
@@ -61,7 +65,6 @@ int	key_release(int key, t_ray *c_ray)
 
 int	exit_button(t_ray *c_ray)
 {
-	(void)c_ray;
-	exit(0);
-	return (1);
+	return (quit_properly(c_ray));
 }
+

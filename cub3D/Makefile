@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/25 11:13:41 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/31 09:31:51 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ PARSING_SRCS	=	parse_map.c \
 UTILS_SRCS =	free_and_return.c \
 				free_split.c \
 				free_struct.c \
+				error.c \
 
 RAYCASTING_SRCS = 	init.c \
 

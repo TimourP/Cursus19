@@ -6,21 +6,30 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/30 15:28:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 10:06:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	init_player(t_ray *c_ray)
+static int	get_index(char *str, char c)
 {
 	int	i;
-	int	j;
 
 	i = -1;
-	c_ray->player_angle = -PI/2;
-	c_ray->player_delx = sin(c_ray->player_angle) * PLAYER_SPEED;
-	c_ray->player_dely = cos(c_ray->player_angle) * PLAYER_SPEED;
+	while (str[++i])
+		if (str[i] == c)
+			return (i);
+	return (0);
+}
+
+void	init_player(t_ray *c_ray)
+{
+	const float	angles[4] = {-PI / 2, PI / 2, 0, PI};
+	int			i;
+	int			j;
+
+	i = -1;
 	while (++i < c_ray->c_map->map_h + 1)
 	{
 		j = -1;
@@ -28,6 +37,10 @@ void	init_player(t_ray *c_ray)
 		{
 			if (is_in_str("NSEW", c_ray->c_map->map[i][j]))
 			{
+				c_ray->player_angle = angles[get_index("NSEW",
+						c_ray->c_map->map[i][j])];
+				c_ray->player_delx = sin(c_ray->player_angle) * PLAYER_SPEED;
+				c_ray->player_dely = cos(c_ray->player_angle) * PLAYER_SPEED;
 				c_ray->player_posx = j + 0.5;
 				c_ray->player_posy = i + 0.5;
 				return ;
@@ -49,6 +62,33 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_down = 0;
 }
 
+int check_images(t_ray *c_ray, t_map *c_map)
+{
+	if (!c_map->north_t->mlx_img || !c_map->north_t->mlx_img
+		|| !c_map->north_t->mlx_img || !c_map->north_t->mlx_img)
+		return (free_on_error(c_map, FILE_ERROR));
+	if (BONUS && !c_ray->sky->mlx_img)
+		return (free_on_error(c_map, FILE_ERROR));
+	return (1);
+}
+
+int	get_images_end(t_ray *c_ray, t_map *c_map)
+{
+	c_map->west_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			c_map->west_t->path, &c_map->west_t->width,
+			&c_map->west_t->height);
+	c_map->west_t->addr = mlx_get_data_addr(c_map->west_t->mlx_img,
+			&c_map->west_t->bpp, &c_map->west_t->line_l,
+			&c_map->west_t->edian);
+	c_map->south_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			c_map->south_t->path, &c_map->south_t->width,
+			&c_map->south_t->height);
+	c_map->south_t->addr = mlx_get_data_addr(c_map->south_t->mlx_img,
+			&c_map->south_t->bpp, &c_map->south_t->line_l,
+			&c_map->south_t->edian);
+	return (check_images(c_ray, c_map));
+}
+
 int	get_images(t_ray *c_ray, t_map *c_map)
 {
 	c_map->north_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
@@ -63,19 +103,7 @@ int	get_images(t_ray *c_ray, t_map *c_map)
 	c_map->east_t->addr = mlx_get_data_addr(c_map->east_t->mlx_img,
 			&c_map->east_t->bpp, &c_map->east_t->line_l,
 			&c_map->east_t->edian);
-	c_map->west_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			c_map->west_t->path, &c_map->west_t->width,
-			&c_map->west_t->height);
-	c_map->west_t->addr = mlx_get_data_addr(c_map->west_t->mlx_img,
-			&c_map->west_t->bpp, &c_map->west_t->line_l,
-			&c_map->west_t->edian);
-	c_map->south_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			c_map->south_t->path, &c_map->south_t->width,
-			&c_map->south_t->height);
-	c_map->south_t->addr = mlx_get_data_addr(c_map->south_t->mlx_img,
-			&c_map->south_t->bpp, &c_map->south_t->line_l,
-			&c_map->south_t->edian);
-	return (1);
+	return (get_images_end(c_ray, c_map));
 }
 
 int	get_sky(t_ray *c_ray)
@@ -103,7 +131,8 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 			c_map->screen_w, c_map->screen_h);
 	c_ray->img_addr = mlx_get_data_addr(c_ray->mlx_img, &c_ray->img_bpp,
 			&c_ray->img_line_l, &c_ray->img_edian);
-	get_sky(c_ray);
+	if (BONUS)
+		get_sky(c_ray);
 	if (!(get_images(c_ray, c_map)))
 		return (0);
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, key_press, c_ray);

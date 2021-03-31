@@ -1,7 +1,7 @@
 R 1080 720
 NO images/haie.xpm
 SO images/square.xpm
-WE images/mlp.xpm
+WE images/shrek.xpm
 EA images/mlp.xpm
 S ./path_to_the_sprite_texture
 F 220,100,5
