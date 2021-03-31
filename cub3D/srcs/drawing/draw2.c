@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/30 16:42:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 15:41:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,31 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	while (++i + offset < c_ray->screen_h)
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x_len[0], i + offset, c_ray->c_map->ceiling_t);
+}
+
+void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
+{
+	int i;
+	int j;
+	int	sprite_height;
+	int color = 0;
+	float rapport;
+
+	while (c_list)
+	{
+		sprite_height = c_ray->screen_h / c_list->content->distance;
+		rapport = (float)c_ray->c_map->sprite_t->height / sprite_height;
+		i = -1;
+		while (++i < sprite_height)
+		{
+			j = -1;
+			while (++j < sprite_height)
+			{
+				get_pixel(c_ray->c_map->sprite_t, i * rapport, j * rapport, &color);
+				if (j + (c_ray->screen_h - sprite_height) / 2 > 0 && j + (c_ray->screen_h - sprite_height) / 2 < c_ray->screen_h && color != 1193046 && (i + c_list->content->start_x * c_ray->screen_w) < c_ray->screen_w)
+					draw_pixel(c_ray, i + c_list->content->start_x * c_ray->screen_w, j + (c_ray->screen_h - sprite_height) / 2, color);
+			}
+		}
+		c_list = c_list->next;
+	}
 }

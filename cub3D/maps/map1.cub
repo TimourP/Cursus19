@@ -1,11 +1,11 @@
 R 1080 720
-NO images/haie.xpm
-SO images/square.xpm
-WE images/shrek.xpm
-EA images/mlp.xpm
-S ./path_to_the_sprite_texture
-F 220,100,5
-C 52, 73, 94
+NO images/blue_wall.xpm
+SO images/blue_wall.xpm
+WE images/red_wall.xpm
+EA images/red_wall.xpm
+S images/burger.xpm
+F 174, 214, 241
+C 215, 219, 221
 
         1111111111111111111111111
         1000000000110000000000001

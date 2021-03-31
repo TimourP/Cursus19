@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 09:43:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 14:34:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ typedef struct s_image
 	int			height;
 }				t_image;
 
+typedef struct s_sprite
+{
+	t_image		*img;
+	float		distance;
+	float		rend_from;
+	float		rend_to;
+	float		start_x;
+	int			map_x;
+	int			map_y;
+}				t_sprite;
+
+typedef struct s_sprite_list
+{
+	t_sprite				*content;
+	struct s_sprite_list	*next;
+}				t_sprite_list;
+
 typedef struct s_map
 {
 	int			screen_w;
@@ -43,7 +60,7 @@ typedef struct s_map
 	t_image		*north_t;
 	t_image		*west_t;
 	t_image		*east_t;
-	char		*sprite_t;
+	t_image		*sprite_t;
 	int			floor_t;
 	int			ceiling_t;
 	char		**map;
@@ -51,31 +68,32 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	t_map		*c_map;
-	int			screen_w;
-	int			screen_h;
-	void		*mlx_ptr;
-	void		*mlx_win;
-	void		*mlx_img;
-	char		*img_addr;
-	int			img_bpp;
-	int			img_line_l;
-	int			img_edian;
-	float		player_posx;
-	float		player_posy;
-	float		player_delx;
-	float		player_dely;
-	float		player_angle;
-	int			go_forward;
-	int			go_backward;
-	int			go_left;
-	int			go_right;
-	int			turn_left;
-	int			turn_right;
-	int			look_offset;
-	int			look_up;
-	int			look_down;
-	t_image		*sky;
+	t_map			*c_map;
+	int				screen_w;
+	int				screen_h;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	void			*mlx_img;
+	char			*img_addr;
+	int				img_bpp;
+	int				img_line_l;
+	int				img_edian;
+	float			player_posx;
+	float			player_posy;
+	float			player_delx;
+	float			player_dely;
+	float			player_angle;
+	int				go_forward;
+	int				go_backward;
+	int				go_left;
+	int				go_right;
+	int				turn_left;
+	int				turn_right;
+	int				look_offset;
+	int				look_up;
+	int				look_down;
+	t_image			*sky;
+	t_sprite_list	*start_list;
 }				t_ray;
 
 typedef struct s_ray_calc
@@ -127,6 +145,10 @@ void			free_split(char **to_free);
 void			free_t_map(t_map *c_map);
 int 			free_on_error(t_map *c_map, int error_type);
 int				check_parsing_error(t_map *c_map);
+void			ft_spradd_back(t_sprite_list **alst, t_sprite_list *new);
+void			ft_sprclear(t_sprite_list **lst);
+t_sprite_list	*ft_sprnew(void *content);
+void			ft_sprprint(t_sprite_list *lst);
 
 /*
 ** raycasting
@@ -170,5 +192,6 @@ void			draw_pixel(t_ray *c_ray, int x, int y, int color);
 void			get_pixel(t_image *image, int x,
 					int y, int *color);
 void			draw_sky(t_ray *c_ray);
+void			draw_sprite(t_ray *c_ray, t_sprite_list *c_list);
 
 #endif

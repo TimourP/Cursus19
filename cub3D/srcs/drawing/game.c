@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/30 14:43:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 16:24:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,35 @@ static void	set_steps(t_ray *c_ray, t_ray_calc *calc)
 	}
 }
 
-static void	set_hit(t_ray *c_ray, t_ray_calc *calc)
+static int	is_in_list(t_sprite_list *c_list, int mapx, int mapy)
+{
+	while (c_list)
+	{
+		if (c_list->content->map_x == mapx && c_list->content->map_y == mapy)
+			return (1);
+		c_list = c_list->next;
+	}
+	return (0);
+}
+
+static void	set_sprite(t_ray *c_ray, t_ray_calc *calc)
+{
+	t_sprite_list	*new_elem;
+	t_sprite		*new_sprite;
+
+	if (!is_in_list(c_ray->start_list, calc->mapx, calc->mapy))
+	{
+		new_sprite = malloc(sizeof(t_sprite));
+		new_sprite->map_x = calc->mapx;
+		new_sprite->map_y = calc->mapy;
+		new_sprite->distance = sqrt(pow((calc->mapx + 0.5 - c_ray->player_posx), 2) + pow((calc->mapy + 0.5 - c_ray->player_posy), 2));
+		new_sprite->start_x = calc->angle - c_ray->player_angle + (PI / FOV) / 2;
+		new_elem = ft_sprnew(new_sprite);
+		ft_spradd_back(&c_ray->start_list, new_elem);
+	}
+}
+
+static void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 {
 	calc->hit = 0;
 	while (calc->hit == 0)
@@ -68,8 +96,11 @@ static void	set_hit(t_ray *c_ray, t_ray_calc *calc)
 			calc->mapy += calc->step_y;
 			calc->side = 1;
 		}
+		if (params && (calc->mapx < 0 || calc->mapy < 0
+			|| is_in_str("2", c_ray->c_map->map[calc->mapy][calc->mapx])))
+			set_sprite(c_ray, calc);
 		if (calc->mapx < 0 || calc->mapy < 0
-			|| !is_in_str("0NSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
+			|| !is_in_str("02NSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
 			calc->hit = 1;
 	}
 }
@@ -136,7 +167,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc);
+	set_hit(c_ray, &calc, 1);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -165,7 +196,7 @@ float	get_distance(t_ray *c_ray, float value, int *side)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc);
+	set_hit(c_ray, &calc, 0);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -188,7 +219,7 @@ float	get_absolute_distance(t_ray *c_ray, float angle)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc);
+	set_hit(c_ray, &calc, 0);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
@@ -204,6 +235,8 @@ int	draw_game(t_ray *c_ray)
 	float		y_value;
 
 	i_value[0] = -1;
+	ft_sprclear(&c_ray->start_list);
+	c_ray->start_list = NULL;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	if (BONUS)
 		draw_sky(c_ray);
@@ -223,5 +256,6 @@ int	draw_game(t_ray *c_ray)
 			draw_vertical_line(c_ray, i_value[0], i_value[1],
 				g_wall_color[side]);
 	}
+	draw_sprite(c_ray, c_ray->start_list);
 	return (0);
 }

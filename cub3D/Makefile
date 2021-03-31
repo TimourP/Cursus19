@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/31 09:31:51 by tpetit           ###   ########.fr        #
+#    Updated: 2021/03/31 13:26:29 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ UTILS_SRCS =	free_and_return.c \
 				free_split.c \
 				free_struct.c \
 				error.c \
+				sprite_list.c \
 
 RAYCASTING_SRCS = 	init.c \
 

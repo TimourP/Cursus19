@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/25 12:08:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 16:16:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_rectangle(t_ray *c_ray, const int xy[2],
 		j = -1;
 		while (++j < width_height[0] && j + xy[0] < screen_width && xy[0] >= 0)
 		{
-			if (i == 0 || j == 0)
+			if (0 && (i == 0 || j == 0))
 				draw_pixel(c_ray, j + xy[0], i + xy[1], COLOR_BLACK);
 			else
 				draw_pixel(c_ray, j + xy[0], i + xy[1], color);

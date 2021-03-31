@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/24 10:02:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/03/31 14:35:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 	if (param == 'w')
 		c_map->west_t->path = str;
 	if (param == 'S')
-		c_map->sprite_t = str;
+		c_map->sprite_t->path = str;
 	if (param == 'c')
 		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
 	if (param == 'f')
