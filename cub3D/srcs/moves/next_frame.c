@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 16:04:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/01 14:40:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 
 	next_posx = c_ray->player_posx + x_diff + to_add_x;
 	next_posy = c_ray->player_posy + y_diff + to_add_y;
-	if (!is_in_str("0NSEW",
+	if (!is_in_str("02NSEW",
 			c_ray->c_map->map[(int)next_posy][(int)next_posx]))
 	{
 		if (is_in_str("0NSEW",
@@ -59,8 +59,11 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 			c_ray->player_posx += x_diff;
 		return ;
 	}
-	c_ray->player_posx += x_diff;
-	c_ray->player_posy += y_diff;
+	if (c_ray->c_map->map[(int)next_posy][(int)next_posx] != '2')
+	{
+		c_ray->player_posx += x_diff;
+		c_ray->player_posy += y_diff;
+	}
 }
 
 static void	proceed_angles_look(t_ray *c_ray)

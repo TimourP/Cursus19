@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 18:08:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/01 14:05:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 			|| is_in_str("2", c_ray->c_map->map[calc->mapy][calc->mapx])))
 			set_sprite(c_ray, calc);
 		if (calc->mapx < 0 || calc->mapy < 0
-			|| !is_in_str("02NSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
+			|| !is_in_str("0NSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
 			calc->hit = 1;
 	}
 }
@@ -174,7 +174,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc, 1);
+	set_hit(c_ray, &calc, 0);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -264,6 +264,6 @@ int	draw_game(t_ray *c_ray)
 			draw_vertical_line(c_ray, i_value[0], i_value[1],
 				g_wall_color[side]);
 	}
-	draw_sprite(c_ray, c_ray->start_list);
+	//draw_sprite(c_ray, c_ray->start_list);
 	return (0);
 }
