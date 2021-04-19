@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 12:09:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 16:26:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 {
 	float		next_posx;
 	float		next_posy;
-	const float	to_add_y = 0.3 * (-1 + 2 * (y_diff > 0));
-	const float	to_add_x = 0.3 * (-1 + 2 * (x_diff > 0));
 
-	next_posx = c_ray->player_posx + x_diff + to_add_x;
-	next_posy = c_ray->player_posy + y_diff + to_add_y;
+	next_posx = c_ray->player_posx + x_diff;
+	next_posy = c_ray->player_posy + y_diff;
 	if (!is_in_str("02NSEW",
 			c_ray->c_map->map[(int)next_posy][(int)next_posx]))
 	{
@@ -32,11 +30,8 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 			c_ray->player_posx += x_diff;
 		return ;
 	}
-	if (c_ray->c_map->map[(int)next_posy][(int)next_posx] != '2')
-	{
-		c_ray->player_posx += x_diff;
-		c_ray->player_posy += y_diff;
-	}
+	c_ray->player_posx += x_diff;
+	c_ray->player_posy += y_diff;
 }
 
 static void	proceed_angles_look(t_ray *c_ray)

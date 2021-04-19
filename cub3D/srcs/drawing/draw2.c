@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 12:04:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 16:38:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 			draw_pixel(c_ray, x_len[0], i, c_ray->c_map->floor_t);
 	}
 	i = -1;
+	if (offset < 0)
+		i = -offset;
 	while (++i < x_len[1] && i + offset < c_ray->screen_h)
 	{
 		get_pixel(texture, texture_x, i / texture_ratio, &color);

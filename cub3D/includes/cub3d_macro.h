@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 11:56:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:55:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MAX_OFFSET 400
 
 # define PI 3.1415926535
-# define FOV 3
+# define FOV 3.5
 
 # define MINI_SQUARE 20
 # define MINI_WIDTH 320

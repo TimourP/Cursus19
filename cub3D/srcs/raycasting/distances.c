@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   distances.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/19 12:23:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 13:26:32 by tpetit           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/cub3d.h"
 
 int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
@@ -28,7 +16,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc, 0);
+	set_hit(c_ray, &calc, 1);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -36,8 +24,6 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	*text_value = get_texture_value(c_ray, &calc);
 	calc.line_height = c_ray->screen_h / calc.final_dist * 1.2;
 	calc.line_height = calc.line_height / cos(calc.angle - c_ray->player_angle);
-	if (calc.line_height > c_ray->screen_h * 3)
-		calc.line_height = c_ray->screen_h * 3;
 	return (calc.line_height);
 }
 
