@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/03/31 13:26:29 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/19 12:29:12 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ UTILS_SRCS =	free_and_return.c \
 				sprite_list.c \
 
 RAYCASTING_SRCS = 	init.c \
+					images_init.c \
+					distances.c \
+					distances_utils.c \
 
 MOVES_SRCS = 	keyboard_entry.c \
 				next_frame.c \

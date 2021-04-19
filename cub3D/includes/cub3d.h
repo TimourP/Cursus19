@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 11:55:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:29:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,15 @@ void			ft_sprprint(t_sprite_list *lst);
 */
 
 int				init_raycasting(t_ray *c_ray, t_map *c_map);
+int				get_images(t_ray *c_ray, t_map *c_map);
+void			set_hit(t_ray *c_ray, t_ray_calc *calc, int params);
+void			set_steps(t_ray *c_ray, t_ray_calc *calc);
+int				get_side(t_ray_calc *calc);
+float			get_texture_value(t_ray *c_ray, t_ray_calc *calc);
 float			get_distance(t_ray *c_ray, float value, int *side);
 float			get_absolute_distance(t_ray *c_ray, float angle);
+int				get_line_height(t_ray *c_ray, float value, int *side,
+					float *text_value);
 
 /*
 ** moves
@@ -177,8 +184,6 @@ void			draw_rectangle(t_ray *c_ray, const int xy[2],
 					const int width_height[2], const int color);
 void			draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 					const int color, const int inner_width);
-void			draw_circle(t_ray *c_ray, const int xy[2],
-					const int radius, const int color);
 void			draw_player(t_ray *c_ray, const int xy_wh[4],
 					const int color, float angle);
 int				minimap(t_ray *c_ray);

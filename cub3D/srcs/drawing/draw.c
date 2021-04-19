@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:55:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/01 14:36:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:20:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +97,6 @@ void	draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 			if (i < inner_width || j < inner_width
 				|| j > xy_wh[2] - inner_width || i > xy_wh[3] - inner_width)
 				draw_pixel(c_ray, j + xy_wh[0], i + xy_wh[1], color);
-		}
-	}
-}
-
-void	draw_circle(t_ray *c_ray, const int xy[2],
-			const int radius, const int color)
-{
-	int			i;
-	int			j;
-	const int	screen_height = c_ray->screen_h;
-	const int	screen_width = c_ray->screen_w;
-
-	i = -1;
-	while (++i < radius * 2 && i + xy[1] < screen_height && xy[1] >= 0)
-	{
-		j = -1;
-		while (++j < radius * 2 && j + xy[0] < screen_width && xy[0] >= 0)
-		{
-			if (pow(j - radius, 2) + pow(i - radius, 2) <= pow(radius, 2))
-				draw_pixel(c_ray, j + xy[0], i + xy[1], color);
 		}
 	}
 }
