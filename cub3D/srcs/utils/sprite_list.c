@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:22:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 16:55:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 17:27:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_spradd_back(t_sprite_list **alst, t_sprite_list *new)
 {
 	t_sprite_list	*tmp;
 
-	if (!alst)
-		return;
-	if (!*alst)
+	if (!alst || !*alst)
 	{
-		*alst = tmp;
+		if (!alst)
+			return ;
+		*alst = new;
 		return ;
 	}
 	tmp = *alst;

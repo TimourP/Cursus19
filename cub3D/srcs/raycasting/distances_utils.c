@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 16:57:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 17:24:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	set_sprite(t_ray *c_ray, t_ray_calc *calc)
 						- c_ray->player_posy), 2)) - 0.5;
 		new_sprite->start_x = calc->x;
 		new_elem = ft_sprnew(new_sprite);
-		//ft_spradd_back(&c_ray->start_list, new_elem);
+		ft_spradd_back(&c_ray->start_list, new_elem);
 	}
 	else
 	{

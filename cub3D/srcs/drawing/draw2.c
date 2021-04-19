@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 16:38:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 17:23:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 
 void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 {
-	ft_sprprint(c_ray->start_list);
+	ft_sprprint(c_list);
 }
