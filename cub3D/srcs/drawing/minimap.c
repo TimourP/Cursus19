@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/01 14:35:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:05:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	draw_all_lines(t_ray *c_ray)
 			/ (c_ray->screen_w) * (i * 10 - c_ray->screen_w / 2),
 			wall_color[side]);
 	}
-	//line[2] = get_distance(c_ray, 0, &side) * MINI_SQUARE;
-	//draw_line(c_ray, line, c_ray->player_angle, wall_color[side]);
 }
 
 void	draw_map(t_ray *c_ray)

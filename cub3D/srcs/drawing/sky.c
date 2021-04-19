@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 18:24:06 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/30 15:32:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:05:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	draw_sky(t_ray *c_ray)
 {
-	int i;
-	int j;
-	int color;
+	int	i;
+	int	j;
+	int	color;
 	int	offset;
 
 	i = -1;
@@ -26,7 +26,8 @@ void	draw_sky(t_ray *c_ray)
 		j = -1;
 		while (++j < c_ray->screen_h)
 		{
-			get_pixel(c_ray->sky, (i + offset) % c_ray->sky->width, abs(j - c_ray->look_offset) % c_ray->sky->height, &color);
+			get_pixel(c_ray->sky, (i + offset) % c_ray->sky->width,
+				abs(j - c_ray->look_offset) % c_ray->sky->height, &color);
 			draw_pixel(c_ray, i, j, color);
 		}
 	}

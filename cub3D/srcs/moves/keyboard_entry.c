@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/01 15:07:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:08:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int quit_properly(t_ray *c_ray)
+static int	quit_properly(t_ray *c_ray)
 {
 	mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
 	free_t_map(c_ray->c_map);
@@ -71,4 +71,3 @@ int	exit_button(t_ray *c_ray)
 {
 	return (quit_properly(c_ray));
 }
-

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 11:33:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:08:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	set_steps(t_ray *c_ray, t_ray_calc *calc)
 	}
 }
 
-static int	is_in_list(t_sprite_list *c_list, int mapx, int mapy, t_sprite_list **current)
+static int	is_in_list(t_sprite_list *c_list, int mapx,
+			int mapy, t_sprite_list **current)
 {
 	while (c_list)
 	{
@@ -76,11 +77,15 @@ static void	set_sprite(t_ray *c_ray, t_ray_calc *calc)
 		new_sprite = malloc(sizeof(t_sprite));
 		new_sprite->map_x = calc->mapx;
 		new_sprite->map_y = calc->mapy;
-		new_sprite->distance = sqrt(pow((calc->mapx + 0.5 - c_ray->player_posx), 2) + pow((calc->mapy + 0.5 - c_ray->player_posy), 2)) - 0.5;
+		new_sprite->distance = sqrt(pow((calc->mapx + 0.5
+						- c_ray->player_posx), 2) + pow((calc->mapy + 0.5
+						- c_ray->player_posy), 2)) - 0.5;
 		new_sprite->start_x = calc->x;
 		new_elem = ft_sprnew(new_sprite);
 		ft_spradd_back(&(c_ray->start_list), new_elem);
-	} else {
+	}
+	else
+	{
 		new_sprite->end_x = calc->x;
 	}
 }
@@ -103,7 +108,7 @@ static void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 			calc->side = 1;
 		}
 		if (params && (calc->mapx < 0 || calc->mapy < 0
-			|| is_in_str("2", c_ray->c_map->map[calc->mapy][calc->mapx])))
+				|| is_in_str("2", c_ray->c_map->map[calc->mapy][calc->mapx])))
 			set_sprite(c_ray, calc);
 		if (calc->mapx < 0 || calc->mapy < 0
 			|| !is_in_str("02NSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
@@ -235,33 +240,33 @@ float	get_absolute_distance(t_ray *c_ray, float angle)
 
 int	draw_game(t_ray *c_ray)
 {
-	int			i_value[2];
+	int			i_v[2];
 	const int	xy[2] = {0, 0};
 	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	int			side;
 	float		y_value;
 
-	i_value[0] = -1;
+	i_v[0] = -1;
 	ft_sprclear(&c_ray->start_list);
 	c_ray->start_list = NULL;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	if (BONUS)
 		draw_sky(c_ray);
-	while (++i_value[0] < c_ray->screen_w)
+	while (++i_v[0] < c_ray->screen_w)
 	{
-		side = i_value[0];
-		i_value[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)
-				* (i_value[0] - c_ray->screen_w / 2), &side, &y_value);
+		side = i_v[0];
+		i_v[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)
+				* (i_v[0] - c_ray->screen_w / 2), &side, &y_value);
 		if (!LIGHT && side == 0)
-			draw_vertical_texture(c_ray, i_value, c_ray->c_map->north_t, y_value);
+			draw_vertical_texture(c_ray, i_v, c_ray->c_map->north_t, y_value);
 		else if (!LIGHT && side == 1)
-			draw_vertical_texture(c_ray, i_value, c_ray->c_map->east_t, y_value);
+			draw_vertical_texture(c_ray, i_v, c_ray->c_map->east_t, y_value);
 		else if (!LIGHT && side == 2)
-			draw_vertical_texture(c_ray, i_value, c_ray->c_map->south_t, y_value);
+			draw_vertical_texture(c_ray, i_v, c_ray->c_map->south_t, y_value);
 		else if (!LIGHT && side == 3)
-			draw_vertical_texture(c_ray, i_value, c_ray->c_map->west_t, y_value);
+			draw_vertical_texture(c_ray, i_v, c_ray->c_map->west_t, y_value);
 		else
-			draw_vertical_line(c_ray, i_value[0], i_value[1],
+			draw_vertical_line(c_ray, i_v[0], i_v[1],
 				g_wall_color[side]);
 	}
 	draw_sprite(c_ray, c_ray->start_list);
