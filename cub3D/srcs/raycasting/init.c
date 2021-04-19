@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 14:34:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:02:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_moves(t_ray *c_ray)
 	c_ray->start_list = NULL;
 }
 
-int check_images(t_ray *c_ray, t_map *c_map)
+int	check_images(t_ray *c_ray, t_map *c_map)
 {
 	if (!c_map->north_t->mlx_img || !c_map->south_t->mlx_img
 		|| !c_map->west_t->mlx_img || !c_map->east_t->mlx_img
@@ -74,6 +74,20 @@ int check_images(t_ray *c_ray, t_map *c_map)
 	return (1);
 }
 
+int	get_sprites_images(t_ray *c_ray, t_map *c_map)
+{
+	c_map->sprite_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			c_map->sprite_t->path, &c_map->sprite_t->width,
+			&c_map->sprite_t->height);
+	if (c_map->sprite_t->mlx_img)
+	{
+		c_map->sprite_t->addr = mlx_get_data_addr(c_map->sprite_t->mlx_img,
+				&c_map->sprite_t->bpp, &c_map->sprite_t->line_l,
+				&c_map->sprite_t->edian);
+	}
+	return (check_images(c_ray, c_map));
+}
+
 int	get_images_end(t_ray *c_ray, t_map *c_map)
 {
 	c_map->west_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
@@ -82,8 +96,8 @@ int	get_images_end(t_ray *c_ray, t_map *c_map)
 	if (c_map->west_t->mlx_img)
 	{
 		c_map->west_t->addr = mlx_get_data_addr(c_map->west_t->mlx_img,
-			&c_map->west_t->bpp, &c_map->west_t->line_l,
-			&c_map->west_t->edian);
+				&c_map->west_t->bpp, &c_map->west_t->line_l,
+				&c_map->west_t->edian);
 	}
 	c_map->south_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
 			c_map->south_t->path, &c_map->south_t->width,
@@ -91,19 +105,10 @@ int	get_images_end(t_ray *c_ray, t_map *c_map)
 	if (c_map->south_t->mlx_img)
 	{
 		c_map->south_t->addr = mlx_get_data_addr(c_map->south_t->mlx_img,
-			&c_map->south_t->bpp, &c_map->south_t->line_l,
-			&c_map->south_t->edian);
+				&c_map->south_t->bpp, &c_map->south_t->line_l,
+				&c_map->south_t->edian);
 	}
-	c_map->sprite_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			c_map->sprite_t->path, &c_map->sprite_t->width,
-			&c_map->sprite_t->height);
-	if (c_map->sprite_t->mlx_img)
-	{
-		c_map->sprite_t->addr = mlx_get_data_addr(c_map->sprite_t->mlx_img,
-			&c_map->sprite_t->bpp, &c_map->sprite_t->line_l,
-			&c_map->sprite_t->edian);
-	}
-	return (check_images(c_ray, c_map));
+	return (get_sprites_images(c_ray, c_map));
 }
 
 int	get_images(t_ray *c_ray, t_map *c_map)
@@ -114,8 +119,8 @@ int	get_images(t_ray *c_ray, t_map *c_map)
 	if (c_map->north_t->mlx_img)
 	{
 		c_map->north_t->addr = mlx_get_data_addr(c_map->north_t->mlx_img,
-			&c_map->north_t->bpp, &c_map->north_t->line_l,
-			&c_map->north_t->edian);
+				&c_map->north_t->bpp, &c_map->north_t->line_l,
+				&c_map->north_t->edian);
 	}
 	c_map->east_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
 			c_map->east_t->path, &c_map->east_t->width,
@@ -123,8 +128,8 @@ int	get_images(t_ray *c_ray, t_map *c_map)
 	if (c_map->east_t->mlx_img)
 	{
 		c_map->east_t->addr = mlx_get_data_addr(c_map->east_t->mlx_img,
-			&c_map->east_t->bpp, &c_map->east_t->line_l,
-			&c_map->east_t->edian);
+				&c_map->east_t->bpp, &c_map->east_t->line_l,
+				&c_map->east_t->edian);
 	}
 	return (get_images_end(c_ray, c_map));
 }

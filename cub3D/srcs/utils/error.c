@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 09:54:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 11:58:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int free_on_error(t_map *c_map, int error_type)
+int	free_on_error(t_map *c_map, int error_type)
 {
 	if (error_type == MAP_ERROR)
 		printf("There is an error in the map\n");
@@ -31,9 +31,11 @@ int	check_parsing_error(t_map *c_map)
 	print_map_struct(c_map);
 	if (!map_error(c_map))
 		return (free_on_error(c_map, MAP_ERROR));
-	if (c_map->screen_h == 0 || c_map->screen_w == 0 || c_map->map_w == 0 || c_map->map_h == 0)
+	if (c_map->screen_h == 0 || c_map->screen_w == 0
+		|| c_map->map_w == 0 || c_map->map_h == 0)
 		return (free_on_error(c_map, PARSING_ERROR));
-	if (!c_map->south_t->path || !c_map->north_t->path || !c_map->east_t->path || !c_map->west_t->path)
+	if (!c_map->south_t->path || !c_map->north_t->path
+		|| !c_map->east_t->path || !c_map->west_t->path)
 		return (free_on_error(c_map, PARSING_ERROR));
 	return (1);
 }

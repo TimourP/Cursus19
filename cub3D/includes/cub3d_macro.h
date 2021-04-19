@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/01 15:01:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 11:56:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@
 # define PARSING_ERROR 3
 
 # ifndef BONUS
-# 	define BONUS 0
+#  define BONUS 0
 # endif
 
 # ifndef LIGHT
-# 	define LIGHT 0
+#  define LIGHT 0
 # endif
 
 #endif

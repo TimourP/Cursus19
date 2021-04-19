@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/01 14:40:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/19 10:59:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,6 @@ int	get_next_frame(t_ray *c_ray)
 	static float	last_angle;
 	static int		last_offset;
 
-	if (c_ray->go_forward)
-		check_next(c_ray, c_ray->player_dely, c_ray->player_delx);
-	if (c_ray->go_backward)
-		check_next(c_ray, -c_ray->player_dely, -c_ray->player_delx);
-	if (c_ray->go_left)
-		check_next(c_ray, c_ray->player_delx, -c_ray->player_dely);
-	if (c_ray->go_right)
-		check_next(c_ray, -c_ray->player_delx, c_ray->player_dely);
 	if (c_ray->go_forward)
 		check_next_move(c_ray, c_ray->player_dely, c_ray->player_delx);
 	if (c_ray->go_backward)
