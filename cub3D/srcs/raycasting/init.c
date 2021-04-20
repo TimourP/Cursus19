@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 15:56:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/20 08:55:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_offset = 0;
 	c_ray->look_up = 0;
 	c_ray->look_down = 0;
-	c_ray->start_list = NULL;
 }
 
 int	get_sky(t_ray *c_ray)

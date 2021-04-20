@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 17:23:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/20 11:25:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,9 @@ typedef struct s_sprite
 {
 	t_image		*img;
 	float		distance;
-	float		rend_from;
-	float		rend_to;
-	int			start_x;
-	int			end_x;
-	int			map_x;
-	int			map_y;
+	float		start_x;
+	float		end_x;
+	int			height;
 }				t_sprite;
 
 typedef struct s_sprite_list
@@ -149,7 +146,7 @@ int				free_on_error(t_map *c_map, int error_type);
 int				check_parsing_error(t_map *c_map);
 void			ft_spradd_back(t_sprite_list **alst, t_sprite_list *new);
 void			ft_sprclear(t_sprite_list **lst);
-t_sprite_list	*ft_sprnew(void *content);
+t_sprite_list	*ft_sprnew(t_sprite *content);
 void			ft_sprprint(t_sprite_list *lst);
 
 /*
@@ -166,6 +163,7 @@ float			get_distance(t_ray *c_ray, float value, int *side);
 float			get_absolute_distance(t_ray *c_ray, float angle);
 int				get_line_height(t_ray *c_ray, float value, int *side,
 					float *text_value);
+int				get_all_sprites(t_ray *c_ray);
 
 /*
 ** moves

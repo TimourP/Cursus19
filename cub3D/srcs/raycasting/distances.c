@@ -22,7 +22,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;
 	*text_value = get_texture_value(c_ray, &calc);
-	calc.line_height = c_ray->screen_h / calc.final_dist * 1.2;
+	calc.line_height = c_ray->screen_h / calc.final_dist * 1.3;
 	calc.line_height = calc.line_height / cos(calc.angle - c_ray->player_angle);
 	return (calc.line_height);
 }

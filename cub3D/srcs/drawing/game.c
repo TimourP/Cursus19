@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 17:28:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/20 11:12:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	draw_game(t_ray *c_ray)
 	ft_sprclear(&c_ray->start_list);
 	c_ray->start_list = NULL;
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
+	get_all_sprites(c_ray);
 	if (BONUS)
 		draw_sky(c_ray);
 	while (++i_v[0] < c_ray->screen_w)
