@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/20 10:43:16 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/21 12:52:37 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,8 @@ SRCS	=	cub3d.c \
 			$(addprefix srcs/moves/, ${MOVES_SRCS}) \
 			$(addprefix srcs/drawing/, ${DRAW_SRCS}) \
 
+LIBS = libmlx.a
+
 OBJS	=	${SRCS:.c=.o}
 
 BONUS = -D BONUS=1
@@ -67,17 +69,17 @@ all:			$(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(SRCS) $(LIBS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 	@echo "${GREEN}cub3d created${RESET}"
 
 light:
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(LIGHT) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(LIGHT) $(SRCS) $(LIBS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 	@echo "${GREEN}cub3d bonus created${RESET}"
 
 bonus:
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(BONUS) $(SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(BONUS) $(SRCS) $(LIBS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 	@echo "${GREEN}cub3d bonus created${RESET}"
 
 clean:			

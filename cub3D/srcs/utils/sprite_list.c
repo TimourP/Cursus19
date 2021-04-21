@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:22:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 11:51:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 14:27:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,41 @@ t_sprite_list	*ft_sprnew(t_sprite *content)
 	new->content = content;
 	new->next = NULL;
 	return (new);
+}
+
+void	ft_swap(t_sprite_list *a, t_sprite_list *b)
+{
+	t_sprite	*tmp;
+
+	tmp = a->content;
+	a->content = b->content;
+	b->content = tmp;
+}
+
+void	ft_sprsort(t_sprite_list *start)
+{
+	int	swapped;
+	t_sprite_list	*ptr1;
+	t_sprite_list	*lptr;
+
+	if (start == NULL)
+		return ;
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		ptr1 = start;
+		while (ptr1->next != NULL)
+		{
+			if (ptr1->content->distance < ptr1->next->content->distance)
+			{
+				ft_swap(ptr1, ptr1->next);
+				swapped = 1;
+			}
+			ptr1 = ptr1->next;
+		}
+		lptr = ptr1;
+	}
 }
 
 void	ft_sprprint(t_sprite_list *lst)

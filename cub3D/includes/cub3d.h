@@ -6,14 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 12:06:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 14:22:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -170,6 +170,7 @@ float			get_absolute_distance(t_ray *c_ray, float angle);
 int				get_line_height(t_ray *c_ray, float value, int *side,
 					float *text_value);
 int				get_all_sprites(t_ray *c_ray);
+void			ft_sprsort(t_sprite_list *start);
 
 /*
 ** moves

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 12:06:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 14:44:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,24 @@ int	get_sky(t_ray *c_ray)
 
 int	init_raycasting(t_ray *c_ray, t_map *c_map)
 {
+	int	max_height;
+	int	max_width;
+
 	c_ray->c_map = c_map;
 	init_moves(c_ray);
 	init_player(c_ray);
+	c_ray->mlx_ptr = mlx_init();
+	mlx_get_screen_size(c_ray->mlx_ptr, &max_width, &max_height);
+	if (max_width < c_ray->c_map->screen_w)
+		c_ray->c_map->screen_w = max_width;
+	if (max_height < c_ray->c_map->screen_h)
+		c_ray->c_map->screen_h = max_height;
 	c_ray->screen_h = c_map->screen_h;
 	c_ray->screen_w = c_map->screen_w;
-	c_ray->mlx_ptr = mlx_init();
 	c_ray->mlx_win = mlx_new_window(c_ray->mlx_ptr,
-			c_map->screen_w, c_map->screen_h, "CUB3D");
+			c_ray->c_map->screen_w, c_ray->c_map->screen_h, "CUB3D");
 	c_ray->mlx_img = mlx_new_image(c_ray->mlx_ptr,
-			c_map->screen_w, c_map->screen_h);
+			c_ray->c_map->screen_w, c_ray->c_map->screen_h);
 	c_ray->img_addr = mlx_get_data_addr(c_ray->mlx_img, &c_ray->img_bpp,
 			&c_ray->img_line_l, &c_ray->img_edian);
 	if (BONUS)
