@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 15:08:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 16:28:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PI 3.1415926535
 # define FOV 3.5
 
-# define MINI_SQUARE 20
+# define MINI_SQUARE 5
 # define MINI_WIDTH 320
 # define MINI_HEIGHT 240
 

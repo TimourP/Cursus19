@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 12:27:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 15:53:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	const float	texture_ratio = (float)x_len[1] / texture->height;
 	int			color;
 	const int	offset = (c_ray->screen_h - x_len[1]) / 2
-		+ (BONUS * c_ray->look_offset);
+		+ (c_ray->look_offset);
 	const int	texture_x = texture->width * y_value;
 
 	i = -1;
@@ -101,7 +101,6 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 	{
 		ratio = (float)c_list->content->height / c_ray->c_map->sprite_t->height;
 		i = c_list->content->start_y - 1;
-		//ft_sprprint(c_ray->start_list);
 		while (++i < c_list->content->end_y)
 		{
 			j = c_list->content->start_x - 1;

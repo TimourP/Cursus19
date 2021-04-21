@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 12:08:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 15:52:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	key_press(int key, t_ray *c_ray)
 		c_ray->turn_right = 1;
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 1;
-	else if (key == KEY_UP_ARROW)
+	else if (key == KEY_UP_ARROW && BONUS)
 		c_ray->look_up = 1;
-	else if (key == KEY_DOWN_ARROW)
+	else if (key == KEY_DOWN_ARROW && BONUS)
 		c_ray->look_down = 1;
 	else if (key == KEY_ALT)
 		c_ray->look_offset = -100;
