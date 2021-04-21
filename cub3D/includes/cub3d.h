@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 11:25:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 10:39:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ typedef struct s_image
 typedef struct s_sprite
 {
 	t_image		*img;
-	float		distance;
-	float		start_x;
-	float		end_x;
+	int			start_x;
+	int			end_x;
+	int			start_y;
+	int			end_y;
+	int			offset_x;
+	int			offset_y;
 	int			height;
 }				t_sprite;
 
@@ -90,6 +93,7 @@ typedef struct s_ray
 	int				look_offset;
 	int				look_up;
 	int				look_down;
+	float			*all_distances;
 	t_image			*sky;
 	t_sprite_list	*start_list;
 }				t_ray;

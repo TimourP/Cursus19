@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 08:55:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/20 15:16:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_index(char *str, char c)
 
 void	init_player(t_ray *c_ray)
 {
-	const float	angles[4] = {-PI / 2, PI / 2, 0, PI};
+	const float	angles[4] = {PI * 1.5, PI * 0.5, 0, PI};
 	int			i;
 	int			j;
 
@@ -60,6 +60,7 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_offset = 0;
 	c_ray->look_up = 0;
 	c_ray->look_down = 0;
+	c_ray->all_distances = malloc(sizeof(int) * c_ray->screen_w);
 }
 
 int	get_sky(t_ray *c_ray)

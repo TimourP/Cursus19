@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 11:12:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/20 14:37:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	draw_game(t_ray *c_ray)
 		side = i_v[0];
 		i_v[1] = get_line_height(c_ray, (PI / FOV) / (c_ray->screen_w)
 				* (i_v[0] - c_ray->screen_w / 2), &side, &y_value);
+		//c_ray->all_distances[i_v[0]] = i_v[1];
 		if (!LIGHT)
 			draw_vertical_texture(c_ray, i_v, text_side(c_ray, side), y_value);
 		else

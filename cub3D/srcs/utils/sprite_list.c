@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:22:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 11:26:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 11:00:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,13 @@ void	ft_sprprint(t_sprite_list *lst)
 {
 	while (lst && lst->next)
 	{
-		printf("startx: %f\tendx: %f\tdist: %f\theight: %d -> ",
-			lst->content->start_x, lst->content->end_x, lst->content->distance,
-			lst->content->height);
+		printf("startx: %d\tendx: %d\theight: %d\toffset_x: %d -> ",
+			lst->content->start_x, lst->content->end_x, lst->content->height, lst->content->offset_x);
 		lst = lst->next;
 	}
 	if (lst)
 	{
-		printf("startx: %f\tendx: %f\tdist: %f\theight: %d\n",
-			lst->content->start_x, lst->content->end_x, lst->content->distance,
-			lst->content->height);
+		printf("startx: %d\tendx: %d\theight: %d\toffset_x: %d\n",
+			lst->content->start_x, lst->content->end_x, lst->content->height, lst->content->offset_x);
 	}
 }
