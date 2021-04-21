@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 15:16:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 12:06:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_offset = 0;
 	c_ray->look_up = 0;
 	c_ray->look_down = 0;
-	c_ray->all_distances = malloc(sizeof(int) * c_ray->screen_w);
+	c_ray->tic = 0;
+	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
 }
 
 int	get_sky(t_ray *c_ray)

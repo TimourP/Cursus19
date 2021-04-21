@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 11:09:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 12:24:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,25 @@ int	get_all_sprites(t_ray *c_ray)
 				float x_prim;
 				float y_prim;
 				float angle = c_ray->player_angle + PI * 1.5;
+				float x_add = (float)(c_ray->tic - 50) / 400 + 0.5;
+				x_add = 0.5;
 				if (angle < 0)
 					angle += 2 * PI;
 				if (angle > 2 * PI)
 					angle -= 2 * PI;
-				x_prim = cos(angle) * (j + 0.5 - c_ray->player_posx) + sin(angle) * (i + 0.5 - c_ray->player_posy);
-				y_prim = - sin(angle) * (j + 0.5 - c_ray->player_posx) + cos(angle) * (i + 0.5 - c_ray->player_posy);
+				x_prim = cos(angle) * (j + x_add - c_ray->player_posx) + sin(angle) * (i + x_add - c_ray->player_posy);
+				y_prim = - sin(angle) * (j + x_add - c_ray->player_posx) + cos(angle) * (i + x_add - c_ray->player_posy);
 				new_sprite = malloc(sizeof(t_sprite));
 				new_sprite->offset_x = 0;
 				new_sprite->offset_y = 0;
-				new_sprite->height = c_ray->screen_h / sqrt(pow(x_prim, 2) + pow(y_prim, 2)) * 1.3;
+				new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
+				new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
 				if (y_prim < 0)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - x_prim * new_sprite->height * 1.3;
 				new_sprite->end_x = new_sprite->start_x + new_sprite->height;
+				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2;
+				new_sprite->end_y = new_sprite->start_y + new_sprite->height;
 				if (new_sprite->end_x >= c_ray->screen_w)
 					new_sprite->end_x = c_ray->screen_w - 1;
 				if (new_sprite->start_x < 0)
@@ -63,12 +68,16 @@ int	get_all_sprites(t_ray *c_ray)
 					new_sprite->offset_x = 0 - new_sprite->start_x;
 					new_sprite->start_x = 0;
 				}
-				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2;
-				new_sprite->end_y = new_sprite->start_y + new_sprite->height;
+				if (new_sprite->end_y >= c_ray->screen_h)
+					new_sprite->end_y = c_ray->screen_h - 1;
+				if (new_sprite->start_y < 0)
+				{
+					new_sprite->offset_y = 0 - new_sprite->start_y;
+					new_sprite->start_y = 0;
+				}
 				ft_spradd_back(&c_ray->start_list, ft_sprnew(new_sprite));
 			}
 		}
 	}
-	ft_sprprint(c_ray->start_list);
 	return (1);
 }

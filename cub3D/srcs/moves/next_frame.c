@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 11:17:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 12:24:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	proceed_angles_look(t_ray *c_ray)
 
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
-	if (bool)
+	if (bool || BONUS)
 	{
 		draw_game(c_ray);
 		if (1 || BONUS)
@@ -76,7 +76,13 @@ int	get_next_frame(t_ray *c_ray)
 	static float	last_y;
 	static float	last_angle;
 	static int		last_offset;
+	static int		decrease;
 
+	c_ray->tic = c_ray->tic + 1 - 2 * decrease;
+	if (c_ray->tic >= 100)
+		decrease = 1;
+	else if (c_ray->tic <= 0)
+		decrease = 0;
 	if (c_ray->go_forward)
 		check_next_move(c_ray, c_ray->player_dely, c_ray->player_delx);
 	if (c_ray->go_backward)

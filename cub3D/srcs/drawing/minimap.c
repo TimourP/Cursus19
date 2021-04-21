@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/19 14:01:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 11:34:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
 const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT
 	/ 2, MINI_SQUARE, MINI_SQUARE};
-const int	g_minimap_color[3] = {COLOR_MINIMAP_WALL,
-	COLOR_MINIMAP_WALKABLE, COLOR_BLACK};
+const int	g_minimap_color[4] = {COLOR_MINIMAP_WALL,
+	COLOR_MINIMAP_WALKABLE, COLOR_BLACK, COLOR_RED};
 
 int	check_color(t_ray *c_ray, int map_x, int map_y)
 {
@@ -26,6 +26,8 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 		return (2);
 	if (c_ray->c_map->map[map_y][map_x] == ' ')
 		return (2);
+	if (c_ray->c_map->map[map_y][map_x] == '2')
+		return (3);
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 

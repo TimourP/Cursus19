@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/20 15:11:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 12:15:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,14 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 	{
 		ratio = (float)c_list->content->height / c_ray->c_map->sprite_t->height;
 		i = c_list->content->start_y - 1;
+		//ft_sprprint(c_ray->start_list);
 		while (++i < c_list->content->end_y)
 		{
 			j = c_list->content->start_x - 1;
 			while (++j < c_list->content->end_x)
 			{
 				get_pixel(c_ray->c_map->sprite_t, (j - c_list->content->start_x + c_list->content->offset_x) / ratio, (i - c_list->content->start_y + c_list->content->offset_y) / ratio, &color);
-				if (color != 1193046)
+				if (color != 1193046 && c_list->content->distance < c_ray->all_distances[j])
 					draw_pixel(c_ray, j, i, color);
 			}
 		}
