@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 16:28:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 17:46:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
 	static int		decrease;
 
-	if (bool || BONUS)
+	if (bool)
 	{
 		c_ray->tic = c_ray->tic + 1 - 2 * decrease;
 		if (c_ray->tic >= 100)

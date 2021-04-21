@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 15:53:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 17:13:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_all_sprites(t_ray *c_ray)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;
 				new_sprite->end_x = new_sprite->start_x + new_sprite->height;
-				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2;
+				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2 + c_ray->look_offset;
 				new_sprite->end_y = new_sprite->start_y + new_sprite->height;
 				if (new_sprite->end_x >= c_ray->screen_w)
 					new_sprite->end_x = c_ray->screen_w - 1;

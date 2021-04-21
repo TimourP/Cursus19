@@ -1,11 +1,13 @@
 R 1080 720
-NO images/blue_wall.xpm
-SO images/blue_wall.xpm
-WE images/blue_wall.xpm
-EA images/blue_wall.xpm
-S images/ghost.xpm
-F 220,100,5
-C 52, 73, 94
+
+NO ./images/purplestone.xpm
+SO ./images/mossy.xpm
+WE ./images/bluestone.xpm
+EA ./images/redbrick.xpm
+S  ./images/ghost.xpm
+
+F 46, 64, 83
+C 0,15,137
 
 111111111111111111111111111111
 100000000000000000000000000001
