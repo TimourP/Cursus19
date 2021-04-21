@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 17:13:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 19:43:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	get_all_sprites(t_ray *c_ray)
 				new_sprite->offset_x = 0;
 				new_sprite->offset_y = 0;
 				new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
-				new_sprite->height = c_ray->screen_h / new_sprite->distance;
+				new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
 				if (y_prim < 0)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;

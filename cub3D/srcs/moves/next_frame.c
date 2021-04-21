@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 17:46:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 20:36:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,40 @@ static void	proceed_angles_look(t_ray *c_ray)
 		c_ray->look_offset -= OFFSET_SPEED;
 }
 
+void	set_speed(t_ray *c_ray)
+{
+    struct timespec spec;
+	long int	time;
+	float		fps;
+
+	clock_gettime(CLOCK_REALTIME, &spec);
+	time = (long int)(spec.tv_sec * 1000 + round(spec.tv_nsec / 1.0e6));
+	fps = 600.0 / (int)(time - c_ray->last_frame);
+	c_ray->last_frame = time;
+	c_ray->player_speed = PLAYER_BONUS_SPEED / fps;
+	if (c_ray->player_speed < 0)
+		c_ray->player_speed = 0;
+	if (c_ray->player_speed > 2)
+		c_ray->player_speed = 2;
+	c_ray->player_delx = sin(c_ray->player_angle) * c_ray->player_speed;
+	c_ray->player_dely = cos(c_ray->player_angle) * c_ray->player_speed;
+}
+
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
 	static int		decrease;
 
-	if (bool)
+	if (bool || BONUS)
 	{
+		if (BONUS)
+			set_speed(c_ray);
 		c_ray->tic = c_ray->tic + 1 - 2 * decrease;
 		if (c_ray->tic >= 100)
 			decrease = 1;
 		else if (c_ray->tic <= 0)
 			decrease = 0;
 		draw_game(c_ray);
-		if (BONUS || 1)
+		if (0 && BONUS)
 			minimap(c_ray);
 		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
 			c_ray->mlx_img, 0, 0);

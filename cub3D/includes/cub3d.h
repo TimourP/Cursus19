@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 14:22:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/21 20:21:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <time.h>
 # include "cub3d_macro.h"
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
@@ -95,6 +96,8 @@ typedef struct s_ray
 	int				look_up;
 	int				look_down;
 	int				tic;
+	long int		last_frame;
+	float			player_speed;
 	float			*all_distances;
 	t_image			*sky;
 	t_sprite_list	*start_list;
