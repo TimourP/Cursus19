@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 12:25:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 13:47:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ int	draw_game(t_ray *c_ray)
 	float		y_value;
 
 	i_v[0] = -1;
-	//ft_sprclear(&c_ray->start_list);
-	//c_ray->start_list = NULL;
+	ft_sprclear(&c_ray->start_list);
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
-	//get_all_sprites(c_ray);
+	get_all_sprites(c_ray);
 	if (BONUS)
 		draw_sky(c_ray);
 	while (++i_v[0] < c_ray->screen_w)
@@ -109,6 +108,6 @@ int	draw_game(t_ray *c_ray)
 			draw_vertical_line(c_ray, i_v[0], i_v[1],
 				g_wall_color[side]);
 	}
-	//draw_sprite(c_ray, c_ray->start_list);
+	draw_sprite(c_ray, c_ray->start_list);
 	return (0);
 }

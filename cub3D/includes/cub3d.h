@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 11:43:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 14:37:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ typedef struct s_sprite
 	int			offset_y;
 	int			height;
 }				t_sprite;
+
+typedef struct s_bonus_images
+{
+	t_image		*good_food;
+	t_image		*bad_food;
+	t_image		*good_health;
+	t_image		*bad_health;
+	t_image		*monster;
+	t_image		*other_sprite_0;
+	t_image		*other_sprite_1;
+	t_image		*other_sprite_2;
+	t_image		*other_sprite_3;
+}				t_bonus_images;
+
 
 typedef struct s_sprite_list
 {

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 12:25:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 14:52:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 
 	next_posx = c_ray->player_posx + x_diff;
 	next_posy = c_ray->player_posy + y_diff;
-	if (!is_in_str("0NSEW",
+	if (!is_in_str("0abcdNSEW",
 			c_ray->c_map->map[(int)next_posy][(int)next_posx]))
 	{
-		if (is_in_str("0NSEW",
+		if (is_in_str("0abcdNSEW",
 				c_ray->c_map->map[(int)next_posy][(int)c_ray->player_posx]))
 			c_ray->player_posy += y_diff;
-		else if (is_in_str("0NSEW",
+		else if (is_in_str("0abcdNSEW",
 				c_ray->c_map->map[(int)c_ray->player_posy][(int)next_posx]))
 			c_ray->player_posx += x_diff;
 		return ;

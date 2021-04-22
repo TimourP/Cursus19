@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:22:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 14:27:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 13:47:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_sprclear(t_sprite_list **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
+		free((*lst)->content);
 		free(*lst);
 		*lst = tmp;
 	}

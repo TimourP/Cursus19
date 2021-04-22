@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 09:52:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 14:55:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
 const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT
 	/ 2, MINI_SQUARE, MINI_SQUARE};
-const int	g_minimap_color[4] = {COLOR_MINIMAP_WALL,
-	COLOR_MINIMAP_WALKABLE, COLOR_BLACK, COLOR_RED};
+const int	g_minimap_color[5] = {COLOR_MINIMAP_WALL,
+	COLOR_MINIMAP_WALKABLE, COLOR_BLACK, COLOR_RED, COLOR_BLUE};
 
 int	check_color(t_ray *c_ray, int map_x, int map_y)
 {
@@ -26,8 +26,10 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 		return (2);
 	if (c_ray->c_map->map[map_y][map_x] == ' ')
 		return (2);
-	if (c_ray->c_map->map[map_y][map_x] == '2')
+	if (is_in_str("23456", c_ray->c_map->map[map_y][map_x]))
 		return (3);
+	if (is_in_str("abcd", c_ray->c_map->map[map_y][map_x]))
+		return (4);
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 

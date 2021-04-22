@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 12:30:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 13:46:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_moves(t_ray *c_ray)
 	c_ray->player_health = 7;
 	c_ray->player_hunger = 3;
 	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
+	c_ray->start_list = NULL;
 }
 
 int	get_sky(t_ray *c_ray)
