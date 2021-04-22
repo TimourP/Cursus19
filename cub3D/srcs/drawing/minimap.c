@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 19:11:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 09:52:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int	minimap(t_ray *c_ray)
 	const int	xy_wh[4] = {0, 0, MINI_WIDTH, MINI_HEIGHT};
 
 	draw_map(c_ray);
-	draw_empty_rectangle(c_ray, xy_wh, COLOR_BLACK, MINI_SQUARE);
+	draw_empty_rectangle(c_ray, xy_wh, 0x006E2C00, MINI_SQUARE);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 20:37:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 11:25:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@
 # define MALLOC_ERROR 1
 # define FILE_ERROR 2
 # define PARSING_ERROR 3
+
+# define HEART_PATH "images/heart2.xpm"
+# define HUNGER_PATH "images/bidoche2.xpm"
 
 # ifndef BONUS
 #  define BONUS 0

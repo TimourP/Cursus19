@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/21 12:52:37 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/22 10:52:36 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ DRAW_SRCS = draw.c \
 			game.c \
 			sky.c \
 			minimap.c \
+			hud_bonus.c \
 
 SRCS	=	cub3d.c \
 			srcs/testing.c \

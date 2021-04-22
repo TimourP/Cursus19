@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 12:54:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 12:36:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 	if (param == 'S')
 		c_map->sprite_t->path = str;
 	if (param == 'c')
+	{
 		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
+		free(str);
+	}
 	if (param == 'f')
+	{
 		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
+		free(str);
+	}
 }
 
 int	get_colors(t_map *c_map, char *line, char param)
