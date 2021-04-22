@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:00:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 15:59:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ t_image	*get_sprite_image(t_ray *c_ray, char c)
 {
 	if (c == '2')
 		return (c_ray->c_map->sprite_t);
+	if (c == '3')
+		return (c_ray->bonus_images->other_sprite_0);
+	if (c == '4')
+		return (c_ray->bonus_images->other_sprite_1);
+	if (c == 'a')
+		return (c_ray->bonus_images->good_food);
+	if (c == 'b')
+		return (c_ray->bonus_images->bad_food);
+	if (c == 'c')
+		return (c_ray->bonus_images->good_health);
+	if (c == 'd')
+		return (c_ray->bonus_images->bad_health);
 	return (c_ray->c_map->heart_t);
 }
 
@@ -32,7 +44,7 @@ int	get_all_sprites(t_ray *c_ray)
 		j = -1;
 		while (++j < c_ray->c_map->map_w)
 		{
-			if (is_in_str("23456abcd", c_ray->c_map->map[i][j]))
+			if (is_in_str("234abcd", c_ray->c_map->map[i][j]))
 			{
 				float x_prim;
 				float y_prim;
@@ -54,7 +66,7 @@ int	get_all_sprites(t_ray *c_ray)
 				new_sprite->offset_y = 0;
 				new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
 				new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
-				new_sprite->img = get_sprite_image(c_ray, c_ray->c_map->map[i][j]);
+				new_sprite->img = c_ray->c_map->sprite_t;
 				if (y_prim < 0)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;

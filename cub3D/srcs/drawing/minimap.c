@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 14:55:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 15:36:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 		return (2);
 	if (c_ray->c_map->map[map_y][map_x] == ' ')
 		return (2);
-	if (is_in_str("23456", c_ray->c_map->map[map_y][map_x]))
+	if (is_in_str("234", c_ray->c_map->map[map_y][map_x]))
 		return (3);
 	if (is_in_str("abcd", c_ray->c_map->map[map_y][map_x]))
 		return (4);

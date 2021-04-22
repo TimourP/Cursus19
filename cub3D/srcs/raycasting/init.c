@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 13:46:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 15:41:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ void	init_player(t_ray *c_ray)
 			}
 		}
 	}
+}
+
+int	init_bonus_sprites(t_ray *c_ray)
+{
+	c_ray->bonus_images = malloc(sizeof(t_bonus_images));
+	c_ray->bonus_images->good_food = malloc(sizeof(t_image));
+	c_ray->bonus_images->good_food->path = NULL;
+	c_ray->bonus_images->bad_food = malloc(sizeof(t_image));
+	c_ray->bonus_images->bad_food->path = NULL;
+	c_ray->bonus_images->good_health = malloc(sizeof(t_image));
+	c_ray->bonus_images->good_health->path = NULL;
+	c_ray->bonus_images->bad_health = malloc(sizeof(t_image));
+	c_ray->bonus_images->bad_health->path = NULL;
+	c_ray->bonus_images->monster = malloc(sizeof(t_image));
+	c_ray->bonus_images->monster->path = NULL;
+	c_ray->bonus_images->other_sprite_0 = malloc(sizeof(t_image));
+	c_ray->bonus_images->other_sprite_0->path = NULL;
+	c_ray->bonus_images->other_sprite_1 = malloc(sizeof(t_image));
+	c_ray->bonus_images->other_sprite_1->path = NULL;
+	return (0);
 }
 
 void	init_moves(t_ray *c_ray)
@@ -100,6 +120,7 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 			c_ray->c_map->screen_w, c_ray->c_map->screen_h);
 	c_ray->img_addr = mlx_get_data_addr(c_ray->mlx_img, &c_ray->img_bpp,
 			&c_ray->img_line_l, &c_ray->img_edian);
+	init_bonus_sprites(c_ray);
 	if (BONUS)
 		get_sky(c_ray);
 	if (!(get_images(c_ray, c_map)))

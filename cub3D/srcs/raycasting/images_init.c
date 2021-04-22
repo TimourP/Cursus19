@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:12:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 12:26:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/22 15:58:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,79 @@ static int	check_images(t_ray *c_ray, t_map *c_map)
 	return (1);
 }
 
+static int	get_other_sprites(t_ray *c_ray, t_map *c_map)
+{
+	t_bonus_images	*bon;
+
+	bon = c_ray->bonus_images;
+	bon->good_food->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/floor_heart.xpm", &bon->good_food->width,
+			&bon->good_food->height);
+	if (bon->good_food->mlx_img)
+	{
+		bon->good_food->addr = mlx_get_data_addr(bon->good_food->mlx_img,
+				&bon->good_food->bpp, &bon->good_food->line_l,
+				&bon->good_food->edian);
+	}
+	bon->bad_food->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/floor_heart.xpm", &bon->bad_food->width,
+			&bon->bad_food->height);
+	if (bon->bad_food->mlx_img)
+	{
+		bon->bad_food->addr = mlx_get_data_addr(bon->bad_food->mlx_img,
+				&bon->bad_food->bpp, &bon->bad_food->line_l,
+				&bon->bad_food->edian);
+	}
+	bon->good_health->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/floor_heart.xpm", &bon->good_health->width,
+			&bon->good_health->height);
+	if (bon->good_health->mlx_img)
+	{
+		bon->good_health->addr = mlx_get_data_addr(bon->good_health->mlx_img,
+				&bon->good_health->bpp, &bon->good_health->line_l,
+				&bon->good_health->edian);
+	}
+	bon->bad_health->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/fire.xpm", &bon->bad_health->width,
+			&bon->bad_health->height);
+	if (bon->bad_health->mlx_img)
+	{
+		bon->bad_health->addr = mlx_get_data_addr(bon->bad_health->mlx_img,
+				&bon->bad_health->bpp, &bon->bad_health->line_l,
+				&bon->bad_health->edian);
+	}
+	bon->monster->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/floor_heart.xpm", &bon->monster->width,
+			&bon->monster->height);
+	if (bon->monster->mlx_img)
+	{
+		bon->monster->addr = mlx_get_data_addr(bon->monster->mlx_img,
+				&bon->monster->bpp, &bon->monster->line_l,
+				&bon->monster->edian);
+	}
+	bon->other_sprite_0->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/tree.xpm", &bon->other_sprite_0->width,
+			&bon->other_sprite_0->height);
+	if (bon->other_sprite_0->mlx_img)
+	{
+		bon->other_sprite_0->addr = mlx_get_data_addr(bon->other_sprite_0->mlx_img,
+				&bon->other_sprite_0->bpp, &bon->other_sprite_0->line_l,
+				&bon->other_sprite_0->edian);
+	}
+	bon->other_sprite_1->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/pillar.xpm", &bon->other_sprite_1->width,
+			&bon->other_sprite_1->height);
+	if (bon->other_sprite_1->mlx_img)
+	{
+		bon->other_sprite_1->addr = mlx_get_data_addr(bon->other_sprite_1->mlx_img,
+				&bon->other_sprite_1->bpp, &bon->other_sprite_1->line_l,
+				&bon->other_sprite_1->edian);
+	}
+	return (check_images(c_ray, c_map));
+}
+
 static int	get_hud_images(t_ray *c_ray, t_map *c_map)
 {
-	if (!c_map->heart_t || !c_map->heart_t || !c_map->empty_heart_t || !c_map->empty_hunger_t)
-		return (free_on_error(c_map, MALLOC_ERROR));
 	c_map->heart_t->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
 			"images/heart2.xpm", &c_map->heart_t->width,
 			&c_map->heart_t->height);
@@ -65,7 +134,7 @@ static int	get_hud_images(t_ray *c_ray, t_map *c_map)
 				&c_map->empty_hunger_t->bpp, &c_map->empty_hunger_t->line_l,
 				&c_map->empty_hunger_t->edian);
 	}
-	return (check_images(c_ray, c_map));
+	return (get_other_sprites(c_ray, c_map));
 }
 
 static int	get_sprites_images(t_ray *c_ray, t_map *c_map)
