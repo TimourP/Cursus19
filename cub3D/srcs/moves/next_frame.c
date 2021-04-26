@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 14:58:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 15:46:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,31 @@ static void	play_foot_step(void)
 		system("afplay sounds/walk2.mp3 &>/dev/null &");
 }
 
+static void	reput_bonus(t_ray *c_ray, char bonus)
+{
+	int	put;
+	int	x;
+	int	y;
+
+	put = 0;
+	while (!put)
+	{
+		x = random_between(1, c_ray->c_map->map_w - 1);
+		y = random_between(1, c_ray->c_map->map_h - 1);
+		if (c_ray->c_map->map[y][x] == '0')
+		{
+			c_ray->c_map->map[y][x] = bonus;
+			put = 1;
+		}
+	}
+}
+
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
 	static int	decrease;
 	int			x;
 	int			y;
+	char		to_put;
 
 	if (bool || BONUS)
 	{
@@ -107,6 +127,7 @@ static void	proceed_next_frame(t_ray *c_ray, int bool)
 			y = c_ray->player_posy;
 			if (is_in_str("abc", c_ray->c_map->map[y][x]))
 			{
+				to_put = c_ray->c_map->map[y][x];
 				if (c_ray->c_map->map[y][x] == 'a')
 					c_ray->player_hunger += 1;
 				else if (c_ray->c_map->map[y][x] == 'b')
@@ -114,19 +135,21 @@ static void	proceed_next_frame(t_ray *c_ray, int bool)
 				else if (c_ray->c_map->map[y][x] == 'c')
 					c_ray->player_health -= 1;
 				c_ray->c_map->map[y][x] = '0';
+				reput_bonus(c_ray, to_put);
 			}
 		}
 		c_ray->tic = c_ray->tic + 1 - 2 * decrease;
 		if (c_ray->tic >= 100)
+			decrease = 1;
+		else if (c_ray->tic <= 0)
+			decrease = 0;
+		if (c_ray->tic == 50)
 		{
 			if (c_ray->player_hunger > 0)
 				c_ray->player_hunger -= 1;
 			else
 				c_ray->player_health -= 1;
-			decrease = 1;
 		}
-		else if (c_ray->tic <= 0)
-			decrease = 0;
 		if (c_ray->player_health == 0)
 		{
 			printf("You die...\n");
