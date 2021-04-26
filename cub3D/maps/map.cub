@@ -3,8 +3,8 @@ R 1080 720
 NO ./images/greystone.xpm
 SO ./images/greystone.xpm
 WE ./images/greystone.xpm
-EA ./images/greystone.xpm
-S  ./images/ghost.xpm
+EA  ./images/greystone.xpm
+S   ./images/ghost.xpm
 
 F 46, 64, 83
 C 0,15,137

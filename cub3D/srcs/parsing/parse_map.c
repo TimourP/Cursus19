@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/31 09:32:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 15:10:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ static int	fill_map_struct2(t_map *c_map, t_list *map_list)
 		error = get_textures(c_map, map_list->content, 'e');
 	else if (ft_strncmp(map_list->content, "WE", 2) == 0)
 		error = get_textures(c_map, map_list->content, 'w');
-	else if (ft_strncmp(map_list->content, "C", 1) == 0)
+	else if (ft_strncmp(map_list->content, "C ", 2) == 0)
 		error = get_colors(c_map, map_list->content, 'c');
-	else if (ft_strncmp(map_list->content, "F", 1) == 0)
+	else if (ft_strncmp(map_list->content, "F ", 2) == 0)
 		error = get_colors(c_map, map_list->content, 'f');
-	else if (ft_strncmp(map_list->content, "S", 1) == 0)
+	else if (ft_strncmp(map_list->content, "S ", 2) == 0)
 		error = get_textures(c_map, map_list->content, 'S');
 	else if (ft_strlen(map_list->content) != 0)
 		return (2);

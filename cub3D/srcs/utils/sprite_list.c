@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:22:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 13:47:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 14:44:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_swap(t_sprite_list *a, t_sprite_list *b)
 
 void	ft_sprsort(t_sprite_list *start)
 {
-	int	swapped;
+	int				swapped;
 	t_sprite_list	*ptr1;
 	t_sprite_list	*lptr;
 
@@ -91,26 +91,17 @@ void	ft_sprsort(t_sprite_list *start)
 
 void	ft_sprprint(t_sprite_list *lst)
 {
-	/*while (lst && lst->next)
-	{
-		printf("starty: %d\tendy: %d\theight: %d\toffset_y: %d -> ",
-			lst->content->start_y, lst->content->end_y, lst->content->height, lst->content->offset_y);
-		lst = lst->next;
-	}
-	if (lst)
-	{
-		printf("starty: %d\tendy: %d\theight: %d\toffset_y: %d\n",
-			lst->content->start_y, lst->content->end_y, lst->content->height, lst->content->offset_y);
-	}*/
 	while (lst && lst->next)
 	{
 		printf("startx: %d\tendx: %d\theight: %d\toffset_x: %d -> ",
-			lst->content->start_x, lst->content->end_x, lst->content->height, lst->content->offset_x);
+			lst->content->start_x, lst->content->end_x,
+			lst->content->height, lst->content->offset_x);
 		lst = lst->next;
 	}
 	if (lst)
 	{
 		printf("startx: %d\tendx: %d\theight: %d\toffset_x: %d\n",
-			lst->content->start_x, lst->content->end_x, lst->content->height, lst->content->offset_x);
+			lst->content->start_x, lst->content->end_x,
+			lst->content->height, lst->content->offset_x);
 	}
 }

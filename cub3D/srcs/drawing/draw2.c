@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:02:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 14:47:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	{
 		color = c_ray->c_map->floor_t;
 		if (BONUS)
-			color = shadow(color, ((float)(i + offset - c_ray->look_offset) - c_ray->screen_h / 2 - 26) / c_ray->screen_h * 2);
+			color = shadow(color, ((float)(i + offset - c_ray->look_offset)
+						- c_ray->screen_h / 2 - 26) / c_ray->screen_h * 2);
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x_len[0], i + offset, color);
 	}
@@ -109,10 +110,10 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 
 void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 {
-	int i;
-	int j;
-	int color;
-	float ratio;
+	int		i;
+	int		j;
+	int		color;
+	float	ratio;
 
 	while (c_list)
 	{

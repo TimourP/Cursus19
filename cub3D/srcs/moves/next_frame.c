@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 14:12:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 14:58:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static void	proceed_angles_look(t_ray *c_ray)
 
 void	set_speed(t_ray *c_ray)
 {
-    struct timespec spec;
-	long int	time;
-	float		fps;
+	struct timespec		spec;
+	long int			time;
+	float				fps;
 
 	clock_gettime(CLOCK_REALTIME, &spec);
 	time = (long int)(spec.tv_sec * 1000 + round(spec.tv_nsec / 1.0e6));
@@ -77,14 +77,14 @@ void	set_speed(t_ray *c_ray)
 	c_ray->player_dely = cos(c_ray->player_angle) * c_ray->player_speed;
 }
 
-int random_between(int min, int max)
+int	random_between(int min, int max)
 {
 	const float	ra = (float)rand() / INT_MAX;
 
-	return (max - min + 1) * ra + min;
+	return ((max - min + 1) * ra + min);
 }
 
-static void play_foot_step()
+static void	play_foot_step(void)
 {
 	if (random_between(0, 1))
 		system("afplay sounds/walk.mp3 &>/dev/null &");
@@ -94,9 +94,9 @@ static void play_foot_step()
 
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
-	static int		decrease;
-	int x;
-	int y;
+	static int	decrease;
+	int			x;
+	int			y;
 
 	if (bool || BONUS)
 	{

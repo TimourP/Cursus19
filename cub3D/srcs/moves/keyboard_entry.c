@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/21 15:52:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 15:15:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	quit_properly(t_ray *c_ray)
 {
+	printf("See you!\n");
 	mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
 	free_t_map(c_ray->c_map);
 	exit(0);
