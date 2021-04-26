@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:12:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:58:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 13:25:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,13 @@ static int	get_other_sprites(t_ray *c_ray, t_map *c_map)
 
 	bon = c_ray->bonus_images;
 	bon->good_food->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			"images/floor_heart.xpm", &bon->good_food->width,
+			"images/chicken.xpm", &bon->good_food->width,
 			&bon->good_food->height);
 	if (bon->good_food->mlx_img)
 	{
 		bon->good_food->addr = mlx_get_data_addr(bon->good_food->mlx_img,
 				&bon->good_food->bpp, &bon->good_food->line_l,
 				&bon->good_food->edian);
-	}
-	bon->bad_food->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			"images/floor_heart.xpm", &bon->bad_food->width,
-			&bon->bad_food->height);
-	if (bon->bad_food->mlx_img)
-	{
-		bon->bad_food->addr = mlx_get_data_addr(bon->bad_food->mlx_img,
-				&bon->bad_food->bpp, &bon->bad_food->line_l,
-				&bon->bad_food->edian);
 	}
 	bon->good_health->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
 			"images/floor_heart.xpm", &bon->good_health->width,

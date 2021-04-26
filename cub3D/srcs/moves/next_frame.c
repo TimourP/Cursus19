@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 14:52:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 14:12:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 
 	next_posx = c_ray->player_posx + x_diff;
 	next_posy = c_ray->player_posy + y_diff;
-	if (!is_in_str("0abcdNSEW",
+	if (!is_in_str("0abcNSEW",
 			c_ray->c_map->map[(int)next_posy][(int)next_posx]))
 	{
-		if (is_in_str("0abcdNSEW",
+		if (is_in_str("0abcNSEW",
 				c_ray->c_map->map[(int)next_posy][(int)c_ray->player_posx]))
 			c_ray->player_posy += y_diff;
-		else if (is_in_str("0abcdNSEW",
+		else if (is_in_str("0abcNSEW",
 				c_ray->c_map->map[(int)c_ray->player_posy][(int)next_posx]))
 			c_ray->player_posx += x_diff;
 		return ;
@@ -77,19 +77,61 @@ void	set_speed(t_ray *c_ray)
 	c_ray->player_dely = cos(c_ray->player_angle) * c_ray->player_speed;
 }
 
+int random_between(int min, int max)
+{
+	const float	ra = (float)rand() / INT_MAX;
+
+	return (max - min + 1) * ra + min;
+}
+
+static void play_foot_step()
+{
+	if (random_between(0, 1))
+		system("afplay sounds/walk.mp3 &>/dev/null &");
+	else
+		system("afplay sounds/walk2.mp3 &>/dev/null &");
+}
+
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
 	static int		decrease;
+	int x;
+	int y;
 
 	if (bool || BONUS)
 	{
 		if (BONUS)
+		{
 			set_speed(c_ray);
+			x = c_ray->player_posx;
+			y = c_ray->player_posy;
+			if (is_in_str("abc", c_ray->c_map->map[y][x]))
+			{
+				if (c_ray->c_map->map[y][x] == 'a')
+					c_ray->player_hunger += 1;
+				else if (c_ray->c_map->map[y][x] == 'b')
+					c_ray->player_health += 1;
+				else if (c_ray->c_map->map[y][x] == 'c')
+					c_ray->player_health -= 1;
+				c_ray->c_map->map[y][x] = '0';
+			}
+		}
 		c_ray->tic = c_ray->tic + 1 - 2 * decrease;
 		if (c_ray->tic >= 100)
+		{
+			if (c_ray->player_hunger > 0)
+				c_ray->player_hunger -= 1;
+			else
+				c_ray->player_health -= 1;
 			decrease = 1;
+		}
 		else if (c_ray->tic <= 0)
 			decrease = 0;
+		if (c_ray->player_health == 0)
+		{
+			printf("You die...\n");
+			exit(0);
+		}
 		draw_game(c_ray);
 		if (BONUS)
 		{
@@ -121,6 +163,9 @@ int	get_next_frame(t_ray *c_ray)
 	proceed_next_frame(c_ray, last_x != c_ray->player_posx
 		|| last_y != c_ray->player_posy || last_angle != c_ray->player_angle
 		|| last_offset != c_ray->look_offset);
+	if ((last_x != c_ray->player_posx
+		|| last_y != c_ray->player_posy) && c_ray->tic % 8 == 0)
+		play_foot_step();
 	last_x = c_ray->player_posx;
 	last_y = c_ray->player_posy;
 	last_angle = c_ray->player_angle;

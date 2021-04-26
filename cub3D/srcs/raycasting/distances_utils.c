@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:36:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 13:26:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 			calc->side = 1;
 		}
 		if (calc->mapx < 0 || calc->mapy < 0
-			|| !is_in_str("0234abcdNSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
+			|| !is_in_str("0234abcNSEW", c_ray->c_map->map[calc->mapy][calc->mapx]))
 			calc->hit = 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:35:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 13:01:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_sprite
 typedef struct s_bonus_images
 {
 	t_image		*good_food;
-	t_image		*bad_food;
 	t_image		*good_health;
 	t_image		*bad_health;
 	t_image		*monster;

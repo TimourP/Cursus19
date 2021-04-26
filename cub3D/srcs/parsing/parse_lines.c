@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 12:36:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 13:00:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*make_color_string(int rgb[3])
 	i = -1;
 	while (++i < 3)
 	{
-		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
+		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcef");
 		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
 		color_string[i * 2] = current_color[0];
@@ -63,12 +63,12 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 		c_map->sprite_t->path = str;
 	if (param == 'c')
 	{
-		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
+		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcef");
 		free(str);
 	}
 	if (param == 'f')
 	{
-		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
+		c_map->floor_t = ft_atoi_base(str, "0123456789abcef");
 		free(str);
 	}
 }

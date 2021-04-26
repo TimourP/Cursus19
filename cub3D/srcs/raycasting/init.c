@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/22 15:41:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/26 13:00:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	init_bonus_sprites(t_ray *c_ray)
 	c_ray->bonus_images = malloc(sizeof(t_bonus_images));
 	c_ray->bonus_images->good_food = malloc(sizeof(t_image));
 	c_ray->bonus_images->good_food->path = NULL;
-	c_ray->bonus_images->bad_food = malloc(sizeof(t_image));
-	c_ray->bonus_images->bad_food->path = NULL;
 	c_ray->bonus_images->good_health = malloc(sizeof(t_image));
 	c_ray->bonus_images->good_health->path = NULL;
 	c_ray->bonus_images->bad_health = malloc(sizeof(t_image));
@@ -81,8 +79,8 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_up = 0;
 	c_ray->look_down = 0;
 	c_ray->tic = 0;
-	c_ray->player_health = 7;
-	c_ray->player_hunger = 3;
+	c_ray->player_health = 10;
+	c_ray->player_hunger = 10;
 	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
 	c_ray->start_list = NULL;
 }
