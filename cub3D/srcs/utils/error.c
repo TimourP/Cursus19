@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 12:45:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 10:55:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ int	check_parsing_error(t_map *c_map)
 		|| !c_map->east_t->path || !c_map->west_t->path)
 		return (free_on_error(c_map, PARSING_ERROR));
 	return (1);
+}
+
+float	div_zero(float number1, float number2)
+{
+	if (number2 == 0)
+		return (1);
+	else
+		return (number1 / number2);
 }

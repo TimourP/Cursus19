@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 13:00:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 10:56:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,34 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 
-float	div_zero(float number1, float number2)
+void	draw_player(t_ray *c_ray, const int xy_wh[4],
+			const int color, float angle)
 {
-	if (number2 == 0)
-		return (1);
-	else
-		return (number1 / number2);
+	int			i;
+	int			j;
+	const int	screen_height = c_ray->screen_h;
+	const int	screen_width = c_ray->screen_w;
+	float		a_v[4];
+
+	i = -1;
+	angle = angle + PI / 2;
+	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
+	{
+		j = -1;
+		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
+		{
+			if (i + j > xy_wh[2] / 2 && !(j - i + 2 > xy_wh[2] / 2))
+			{
+				a_v[0] = j + xy_wh[0] - xy_wh[2] / 2;
+				a_v[1] = i + xy_wh[1] - xy_wh[3] / 2;
+				a_v[2] = a_v[0] - xy_wh[0];
+				a_v[3] = a_v[1] - xy_wh[1];
+				a_v[0] = xy_wh[0] + a_v[2] * cos(angle) - a_v[3] * sin(angle);
+				a_v[1] = xy_wh[1] + a_v[2] * sin(angle) + a_v[3] * cos(angle);
+				draw_pixel(c_ray, a_v[0], a_v[1], color);
+			}
+		}
+	}
 }
 
 void	draw_all_lines(t_ray *c_ray)

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/22 10:52:36 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/27 11:35:43 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,10 @@ MOVES_SRCS = 	keyboard_entry.c \
 DRAW_SRCS = draw.c \
 			draw2.c \
 			game.c \
-			sky.c \
-			minimap.c \
+			sky_bonus.c \
+			minimap_bonus.c \
 			hud_bonus.c \
+
 
 SRCS	=	cub3d.c \
 			srcs/testing.c \
@@ -50,6 +51,16 @@ SRCS	=	cub3d.c \
 			$(addprefix srcs/raycasting/, ${RAYCASTING_SRCS}) \
 			$(addprefix srcs/moves/, ${MOVES_SRCS}) \
 			$(addprefix srcs/drawing/, ${DRAW_SRCS}) \
+
+BONUS_SRCS	=	cub3d.c \
+				srcs/testing.c \
+				get_next_line/get_next_line_utils.c \
+				get_next_line/get_next_line.c \
+				$(addprefix srcs/parsing/, ${PARSING_SRCS}) \
+				$(addprefix srcs/utils/, ${UTILS_SRCS}) \
+				$(addprefix srcs/raycasting/, ${RAYCASTING_SRCS}) \
+				$(addprefix srcs/moves/, ${MOVES_SRCS}) \
+				$(addprefix srcs/drawing/, ${DRAW_SRCS}) \
 
 LIBS = libmlx.a
 

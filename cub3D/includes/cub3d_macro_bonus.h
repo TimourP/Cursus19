@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_macro.h                                      :+:      :+:    :+:   */
+/*   cub3d_macro_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:45:09 by tpetit           ###   ########.fr       */
+/*   Created: 2021/04/27 10:36:33 by tpetit            #+#    #+#             */
+/*   Updated: 2021/04/27 10:36:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_MACRO_H
-# define CUB3D_MACRO_H
+#ifndef CUB3D_MACRO_BONUS_H
+# define CUB3D_MACRO_BONUS_H
 
 # define KEY_PRESS_EVENT 2
 # define KEY_RELEASE_EVENT 3
@@ -54,6 +54,10 @@
 # define MALLOC_ERROR 1
 # define FILE_ERROR 2
 # define PARSING_ERROR 3
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # ifndef LIGHT
 #  define LIGHT 0

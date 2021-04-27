@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:25:57 by tpetit           ###   ########.fr       */
+/*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
+/*   Updated: 2021/04/27 10:53:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	g_wall_color[4] = {COLOR_BLUE, COLOR_RED, COLOR_YELLOW, COLOR_WHITE};
 
@@ -95,6 +95,7 @@ int	draw_game(t_ray *c_ray)
 	ft_sprclear(&c_ray->start_list);
 	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
 	get_all_sprites(c_ray);
+	draw_sky(c_ray);
 	while (++i_v[0] < c_ray->screen_w)
 	{
 		side = i_v[0];

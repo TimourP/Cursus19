@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:34:24 by tpetit           ###   ########.fr       */
+/*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
+/*   Updated: 2021/04/27 10:40:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "cub3d_macro.h"
+# include <time.h>
+# include "cub3d_macro_bonus.h"
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 
@@ -46,6 +47,16 @@ typedef struct s_sprite
 	int			height;
 }				t_sprite;
 
+typedef struct s_bonus_images
+{
+	t_image		*good_food;
+	t_image		*good_health;
+	t_image		*bad_health;
+	t_image		*monster;
+	t_image		*other_sprite_0;
+	t_image		*other_sprite_1;
+}				t_bonus_images;
+
 typedef struct s_sprite_list
 {
 	t_sprite				*content;
@@ -63,6 +74,10 @@ typedef struct s_map
 	t_image		*west_t;
 	t_image		*east_t;
 	t_image		*sprite_t;
+	t_image		*heart_t;
+	t_image		*hunger_t;
+	t_image		*empty_heart_t;
+	t_image		*empty_hunger_t;
 	int			floor_t;
 	int			ceiling_t;
 	char		**map;
@@ -94,7 +109,14 @@ typedef struct s_ray
 	int				look_offset;
 	int				look_up;
 	int				look_down;
+	int				tic;
+	long int		last_frame;
+	float			player_speed;
 	float			*all_distances;
+	int				player_health;
+	int				player_hunger;
+	t_image			*sky;
+	t_bonus_images	*bonus_images;
 	t_sprite_list	*start_list;
 }				t_ray;
 
@@ -187,6 +209,9 @@ void			draw_rectangle(t_ray *c_ray, const int xy[2],
 					const int width_height[2], const int color);
 void			draw_empty_rectangle(t_ray *c_ray, const int xy_wh[4],
 					const int color, const int inner_width);
+void			draw_player(t_ray *c_ray, const int xy_wh[4],
+					const int color, float angle);
+int				minimap(t_ray *c_ray);
 void			draw_line(t_ray *c_ray, int x_y_l[3],
 					float angle, const int color);
 int				draw_game(t_ray *c_ray);
@@ -198,6 +223,9 @@ float			div_zero(float number1, float number2);
 void			draw_pixel(t_ray *c_ray, int x, int y, int color);
 void			get_pixel(t_image *image, int x,
 					int y, int *color);
+void			draw_sky(t_ray *c_ray);
 void			draw_sprite(t_ray *c_ray, t_sprite_list *c_list);
+void			draw_life_bar(t_ray *c_ray);
+void			draw_hunger_bar(t_ray *c_ray);
 
 #endif

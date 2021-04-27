@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw2.c                                            :+:      :+:    :+:   */
+/*   draw2_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:41:37 by tpetit           ###   ########.fr       */
+/*   Created: 2021/04/27 11:39:26 by tpetit            #+#    #+#             */
+/*   Updated: 2021/04/27 11:40:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
 {
@@ -50,9 +50,6 @@ void	draw_vertical_line(t_ray *c_ray, const int x,
 	const int	offset = (c_ray->screen_h - length) / 2 + c_ray->look_offset;
 
 	i = -1;
-	while (++i < offset && i < c_ray->screen_h)
-		draw_pixel(c_ray, x, i, c_ray->c_map->ceiling_t);
-	i = -1;
 	while (++i < length && i + offset < c_ray->screen_h)
 	{
 		if (i + offset >= 0)
@@ -60,8 +57,10 @@ void	draw_vertical_line(t_ray *c_ray, const int x,
 	}
 	i--;
 	while (++i + offset < c_ray->screen_h)
+	{
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x, i + offset, c_ray->c_map->floor_t);
+	}
 }
 
 void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
@@ -70,18 +69,17 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	int			i;
 	const float	texture_ratio = (float)x_len[1] / texture->height;
 	int			color;
-	const int	offset = (c_ray->screen_h - x_len[1]) / 2;
+	const int	offset = (c_ray->screen_h - x_len[1]) / 2
+		+ (c_ray->look_offset);
 	const int	texture_x = texture->width * y_value;
 
-	i = -1;
-	while (++i < offset && i < c_ray->screen_h)
-			draw_pixel(c_ray, x_len[0], i, c_ray->c_map->ceiling_t);
 	i = -1;
 	if (offset < 0)
 		i = -offset;
 	while (++i < x_len[1] && i + offset < c_ray->screen_h)
 	{
 		get_pixel(texture, texture_x, i / texture_ratio, &color);
+		color = shadow(color, (15 - c_ray->all_distances[x_len[0]]) / 15);
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x_len[0], i + offset, color);
 	}
@@ -89,6 +87,8 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	while (++i + offset < c_ray->screen_h)
 	{
 		color = c_ray->c_map->floor_t;
+		color = shadow(color, ((float)(i + offset - c_ray->look_offset)
+					- c_ray->screen_h / 2 - 26) / c_ray->screen_h * 2);
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x_len[0], i + offset, color);
 	}
@@ -112,7 +112,10 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 			{
 				get_pixel(c_list->content->img, (j - c_list->content->start_x + c_list->content->offset_x) / ratio, (i - c_list->content->start_y + c_list->content->offset_y) / ratio, &color);
 				if (color != 1193046 && c_list->content->distance < c_ray->all_distances[j])
+				{
+					color = shadow(color, (15 - c_list->content->distance) / 15);
 					draw_pixel(c_ray, j, i, color);
+				}
 			}
 		}
 		c_list = c_list->next;

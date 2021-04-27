@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 10:47:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 14:51:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 11:35:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	draw_life_bar(t_ray *c_ray)
 {

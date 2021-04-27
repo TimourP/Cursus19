@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   sprites_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:45:37 by tpetit           ###   ########.fr       */
+/*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
+/*   Updated: 2021/04/27 11:32:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
+
+t_image	*get_sprite_image(t_ray *c_ray, char c)
+{
+	if (c == '2')
+		return (c_ray->c_map->sprite_t);
+	if (c == '3')
+		return (c_ray->bonus_images->other_sprite_0);
+	if (c == '4')
+		return (c_ray->bonus_images->other_sprite_1);
+	if (c == 'a')
+		return (c_ray->bonus_images->good_food);
+	if (c == 'b')
+		return (c_ray->bonus_images->good_health);
+	if (c == 'c')
+		return (c_ray->bonus_images->bad_health);
+	return (c_ray->c_map->heart_t);
+}
 
 int	get_all_sprites(t_ray *c_ray)
 {
@@ -31,13 +48,15 @@ int	get_all_sprites(t_ray *c_ray)
 				float y_prim;
 				float angle = c_ray->player_angle + PI * 1.5;
 				float sprite_angle;
+				float x_add = (float)(c_ray->tic - 50) / 400 + 0.5;
 				const float total_angle = (PI / FOV) / PI * 180;
+				x_add = 0.5;
 				if (angle < 0)
 					angle += 2 * PI;
 				if (angle > 2 * PI)
 					angle -= 2 * PI;
-				x_prim = cos(angle) * (j + 0.5 - c_ray->player_posx) + sin(angle) * (i + 0.5 - c_ray->player_posy);
-				y_prim = - sin(angle) * (j + 0.5 - c_ray->player_posx) + cos(angle) * (i + 0.5 - c_ray->player_posy);
+				x_prim = cos(angle) * (j + x_add - c_ray->player_posx) + sin(angle) * (i + x_add - c_ray->player_posy);
+				y_prim = - sin(angle) * (j + x_add - c_ray->player_posx) + cos(angle) * (i + x_add - c_ray->player_posy);
 				sprite_angle = PI * 0.5 - atan(y_prim / x_prim);
 				sprite_angle = x_prim > 0 ? sprite_angle / PI * 180 : - (PI - sprite_angle) / PI * 180;
 				new_sprite = malloc(sizeof(t_sprite));
@@ -50,7 +69,7 @@ int	get_all_sprites(t_ray *c_ray)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;
 				new_sprite->end_x = new_sprite->start_x + new_sprite->height;
-				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2;
+				new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2 + c_ray->look_offset;
 				new_sprite->end_y = new_sprite->start_y + new_sprite->height;
 				if (new_sprite->end_x >= c_ray->screen_w)
 					new_sprite->end_x = c_ray->screen_w - 1;
