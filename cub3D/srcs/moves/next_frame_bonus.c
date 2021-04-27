@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 10:49:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 15:11:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,60 +111,51 @@ static void	reput_bonus(t_ray *c_ray, char bonus)
 	}
 }
 
-static void	proceed_next_frame(t_ray *c_ray, int bool)
+static void	proceed_next_frame(t_ray *c_ray)
 {
 	static int	decrease;
 	int			x;
 	int			y;
 	char		to_put;
 
-	if (bool || BONUS)
+	set_speed(c_ray);
+	x = c_ray->player_posx;
+	y = c_ray->player_posy;
+	if (is_in_str("abc", c_ray->c_map->map[y][x]))
 	{
-		if (BONUS)
-		{
-			set_speed(c_ray);
-			x = c_ray->player_posx;
-			y = c_ray->player_posy;
-			if (is_in_str("abc", c_ray->c_map->map[y][x]))
-			{
-				to_put = c_ray->c_map->map[y][x];
-				if (c_ray->c_map->map[y][x] == 'a')
-					c_ray->player_hunger += 1;
-				else if (c_ray->c_map->map[y][x] == 'b')
-					c_ray->player_health += 1;
-				else if (c_ray->c_map->map[y][x] == 'c')
-					c_ray->player_health -= 1;
-				c_ray->c_map->map[y][x] = '0';
-				reput_bonus(c_ray, to_put);
-			}
-		}
-		c_ray->tic = c_ray->tic + 1 - 2 * decrease;
-		if (c_ray->tic >= 100)
-			decrease = 1;
-		else if (c_ray->tic <= 0)
-			decrease = 0;
-		if (c_ray->tic == 50)
-		{
-			if (c_ray->player_hunger > 0)
-				c_ray->player_hunger -= 1;
-			else
-				c_ray->player_health -= 1;
-		}
-		if (c_ray->player_health == 0)
-		{
-			printf("You die...\n");
-			exit(0);
-		}
-		draw_game(c_ray);
-		if (BONUS)
-		{
-			minimap(c_ray);
-			draw_life_bar(c_ray);
-			draw_hunger_bar(c_ray);
-		}
-		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
-			c_ray->mlx_img, 0, 0);
+		to_put = c_ray->c_map->map[y][x];
+		if (c_ray->c_map->map[y][x] == 'a')
+			c_ray->player_hunger += 1;
+		else if (c_ray->c_map->map[y][x] == 'b')
+			c_ray->player_health += 1;
+		else if (c_ray->c_map->map[y][x] == 'c')
+			c_ray->player_health -= 1;
+		c_ray->c_map->map[y][x] = '0';
+		reput_bonus(c_ray, to_put);
 	}
+	c_ray->tic = c_ray->tic + 1 - 2 * decrease;
+	if (c_ray->tic >= 100)
+		decrease = 1;
+	else if (c_ray->tic <= 0)
+		decrease = 0;
+	if (c_ray->tic == 50)
+	{
+		if (c_ray->player_hunger > 0)
+			c_ray->player_hunger -= 1;
+		else
+			c_ray->player_health -= 1;
+	}
+	if (c_ray->player_health == 0)
+	{
+		printf("You die...\n");
+		exit(0);
+	}
+	draw_game(c_ray);
+	minimap(c_ray);
+	draw_life_bar(c_ray);
+	draw_hunger_bar(c_ray);
+	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
+		c_ray->mlx_img, 0, 0);
 }
 
 int	get_next_frame(t_ray *c_ray)
@@ -183,9 +174,7 @@ int	get_next_frame(t_ray *c_ray)
 	if (c_ray->go_right)
 		check_next_move(c_ray, -c_ray->player_delx, c_ray->player_dely);
 	proceed_angles_look(c_ray);
-	proceed_next_frame(c_ray, last_x != c_ray->player_posx
-		|| last_y != c_ray->player_posy || last_angle != c_ray->player_angle
-		|| last_offset != c_ray->look_offset);
+	proceed_next_frame(c_ray);
 	if ((last_x != c_ray->player_posx
 		|| last_y != c_ray->player_posy) && c_ray->tic % 8 == 0)
 		play_foot_step();

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:34:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 15:19:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,20 @@ typedef struct s_map
 	char		**map;
 }				t_map;
 
+typedef struct s_bonus_images
+{
+	t_image		*heart_t;
+	t_image		*hunger_t;
+	t_image		*empty_heart_t;
+	t_image		*empty_hunger_t;
+	t_image		*good_food;
+	t_image		*good_health;
+	t_image		*bad_health;
+	t_image		*monster;
+	t_image		*other_sprite_0;
+	t_image		*other_sprite_1;
+}				t_bonus_images;
+
 typedef struct s_ray
 {
 	t_map			*c_map;
@@ -94,7 +108,14 @@ typedef struct s_ray
 	int				look_offset;
 	int				look_up;
 	int				look_down;
+	int				tic;
+	long int		last_frame;
+	float			player_speed;
 	float			*all_distances;
+	int				player_health;
+	int				player_hunger;
+	t_image			*sky;
+	t_bonus_images	*bonus_images;
 	t_sprite_list	*start_list;
 }				t_ray;
 

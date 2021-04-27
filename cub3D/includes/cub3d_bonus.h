@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 10:40:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 14:10:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct s_sprite
 
 typedef struct s_bonus_images
 {
+	t_image		*heart_t;
+	t_image		*hunger_t;
+	t_image		*empty_heart_t;
+	t_image		*empty_hunger_t;
 	t_image		*good_food;
 	t_image		*good_health;
 	t_image		*bad_health;
@@ -74,10 +78,6 @@ typedef struct s_map
 	t_image		*west_t;
 	t_image		*east_t;
 	t_image		*sprite_t;
-	t_image		*heart_t;
-	t_image		*hunger_t;
-	t_image		*empty_heart_t;
-	t_image		*empty_hunger_t;
 	int			floor_t;
 	int			ceiling_t;
 	char		**map;

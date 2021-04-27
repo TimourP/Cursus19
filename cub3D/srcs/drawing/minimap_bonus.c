@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 10:56:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 12:00:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 const int	g_minimap_square_w_h[2] = {MINI_SQUARE, MINI_SQUARE};
 const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT

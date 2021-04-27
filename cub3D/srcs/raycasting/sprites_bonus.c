@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:32:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/27 14:48:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_image	*get_sprite_image(t_ray *c_ray, char c)
 		return (c_ray->bonus_images->good_health);
 	if (c == 'c')
 		return (c_ray->bonus_images->bad_health);
-	return (c_ray->c_map->heart_t);
+	return (c_ray->bonus_images->heart_t);
 }
 
 int	get_all_sprites(t_ray *c_ray)
@@ -64,7 +64,7 @@ int	get_all_sprites(t_ray *c_ray)
 				new_sprite->offset_y = 0;
 				new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
 				new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
-				new_sprite->img = c_ray->c_map->sprite_t;
+				new_sprite->img = get_sprite_image(c_ray, c_ray->c_map->map[i][j]);
 				if (y_prim < 0)
 					new_sprite->height = 0;
 				new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;
