@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 19:42:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:52:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_ray
 	int				look_offset;
 	int				look_up;
 	int				look_down;
+	int				shoot;
 	int				tic;
 	long int		last_frame;
 	long int		last_remove_life;

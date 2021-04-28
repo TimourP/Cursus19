@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:11:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:53:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	get_monsters(t_ray *c_ray, t_monster_list *lst)
 			new_sprite->height = 0;
 		new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;
 		new_sprite->end_x = new_sprite->start_x + new_sprite->height;
-		new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2 + c_ray->look_offset;
+		new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2 + c_ray->look_offset - c_ray->tic + 50;
 		new_sprite->end_y = new_sprite->start_y + new_sprite->height;
 		if (new_sprite->end_x >= c_ray->screen_w)
 			new_sprite->end_x = c_ray->screen_w - 1;

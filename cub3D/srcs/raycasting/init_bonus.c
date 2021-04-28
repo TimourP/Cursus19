@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:18:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:48:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_up = 0;
 	c_ray->look_down = 0;
 	c_ray->tic = 0;
+	c_ray->shoot = 0;
 	c_ray->player_health = 10;
 	c_ray->player_hunger = 10;
 	c_ray->last_remove_life = 0;

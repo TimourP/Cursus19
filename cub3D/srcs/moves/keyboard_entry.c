@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 19:02:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:48:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	key_press(int key, t_ray *c_ray)
 		c_ray->look_up = 1;
 	else if (key == KEY_DOWN_ARROW)
 		c_ray->look_down = 1;
+	else if (key == KEY_SPACE)
+		c_ray->shoot = 1;
 	return (1);
 }
 

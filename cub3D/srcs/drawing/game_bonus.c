@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:36:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:42:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	draw_game(t_ray *c_ray)
 			draw_vertical_line(c_ray, i_v[0], i_v[1],
 				g_wall_color[side]);
 	}
-	ft_monsterprint(c_ray->monster_list);
 	draw_sprite(c_ray, c_ray->start_list);
 	return (0);
 }
