@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 16:06:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 19:42:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ typedef struct s_image
 	int			width;
 	int			height;
 }				t_image;
+
+typedef struct s_monster
+{
+	float	x;
+	float	y;
+	t_image	*img;
+}				t_monster;
+
+typedef struct s_monster_list
+{
+	t_monster				*content;
+	struct s_monster_list	*next;
+}				t_monster_list;
 
 typedef struct s_sprite
 {
@@ -118,6 +131,7 @@ typedef struct s_ray
 	t_image			*sky;
 	t_bonus_images	*bonus_images;
 	t_sprite_list	*start_list;
+	t_monster_list	*monster_list;
 }				t_ray;
 
 typedef struct s_ray_calc

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:39:24 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 14:42:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:05:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (!(init_raycasting(c_ray, c_map)))
 		return (-1);
+	//system("afplay sounds/ambiance.mp3 &>/dev/null &");
 	mlx_loop(c_ray->mlx_ptr);
 	return (0);
 }

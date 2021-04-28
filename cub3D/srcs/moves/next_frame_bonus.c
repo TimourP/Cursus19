@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 16:22:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 19:31:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,17 @@ static void	proceed_next_frame(t_ray *c_ray)
 	{
 		to_put = c_ray->c_map->map[y][x];
 		if (c_ray->c_map->map[y][x] == 'a')
+		{
 			c_ray->player_hunger += 1;
+			system("afplay sounds/eat2.mp3 &>/dev/null &");
+		}
 		else if (c_ray->c_map->map[y][x] == 'b')
 			c_ray->player_health += 1;
 		else if (c_ray->c_map->map[y][x] == 'c')
+		{
 			c_ray->player_health -= 1;
+			system("afplay sounds/classic_hurt.mp3 &>/dev/null &");
+		}
 		c_ray->c_map->map[y][x] = '0';
 		reput_bonus(c_ray, to_put);
 	}
@@ -117,6 +123,8 @@ static void	proceed_next_frame(t_ray *c_ray)
 	if (c_ray->player_health == 0)
 	{
 		printf("You die...\n");
+		system("killall afplay");
+		system("afplay sounds/end_game.mp3 &>/dev/null &");
 		exit(0);
 	}
 	draw_game(c_ray);

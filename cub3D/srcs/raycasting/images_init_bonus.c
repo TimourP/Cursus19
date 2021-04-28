@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:45:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 14:01:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:13:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	get_other_sprites(t_ray *c_ray, t_map *c_map)
 				&bon->monster->edian);
 	}
 	bon->other_sprite_0->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			"images/tree.xpm", &bon->other_sprite_0->width,
+			"images/ghost.xpm", &bon->other_sprite_0->width,
 			&bon->other_sprite_0->height);
 	if (bon->other_sprite_0->mlx_img)
 	{

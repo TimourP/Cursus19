@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 16:10:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:06:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ typedef struct s_sprite
 	int			offset_y;
 	int			height;
 }				t_sprite;
+
+typedef struct s_monster
+{
+	float	x;
+	float	y;
+	t_image	*img;
+}				t_monster;
+
+typedef struct s_monster_list
+{
+	t_monster				*content;
+	struct s_monster_list	*next;
+}				t_monster_list;
 
 typedef struct s_bonus_images
 {
@@ -119,6 +132,7 @@ typedef struct s_ray
 	t_image			*sky;
 	t_bonus_images	*bonus_images;
 	t_sprite_list	*start_list;
+	t_monster_list	*monster_list;
 }				t_ray;
 
 typedef struct s_ray_calc
@@ -175,6 +189,10 @@ void			ft_spradd_back(t_sprite_list **alst, t_sprite_list *new);
 void			ft_sprclear(t_sprite_list **lst);
 t_sprite_list	*ft_sprnew(t_sprite *content);
 void			ft_sprprint(t_sprite_list *lst);
+void			ft_monster_add_back(t_monster_list **alst, t_monster_list *new);
+void			ft_monster_clear(t_monster_list **lst);
+t_monster_list	*ft_monster_new(t_monster *content);
+void			ft_monsterprint(t_monster_list *lst);
 
 /*
 ** raycasting
@@ -192,6 +210,7 @@ int				get_line_height(t_ray *c_ray, float value, int *side,
 					float *text_value);
 int				get_all_sprites(t_ray *c_ray);
 void			ft_sprsort(t_sprite_list *start);
+int				get_monsters(t_ray *c_ray, t_monster_list *lst);
 
 /*
 ** moves

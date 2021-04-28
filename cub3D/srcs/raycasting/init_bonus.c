@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 16:07:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:18:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,33 @@ int	get_sky(t_ray *c_ray)
 	return (1);
 }
 
+int	init_monsters_list(t_ray *c_ray)
+{
+	int				i;
+	int				j;
+	t_monster		*new_monster;
+
+	i = -1;
+	c_ray->monster_list = NULL;
+	while (++i < c_ray->c_map->map_h)
+	{
+		j = -1;
+		while (++j < c_ray->c_map->map_w)
+		{
+			if (c_ray->c_map->map[i][j] == 'M')
+			{
+				new_monster = malloc(sizeof(t_monster));
+				new_monster->x = j + 0.5;
+				new_monster->y = i + 0.5;
+				new_monster->img = c_ray->bonus_images->other_sprite_0;
+				ft_monster_add_back(&c_ray->monster_list, ft_monster_new(new_monster));
+				c_ray->c_map->map[i][j] = '0';
+			}
+		}
+	}
+	return (0);
+}
+
 int	init_raycasting(t_ray *c_ray, t_map *c_map)
 {
 	int	max_height;
@@ -132,6 +159,7 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 	get_sky(c_ray);
 	if (!(get_images(c_ray, c_map)))
 		return (0);
+	init_monsters_list(c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, key_press, c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_RELEASE_EVENT, 1L << 1, key_release, c_ray);
 	mlx_hook(c_ray->mlx_win, CROSS_BTN_EVENT, 1L << 17, exit_button, c_ray);

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/28 16:02:21 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/28 19:58:02 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ UTILS_BONUS_SRCS =	free_and_return.c \
 					free_struct.c \
 					error.c \
 					sprite_list.c \
+					monster_list_bonus.c \
 
 RAYCASTING_SRCS = 	init.c \
 					images_init.c \

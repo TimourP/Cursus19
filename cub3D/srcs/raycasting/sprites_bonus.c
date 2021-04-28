@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 14:48:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 20:11:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,62 @@ t_image	*get_sprite_image(t_ray *c_ray, char c)
 	return (c_ray->bonus_images->heart_t);
 }
 
+int	get_monsters(t_ray *c_ray, t_monster_list *lst)
+{
+	t_sprite	*new_sprite;
+
+	while (lst)
+	{
+		float x_prim;
+		float y_prim;
+		float angle = c_ray->player_angle + PI * 1.5;
+		float sprite_angle;
+		const float total_angle = (PI / FOV) / PI * 180;
+		if (angle < 0)
+			angle += 2 * PI;
+		if (angle > 2 * PI)
+			angle -= 2 * PI;
+		x_prim = cos(angle) * (lst->content->x - c_ray->player_posx) + sin(angle) * (lst->content->y - c_ray->player_posy);
+		y_prim = - sin(angle) * (lst->content->x - c_ray->player_posx) + cos(angle) * (lst->content->y - c_ray->player_posy);
+		sprite_angle = PI * 0.5 - atan(y_prim / x_prim);
+		sprite_angle = x_prim > 0 ? sprite_angle / PI * 180 : - (PI - sprite_angle) / PI * 180;
+		new_sprite = malloc(sizeof(t_sprite));
+		new_sprite->offset_x = 0;
+		new_sprite->offset_y = 0;
+		new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
+		new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
+		new_sprite->img = lst->content->img;
+		if (y_prim < 0)
+			new_sprite->height = 0;
+		new_sprite->start_x = (c_ray->screen_w - new_sprite->height) / 2 - sprite_angle / total_angle * c_ray->screen_w;
+		new_sprite->end_x = new_sprite->start_x + new_sprite->height;
+		new_sprite->start_y = (c_ray->screen_h - new_sprite->height) / 2 + c_ray->look_offset;
+		new_sprite->end_y = new_sprite->start_y + new_sprite->height;
+		if (new_sprite->end_x >= c_ray->screen_w)
+			new_sprite->end_x = c_ray->screen_w - 1;
+		if (new_sprite->start_x < 0)
+		{
+			new_sprite->offset_x = 0 - new_sprite->start_x;
+			new_sprite->start_x = 0;
+		}
+		if (new_sprite->end_y >= c_ray->screen_h)
+			new_sprite->end_y = c_ray->screen_h - 1;
+		if (new_sprite->start_y < 0)
+		{
+			new_sprite->offset_y = 0 - new_sprite->start_y;
+			new_sprite->start_y = 0;
+		}
+		ft_spradd_back(&c_ray->start_list, ft_sprnew(new_sprite));
+		lst = lst->next;
+	}
+	return (1);
+}
+
 int	get_all_sprites(t_ray *c_ray)
 {
 	int			i;
 	int			j;
 	t_sprite	*new_sprite;
-	float		x_diff;
 
 	i = -1;
 	while (++i < c_ray->c_map->map_h)
@@ -89,6 +139,7 @@ int	get_all_sprites(t_ray *c_ray)
 			}
 		}
 	}
+	get_monsters(c_ray, c_ray->monster_list);
 	ft_sprsort(c_ray->start_list);
 	return (1);
 }
