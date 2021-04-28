@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/27 14:39:44 by tpetit           ###   ########.fr        #
+#    Updated: 2021/04/28 16:02:21 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ MOVES_SRCS = 	keyboard_entry.c \
 				next_frame.c \
 
 MOVES_BONUS_SRCS = 	keyboard_entry.c \
-					next_frame_BONUS.c \
+					next_frame_bonus.c \
+					next_frame_utils_bonus.c \
 
 DRAW_SRCS = draw.c \
 			draw2.c \

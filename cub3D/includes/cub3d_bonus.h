@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 14:10:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 16:10:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_ray
 	int				look_down;
 	int				tic;
 	long int		last_frame;
+	long int		last_remove_life;
 	float			player_speed;
 	float			*all_distances;
 	int				player_health;
@@ -200,6 +201,10 @@ int				key_press(int key, t_ray *c_ray);
 int				key_release(int key, t_ray *c_ray);
 int				get_next_frame(t_ray *c_ray);
 int				exit_button(t_ray *c_ray);
+int				random_between(int min, int max);
+void			play_foot_step(void);
+void			set_speed(t_ray *c_ray);
+long int		get_time(void);
 
 /*
 ** drawing

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:36:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 14:55:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 16:20:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define KEY_RELEASE_EVENT 3
 # define CROSS_BTN_EVENT 17
 
-# define PLAYER_SPEED 0.1
-# define PLAYER_BONUS_SPEED 3
+# define PLAYER_SPEED 3
+# define LIFE_DECREASE_RATE 2
 # define PLAYER_ROTATION 0.05
 # define OFFSET_SPEED 20
 # define MAX_OFFSET 400

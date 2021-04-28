@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:41:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 15:53:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 
 	i = -1;
 	while (++i < offset && i < c_ray->screen_h)
-			draw_pixel(c_ray, x_len[0], i, c_ray->c_map->ceiling_t);
+		draw_pixel(c_ray, x_len[0], i, c_ray->c_map->ceiling_t);
 	i = -1;
 	if (offset < 0)
 		i = -offset;
@@ -110,8 +110,12 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 			j = c_list->content->start_x - 1;
 			while (++j < c_list->content->end_x)
 			{
-				get_pixel(c_list->content->img, (j - c_list->content->start_x + c_list->content->offset_x) / ratio, (i - c_list->content->start_y + c_list->content->offset_y) / ratio, &color);
-				if (color != 1193046 && c_list->content->distance < c_ray->all_distances[j])
+				get_pixel(c_list->content->img, (j
+						- c_list->content->start_x + c_list->content->offset_x)
+					/ ratio, (i - c_list->content->start_y
+						+ c_list->content->offset_y) / ratio, &color);
+				if (color != 1193046 && c_list->content->distance
+					< c_ray->all_distances[j])
 					draw_pixel(c_ray, j, i, color);
 			}
 		}

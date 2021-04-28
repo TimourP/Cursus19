@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 15:11:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 16:22:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,40 +58,6 @@ static void	proceed_angles_look(t_ray *c_ray)
 		c_ray->look_offset -= OFFSET_SPEED;
 }
 
-void	set_speed(t_ray *c_ray)
-{
-	struct timespec		spec;
-	long int			time;
-	float				fps;
-
-	clock_gettime(CLOCK_REALTIME, &spec);
-	time = (long int)(spec.tv_sec * 1000 + round(spec.tv_nsec / 1.0e6));
-	fps = 600.0 / (int)(time - c_ray->last_frame);
-	c_ray->last_frame = time;
-	c_ray->player_speed = PLAYER_BONUS_SPEED / fps;
-	if (c_ray->player_speed < 0)
-		c_ray->player_speed = 0;
-	if (c_ray->player_speed > 2)
-		c_ray->player_speed = 2;
-	c_ray->player_delx = sin(c_ray->player_angle) * c_ray->player_speed;
-	c_ray->player_dely = cos(c_ray->player_angle) * c_ray->player_speed;
-}
-
-int	random_between(int min, int max)
-{
-	const float	ra = (float)rand() / INT_MAX;
-
-	return ((max - min + 1) * ra + min);
-}
-
-static void	play_foot_step(void)
-{
-	if (random_between(0, 1))
-		system("afplay sounds/walk.mp3 &>/dev/null &");
-	else
-		system("afplay sounds/walk2.mp3 &>/dev/null &");
-}
-
 static void	reput_bonus(t_ray *c_ray, char bonus)
 {
 	int	put;
@@ -138,12 +104,15 @@ static void	proceed_next_frame(t_ray *c_ray)
 		decrease = 1;
 	else if (c_ray->tic <= 0)
 		decrease = 0;
-	if (c_ray->tic == 50)
+	if (c_ray->last_remove_life == 0)
+		c_ray->last_remove_life = get_time();
+	else if ((float)(get_time() - c_ray->last_remove_life) / 1000 > LIFE_DECREASE_RATE)
 	{
 		if (c_ray->player_hunger > 0)
 			c_ray->player_hunger -= 1;
 		else
 			c_ray->player_health -= 1;
+		c_ray->last_remove_life = get_time();
 	}
 	if (c_ray->player_health == 0)
 	{
@@ -176,7 +145,7 @@ int	get_next_frame(t_ray *c_ray)
 	proceed_angles_look(c_ray);
 	proceed_next_frame(c_ray);
 	if ((last_x != c_ray->player_posx
-		|| last_y != c_ray->player_posy) && c_ray->tic % 8 == 0)
+			|| last_y != c_ray->player_posy) && c_ray->tic % 8 == 0)
 		play_foot_step();
 	last_x = c_ray->player_posx;
 	last_y = c_ray->player_posy;

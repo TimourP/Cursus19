@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 15:19:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/28 16:06:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_ray
 	int				look_down;
 	int				tic;
 	long int		last_frame;
+	long int		last_remove_life;
 	float			player_speed;
 	float			*all_distances;
 	int				player_health;
