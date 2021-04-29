@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:53:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:59:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	get_monsters(t_ray *c_ray, t_monster_list *lst)
 		new_sprite = malloc(sizeof(t_sprite));
 		new_sprite->offset_x = 0;
 		new_sprite->offset_y = 0;
+		new_sprite->id = lst->content->id;
+		new_sprite->shot_count = lst->content->shot_count;
 		new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
 		new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
 		new_sprite->img = lst->content->img;
@@ -112,6 +114,8 @@ int	get_all_sprites(t_ray *c_ray)
 				new_sprite = malloc(sizeof(t_sprite));
 				new_sprite->offset_x = 0;
 				new_sprite->offset_y = 0;
+				new_sprite->id = 0;
+				new_sprite->shot_count = 0;
 				new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
 				new_sprite->height = c_ray->screen_h / new_sprite->distance * 1.3;
 				new_sprite->img = get_sprite_image(c_ray, c_ray->c_map->map[i][j]);

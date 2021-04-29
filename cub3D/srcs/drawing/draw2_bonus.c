@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:39:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 15:59:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 12:13:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,20 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	}
 }
 
+int	red_color(int color, int red_value)
+{
+	const int	current_red_value = (int)(((color & 0x00FF0000) >> 16));
+	int	new_value;
+
+	new_value = current_red_value + red_value * 50;
+	if (new_value > 255)
+		new_value = 255;
+	return ((new_value) << 16)
+			| (int)(((color & 0x0000FF00)))
+			| (int)((color & 0x000000FF));
+	
+}
+
 void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 {
 	int		i;
@@ -113,7 +127,7 @@ void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 				get_pixel(c_list->content->img, (j - c_list->content->start_x + c_list->content->offset_x) / ratio, (i - c_list->content->start_y + c_list->content->offset_y) / ratio, &color);
 				if (color != 1193046 && c_list->content->distance < c_ray->all_distances[j])
 				{
-					color = shadow(color, (15 - c_list->content->distance) / 15);
+					color = shadow(red_color(color, c_list->content->shot_count), (15 - c_list->content->distance) / 15);
 					draw_pixel(c_ray, j, i, color);
 				}
 			}

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:52:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:58:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_monster
 {
 	float	x;
 	float	y;
+	int		id;
 	t_image	*img;
 }				t_monster;
 
@@ -57,6 +58,8 @@ typedef struct s_sprite
 	int			offset_x;
 	int			offset_y;
 	int			height;
+	int			id;
+	int			shot_count;
 }				t_sprite;
 
 typedef struct s_sprite_list

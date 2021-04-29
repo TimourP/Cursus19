@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:48:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:28:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,10 @@ int	init_monsters_list(t_ray *c_ray)
 	int				i;
 	int				j;
 	t_monster		*new_monster;
+	int				index;
 
 	i = -1;
+	index = 0;
 	c_ray->monster_list = NULL;
 	while (++i < c_ray->c_map->map_h)
 	{
@@ -126,8 +128,11 @@ int	init_monsters_list(t_ray *c_ray)
 				new_monster->x = j + 0.5;
 				new_monster->y = i + 0.5;
 				new_monster->img = c_ray->bonus_images->other_sprite_0;
+				new_monster->id = index;
+				new_monster->shot_count = 0;
 				ft_monster_add_back(&c_ray->monster_list, ft_monster_new(new_monster));
 				c_ray->c_map->map[i][j] = '0';
+				index++;
 			}
 		}
 	}

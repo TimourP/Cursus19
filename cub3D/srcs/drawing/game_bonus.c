@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:42:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:52:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,43 @@ static t_image	*text_side(t_ray *c_ray, int side)
 		return (c_ray->c_map->west_t);
 }
 
+void	get_shot(t_ray *c_ray, t_sprite_list *s_lst, t_monster_list *m_lst)
+{
+	int	id;
+	t_sprite *elem;
+	const int	x = c_ray->screen_w / 2;
+	const int	y = c_ray->screen_h / 2;
+
+	c_ray->shoot = 0;
+	id = -1;
+	system("afplay sounds/gun_shot.mp3 &>/dev/null &");
+	while (s_lst)
+	{
+		if(s_lst->content->id != -1)
+		{
+			elem = s_lst->content;
+			if (elem->start_x < x && elem->end_x > x && elem->start_y < y && elem->end_y > y && c_ray->all_distances[x] > elem->distance)
+				id = elem->id;
+		}
+		s_lst = s_lst->next;
+	}
+	while (m_lst)
+	{
+		if (id != -1 && m_lst->content->id == id)
+		{
+			m_lst->content->shot_count = m_lst->content->shot_count + 1;
+			if (m_lst->content->shot_count > 4)
+			{
+				m_lst->content->x = 0;
+				m_lst->content->y = 0;
+				m_lst->content->shot_count = 0;
+			}
+		}
+		m_lst = m_lst->next;
+	}
+	ft_monsterprint(c_ray->monster_list);
+}
+
 int	draw_game(t_ray *c_ray)
 {
 	int			i_v[2];
@@ -108,5 +145,7 @@ int	draw_game(t_ray *c_ray)
 				g_wall_color[side]);
 	}
 	draw_sprite(c_ray, c_ray->start_list);
+	if (c_ray->shoot)
+		get_shot(c_ray, c_ray->start_list, c_ray->monster_list);
 	return (0);
 }

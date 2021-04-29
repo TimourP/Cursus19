@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 19:45:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 19:47:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:33:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	ft_monsterprint(t_monster_list *lst)
 {
 	while (lst && lst->next)
 	{
-		printf("x: %f\ty%f -> ",
-			lst->content->x, lst->content->y);
+		printf("x: %f\ty: %f\tcount: %d -> ",
+			lst->content->x, lst->content->y, lst->content->shot_count);
 		lst = lst->next;
 	}
 	if (lst)
 	{
-		printf("x: %f\ty%f\n",
-			lst->content->x, lst->content->y);
+		printf("x: %f\ty: %f\tcount: %d\n",
+			lst->content->x, lst->content->y, lst->content->shot_count);
 	}
 }
