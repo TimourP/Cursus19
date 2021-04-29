@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 11:28:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 13:32:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,34 @@ int	init_monsters_list(t_ray *c_ray)
 	return (0);
 }
 
+int	move_mouse(int x, int y, t_ray *c_ray)
+{
+	if (x > 0 && x < c_ray->screen_w / 2.3)
+		c_ray->turn_left = 1;
+	else
+		c_ray->turn_left = 0;
+	if (x < c_ray->screen_w && x > c_ray->screen_w - c_ray->screen_w / 2.3)
+		c_ray->turn_right = 1;
+	else
+		c_ray->turn_right = 0;
+	if (y > 0 && y < c_ray->screen_h / 2.3)
+		c_ray->look_up = 1;
+	else
+		c_ray->look_up = 0;
+	if (y < c_ray->screen_h && y > c_ray->screen_h - c_ray->screen_h / 2.3)
+		c_ray->look_down = 1;
+	else
+		c_ray->look_down = 0;
+	return (1);
+}
+
+int test(int btn, int x, int y, t_ray *c_ray)
+{
+	if (btn == 1)
+		c_ray->shoot = 1;
+	return (1);
+}
+
 int	init_raycasting(t_ray *c_ray, t_map *c_map)
 {
 	int	max_height;
@@ -169,6 +197,8 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 	mlx_hook(c_ray->mlx_win, KEY_PRESS_EVENT, 1L << 0, key_press, c_ray);
 	mlx_hook(c_ray->mlx_win, KEY_RELEASE_EVENT, 1L << 1, key_release, c_ray);
 	mlx_hook(c_ray->mlx_win, CROSS_BTN_EVENT, 1L << 17, exit_button, c_ray);
+	mlx_hook(c_ray->mlx_win, 6, 1L << 6, move_mouse, c_ray);
+	mlx_hook(c_ray->mlx_win, 4, 1L << 2, test, c_ray);
 	mlx_loop_hook(c_ray->mlx_ptr, get_next_frame, c_ray);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 11:52:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 13:51:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	get_shot(t_ray *c_ray, t_sprite_list *s_lst, t_monster_list *m_lst)
 		}
 		m_lst = m_lst->next;
 	}
-	ft_monsterprint(c_ray->monster_list);
 }
 
 int	draw_game(t_ray *c_ray)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:12:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/04/29 13:56:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	set_steps(t_ray *c_ray, t_ray_calc *calc)
 
 void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 {
+	const int	x = c_ray->player_posx;
+	const int	y = c_ray->player_posy;
+
 	calc->hit = 0;
 	while (calc->hit == 0)
 	{
@@ -67,7 +70,9 @@ void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 			calc->side = 1;
 		}
 		if (calc->mapx < 0 || calc->mapy < 0
-			|| !is_in_str("0234abcNSEWM", c_ray->c_map->map[calc->mapy][calc->mapx]))
+			|| !is_in_str("0234abcNSEWMA", c_ray->c_map->map[calc->mapy][calc->mapx]))
+			calc->hit = 1;
+		if (calc->mapx < 0 || calc->mapy < 0 || (c_ray->c_map->map[calc->mapy][calc->mapx] == 'A' && c_ray->c_map->map[y][x] != 'A'))
 			calc->hit = 1;
 	}
 }
