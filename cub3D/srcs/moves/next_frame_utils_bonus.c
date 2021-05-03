@@ -6,55 +6,62 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 16:01:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 20:38:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 12:46:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-int	random_between(int min, int max)
+static void	set_ratios(float *ratio_x, float *ratio_y, float d_xy[2])
 {
-	const float	ra = (float)rand() / INT_MAX;
-
-	return ((max - min + 1) * ra + min);
+	if (fabs(d_xy[0]) > fabs(d_xy[1]))
+	{
+		*ratio_x = 1;
+		*ratio_y = fabs(d_xy[1]) / fabs(d_xy[0]);
+	}
+	else
+	{
+		*ratio_x = fabs(d_xy[0]) / fabs(d_xy[1]);
+		*ratio_y = 1;
+	}
 }
 
-void	play_foot_step(void)
+static void	set_moves(float d_xy[2], float speed, float *m_x, float *m_y)
 {
-	if (random_between(0, 1))
-		system("afplay sounds/walk.mp3 &>/dev/null &");
+	if (fabs(d_xy[0]) > speed)
+		*m_x = speed;
 	else
-		system("afplay sounds/walk2.mp3 &>/dev/null &");
+		*m_x = d_xy[0];
+	if (fabs(d_xy[1]) > speed)
+		*m_y = speed;
+	else
+		*m_y = d_xy[1];
 }
 
 void	move_monsters(t_ray *c_ray, t_monster_list *lst)
 {
-	float	dx;
-	float	dy;
-	float	move_x;
-	float	move_y;
-	const float speed = c_ray->player_speed / 4;
-	float	ratio_x;
-	float	ratio_y;
+	float		d_xy[2];
+	float		m_xy[2];
+	const float	speed = c_ray->player_speed / 4;
+	float		ratio_x;
+	float		ratio_y;
 
 	while (lst)
 	{
-		dx = c_ray->player_posx - lst->content->x;
-		dy = c_ray->player_posy - lst->content->y;
-		ratio_x = fabs(dx) > fabs(dy) ? 1 : fabs(dx) / fabs(dy);
-		ratio_y = fabs(dx) > fabs(dy) ? fabs(dy) / fabs(dx) : 1;
-		if (sqrt(pow(dx, 2) + pow(dy, 2)) > 2)
+		d_xy[0] = c_ray->player_posx - lst->content->x;
+		d_xy[1] = c_ray->player_posy - lst->content->y;
+		set_ratios(&ratio_x, &ratio_y, d_xy);
+		if (sqrt(pow(d_xy[0], 2) + pow(d_xy[1], 2)) > 2)
 		{
-			move_x = fabs(dx) > speed ? speed : dx;
-			move_y = fabs(dy) > speed ? speed : dy;
-			if (dx < 0)
-				lst->content->x = lst->content->x - move_x * ratio_x;
+			set_moves(d_xy, speed, &m_xy[0], &m_xy[1]);
+			if (d_xy[0] < 0)
+				lst->content->x = lst->content->x - m_xy[0] * ratio_x;
 			else
-				lst->content->x = lst->content->x + move_x * ratio_x;
-			if (dy < 0)
-				lst->content->y = lst->content->y - move_y * ratio_y;
+				lst->content->x = lst->content->x + m_xy[0] * ratio_x;
+			if (d_xy[1] < 0)
+				lst->content->y = lst->content->y - m_xy[1] * ratio_y;
 			else
-				lst->content->y = lst->content->y + move_y * ratio_y;	
+				lst->content->y = lst->content->y + m_xy[1] * ratio_y;
 		}
 		lst = lst->next;
 	}

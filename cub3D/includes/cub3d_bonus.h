@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 12:10:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 12:27:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ int				random_between(int min, int max);
 void			play_foot_step(void);
 void			set_speed(t_ray *c_ray);
 long int		get_time(void);
+void			proceed_consumable_sprites(t_ray *c_ray);
+void			death(t_ray *c_ray);
 
 /*
 ** drawing
