@@ -12,7 +12,6 @@
 **   MinilibX -  Please report bugs
 */
 
-
 /*
 **
 ** This library is a simple framework to help 42 students
@@ -34,18 +33,15 @@
 **
 */
 
-
 #ifndef MLX_H
 
-#define	MLX_H
-
+# define	MLX_H
 
 void	*mlx_init();
 /*
 **  needed before everything else.
 **  return (void *)0 if failed
 */
-
 
 /*
 ** Basic actions
@@ -63,7 +59,6 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 **  color is 0xAARRGGBB format
 **  x and y must fit into the size of the window, no control is done on the values
 */
-
 
 /*
 ** Image stuff
@@ -83,7 +78,6 @@ int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
 				int x, int y);
 unsigned int	mlx_get_color_value(void *mlx_ptr, int color);
 
-
 /*
 ** dealing with Events
 */
@@ -95,7 +89,6 @@ int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop (void *mlx_ptr);
 
-
 /*
 **  hook funct are called as follow :
 **
@@ -105,7 +98,6 @@ int	mlx_loop (void *mlx_ptr);
 **   loop_hook(void *param);
 **
 */
-
 
 /*
 **  Usually asked...
@@ -141,9 +133,9 @@ int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);
 int	mlx_do_sync(void *mlx_ptr);
 
-#define MLX_SYNC_IMAGE_WRITABLE		1
-#define MLX_SYNC_WIN_FLUSH_CMD		2
-#define MLX_SYNC_WIN_CMD_COMPLETED	3
+# define MLX_SYNC_IMAGE_WRITABLE		1
+# define MLX_SYNC_WIN_FLUSH_CMD		2
+# define MLX_SYNC_WIN_CMD_COMPLETED	3
 int	mlx_sync(int cmd, void *param);
 /*
 ** image_writable can loop forever if no flush occurred. Flush is always done by mlx_loop.
