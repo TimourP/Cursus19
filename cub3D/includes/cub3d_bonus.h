@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 12:27:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 16:16:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,20 @@ int				get_line_height(t_ray *c_ray, float value, int *side,
 int				get_all_sprites(t_ray *c_ray);
 void			ft_sprsort(t_sprite_list *start);
 int				get_monsters(t_ray *c_ray, t_monster_list *lst);
+float			set_monster_angle(t_ray *c_ray);
+t_sprite		*init_monster(t_ray *c_ray, t_monster_list *lst,
+					float x_prim, float y_prim);
+void			init_new_sprite(t_ray *c_ray, t_sprite *new_sprite,
+					float x_prim, float y_prim);
+t_image			*get_sprite_image(t_ray *c_ray, char c);
+int				click_shot(int btn, int x, int y, t_ray *c_ray);
+int				move_mouse(int x, int y, t_ray *c_ray);
+int				get_sky(t_ray *c_ray);
+void			init_moves(t_ray *c_ray);
+void			init_player(t_ray *c_ray);
+int				get_index(char *str, char c);
+int				init_bonus_sprites(t_ray *c_ray);
+int				init_bonus_sprites(t_ray *c_ray);
 
 /*
 ** moves

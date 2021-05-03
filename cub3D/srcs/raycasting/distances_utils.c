@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 13:40:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 15:57:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	set_steps(t_ray *c_ray, t_ray_calc *calc)
 	}
 }
 
+static char	m_c(t_ray *c_ray, t_ray_calc *calc)
+{
+	return (c_ray->c_map->map[calc->mapy][calc->mapx]);
+}
+
 void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 {
 	const int	x = c_ray->player_posx;
@@ -72,7 +77,8 @@ void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
 		if (calc->mapx < 0 || calc->mapy < 0 || !is_in_str("0234abcMA",
 				c_ray->c_map->map[calc->mapy][calc->mapx]))
 			calc->hit = 1;
-		if (calc->mapx < 0 || calc->mapy < 0 || (c_ray->c_map->map[calc->mapy][calc->mapx] == 'A' && c_ray->c_map->map[y][x] != 'A'))
+		if (calc->mapx < 0 || calc->mapy < 0 || (m_c(c_ray, calc) == 'A'
+				&& c_ray->c_map->map[y][x] != 'A'))
 			calc->hit = 1;
 	}
 }

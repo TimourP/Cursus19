@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/03 12:27:27 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/03 16:16:30 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,13 @@ RAYCASTING_SRCS = 	init.c \
 					sprites.c \
 
 RAYCASTING_BONUS_SRCS = init_bonus.c \
+						init2_bonus.c \
+						init3_bonus.c \
 						images_init_bonus.c \
 						distances.c \
 						distances_utils.c \
 						sprites_bonus.c \
+						sprites_utils_bonus.c \
 
 MOVES_SRCS = 	keyboard_entry.c \
 				next_frame.c \
