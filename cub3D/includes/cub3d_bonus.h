@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:16:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 16:32:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,7 @@ void			init_player(t_ray *c_ray);
 int				get_index(char *str, char c);
 int				init_bonus_sprites(t_ray *c_ray);
 int				init_bonus_sprites(t_ray *c_ray);
+int				get_other_sprites(t_ray *c_ray, t_map *c_map);
 
 /*
 ** moves
