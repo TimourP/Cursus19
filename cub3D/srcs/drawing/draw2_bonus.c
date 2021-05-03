@@ -6,30 +6,23 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:39:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 12:13:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 12:05:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
+static int	red_color(int color, int red_value)
 {
-	float	dx;
-	float	dy;
-	int		i;
-	int		x;
-	int		y;
+	const int	current_red_value = (int)(((color & 0x00FF0000) >> 16));
+	int			new_value;
 
-	i = -1;
-	dx = cos(-angle);
-	dy = sin(-angle);
-	while (++i < x_y_l[2])
-	{
-		x = x_y_l[0] + (i * dx);
-		y = x_y_l[1] - (i * dy);
-		if (x > 0 && y > 0 && x < MINI_WIDTH && y < MINI_HEIGHT)
-			draw_pixel(c_ray, x, y, color);
-	}
+	new_value = current_red_value + red_value * 50;
+	if (new_value > 255)
+		new_value = 255;
+	return (((new_value) << 16)
+		| (int)(((color & 0x0000FF00)))
+		| (int)((color & 0x000000FF)));
 }
 
 static int	shadow(int color, double props)
@@ -41,26 +34,6 @@ static int	shadow(int color, double props)
 	return (((int)(((color & 0x00FF0000) >> 16) * props) << 16)
 			| ((int)(((color & 0x0000FF00) >> 8) * props) << 8)
 			| ((int)((color & 0x000000FF) * props)));
-}
-
-void	draw_vertical_line(t_ray *c_ray, const int x,
-	int length, const int color)
-{
-	int			i;
-	const int	offset = (c_ray->screen_h - length) / 2 + c_ray->look_offset;
-
-	i = -1;
-	while (++i < length && i + offset < c_ray->screen_h)
-	{
-		if (i + offset >= 0)
-			draw_pixel(c_ray, x, i + offset, color);
-	}
-	i--;
-	while (++i + offset < c_ray->screen_h)
-	{
-		if (i + offset >= 0)
-			draw_pixel(c_ray, x, i + offset, c_ray->c_map->floor_t);
-	}
 }
 
 void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
@@ -87,50 +60,45 @@ void	draw_vertical_texture(t_ray *c_ray, int x_len[2],
 	while (++i + offset < c_ray->screen_h)
 	{
 		color = c_ray->c_map->floor_t;
-		color = shadow(c_ray->c_map->floor_t, ((float)(i + offset - c_ray->look_offset)
-					- c_ray->screen_h / 2 - 26) / c_ray->screen_h * 2);
+		color = shadow(c_ray->c_map->floor_t, 1);
 		if (i + offset >= 0)
 			draw_pixel(c_ray, x_len[0], i + offset, color);
 	}
 }
 
-int	red_color(int color, int red_value)
+void	draw_sprite_loop(t_ray *c_ray, t_sprite_list *c_list,
+		int i_j[2], float ratio)
 {
-	const int	current_red_value = (int)(((color & 0x00FF0000) >> 16));
-	int	new_value;
+	int	color;
 
-	new_value = current_red_value + red_value * 50;
-	if (new_value > 255)
-		new_value = 255;
-	return ((new_value) << 16)
-			| (int)(((color & 0x0000FF00)))
-			| (int)((color & 0x000000FF));
-	
+	get_pixel(c_list->content->img, (i_j[1] - c_list->content->start_x
+			+ c_list->content->offset_x) / ratio, (i_j[0]
+			- c_list->content->start_y + c_list->content->offset_y)
+		/ ratio, &color);
+	if (color != 1193046 && c_list->content->distance
+		< c_ray->all_distances[i_j[1]])
+	{
+		color = shadow(red_color(color, c_list->content->shot_count),
+				(15 - c_list->content->distance) / 15);
+		draw_pixel(c_ray, i_j[1], i_j[0], color);
+	}
 }
 
 void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 {
-	int		i;
-	int		j;
+	int		i_j[2];
 	int		color;
 	float	ratio;
 
 	while (c_list)
 	{
 		ratio = (float)c_list->content->height / c_list->content->img->height;
-		i = c_list->content->start_y - 1;
-		while (++i < c_list->content->end_y)
+		i_j[0] = c_list->content->start_y - 1;
+		while (++i_j[0] < c_list->content->end_y)
 		{
-			j = c_list->content->start_x - 1;
-			while (++j < c_list->content->end_x)
-			{
-				get_pixel(c_list->content->img, (j - c_list->content->start_x + c_list->content->offset_x) / ratio, (i - c_list->content->start_y + c_list->content->offset_y) / ratio, &color);
-				if (color != 1193046 && c_list->content->distance < c_ray->all_distances[j])
-				{
-					color = shadow(red_color(color, c_list->content->shot_count), (15 - c_list->content->distance) / 15);
-					draw_pixel(c_ray, j, i, color);
-				}
-			}
+			i_j[1] = c_list->content->start_x - 1;
+			while (++i_j[1] < c_list->content->end_x)
+				draw_sprite_loop(c_ray, c_list, i_j, ratio);
 		}
 		c_list = c_list->next;
 	}

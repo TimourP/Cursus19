@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 13:51:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 12:10:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,55 +83,25 @@ static t_image	*text_side(t_ray *c_ray, int side)
 		return (c_ray->c_map->west_t);
 }
 
-void	get_shot(t_ray *c_ray, t_sprite_list *s_lst, t_monster_list *m_lst)
+static void	game_functions(t_ray *c_ray)
 {
-	int	id;
-	t_sprite *elem;
-	const int	x = c_ray->screen_w / 2;
-	const int	y = c_ray->screen_h / 2;
+	const int	xy[2] = {0, 0};
+	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 
-	c_ray->shoot = 0;
-	id = -1;
-	system("afplay sounds/gun_shot.mp3 &>/dev/null &");
-	while (s_lst)
-	{
-		if(s_lst->content->id != -1)
-		{
-			elem = s_lst->content;
-			if (elem->start_x < x && elem->end_x > x && elem->start_y < y && elem->end_y > y && c_ray->all_distances[x] > elem->distance)
-				id = elem->id;
-		}
-		s_lst = s_lst->next;
-	}
-	while (m_lst)
-	{
-		if (id != -1 && m_lst->content->id == id)
-		{
-			m_lst->content->shot_count = m_lst->content->shot_count + 1;
-			if (m_lst->content->shot_count > 4)
-			{
-				m_lst->content->x = 0;
-				m_lst->content->y = 0;
-				m_lst->content->shot_count = 0;
-			}
-		}
-		m_lst = m_lst->next;
-	}
+	ft_sprclear(&c_ray->start_list);
+	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
+	get_all_sprites(c_ray);
+	draw_sky(c_ray);
 }
 
 int	draw_game(t_ray *c_ray)
 {
 	int			i_v[2];
-	const int	xy[2] = {0, 0};
-	const int	w_h[2] = {c_ray->screen_w, c_ray->screen_h};
 	int			side;
 	float		y_value;
 
+	game_functions(c_ray);
 	i_v[0] = -1;
-	ft_sprclear(&c_ray->start_list);
-	draw_rectangle(c_ray, xy, w_h, COLOR_BLACK);
-	get_all_sprites(c_ray);
-	draw_sky(c_ray);
 	while (++i_v[0] < c_ray->screen_w)
 	{
 		side = i_v[0];

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 10:47:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 11:10:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 12:06:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	draw_hunger_bar(t_ray *c_ray)
 
 void	draw_center_cross(t_ray *c_ray)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	const int	offset_x = c_ray->screen_w / 2 - 10;
 	const int	offset_y = c_ray->screen_h / 2 - 10;
 
