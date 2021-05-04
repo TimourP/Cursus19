@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/03 16:32:18 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/04 09:45:10 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,9 @@ DRAW_BONUS_SRCS =	draw.c \
 					minimap_bonus.c \
 					hud_bonus.c \
 
+SAVE_SRCS = save_to_xpm.c \
+			save_to_xpm_utils.c \
+
 SRCS	=	cub3d.c \
 			srcs/testing.c \
 			get_next_line/get_next_line_utils.c \
@@ -84,6 +87,7 @@ SRCS	=	cub3d.c \
 			$(addprefix srcs/raycasting/, ${RAYCASTING_SRCS}) \
 			$(addprefix srcs/moves/, ${MOVES_SRCS}) \
 			$(addprefix srcs/drawing/, ${DRAW_SRCS}) \
+			$(addprefix srcs/save/, ${SAVE_SRCS}) \
 
 BONUS_SRCS	=	cub3d_bonus.c \
 				srcs/testing.c \
@@ -94,6 +98,7 @@ BONUS_SRCS	=	cub3d_bonus.c \
 				$(addprefix srcs/raycasting/, ${RAYCASTING_BONUS_SRCS}) \
 				$(addprefix srcs/moves/, ${MOVES_BONUS_SRCS}) \
 				$(addprefix srcs/drawing/, ${DRAW_BONUS_SRCS}) \
+				$(addprefix srcs/save/, ${SAVE_SRCS}) \
 
 LIBS = libmlx.a
 

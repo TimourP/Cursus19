@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 13:24:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/04 09:41:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	quit_properly(t_ray *c_ray)
+int	quit_properly(t_ray *c_ray)
 {
 	printf("See you!\n");
 	system("killall afplay");

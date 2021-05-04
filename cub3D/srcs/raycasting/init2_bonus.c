@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:10:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 16:47:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_moves(t_ray *c_ray)
 	c_ray->player_health = 10;
 	c_ray->player_hunger = 10;
 	c_ray->last_remove_life = 0;
+	c_ray->last_hit = get_time();
 	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
 	c_ray->start_list = NULL;
 }

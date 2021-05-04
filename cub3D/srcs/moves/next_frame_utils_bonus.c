@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 16:01:58 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 13:35:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/03 16:51:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	move_monsters(t_ray *c_ray, t_monster_list *lst)
 		d_xy[0] = c_ray->player_posx - lst->content->x;
 		d_xy[1] = c_ray->player_posy - lst->content->y;
 		set_ratios(&ratio_x, &ratio_y, d_xy);
-		if (sqrt(pow(d_xy[0], 2) + pow(d_xy[1], 2)) > 2)
+		if (sqrt(pow(d_xy[0], 2) + pow(d_xy[1], 2)) > 0.5)
 		{
 			set_moves(d_xy, speed, &m_xy[0], &m_xy[1]);
 			if (d_xy[0] < 0)
@@ -62,6 +62,12 @@ void	move_monsters(t_ray *c_ray, t_monster_list *lst)
 				lst->content->y = lst->content->y - m_xy[1] * ratio_y;
 			else
 				lst->content->y = lst->content->y + m_xy[1] * ratio_y;
+		}
+		else if (get_time() - c_ray->last_hit > 1000)
+		{
+			c_ray->player_health -= 1;
+			c_ray->last_hit = get_time();
+			system("afplay sounds/classic_hurt.mp3 &>/dev/null &");
 		}
 		lst = lst->next;
 	}

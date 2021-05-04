@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:32:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/04 09:43:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_ray
 	int				img_bpp;
 	int				img_line_l;
 	int				img_edian;
+	int				save;
 	float			player_posx;
 	float			player_posy;
 	float			player_delx;
@@ -130,6 +131,7 @@ typedef struct s_ray
 	int				tic;
 	long int		last_frame;
 	long int		last_remove_life;
+	long int		last_hit;
 	float			player_speed;
 	float			*all_distances;
 	int				player_health;
@@ -246,6 +248,7 @@ void			set_speed(t_ray *c_ray);
 long int		get_time(void);
 void			proceed_consumable_sprites(t_ray *c_ray);
 void			death(t_ray *c_ray);
+int				quit_properly(t_ray *c_ray);
 
 /*
 ** drawing
@@ -276,5 +279,11 @@ void			draw_hunger_bar(t_ray *c_ray);
 void			draw_center_cross(t_ray *c_ray);
 void			get_shot(t_ray *c_ray, t_sprite_list *s_lst,
 					t_monster_list *m_lst);
+
+/*
+**	SAVES
+*/
+
+void			create_xpm(t_ray *c_ray);
 
 #endif

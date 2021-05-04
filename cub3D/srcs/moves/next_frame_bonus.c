@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 12:38:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/04 10:11:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ static void	next_frame_end(t_ray *c_ray)
 	draw_life_bar(c_ray);
 	draw_hunger_bar(c_ray);
 	draw_center_cross(c_ray);
-	mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
-		c_ray->mlx_img, 0, 0);
+	if (!c_ray->save)
+		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
+			c_ray->mlx_img, 0, 0);
+	else
+	{
+		create_xpm(c_ray);
+		quit_properly(c_ray);
+	}
 }
 
 static void	proceed_next_frame(t_ray *c_ray)

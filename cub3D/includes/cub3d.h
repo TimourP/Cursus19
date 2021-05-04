@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/29 11:58:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/04 09:43:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_ray
 	int				img_bpp;
 	int				img_line_l;
 	int				img_edian;
+	int				save;
 	float			player_posx;
 	float			player_posy;
 	float			player_delx;
@@ -128,6 +129,7 @@ typedef struct s_ray
 	int				tic;
 	long int		last_frame;
 	long int		last_remove_life;
+	long int		last_hit;
 	float			player_speed;
 	float			*all_distances;
 	int				player_health;
@@ -218,6 +220,7 @@ int				key_press(int key, t_ray *c_ray);
 int				key_release(int key, t_ray *c_ray);
 int				get_next_frame(t_ray *c_ray);
 int				exit_button(t_ray *c_ray);
+int				quit_properly(t_ray *c_ray);
 
 /*
 ** drawing
@@ -239,5 +242,11 @@ void			draw_pixel(t_ray *c_ray, int x, int y, int color);
 void			get_pixel(t_image *image, int x,
 					int y, int *color);
 void			draw_sprite(t_ray *c_ray, t_sprite_list *c_list);
+
+/*
+**	SAVES
+*/
+
+void			create_xpm(t_ray *c_ray);
 
 #endif
