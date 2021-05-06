@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/05 09:41:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 12:09:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_bonus_images
 	t_image		*monster;
 	t_image		*other_sprite_0;
 	t_image		*other_sprite_1;
+	t_image		*game_over;
 }				t_bonus_images;
 
 typedef struct s_sprite_list

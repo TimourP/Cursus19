@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 10:35:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 12:47:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ static void	proceed_next_frame(t_ray *c_ray)
 			c_ray->player_health -= 1;
 		c_ray->last_remove_life = get_time();
 	}
-	if (c_ray->player_health == 0)
+	if (c_ray->player_health <= 0)
 		death(c_ray);
-	next_frame_end(c_ray);
+	else
+		next_frame_end(c_ray);
 }
 
 int	get_next_frame(t_ray *c_ray)
@@ -109,6 +110,8 @@ int	get_next_frame(t_ray *c_ray)
 	static float	last_angle;
 	static int		last_offset;
 
+	if (c_ray->player_health <= 0)
+		return (1);
 	if (c_ray->go_forward)
 		check_next_move(c_ray, c_ray->player_dely, c_ray->player_delx);
 	if (c_ray->go_backward)

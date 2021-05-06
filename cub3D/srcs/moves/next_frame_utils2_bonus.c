@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:25:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 12:46:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 12:28:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,31 @@ void	play_foot_step(void)
 
 void	death(t_ray *c_ray)
 {
-	printf("You die...\n");
-	system("killall afplay");
-	system("afplay sounds/end_game.mp3 &>/dev/null &");
-	exit(0);
+	static int	dead;
+	const float	y_ratio = (float)c_ray->bonus_images->game_over->height / c_ray->screen_h;
+	const float	x_ratio = (float)c_ray->bonus_images->game_over->width / c_ray->screen_w;
+	int			i;
+	int			j;
+	int			color;
+
+	if (!dead)
+	{
+		printf("You die...\n");
+		system("afplay sounds/end_game.mp3 &>/dev/null &");
+		i = -1;
+		while (++i < c_ray->screen_h)
+		{
+			j = -1;
+			while (++j < c_ray->screen_w)
+			{
+				get_pixel(c_ray->bonus_images->game_over, j * x_ratio, i * y_ratio, &color);
+				draw_pixel(c_ray, j, i, color);
+			}
+		}
+		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
+				c_ray->mlx_img, 0, 0);
+	}
+	dead = 1;
 }
 
 static void	reput_bonus(t_ray *c_ray, char bonus)

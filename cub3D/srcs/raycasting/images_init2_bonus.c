@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:31:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:32:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 12:27:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ static int	get_other_sprites3(t_ray *c_ray, t_map *c_map)
 			= mlx_get_data_addr(bon->other_sprite_1->mlx_img,
 				&bon->other_sprite_1->bpp, &bon->other_sprite_1->line_l,
 				&bon->other_sprite_1->edian);
+	}
+	bon->game_over->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/game_over.xpm", &bon->game_over->width,
+			&bon->game_over->height);
+	if (bon->game_over->mlx_img)
+	{
+		bon->game_over->addr
+			= mlx_get_data_addr(bon->game_over->mlx_img,
+				&bon->game_over->bpp, &bon->game_over->line_l,
+				&bon->game_over->edian);
 	}
 	return (check_images(c_ray, c_map));
 }

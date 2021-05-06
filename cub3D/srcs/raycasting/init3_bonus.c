@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:14:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:16:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 12:17:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	init_bonus_sprites(t_ray *c_ray)
 	c_ray->bonus_images->other_sprite_0->path = NULL;
 	c_ray->bonus_images->other_sprite_1 = malloc(sizeof(t_image));
 	c_ray->bonus_images->other_sprite_1->path = NULL;
+	c_ray->bonus_images->game_over = malloc(sizeof(t_image));
+	c_ray->bonus_images->game_over->path = NULL;
 	return (0);
 }
 
