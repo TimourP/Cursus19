@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 18:49:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:59:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	free_on_error(t_map *c_map, int error_type)
 {
 	if (error_type == MAP_ERROR)
-		printf("There is an error in the map\n");
+		printf("Error\nThere is an error in the map\n");
 	if (error_type == MALLOC_ERROR)
-		printf("Malloc error\n");
+		printf("Error\nMalloc error\n");
 	if (error_type == PARSING_ERROR)
-		printf("There is an error in the map file\n");
+		printf("Error\nThere is an error in the map file\n");
 	if (error_type == FILE_ERROR)
-		printf("Error while trying to read image file\n");
+		printf("Error\nError while trying to read image file\n");
 	free_t_map(c_map);
 	return (0);
 }

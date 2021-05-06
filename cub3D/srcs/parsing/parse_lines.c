@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:56:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:09:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*make_color_string(int rgb[3])
 	i = -1;
 	while (++i < 3)
 	{
+		if (rgb[i] == -1)
+			exit(0);
 		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
 		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
@@ -86,10 +88,16 @@ int	get_colors(t_map *c_map, char *line, char param)
 	trim_line = ft_strtrim(&line[2], " ");
 	if (!trim_line)
 		return (0);
+	rgb[0] = -1;
+	rgb[1] = -1;
+	rgb[2] = -1;
 	split_line = ft_split(trim_line, ',');
-	rgb[0] = ft_atoi(split_line[0]);
-	rgb[1] = ft_atoi(split_line[1]);
-	rgb[2] = ft_atoi(split_line[2]);
+	if (split_line[0])
+		rgb[0] = ft_atoi(split_line[0]);
+	if (split_line[1])
+		rgb[1] = ft_atoi(split_line[1]);
+	if (split_line[2])
+		rgb[2] = ft_atoi(split_line[2]);
 	set_correct_string(c_map, make_color_string(rgb), param);
 	free_split(split_line);
 	free(trim_line);
