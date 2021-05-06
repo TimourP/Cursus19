@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 12:09:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 16:43:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ long int		get_time(void);
 void			proceed_consumable_sprites(t_ray *c_ray);
 void			death(t_ray *c_ray);
 int				quit_properly(t_ray *c_ray);
+void			set_moves(float d_xy[2], float speed,
+					float *m_x, float *m_y);
 
 /*
 ** drawing

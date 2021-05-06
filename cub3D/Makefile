@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/06 14:58:51 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/06 16:37:06 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,11 +56,14 @@ RAYCASTING_BONUS_SRCS = init_bonus.c \
 
 MOVES_SRCS = 	keyboard_entry.c \
 				next_frame.c \
+				quit_credits.c \
 
 MOVES_BONUS_SRCS = 	keyboard_entry.c \
 					next_frame_bonus.c \
 					next_frame_utils_bonus.c \
 					next_frame_utils2_bonus.c \
+					next_frame_utils3_bonus.c \
+					quit_credits.c \
 
 DRAW_SRCS = draw.c \
 			draw2.c \

@@ -1,11 +1,14 @@
 R 1080 720
-NO ./images/purplestone.xpm
-SO ./images/mossy.xpm
-WE ./images/bluestone.xpm
-EA ./images/redbrick.xpm
-S  ./images/tree.xpm
-F 174, 214, 241
-C 215, 219, 221
+
+
+NO    ./images/purplestone.xpm
+
+SO             ./images/mossy.xpm
+WE               ./images/bluestone.xpm
+EA         ./images/redbrick.xpm
+S         ./images/tree.xpm
+F 174,    214,     241
+C    215,  219,    221
 
         1111111111111111111111111
         1000000000110000000000001

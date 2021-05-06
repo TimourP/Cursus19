@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 10:55:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 16:29:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	check_parsing_error(t_map *c_map)
 		|| c_map->map_w == 0 || c_map->map_h == 0)
 		return (free_on_error(c_map, PARSING_ERROR));
 	if (!c_map->south_t->path || !c_map->north_t->path
-		|| !c_map->east_t->path || !c_map->west_t->path)
+		|| !c_map->east_t->path || !c_map->west_t->path
+		|| !c_map->ceiling_t || !c_map->floor_t)
 		return (free_on_error(c_map, PARSING_ERROR));
 	return (1);
 }
