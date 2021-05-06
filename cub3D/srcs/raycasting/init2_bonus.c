@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/05 09:41:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:58:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,21 @@ int	get_sky(t_ray *c_ray)
 
 int	move_mouse(int x, int y, t_ray *c_ray)
 {
-	if (x > 0 && x < c_ray->screen_w / 2.3)
+	if (x > 0 && x < c_ray->screen_w / 2.3 && y > 0 && y < c_ray->screen_h)
 		c_ray->turn_left = 1;
 	else
 		c_ray->turn_left = 0;
-	if (x < c_ray->screen_w && x > c_ray->screen_w - c_ray->screen_w / 2.3)
+	if (x < c_ray->screen_w && x > c_ray->screen_w - c_ray->screen_w
+		/ 2.3 && y > 0 && y < c_ray->screen_h)
 		c_ray->turn_right = 1;
 	else
 		c_ray->turn_right = 0;
-	if (y > 0 && y < c_ray->screen_h / 2.3)
+	if (y > 0 && y < c_ray->screen_h / 2.3 && x > 0 && x < c_ray->screen_w)
 		c_ray->look_up = 1;
 	else
 		c_ray->look_up = 0;
-	if (y < c_ray->screen_h && y > c_ray->screen_h - c_ray->screen_h / 2.3)
+	if (y < c_ray->screen_h && y > c_ray->screen_h - c_ray->screen_h
+		/ 2.3 && x > 0 && x < c_ray->screen_w)
 		c_ray->look_down = 1;
 	else
 		c_ray->look_down = 0;

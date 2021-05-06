@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:09:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 16:54:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:37:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	get_shot_end(t_ray *c_ray, t_monster_list *m_lst, int id)
 			m_lst->content->shot_count = m_lst->content->shot_count + 1;
 			if (m_lst->content->shot_count > 4)
 			{
+				system("afplay sounds/ghost_death.mp3 &>/dev/null &");
 				m_lst->content->x = random_between(0, c_ray->c_map->map_w);
 				m_lst->content->y = random_between(0, c_ray->c_map->map_h);
 				m_lst->content->shot_count = 0;

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:25:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 12:28:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:39:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ void	proceed_consumable_sprites(t_ray *c_ray)
 			system("afplay sounds/eat2.mp3 &>/dev/null &");
 		}
 		else if (c_ray->c_map->map[y][x] == 'b')
+		{
 			c_ray->player_health += 1;
+			system("afplay sounds/health.mp3 &>/dev/null &");
+		}
 		else if (c_ray->c_map->map[y][x] == 'c')
 		{
 			c_ray->player_health -= 1;

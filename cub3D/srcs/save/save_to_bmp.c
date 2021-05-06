@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_to_xpm.c                                      :+:      :+:    :+:   */
+/*   save_to_bmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:28:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 11:41:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:57:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-
-static void		put_bpm_header(int height, int stride, int fd)
+static void	put_bpm_header(int height, int stride, int fd)
 {
 	int				file_size;
 	unsigned char	file_header[14];
@@ -33,7 +32,7 @@ static void		put_bpm_header(int height, int stride, int fd)
 	write(fd, file_header, sizeof(file_header));
 }
 
-static void		put_bpm_infos(int height, int width, int fd)
+static void	put_bpm_infos(int height, int width, int fd)
 {
 	unsigned char	info_header[40];
 	int				i;
@@ -53,25 +52,6 @@ static void		put_bpm_infos(int height, int width, int fd)
 	info_header[12] = (unsigned char)(1);
 	info_header[14] = (unsigned char)(3 * 8);
 	write(fd, info_header, sizeof(info_header));
-}
-
-int	get_r(int color)
-{
-	if (color == 16777215)
-		return (255);
-	return ((color & (0xFF << 16)) / 255 / 255);
-}
-
-int	get_g(int color)
-{
-	if (color == 16777215)
-		return (255);
-	return ((color & (0xFF << 8)) / 255);
-}
-
-int	get_b(int color)
-{
-	return (color & 0xFF);
 }
 
 static void	get_image_pixel(t_ray *c_ray, int x, int y, int *color)
@@ -105,7 +85,7 @@ void	create_xpm(t_ray *c_ray)
 
 	fd = open("save.bmp", O_CREAT | O_WRONLY | O_TRUNC, 77777);
 	put_bpm_header(c_ray->screen_h, (c_ray->screen_w * 3)
-				+ ((4 - (c_ray->screen_w * 3) % 4) % 4), fd);
+		+ ((4 - (c_ray->screen_w * 3) % 4) % 4), fd);
 	put_bpm_infos(c_ray->screen_h, c_ray->screen_w, fd);
 	i = -1;
 	while (++i < c_ray->screen_h)

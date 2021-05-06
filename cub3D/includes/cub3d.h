@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 12:09:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:55:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,5 +249,8 @@ void			draw_sprite(t_ray *c_ray, t_sprite_list *c_list);
 */
 
 void			create_xpm(t_ray *c_ray);
+int				get_r(int color);
+int				get_g(int color);
+int				get_b(int color);
 
 #endif

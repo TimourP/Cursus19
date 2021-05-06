@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:31:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 12:27:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 15:59:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@ static int	check_images(t_ray *c_ray, t_map *c_map)
 	if (!c_ray->sky->mlx_img)
 		return (free_on_error(c_map, FILE_ERROR));
 	return (1);
+}
+
+static int	get_other_sprites4(t_ray *c_ray, t_map *c_map)
+{
+	t_bonus_images	*bon;
+
+	bon = c_ray->bonus_images;
+	bon->game_over->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
+			"images/game_over.xpm", &bon->game_over->width,
+			&bon->game_over->height);
+	if (bon->game_over->mlx_img)
+	{
+		bon->game_over->addr
+			= mlx_get_data_addr(bon->game_over->mlx_img,
+				&bon->game_over->bpp, &bon->game_over->line_l,
+				&bon->game_over->edian);
+	}
+	return (check_images(c_ray, c_map));
 }
 
 static int	get_other_sprites3(t_ray *c_ray, t_map *c_map)
@@ -48,17 +66,7 @@ static int	get_other_sprites3(t_ray *c_ray, t_map *c_map)
 				&bon->other_sprite_1->bpp, &bon->other_sprite_1->line_l,
 				&bon->other_sprite_1->edian);
 	}
-	bon->game_over->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
-			"images/game_over.xpm", &bon->game_over->width,
-			&bon->game_over->height);
-	if (bon->game_over->mlx_img)
-	{
-		bon->game_over->addr
-			= mlx_get_data_addr(bon->game_over->mlx_img,
-				&bon->game_over->bpp, &bon->game_over->line_l,
-				&bon->game_over->edian);
-	}
-	return (check_images(c_ray, c_map));
+	return (get_other_sprites4(c_ray, c_map));
 }
 
 static int	get_other_sprites2(t_ray *c_ray, t_map *c_map)
