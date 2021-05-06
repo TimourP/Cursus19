@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 18:39:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:48:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 
-void	draw_monsters(t_ray *c_ray, int mapx, int mapy,
-	t_monster_list *lst, int xy[2])
+void	draw_monsters(t_ray *c_ray, int mapx, int mapy, int xy[2])
 {
+	t_monster_list	*lst;
+
+	lst = c_ray->monster_list;
 	while (lst)
 	{
 		if ((int)lst->content->x == mapx && (int)lst->content->y == mapy)
@@ -89,7 +91,7 @@ void	draw_map(t_ray *c_ray)
 			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
 			draw_rectangle(c_ray, xy, g_minimap_square_w_h,
 				g_minimap_color[check_color(c_ray, mapx, mapy)]);
-			draw_monsters(c_ray, mapx, mapy, c_ray->monster_list, xy);
+			draw_monsters(c_ray, mapx, mapy, xy);
 		}
 	}
 	draw_all_lines(c_ray);

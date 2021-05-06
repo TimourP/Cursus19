@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:08:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:56:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ char	*make_color_string(int rgb[3])
 
 	if (!ft_malloc(&color_string, sizeof(char) * 7))
 		return (NULL);
-	i = -1;
-	while (color_string[++i])
-		color_string[i] = 0;
+	ft_bzero(color_string, 7);
 	i = -1;
 	while (++i < 3)
 	{
@@ -38,7 +36,6 @@ char	*make_color_string(int rgb[3])
 		}
 		free(current_color);
 	}
-	color_string[6] = 0;
 	return (color_string);
 }
 

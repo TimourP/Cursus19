@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 13:07:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:22:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	init_player(t_ray *c_ray)
 	int			j;
 
 	i = -1;
-	while (++i < c_ray->c_map->map_h + 1)
+	while (++i < c_ray->c_map->map_h)
 	{
 		j = -1;
-		while (++j < c_ray->c_map->map_w + i)
+		while (++j < c_ray->c_map->map_w)
 		{
 			if (is_in_str("NSEW", c_ray->c_map->map[i][j]))
 			{
