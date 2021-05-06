@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:36:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 15:28:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 17:29:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define COLOR_YELLOW 0x00F1C40F
 # define COLOR_MINIMAP_WALKABLE 0x00B3B6B7
 # define COLOR_MINIMAP_WALL 0x00A04000
+# define COLOR_MONSTERS 0x00D81B60
 
 # define MAP_ERROR 0
 # define MALLOC_ERROR 1

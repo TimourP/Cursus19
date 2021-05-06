@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 12:00:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 18:39:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,14 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 
-void	draw_player(t_ray *c_ray, const int xy_wh[4],
-			const int color, float angle)
+void	draw_monsters(t_ray *c_ray, int mapx, int mapy,
+	t_monster_list *lst, int xy[2])
 {
-	int			i;
-	int			j;
-	const int	screen_height = c_ray->screen_h;
-	const int	screen_width = c_ray->screen_w;
-	float		a_v[4];
-
-	i = -1;
-	angle = angle + PI / 2;
-	while (++i < xy_wh[3] && i + xy_wh[1] < screen_height && xy_wh[1] >= 0)
+	while (lst)
 	{
-		j = -1;
-		while (++j < xy_wh[2] && j + xy_wh[0] < screen_width && xy_wh[0] >= 0)
-		{
-			if (i + j > xy_wh[2] / 2 && !(j - i + 2 > xy_wh[2] / 2))
-			{
-				a_v[0] = j + xy_wh[0] - xy_wh[2] / 2;
-				a_v[1] = i + xy_wh[1] - xy_wh[3] / 2;
-				a_v[2] = a_v[0] - xy_wh[0];
-				a_v[3] = a_v[1] - xy_wh[1];
-				a_v[0] = xy_wh[0] + a_v[2] * cos(angle) - a_v[3] * sin(angle);
-				a_v[1] = xy_wh[1] + a_v[2] * sin(angle) + a_v[3] * cos(angle);
-				draw_pixel(c_ray, a_v[0], a_v[1], color);
-			}
-		}
+		if ((int)lst->content->x == mapx && (int)lst->content->y == mapy)
+			draw_rectangle(c_ray, xy, g_minimap_square_w_h, COLOR_MONSTERS);
+		lst = lst->next;
 	}
 }
 
@@ -82,6 +63,7 @@ void	draw_all_lines(t_ray *c_ray)
 			/ (c_ray->screen_w) * (i * 10 - c_ray->screen_w / 2),
 			wall_color[side]);
 	}
+	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 }
 
 void	draw_map(t_ray *c_ray)
@@ -107,10 +89,10 @@ void	draw_map(t_ray *c_ray)
 			mapy = pxy[1] / MINI_SQUARE - MINI_HEIGHT / MINI_SQUARE / 2 + ij[0];
 			draw_rectangle(c_ray, xy, g_minimap_square_w_h,
 				g_minimap_color[check_color(c_ray, mapx, mapy)]);
+			draw_monsters(c_ray, mapx, mapy, c_ray->monster_list, xy);
 		}
 	}
 	draw_all_lines(c_ray);
-	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 }
 
 int	minimap(t_ray *c_ray)

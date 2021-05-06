@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/26 13:00:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:08:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,27 @@ char	*make_color_string(int rgb[3])
 	char	*color_string;
 	int		i;
 
-	color_string = malloc(sizeof(char) * 7);
-	if (!color_string)
+	if (!ft_malloc(&color_string, sizeof(char) * 7))
 		return (NULL);
+	i = -1;
+	while (color_string[++i])
+		color_string[i] = 0;
 	i = -1;
 	while (++i < 3)
 	{
-		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcef");
+		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
 		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
 		color_string[i * 2] = current_color[0];
 		color_string[1 + i * 2] = current_color[1];
 		if (color_string[1 + i * 2] == 0)
-			color_string[1 + i * 2] = '0';
+		{
+			color_string[1 + i * 2] = color_string[i * 2];
+			color_string[i * 2] = '0';
+		}
 		free(current_color);
 	}
-	color_string[10] = 0;
+	color_string[6] = 0;
 	return (color_string);
 }
 
@@ -63,12 +68,12 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 		c_map->sprite_t->path = str;
 	if (param == 'c')
 	{
-		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcef");
+		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
 	if (param == 'f')
 	{
-		c_map->floor_t = ft_atoi_base(str, "0123456789abcef");
+		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
 }
@@ -84,7 +89,6 @@ int	get_colors(t_map *c_map, char *line, char param)
 	trim_line = ft_strtrim(&line[2], " ");
 	if (!trim_line)
 		return (0);
-	c_map->map_h = 0;
 	split_line = ft_split(trim_line, ',');
 	rgb[0] = ft_atoi(split_line[0]);
 	rgb[1] = ft_atoi(split_line[1]);

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/06 16:37:06 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/06 18:39:56 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ DRAW_BONUS_SRCS =	draw.c \
 					game2_bonus.c \
 					sky_bonus.c \
 					minimap_bonus.c \
+					minimap2_bonus.c \
 					hud_bonus.c \
 
 SAVE_SRCS = save_to_bmp.c \
