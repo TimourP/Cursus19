@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/04 09:40:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 11:18:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (!(init_raycasting(c_ray, c_map)))
 		return (-1);
-	mlx_loop(c_ray->mlx_ptr);
+	if (!c_ray->save)
+		mlx_loop(c_ray->mlx_ptr);
+	else
+		get_next_frame(c_ray);
 	return (0);
 }

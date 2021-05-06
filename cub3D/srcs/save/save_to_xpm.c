@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:28:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 08:04:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 11:41:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ static void		put_bpm_infos(int height, int width, int fd)
 
 int	get_r(int color)
 {
-	return (color & (0xFF << 16));
+	if (color == 16777215)
+		return (255);
+	return ((color & (0xFF << 16)) / 255 / 255);
 }
 
 int	get_g(int color)
 {
-	return (color & (0xFF << 8));
+	if (color == 16777215)
+		return (255);
+	return ((color & (0xFF << 8)) / 255);
 }
 
 int	get_b(int color)
@@ -87,9 +91,9 @@ static void	write_color(int fd, int color)
 	r = (unsigned char)(get_r(color));
 	g = (unsigned char)(get_g(color));
 	b = (unsigned char)(get_b(color));
-	write(fd, &r, sizeof(r));
-	write(fd, &g, sizeof(g));
 	write(fd, &b, sizeof(b));
+	write(fd, &g, sizeof(g));
+	write(fd, &r, sizeof(r));
 }
 
 void	create_xpm(t_ray *c_ray)
@@ -99,7 +103,7 @@ void	create_xpm(t_ray *c_ray)
 	int	fd;
 	int	color;
 
-	fd = open("save.xpm", O_CREAT | O_WRONLY | O_TRUNC, 0x777);
+	fd = open("save.bmp", O_CREAT | O_WRONLY | O_TRUNC, 77777);
 	put_bpm_header(c_ray->screen_h, (c_ray->screen_w * 3)
 				+ ((4 - (c_ray->screen_w * 3) % 4) % 4), fd);
 	put_bpm_infos(c_ray->screen_h, c_ray->screen_w, fd);
@@ -109,7 +113,7 @@ void	create_xpm(t_ray *c_ray)
 		j = -1;
 		while (++j < c_ray->screen_w)
 		{
-			get_image_pixel(c_ray, 0, 0, &color);
+			get_image_pixel(c_ray, j, c_ray->screen_h - i - 1, &color);
 			write_color(fd, color);
 		}
 	}

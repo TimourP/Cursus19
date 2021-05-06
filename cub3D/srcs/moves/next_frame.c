@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 10:51:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 11:18:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ static void	proceed_next_frame(t_ray *c_ray, int bool)
 	if (bool)
 	{
 		draw_game(c_ray);
-		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
-			c_ray->mlx_img, 0, 0);
+		if (!c_ray->save)
+			mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
+				c_ray->mlx_img, 0, 0);
+		else
+		{
+			create_xpm(c_ray);
+			quit_properly(c_ray);
+		}
 	}
 }
 
