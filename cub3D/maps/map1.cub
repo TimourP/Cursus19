@@ -5,7 +5,7 @@ WE ./images/bluestone.xpm
 EA ./images/redbrick.xpm
 S ./images/tree.xpm
 F 84,84,84
-C 215, 219, 
+C 215, 219, 4
 
         1111111111111111111111111
         1000000000110000000000001

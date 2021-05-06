@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:12:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 11:36:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:13:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	check_images(t_ray *c_ray, t_map *c_map)
+static int	check_images(t_map *c_map)
 {
 	if (!c_map->north_t->mlx_img || !c_map->south_t->mlx_img
 		|| !c_map->west_t->mlx_img || !c_map->east_t->mlx_img
@@ -32,7 +32,7 @@ static int	get_sprites_images(t_ray *c_ray, t_map *c_map)
 				&c_map->sprite_t->bpp, &c_map->sprite_t->line_l,
 				&c_map->sprite_t->edian);
 	}
-	return (check_images(c_ray, c_map));
+	return (check_images(c_map));
 }
 
 static int	get_images_end(t_ray *c_ray, t_map *c_map)

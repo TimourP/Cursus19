@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/05 09:42:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:18:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ static void	init_hook(t_ray *c_ray)
 
 int	init_raycasting(t_ray *c_ray, t_map *c_map)
 {
-	int	max_height;
-	int	max_width;
-
 	c_ray->c_map = c_map;
 	init_moves(c_ray);
 	init_player(c_ray);

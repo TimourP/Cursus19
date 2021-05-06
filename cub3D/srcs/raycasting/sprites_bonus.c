@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:31:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 15:57:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:22:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	get_all_sprites(t_ray *c_ray)
 	t_sprite	*new_sprite;
 
 	i = -1;
+	new_sprite = NULL;
 	while (++i < c_ray->c_map->map_h)
 	{
 		j = -1;

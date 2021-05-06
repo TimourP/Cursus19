@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 12:10:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:20:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static float	get_texture_value_end(t_ray *c_ray, t_ray_calc *calc)
 		else
 			text_value = fabs(text_value - (int)text_value);
 	}
-	else if (get_side(calc) == 3)
+	else
 	{
 		angle = calc->angle + PI;
 		text_value = sin(angle) * calc->final_dist

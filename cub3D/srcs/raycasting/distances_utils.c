@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/05 09:42:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:23:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	m_c(t_ray *c_ray, t_ray_calc *calc)
 	return (c_ray->c_map->map[calc->mapy][calc->mapx]);
 }
 
-void	set_hit(t_ray *c_ray, t_ray_calc *calc, int params)
+void	set_hit(t_ray *c_ray, t_ray_calc *calc)
 {
 	const int	x = c_ray->player_posx;
 	const int	y = c_ray->player_posy;

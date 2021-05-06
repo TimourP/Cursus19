@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/06 18:39:56 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/06 20:21:16 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,7 @@ MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 NAME	=	cub3D
 LIBFT_NAME = libft.a
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 LIBFT_PATH	=	./libft
 
 all:			$(NAME)

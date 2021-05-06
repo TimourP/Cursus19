@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 16:12:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:23:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void			ft_sprprint(t_sprite_list *lst);
 
 int				init_raycasting(t_ray *c_ray, t_map *c_map);
 int				get_images(t_ray *c_ray, t_map *c_map);
-void			set_hit(t_ray *c_ray, t_ray_calc *calc, int params);
+void			set_hit(t_ray *c_ray, t_ray_calc *calc);
 void			set_steps(t_ray *c_ray, t_ray_calc *calc);
 int				get_side(t_ray_calc *calc);
 float			get_texture_value(t_ray *c_ray, t_ray_calc *calc);

@@ -16,7 +16,7 @@ int	get_line_height(t_ray *c_ray, float value, int *side, float *text_value)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc, 1);
+	set_hit(c_ray, &calc);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -43,7 +43,7 @@ float	get_distance(t_ray *c_ray, float value, int *side)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc, 0);
+	set_hit(c_ray, &calc);
 	*side = get_side(&calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
@@ -66,7 +66,7 @@ float	get_absolute_distance(t_ray *c_ray, float angle)
 	calc.d_distx = fabs(div_zero(1, cos(calc.angle)));
 	calc.d_disty = fabs(div_zero(1, cos(PI / 2 - calc.angle)));
 	set_steps(c_ray, &calc);
-	set_hit(c_ray, &calc, 0);
+	set_hit(c_ray, &calc);
 	calc.final_dist = calc.s_disty - calc.d_disty;
 	if (calc.final_dist < calc.s_distx - calc.d_distx)
 		calc.final_dist = calc.s_distx - calc.d_distx;

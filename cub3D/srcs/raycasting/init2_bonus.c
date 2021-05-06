@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:23:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:19:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	move_mouse(int x, int y, t_ray *c_ray)
 
 int	click_shot(int btn, int x, int y, t_ray *c_ray)
 {
+	x = (int)x;
+	y = (int)y;
 	if (btn == 1)
 		c_ray->shoot = 1;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:39:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 18:37:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:22:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	draw_sprite_loop(t_ray *c_ray, t_sprite_list *c_list,
 void	draw_sprite(t_ray *c_ray, t_sprite_list *c_list)
 {
 	int		i_j[2];
-	int		color;
 	float	ratio;
 
 	while (c_list)
