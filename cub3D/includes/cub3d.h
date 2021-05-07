@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:21:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:23:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:16:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void			ft_spradd_back(t_sprite_list **alst, t_sprite_list *new);
 void			ft_sprclear(t_sprite_list **lst);
 t_sprite_list	*ft_sprnew(t_sprite *content);
 void			ft_sprprint(t_sprite_list *lst);
+void			exit_message(int message);
 
 /*
 ** raycasting

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:59:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:22:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*make_color_string(int rgb[3])
 	while (++i < 3)
 	{
 		if (rgb[i] < 0 || rgb[i] > 255)
-			exit(0);
+			exit_message(RGB_OVERFLOW);
 		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
 		if (!current_color)
 			return (free_and_return_s(color_string, NULL));
@@ -57,26 +57,26 @@ void	set_correct_string(t_map *c_map, char *str, char param)
 {
 	if (param == 'n' && !c_map->north_t->path)
 		c_map->north_t->path = str;
-	else if (param == 's' && !c_map->sprite_t->path)
+	else if (param == 's' && !c_map->south_t->path)
 		c_map->south_t->path = str;
-	else if (param == 'e' && !c_map->sprite_t->path)
+	else if (param == 'e' && !c_map->east_t->path)
 		c_map->east_t->path = str;
-	else if (param == 'w' && !c_map->sprite_t->path)
+	else if (param == 'w' && !c_map->west_t->path)
 		c_map->west_t->path = str;
 	else if (param == 'S' && !c_map->sprite_t->path)
 		c_map->sprite_t->path = str;
-	else if (param == 'c' && c_map->ceiling_t < 255)
+	else if (param == 'c')
 	{
 		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
-	else if (param == 'f' && c_map->floor_t < 255)
+	else if (param == 'f')
 	{
 		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
 	else
-		exit(0);
+		exit_message(MULTIPLE_SAME_LINES);
 }
 
 int	get_colors(t_map *c_map, char *line, char param)

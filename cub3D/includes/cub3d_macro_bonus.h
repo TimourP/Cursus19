@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:36:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 17:29:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:15:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define MALLOC_ERROR 1
 # define FILE_ERROR 2
 # define PARSING_ERROR 3
+# define GBV_OVERFLOW 4
 
 # ifndef BONUS
 #  define BONUS 0

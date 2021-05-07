@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:35:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:23:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:16:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void			ft_monster_add_back(t_monster_list **alst, t_monster_list *new);
 void			ft_monster_clear(t_monster_list **lst);
 t_monster_list	*ft_monster_new(t_monster *content);
 void			ft_monsterprint(t_monster_list *lst);
+void			exit_message(int message);
 
 /*
 ** raycasting

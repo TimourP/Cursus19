@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 16:04:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:19:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define MALLOC_ERROR 1
 # define FILE_ERROR 2
 # define PARSING_ERROR 3
+# define RGB_OVERFLOW 4
+# define MULTIPLE_SAME_LINES 5
 
 # ifndef LIGHT
 #  define LIGHT 0
