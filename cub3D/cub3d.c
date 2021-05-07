@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 11:18:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 13:19:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,22 @@
 int	main_error(int argc, char **argv, t_ray *c_ray)
 {
 	if (argc == 1 || !argv[1])
+	{
+		printf("Error\nPlease enter the path of the map as first argument\n");
 		return (0);
+	}
+	else if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub", 4) != 0)
+	{
+		printf("Error\nMap files must be in .cub format\n");
+		return (0);
+	}
 	if (argc == 3 && ft_strncmp(argv[2], "--save", 6) == 0)
 		c_ray->save = 1;
+	else if (argc == 3)
+	{
+		printf("Error\nSecond argument must be --save\n");
+		return (0);
+	}
 	return (1);
 }
 

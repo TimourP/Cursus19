@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:05:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 13:45:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@ static void	check_next_move(t_ray *c_ray, float x_diff, float y_diff)
 {
 	float		next_posx;
 	float		next_posy;
+	int			addx;
+	int			addy;
 
+	addx = 0;
+	addy = 0;
 	next_posx = c_ray->player_posx + x_diff;
 	next_posy = c_ray->player_posy + y_diff;
-	if (!is_in_str("0abcA",
-			c_ray->c_map->map[(int)next_posy][(int)next_posx]))
-	{
-		if (is_in_str("0abcA",
-				c_ray->c_map->map[(int)next_posy][(int)c_ray->player_posx]))
-			c_ray->player_posy += y_diff;
-		else if (is_in_str("0abcA",
-				c_ray->c_map->map[(int)c_ray->player_posy][(int)next_posx]))
-			c_ray->player_posx += x_diff;
-		return ;
-	}
-	c_ray->player_posx += x_diff;
-	c_ray->player_posy += y_diff;
+	if (is_in_str("0abcA",
+			c_ray->c_map->map[(int)next_posy][(int)c_ray->player_posx]))
+		addy = 1;
+	if (is_in_str("0abcA",
+			c_ray->c_map->map[(int)c_ray->player_posy][(int)next_posx]))
+		addx = 1;
+	if (addx)
+		c_ray->player_posx += x_diff;
+	if (addy)
+		c_ray->player_posy += y_diff;
+	return ;
 }
 
 static void	proceed_angles_look(t_ray *c_ray)
