@@ -6,11 +6,31 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:21:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:26:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:46:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static int	map_error_end(t_map *c_map, const char **map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = -1;
+	count = 0;
+	while (++i < c_map->map_h)
+	{
+		j = -1;
+		while (++j < c_map->map_w)
+			if (is_in_str("NSEW", map[i][j]))
+				count++;
+	}
+	if (count != 1)
+		return (0);
+	return (1);
+}
 
 int	map_error(t_map *c_map)
 {
@@ -38,5 +58,5 @@ int	map_error(t_map *c_map)
 				return (0);
 		}
 	}
-	return (1);
+	return (map_error_end(c_map, map));
 }

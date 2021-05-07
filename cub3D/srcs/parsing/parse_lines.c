@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:09:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:59:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*make_color_string(int rgb[3])
 	i = -1;
 	while (++i < 3)
 	{
-		if (rgb[i] == -1)
+		if (rgb[i] < 0 || rgb[i] > 255)
 			exit(0);
 		current_color = ft_itoa_base(rgb[i], 16, "0123456789abcdef");
 		if (!current_color)
@@ -55,26 +55,28 @@ void	get_screen_resolution(t_map *c_map, char *line)
 
 void	set_correct_string(t_map *c_map, char *str, char param)
 {
-	if (param == 'n')
+	if (param == 'n' && !c_map->north_t->path)
 		c_map->north_t->path = str;
-	if (param == 's')
+	else if (param == 's' && !c_map->sprite_t->path)
 		c_map->south_t->path = str;
-	if (param == 'e')
+	else if (param == 'e' && !c_map->sprite_t->path)
 		c_map->east_t->path = str;
-	if (param == 'w')
+	else if (param == 'w' && !c_map->sprite_t->path)
 		c_map->west_t->path = str;
-	if (param == 'S')
+	else if (param == 'S' && !c_map->sprite_t->path)
 		c_map->sprite_t->path = str;
-	if (param == 'c')
+	else if (param == 'c' && c_map->ceiling_t < 255)
 	{
 		c_map->ceiling_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
-	if (param == 'f')
+	else if (param == 'f' && c_map->floor_t < 255)
 	{
 		c_map->floor_t = ft_atoi_base(str, "0123456789abcdef");
 		free(str);
 	}
+	else
+		exit(0);
 }
 
 int	get_colors(t_map *c_map, char *line, char param)
@@ -83,9 +85,9 @@ int	get_colors(t_map *c_map, char *line, char param)
 	char	**split_line;
 	int		rgb[3];
 
-	while (*line && *line == ' ')
+	while (*line && ft_is_wspace(*line))
 		line++;
-	trim_line = ft_strtrim(&line[2], " ");
+	trim_line = ft_strtrim(&line[2], " \t");
 	if (!trim_line)
 		return (0);
 	rgb[0] = -1;
@@ -108,9 +110,9 @@ int	get_textures(t_map *c_map, char *line, char param)
 {
 	char	*trim_line;
 
-	while (*line && *line == ' ')
+	while (*line && ft_is_wspace(*line))
 		line++;
-	trim_line = ft_strtrim(&line[2], " ");
+	trim_line = ft_strtrim(&line[2], " \t");
 	if (!trim_line)
 		return (0);
 	set_correct_string(c_map, trim_line, param);

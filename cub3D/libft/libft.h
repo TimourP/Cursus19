@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:54:04 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:52:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:59:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int				big_m(char ***to_malloc, size_t size);
 int				ft_int_malloc(int **to_malloc, size_t size);
 int				ft_atoi_base(char *str, char *base);
 void			ft_bzero(void *str, size_t len);
+int				ft_is_wspace(char c);
 
 #endif

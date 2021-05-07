@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 16:28:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:04:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	fill_map_struct2(t_map *c_map, t_list *map_list)
 	int	error;
 
 	error = 1;
-	if (ft_strncmp(map_list->content, "R", 1) == 0)
+	if (ft_strncmp(map_list->content, "R ", 2) == 0)
 		get_screen_resolution(c_map, map_list->content);
 	else if (ft_strncmp(map_list->content, "NO", 2) == 0)
 		error = get_textures(c_map, map_list->content, 'n');
