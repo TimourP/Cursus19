@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 16:04:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:21:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 13:56:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int	quit_properly(t_ray *c_ray)
 	printf("------------------------------------------------------------\n");
 	mlx_destroy_window(c_ray->mlx_ptr, c_ray->mlx_win);
 	free_t_map(c_ray->c_map);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

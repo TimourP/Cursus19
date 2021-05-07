@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 10:40:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 14:11:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	init_moves(t_ray *c_ray)
 	c_ray->last_remove_life = 0;
 	c_ray->last_hit = get_time();
 	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
+	if (!c_ray->all_distances)
+		exit_message(MALLOC_ERROR);
 	c_ray->start_list = NULL;
 }
 

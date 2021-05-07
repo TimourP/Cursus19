@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 13:19:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 14:02:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv)
 
 	c_map = malloc(sizeof(t_map));
 	c_ray = malloc(sizeof(t_ray));
+	if (!c_map || !c_ray)
+		exit_message(MALLOC_ERROR);
 	c_ray->save = 0;
 	if (!main_error(argc, argv, c_ray))
 		return (-1);
