@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 12:47:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:05:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,16 @@ static void	proceed_angles_look(t_ray *c_ray)
 static void	next_frame_end(t_ray *c_ray)
 {
 	draw_game(c_ray);
-	minimap(c_ray);
-	draw_life_bar(c_ray);
-	draw_hunger_bar(c_ray);
-	draw_center_cross(c_ray);
+	if (c_ray->screen_w > MINI_WIDTH * 2
+		|| c_ray->player_health > MINI_HEIGHT * 2)
+		minimap(c_ray);
+	if (c_ray->screen_w >= 400 && c_ray->screen_h >= 100)
+	{
+		draw_life_bar(c_ray);
+		draw_hunger_bar(c_ray);
+	}
+	if (c_ray->screen_w >= 30 && c_ray->screen_h >= 30)
+		draw_center_cross(c_ray);
 	if (!c_ray->save)
 		mlx_put_image_to_window(c_ray->mlx_ptr, c_ray->mlx_win,
 			c_ray->mlx_img, 0, 0);

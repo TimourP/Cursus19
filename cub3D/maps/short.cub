@@ -1,11 +1,14 @@
 R 1080 720
-NO images/shrek.xpm
-SO images/square.xpm
-WE images/mlp.xpm
-EA images/haie.xpm
-S ./path_to_the_sprite_texture
-F 220,100,5
-C 225,30,0
+NO                      ./images/purplestone.xpm
+SO      ./images/mossy.xpm
+WE              ./images/bluestone.xpm
+
+
+
+EA       ./images/redbrick.xpm
+S ./images/tree.xpm
+F 84,84,84
+C 215, 219, 4
 
 111111
 1N0001

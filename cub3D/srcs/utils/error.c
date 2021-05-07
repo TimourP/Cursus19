@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:59:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:25:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	free_on_error(t_map *c_map, int error_type)
 	if (error_type == FILE_ERROR)
 		printf("Error\nError while trying to read image file\n");
 	free_t_map(c_map);
+	exit(0);
 	return (0);
 }
 
@@ -30,7 +31,7 @@ int	check_parsing_error(t_map *c_map)
 {
 	if (!map_error(c_map))
 		return (free_on_error(c_map, MAP_ERROR));
-	if (c_map->screen_h == 0 || c_map->screen_w == 0
+	if (c_map->screen_h <= 0 || c_map->screen_w <= 0
 		|| c_map->map_w == 0 || c_map->map_h == 0)
 		return (free_on_error(c_map, PARSING_ERROR));
 	if (!c_map->south_t->path || !c_map->north_t->path

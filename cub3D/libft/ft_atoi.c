@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 23:08:29 by tpetit            #+#    #+#             */
-/*   Updated: 2020/12/07 08:23:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 10:45:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int	ft_atoi(const char *str)
 		num = 10 * num + (*str - '0');
 		str++;
 	}
-	if ((num > LONG_MAX && neg == 1) || (length > 19 && neg == 1))
+	if (!((*str >= 9 && *str <= 13) || *str == ' ' || *str == 0) || neg < 0)
 		return (-1);
-	if ((num > LONG_MAX && neg == -1) || (length > 19 && neg == 1))
-		return (0);
 	return ((int)(num * neg));
 }

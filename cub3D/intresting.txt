@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/28 19:08:16 by tpetit            #+#    #+#              #
-#    Updated: 2021/04/28 19:19:19 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/07 10:53:36 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,3 +21,8 @@ https://www.myinstants.com/instant/epic-sax-button/?utm_source=copy&utm_medium=s
 https://www.myinstants.com/instant/nope/?utm_source=copy&utm_medium=share
 https://www.myinstants.com/instant/coin-mario/?utm_source=copy&utm_medium=share
 https://www.myinstants.com/instant/mm-whatcha-say-meme/?utm_source=copy&utm_medium=share
+
+leaks when two same infos in map
+two players
+players don't have wall around him
+if char is not valid

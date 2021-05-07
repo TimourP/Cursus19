@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/28 15:53:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:23:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,6 @@ void	draw_line(t_ray *c_ray, int x_y_l[3], float angle, const int color)
 		if (x > 0 && y > 0 && x < MINI_WIDTH && y < MINI_HEIGHT)
 			draw_pixel(c_ray, x, y, color);
 	}
-}
-
-static int	shadow(int color, double props)
-{
-	if (props < 0)
-		props = 0;
-	else if (props > 1)
-		props = 1;
-	return (((int)(((color & 0x00FF0000) >> 16) * props) << 16)
-			| ((int)(((color & 0x0000FF00) >> 8) * props) << 8)
-			| ((int)((color & 0x000000FF) * props)));
 }
 
 void	draw_vertical_line(t_ray *c_ray, const int x,

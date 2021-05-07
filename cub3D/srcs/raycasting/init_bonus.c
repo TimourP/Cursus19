@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:18:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 10:39:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	init_raycasting(t_ray *c_ray, t_map *c_map)
 	c_ray->c_map = c_map;
 	init_moves(c_ray);
 	init_player(c_ray);
+	if (c_ray->player_posx == -1 || c_ray->player_posy == -1)
+		return (0);
 	c_ray->mlx_ptr = mlx_init();
 	init_screen_dim(c_ray, c_map);
 	c_ray->mlx_win = mlx_new_window(c_ray->mlx_ptr,

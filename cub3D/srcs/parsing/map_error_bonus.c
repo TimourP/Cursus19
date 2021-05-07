@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_error.c                                        :+:      :+:    :+:   */
+/*   map_error_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 14:24:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:22:50 by tpetit           ###   ########.fr       */
+/*   Created: 2021/05/07 11:21:54 by tpetit            #+#    #+#             */
+/*   Updated: 2021/05/07 11:26:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int	map_error(t_map *c_map)
 		j = -1;
 		while (++j < c_map->map_w)
 		{
-			if (!is_in_str("01NSEW2 ", map[i][j]))
+			if (!is_in_str("01NSEW234abcM ", map[i][j]))
 				return (0);
 			if (j == 0 || j == c_map->map_w - 1 || i == 0
 				|| i == c_map->map_h - 1)
 			{
-				if (is_in_str("0NSEW2", map[i][j]))
+				if (is_in_str("0NSEW234abcM", map[i][j]))
 					return (0);
 			}
-			else if (is_in_str("0NSEW2", map[i][j]) && (
+			else if (is_in_str("0NSEW234abcM", map[i][j]) && (
 					map[i - 1][j] == ' ' || map[i][j - 1] == ' '
 					|| map[i][j + 1] == ' ' || map[i + 1][j] == ' '))
 				return (0);
@@ -40,11 +40,3 @@ int	map_error(t_map *c_map)
 	}
 	return (1);
 }
-
-/*
- * else if (map[i][j] == '0' && (map[i - 1][j - 1] == ' '
- * 					|| map[i - 1][j] == ' ' || map[i - 1][j + 1] == ' '
- * 					|| map[i][j - 1] == ' ' || map[i][j + 1] == ' '
- * 					|| map[i + 1][j - 1] == ' ' || map[i + 1][j] == ' '
- * 					|| map[i + 1][j + 1] == ' '))
-*/

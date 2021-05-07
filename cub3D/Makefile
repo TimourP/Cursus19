@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/06 20:21:16 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/07 11:22:29 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ PARSING_BONUS_SRCS	=	parse_map.c \
 						parse_map2.c \
 						parse_lines.c \
 						init.c \
-						map_error.c \
+						map_error_bonus.c \
 
 UTILS_SRCS =	free_and_return.c \
 				free_split.c \

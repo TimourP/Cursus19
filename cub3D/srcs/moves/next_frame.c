@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:19:40 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 11:18:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 11:23:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static void	proceed_angles_look(t_ray *c_ray)
 
 static void	proceed_next_frame(t_ray *c_ray, int bool)
 {
-	static int	decrease;
-
 	if (bool)
 	{
 		draw_game(c_ray);

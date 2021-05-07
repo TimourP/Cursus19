@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:19:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/07 10:40:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	init_player(t_ray *c_ray)
 
 void	init_moves(t_ray *c_ray)
 {
+	c_ray->player_posx = -1;
+	c_ray->player_posy = -1;
 	c_ray->go_backward = 0;
 	c_ray->go_forward = 0;
 	c_ray->go_left = 0;
