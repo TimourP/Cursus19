@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:11:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 12:19:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/11 14:58:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@
 # define PARSING_ERROR 3
 # define RGB_OVERFLOW 4
 # define MULTIPLE_SAME_LINES 5
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # ifndef LIGHT
 #  define LIGHT 0

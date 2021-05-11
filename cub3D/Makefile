@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/07 15:52:09 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/11 14:59:07 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ light:
 
 bonus:
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(BONUS_SRCS) $(LIBS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(MLX_FLAGS) $(CFLAGS) $(BONUS_SRCS) $(LIBS) $(LIBFT_PATH)/$(LIBFT_NAME) -D BONUS=1 -o $(NAME)
 	@echo "${GREEN}cub3d bonus created${RESET}"
 
 clean:			

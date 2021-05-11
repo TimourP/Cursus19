@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 16:04:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 13:56:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:00:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ static void	credits_center(void)
 
 int	quit_properly(t_ray *c_ray)
 {
-	system("killall afplay &>/dev/null &");
-	system("clear");
+	if (BONUS)
+	{
+		system("killall afplay &>/dev/null &");
+		system("clear");
+	}
 	printf("\033[0;37m");
 	printf("------------------------------------------------------------\n");
 	credits_center();
