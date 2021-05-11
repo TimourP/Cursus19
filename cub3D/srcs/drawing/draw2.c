@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:11:45 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:23:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:38:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	draw_vertical_line(t_ray *c_ray, const int x,
 	while (++i < offset && i < c_ray->screen_h)
 		draw_pixel(c_ray, x, i, c_ray->c_map->ceiling_t);
 	i = -1;
+	if (offset < 0)
+		i = -offset;
 	while (++i < length && i + offset < c_ray->screen_h)
 	{
 		if (i + offset >= 0)
