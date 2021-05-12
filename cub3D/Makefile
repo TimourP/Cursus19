@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/12 11:28:30 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/12 11:50:23 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,6 +142,7 @@ clean:
 
 fclean:
 	@rm -f $(OBJS)
+	@rm -f $(BONUS_OBJS)
 	@rm -f $(NAME)
 	@make fclean -C $(LIBFT_PATH)
 
