@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/12 11:50:23 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/12 12:30:08 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ SAVE_SRCS = save_to_bmp.c \
 			save_to_bmp_utils.c \
 
 SRCS	=	cub3d.c \
-			srcs/testing.c \
 			get_next_line/get_next_line_utils.c \
 			get_next_line/get_next_line.c \
 			$(addprefix srcs/parsing/, ${PARSING_SRCS}) \
@@ -94,7 +93,6 @@ SRCS	=	cub3d.c \
 			$(addprefix srcs/save/, ${SAVE_SRCS}) \
 
 BONUS_SRCS	=	cub3d_bonus.c \
-				srcs/testing.c \
 				get_next_line/get_next_line_utils.c \
 				get_next_line/get_next_line.c \
 				$(addprefix srcs/parsing/, ${PARSING_BONUS_SRCS}) \
@@ -152,4 +150,4 @@ re:		fclean all
 
 rebonus: fclean bonus
 
-.PHONY:	all clean fclean allup re rebonus
+.PHONY:	all clean bonus fclean allup re rebonus light

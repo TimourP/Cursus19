@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 10:56:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/04/27 12:24:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:10:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	set_fd_ret(char *map_path, int *fd, int *ret)
 {
 	*fd = open(map_path, O_RDONLY);
 	*ret = 1;
+	if (*fd < 0)
+		exit_message(FILE_ERROR);
 }
 
 t_list	*list_from_file(char *map_path)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:28:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 15:57:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:28:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	create_xpm(t_ray *c_ray)
 	int	color;
 
 	fd = open("save.bmp", O_CREAT | O_WRONLY | O_TRUNC, 77777);
+	if (fd < 0)
+		exit_message(BPM_ERROR);
 	put_bpm_header(c_ray->screen_h, (c_ray->screen_w * 3)
 		+ ((4 - (c_ray->screen_w * 3) % 4) % 4), fd);
 	put_bpm_infos(c_ray->screen_h, c_ray->screen_w, fd);
@@ -97,5 +99,6 @@ void	create_xpm(t_ray *c_ray)
 			write_color(fd, color);
 		}
 	}
-	close(fd);
+	if (close(fd) < 0)
+		exit_message(BPM_ERROR);
 }

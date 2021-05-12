@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:54:59 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 19:48:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:21:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ const int	g_p_xy_wh[4] = {MINI_WIDTH / 2, MINI_HEIGHT
 const int	g_minimap_color[5] = {COLOR_MINIMAP_WALL,
 	COLOR_MINIMAP_WALKABLE, COLOR_BLACK, COLOR_RED, COLOR_BLUE};
 
-int	check_color(t_ray *c_ray, int map_x, int map_y)
+static int	check_color(t_ray *c_ray, int map_x, int map_y)
 {
 	if (map_x < 0 || map_y < 0)
 		return (2);
@@ -33,7 +33,7 @@ int	check_color(t_ray *c_ray, int map_x, int map_y)
 	return (is_in_str("0NSEW", c_ray->c_map->map[map_y][map_x]));
 }
 
-void	draw_monsters(t_ray *c_ray, int mapx, int mapy, int xy[2])
+static void	draw_monsters(t_ray *c_ray, int mapx, int mapy, int xy[2])
 {
 	t_monster_list	*lst;
 
@@ -46,7 +46,7 @@ void	draw_monsters(t_ray *c_ray, int mapx, int mapy, int xy[2])
 	}
 }
 
-void	draw_all_lines(t_ray *c_ray)
+static void	draw_all_lines(t_ray *c_ray)
 {
 	int			side;
 	int			line[3];
@@ -68,7 +68,7 @@ void	draw_all_lines(t_ray *c_ray)
 	draw_player(c_ray, g_p_xy_wh, COLOR_BLACK, c_ray->player_angle);
 }
 
-void	draw_map(t_ray *c_ray)
+static void	draw_map(t_ray *c_ray)
 {
 	int			ij[2];
 	int			xy[2];

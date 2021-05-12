@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 11:14:29 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 12:22:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:24:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-char	*make_color_string(int rgb[3])
+static char	*make_color_string(int rgb[3])
 {
 	char	*current_color;
 	char	*color_string;
@@ -53,7 +53,7 @@ void	get_screen_resolution(t_map *c_map, char *line)
 	c_map->screen_h = ft_atoi(&line[i]);
 }
 
-void	set_correct_string(t_map *c_map, char *str, char param)
+static void	set_correct_string(t_map *c_map, char *str, char param)
 {
 	if (param == 'n' && !c_map->north_t->path)
 		c_map->north_t->path = str;

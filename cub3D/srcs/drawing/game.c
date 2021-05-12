@@ -6,13 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 19:56:48 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 11:24:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:23:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	g_wall_color[4] = {COLOR_BLUE, COLOR_RED, COLOR_YELLOW, COLOR_WHITE};
+const int	g_wall_color[4] = {COLOR_BLUE,
+				COLOR_RED, COLOR_YELLOW, COLOR_WHITE};
 
 static float	get_texture_value_end(t_ray *c_ray, t_ray_calc *calc)
 {

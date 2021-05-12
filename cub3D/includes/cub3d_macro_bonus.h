@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:36:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 12:15:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:28:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define FILE_ERROR 2
 # define PARSING_ERROR 3
 # define GBV_OVERFLOW 4
+# define MULTIPLE_SAME_LINES 5
+# define BPM_ERROR 6
 
 # ifndef BONUS
 #  define BONUS 0

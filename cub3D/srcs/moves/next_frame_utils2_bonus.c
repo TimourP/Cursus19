@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:25:32 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 16:36:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:23:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	reput_bonus(t_ray *c_ray, char bonus)
 	}
 }
 
-void	proceed_consumable_sprites_end(t_ray *c_ray, int x, int y)
+static void	proceed_consumable_sprites_end(t_ray *c_ray, int x, int y)
 {
 	if (c_ray->c_map->map[y][x] == 'a')
 	{

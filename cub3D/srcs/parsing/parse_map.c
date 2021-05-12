@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:24:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 12:04:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:25:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_bigger_line(t_list *map_list, int *lines_count)
+static int	get_bigger_line(t_list *map_list, int *lines_count)
 {
 	int	max;
 
@@ -32,7 +32,7 @@ int	get_bigger_line(t_list *map_list, int *lines_count)
 	return (max);
 }
 
-int	parse_map_to_str(t_map *c_map, t_list *map_list)
+static int	parse_map_to_str(t_map *c_map, t_list *map_list)
 {
 	int	i;
 	int	j;
@@ -89,7 +89,7 @@ static int	fill_map_struct2(t_map *c_map, t_list *map_list)
 	return (error);
 }
 
-int	fill_map_struct(t_map *c_map, t_list *map_list)
+static int	fill_map_struct(t_map *c_map, t_list *map_list)
 {
 	int	error;
 

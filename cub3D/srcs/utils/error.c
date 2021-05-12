@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 09:23:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 13:58:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:10:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void	exit_message(int message)
 		printf("Error\nThe same texture cannot be present twice in the file\n");
 	else if (message == MALLOC_ERROR)
 		printf("Error\nMalloc fail\n");
+	else if (message == FILE_ERROR)
+		printf("Error\nNo such map file\n");
 	exit(EXIT_FAILURE);
 }
