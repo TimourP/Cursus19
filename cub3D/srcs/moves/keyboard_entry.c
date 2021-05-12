@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 12:55:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 16:04:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:38:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	key_press(int key, t_ray *c_ray)
 		c_ray->turn_right = 1;
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 1;
-	else if (key == KEY_UP_ARROW)
+	else if (key == KEY_UP_ARROW && BONUS)
 		c_ray->look_up = 1;
-	else if (key == KEY_DOWN_ARROW)
+	else if (key == KEY_DOWN_ARROW && BONUS)
 		c_ray->look_down = 1;
 	else if (key == KEY_SPACE)
 		c_ray->shoot = 1;
@@ -51,9 +51,9 @@ int	key_release(int key, t_ray *c_ray)
 		c_ray->turn_right = 0;
 	else if (key == KEY_LEFT_ARROW)
 		c_ray->turn_left = 0;
-	else if (key == KEY_UP_ARROW)
+	else if (key == KEY_UP_ARROW && BONUS)
 		c_ray->look_up = 0;
-	else if (key == KEY_DOWN_ARROW)
+	else if (key == KEY_DOWN_ARROW && BONUS)
 		c_ray->look_down = 0;
 	else if (key == KEY_ALT)
 		c_ray->look_offset = 0;
