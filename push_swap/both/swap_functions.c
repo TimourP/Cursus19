@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/12 18:42:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:54:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ void	r_reverse(t_stack **stack)
 		start = *stack;
 		while (start->next)
 		{
-			if (!start->next->next)
+			if (start->next->next == NULL)
 				temp = start;
-			start = temp->next;
+			start = start->next;
 		}
+		if (temp && temp->next)
+			temp->next = NULL;
 		start->next = *stack;
 		*stack = start;
-		temp->next = NULL;
 	}
 }
 
