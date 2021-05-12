@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:32:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/11 15:46:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 11:58:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	init_moves(t_ray *c_ray)
 	c_ray->look_down = 0;
 	c_ray->shoot = 0;
 	c_ray->all_distances = malloc(sizeof(float) * c_ray->c_map->screen_w);
+	if (!c_ray->all_distances)
+		exit_message(MALLOC_ERROR);
 	c_ray->start_list = NULL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 10:42:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 10:39:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 11:58:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	init_monters_list_loop(t_ray *c_ray, int i, int j, int index)
 	t_monster		*new_monster;
 
 	new_monster = malloc(sizeof(t_monster));
+	if (!new_monster)
+		exit_message(MALLOC_ERROR);
 	new_monster->x = j + 0.5;
 	new_monster->y = i + 0.5;
 	new_monster->img = c_ray->bonus_images->other_sprite_0;

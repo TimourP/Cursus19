@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:08:50 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/07 14:11:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 11:59:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	init_moves(t_ray *c_ray)
 int	get_sky(t_ray *c_ray)
 {
 	c_ray->sky = malloc(sizeof(t_image));
+	if (!c_ray->sky)
+		exit_message(MALLOC_ERROR);
 	c_ray->sky->mlx_img = mlx_xpm_file_to_image(c_ray->mlx_ptr,
 			"images/sky.xpm", &c_ray->sky->width, &c_ray->sky->height);
 	c_ray->sky->addr = mlx_get_data_addr(c_ray->sky->mlx_img,

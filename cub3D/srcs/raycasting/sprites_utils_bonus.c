@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:49:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/03 15:50:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:00:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_image	*get_sprite_image(t_ray *c_ray, char c)
 void	init_new_sprite(t_ray *c_ray, t_sprite *new_sprite,
 	float x_prim, float y_prim)
 {
+	if (!new_sprite)
+		exit_message(MALLOC_ERROR);
 	new_sprite->offset_x = 0;
 	new_sprite->offset_y = 0;
 	new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
@@ -47,6 +49,8 @@ t_sprite	*init_monster(t_ray *c_ray, t_monster_list *lst,
 	t_sprite	*new_sprite;
 
 	new_sprite = malloc(sizeof(t_sprite));
+	if (!new_sprite)
+		exit_message(MALLOC_ERROR);
 	new_sprite->offset_x = 0;
 	new_sprite->offset_y = 0;
 	new_sprite->id = lst->content->id;

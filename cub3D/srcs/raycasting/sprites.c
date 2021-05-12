@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 10:39:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/06 20:15:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:00:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	get_sprites_loop_end(t_ray *c_ray, float sprite_angle,
 static void	init_new_sprite(t_ray *c_ray, t_sprite *new_sprite,
 	float x_prim, float y_prim)
 {
+	if (!new_sprite)
+		exit_message(MALLOC_ERROR);
 	new_sprite->offset_x = 0;
 	new_sprite->offset_y = 0;
 	new_sprite->distance = sqrt(pow(x_prim, 2) + pow(y_prim, 2));
