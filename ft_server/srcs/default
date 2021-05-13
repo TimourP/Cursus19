@@ -1,7 +1,7 @@
 server {
 	listen 80;
 	listen [::]:80;
-	server_name monsupersite;
+	server_name ft_server;
 	return 301 https://$host$request_uri;
 }
 
@@ -10,12 +10,12 @@ server{
 	listen 443 ssl ;
 	listen [::]:443 ssl ;
 	
-	server_name monsupersite;
+	server_name ft_server;
 	
-	ssl_certificate /etc/nginx/ssl/monsupersite.pem;
-	ssl_certificate_key /etc/nginx/ssl/monsupersite.key;
+	ssl_certificate /etc/nginx/ssl/ft_server.pem;
+	ssl_certificate_key /etc/nginx/ssl/ft_server.key;
 
-	root /var/www/monsupersite;
+	root /var/www/ft_server;
 	index index.html index.htm index.nginx-debian.html index.php;
 
 	location / {
