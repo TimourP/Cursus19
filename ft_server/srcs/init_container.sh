@@ -8,7 +8,7 @@ chmod -R 755 /var/www/*
 
 # Generate website folder
 mkdir /var/www/ft_server && touch /var/www/ft_server/index.php
-echo "<?php phpinfo(); ?>" >> /var/www/ft_server/index.php
+echo "<?php echo '<p>Welcome on my ft_server</p>' ?>" >> /var/www/ft_server/index.php
 
 # SSL
 mkdir /etc/nginx/ssl
@@ -29,7 +29,7 @@ echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
 mkdir /var/www/ft_server/phpmyadmin
 wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 tar -xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz --strip-components 1 -C /var/www/ft_server/phpmyadmin
-mv ./tmp/phpmyadmin.inc.php /var/www/ft_server/phpmyadmin/config.inc.php
+mv ./tmp/config.inc.php /var/www/ft_server/phpmyadmin/config.inc.php
 
 # DL wordpress
 cd /tmp/
@@ -38,6 +38,6 @@ tar -xvzf latest.tar.gz
 mv wordpress/ /var/www/ft_server
 mv /tmp/wp-config.php /var/www/ft_server/wordpress
 
-service php7.3-fpm start
+service "php7.3-fpm" start
 service nginx start
 bash
