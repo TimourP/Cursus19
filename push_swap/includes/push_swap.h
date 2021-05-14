@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:41:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:43:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_list	*ft_lstnew(char *content);
 */
 
 void	fill_struct(int argc, char **argv, t_stack **stack);
-void	get_entry(t_list **entry);
 
 /*
 ** LIBFT_UTILS

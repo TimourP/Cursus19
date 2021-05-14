@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/14 13:40:06 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/14 13:45:27 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ BOTH_SRCS =	libft_utils.c \
 			main_error.c \
 			testing.c \
 
-PUSH_SWAP_SRCS = #
+PUSH_SWAP_SRCS = push_swap.c \
 
 CHECKER_SRCS = checker.c \
 
-ALL_SWAP_SRCS = main.c \
+ALL_SWAP_SRCS = $(addprefix push_swap_srcs/, ${PUSH_SWAP_SRCS}) \
 				$(addprefix both/, ${BOTH_SRCS}) \
 
 ALL_CHECK_SRCS =	$(addprefix checker_srcs/, ${CHECKER_SRCS}) \
