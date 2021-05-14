@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 12:36:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:12:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_list	*ft_lstnew(char *content);
 int		ft_atoi(const char *str);
 void	print_errors(int error);
 char	*ft_strdup(const char *str);
+int		ft_strncmp(const char *s1, const char *s2);
+void	ft_putstr(char *str);
 
 /*
 **	SWAP

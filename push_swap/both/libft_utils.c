@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 12:36:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:10:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str)
 	return ((int)(num * neg));
 }
 
-static void	ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
 	int i;
 
@@ -74,4 +74,20 @@ char	*ft_strdup(const char *str)
 		dest[i] = str[i];
 	dest[i] = '\0';
 	return (dest);
+}
+
+int		ft_strncmp(const char *s1, const char *s2)
+{
+	while (1)
+	{
+		if ((!*s1 || !*s2))
+			return (0);
+		if (*s1 == *s2)
+		{
+			s1++;
+			s2++;
+		}
+		else
+			return ((int)((unsigned char)(*s1) - (unsigned char)(*s2)));
+	}
 }
