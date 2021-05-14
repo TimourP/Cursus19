@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:05:13 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/12 18:31:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 15:22:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	print_stack(t_stack *a, t_stack *b)
 				printf("%5d    |\n", a->content);
 			a = a->next;
 		}
+		else
+			printf("         |");
 		if (b)
 		{
 			printf("%5d\n", b->content);

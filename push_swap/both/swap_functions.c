@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/12 18:54:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 15:19:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	push_b(t_stack **a, t_stack **b)
 
 	if (!a || !b || !*a)
 		return ;
-	temp = (*a)->next;
-	(*a)->next = *b;
-	(*b) = (*a);
-	(*a) = temp;
+	temp = *a;
+	*a = (*a)->next;
+	temp->next = *b;
+	*b = temp;
 }
 
 void	rotate(t_stack **stack)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:43:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:53:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_stackadd_back(t_stack **alst, t_stack *new);
 t_stack	*ft_stacknew(int content);
 void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
+int		ft_stacksize(t_stack *stack, int *size);
 
 /*
 ** LST UTILS
