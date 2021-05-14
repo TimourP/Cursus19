@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/12 14:11:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 12:36:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,41 @@ int	ft_atoi(const char *str)
 	if (!((*str >= 9 && *str <= 13) || *str == ' ' || *str == 0) || neg < 0)
 		return (-1);
 	return ((int)(num * neg));
+}
+
+static void	ft_putstr(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		;
+	write(1, str, i);
+}
+
+void	print_errors(int error)
+{
+	if (error == ARGS_NUMBER)
+		ft_putstr("Error: number of args must be at least 1.\n");
+	else if (error == ARGS_TYPE_ERROR)
+		ft_putstr("Error: args must be integer type.\n");
+	else if (error == MALLOC_ERROR)
+		ft_putstr("Error: malloc fail.\n");
+}
+
+char	*ft_strdup(const char *str)
+{
+	int		i;
+	char	*dest;
+
+	i = -1;
+	while (str[++i])
+		;
+	if (!(dest = malloc((i + 1) * sizeof(char))))
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		dest[i] = str[i];
+	dest[i] = '\0';
+	return (dest);
 }
