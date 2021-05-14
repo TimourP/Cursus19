@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:08:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 15:56:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:03:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	is_in_int(int *list, int elem, int size)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	int ra;
-	const int	nMax = 100;
+	const int	nMax = 12;
 	const int	nMin = 0;
-	const int	total = 10;
+	const int	total = 12;
 	int			*list;
 	int			i;
 
@@ -47,11 +47,11 @@ int main(int argc, char **argv)
 			i--;
 	}
 	i = -1;
-	printf("clear && make re && ./push_swap ");
+	printf("make re && ./push_swap ");
 	while (++i < total)
 	{
 		printf("%d ", list[i]);
 	}
-	printf(" && rm a.out output.sh\n");
+	printf(" && rm a.out\n");
 	return (0);
 }
