@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:12:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:41:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,28 @@ typedef struct	s_list
 }				t_list;
 
 /*
-** UTILS
+** STACK UTILS
 */
 
 void	ft_stackadd_back(t_stack **alst, t_stack *new);
 t_stack	*ft_stacknew(int content);
 void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
+
+/*
+** LST UTILS
+*/
+
 void	ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 t_list	*ft_lstnew(char *content);
+
+/*
+** BOTH UTILS
+*/
+
+void	fill_struct(int argc, char **argv, t_stack **stack);
+void	get_entry(t_list **entry);
 
 /*
 ** LIBFT_UTILS
@@ -67,5 +79,11 @@ void	rotate(t_stack **stack);
 void	rotate_rotate(t_stack **a, t_stack **b);
 void	r_reverse(t_stack **stack);
 void	r_r_reverse(t_stack **a, t_stack **b);
+
+/*
+** ERROR
+*/
+
+int  check_args(int argc, char **argv);
 
 #endif
