@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:08:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:02:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:25:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 	int			ra;
 	const int	nMax = 20;
 	const int	nMin = 0;
-	const int	total = 14;
+	const int	total = 12;
 	int			*list;
 	int			i;
 

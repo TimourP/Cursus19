@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 10:58:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:59:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int	get_median_value(t_stack *stack, int len)
 {
 	int	*num_list;
-	int i;
-	int temp;
+	int	i;
+	int	temp;
 
 	num_list = malloc(sizeof(int) * len);
 	i = -1;
@@ -44,7 +44,7 @@ static int	*get_swap_groups(t_stack *a)
 	int	*groups;
 	int	size;
 	int	stack_size;
-	int i;
+	int	i;
 
 	size = 0;
 	stack_size = 0;
@@ -68,12 +68,13 @@ static int	*get_swap_groups(t_stack *a)
 
 static void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 {
-	int med;
+	int	med;
 	int	push;
-	int count;
+	int	count;
 
 	while (groups[current] != 0)
 	{
+		graph_1line(*a, *b);
 		if (groups[current] == 1)
 		{
 			push_a(a, b, "pa\n");
@@ -125,6 +126,7 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	while (groups[++current_group] <= 6 && groups[current_group] != -1)
 		swap_med_simple(&a, &b, groups, current_group);
 	print_stack(a, b);
+	graph_1line(a, b);
 }
 
 static void	solve_swap(t_stack *a)
@@ -133,7 +135,7 @@ static void	solve_swap(t_stack *a)
 	int		size;
 	int		med;
 	int		count;
-	int	*groups;
+	int		*groups;
 
 	b = NULL;
 	size = 0;
@@ -152,16 +154,17 @@ static void	solve_swap(t_stack *a)
 			}
 			else
 				rotate(&a, "ra\n");
+			graph_1line(a, b);
 		}
 		size = 0;
 	}
 	solve_swap2(a, b, groups);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 10:51:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:58:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
 int		ft_stacksize(t_stack *stack, int *size);
 void	print_count(void);
+void	graphic_stack(t_stack *a, t_stack *b);
+void	graph_1line(t_stack *a, t_stack *b);
 
 /*
 ** LST UTILS

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 10:55:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:21:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_entry(t_list **entry)
 {
-	int	bytes;
+	int		bytes;
 	char	buff[64];
 	t_list	*new;
 
@@ -83,9 +83,10 @@ static void	check_sort(t_stack *a, t_stack *b)
 
 static void	resolve_checker(t_stack *a, t_list *entry)
 {
-	const char	*move[11] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
-	int i;
-	t_stack *b;
+	const char	*move[11] = {"sa", "sb", "ss", "pa", "pb",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"};
+	int			i;
+	t_stack		*b;
 
 	b = NULL;
 	if (!entry)
@@ -107,9 +108,9 @@ static void	resolve_checker(t_stack *a, t_list *entry)
 	check_sort(a, b);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *a;
+	t_stack	*a;
 	t_list	*entry;
 
 	a = NULL;
