@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:53:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 10:51:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_stack	*ft_stacknew(int content);
 void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
 int		ft_stacksize(t_stack *stack, int *size);
+void	print_count(void);
 
 /*
 ** LST UTILS
@@ -71,14 +72,14 @@ void	ft_putstr(char *str);
 **	SWAP
 */
 
-void	swap(t_stack **stack);
-void	swap_swap(t_stack **a, t_stack **b);
-void	push_a(t_stack **a, t_stack **b);
-void	push_b(t_stack **a, t_stack **b);
-void	rotate(t_stack **stack);
-void	rotate_rotate(t_stack **a, t_stack **b);
-void	r_reverse(t_stack **stack);
-void	r_r_reverse(t_stack **a, t_stack **b);
+void	swap(t_stack **stack, const char *to_print);
+void	swap_swap(t_stack **a, t_stack **b, const char *to_print);
+void	push_a(t_stack **a, t_stack **b, const char *to_print);
+void	push_b(t_stack **a, t_stack **b, const char *to_print);
+void	rotate(t_stack **stack, const char *to_print);
+void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print);
+void	r_reverse(t_stack **stack, const char *to_print);
+void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print);
 
 /*
 ** ERROR

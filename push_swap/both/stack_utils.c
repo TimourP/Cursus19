@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:02:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 14:28:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:06:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_stackadd_back(t_stack **alst, t_stack *new)
 
 int	ft_stacksize(t_stack *stack, int *size)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (stack)

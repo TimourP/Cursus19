@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:08:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/17 18:24:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:02:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	is_in_int(int *list, int elem, int size)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < size)
@@ -26,12 +26,12 @@ int	is_in_int(int *list, int elem, int size)
 	return (0);
 }
 
-int main(void)
+int	main(void)
 {
-	int ra;
+	int			ra;
 	const int	nMax = 20;
 	const int	nMin = 0;
-	const int	total = 5;
+	const int	total = 14;
 	int			*list;
 	int			i;
 
@@ -40,7 +40,7 @@ int main(void)
 	srand(time(NULL));
 	while (++i < total)
 	{
-		ra = rand()%((nMax+1)-nMin) + nMin;
+		ra = rand() % ((nMax + 1) - nMin) + nMin;
 		if (!is_in_int(list, ra, total))
 			list[i] = ra;
 		else

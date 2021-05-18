@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:38:21 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:43:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:02:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	fill_struct(int argc, char **argv, t_stack **stack)
 {
-	int i;
-	t_stack *new;
+	int		i;
+	t_stack	*new;
 
 	i = 0;
 	while (++i < argc)

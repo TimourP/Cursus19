@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:10:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:04:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_atoi(const char *str)
 
 void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
@@ -67,7 +67,8 @@ char	*ft_strdup(const char *str)
 	i = -1;
 	while (str[++i])
 		;
-	if (!(dest = malloc((i + 1) * sizeof(char))))
+	dest = malloc((i + 1) * sizeof(char));
+	if (!dest)
 		return (NULL);
 	i = -1;
 	while (str[++i])
@@ -76,7 +77,7 @@ char	*ft_strdup(const char *str)
 	return (dest);
 }
 
-int		ft_strncmp(const char *s1, const char *s2)
+int	ft_strncmp(const char *s1, const char *s2)
 {
 	while (1)
 	{

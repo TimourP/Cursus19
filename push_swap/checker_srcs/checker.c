@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 13:43:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 10:55:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,27 @@ static void	get_entry(t_list **entry)
 static void	execute_move(t_stack **a, t_stack **b, int move)
 {
 	if (move == 0)
-		swap(a);
+		swap(a, NULL);
 	else if (move == 1)
-		swap(b);
+		swap(b, NULL);
 	else if (move == 2)
-		swap_swap(a, b);
+		swap_swap(a, b, NULL);
 	else if (move == 3)
-		push_a(a, b);
+		push_a(a, b, NULL);
 	else if (move == 4)
-		push_b(a, b);
+		push_b(a, b, NULL);
 	else if (move == 5)
-		rotate(a);
+		rotate(a, NULL);
 	else if (move == 6)
-		rotate(b);
+		rotate(b, NULL);
 	else if (move == 7)
-		rotate_rotate(a, b);
+		rotate_rotate(a, b, NULL);
 	else if (move == 8)
-		r_reverse(a);
+		r_reverse(a, NULL);
 	else if (move == 9)
-		r_reverse(b);
+		r_reverse(b, NULL);
 	else if (move == 10)
-		r_r_reverse(a, b);
+		r_r_reverse(a, b, NULL);
 }
 
 static void	check_sort(t_stack *a, t_stack *b)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:05:13 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/14 15:22:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/18 10:22:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_stack(t_stack *a, t_stack *b)
 {
+	printf("-------------------\n");
 	printf("    a    |    b\n");
 	printf("-------------------\n");
 	while (a || b)
@@ -37,4 +38,5 @@ void	print_stack(t_stack *a, t_stack *b)
 			b = b->next;
 		}
 	}
+	printf("-------------------\n");
 }
