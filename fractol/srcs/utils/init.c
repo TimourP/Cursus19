@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:52:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 17:19:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:34:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_mlx(t_fract *fract)
 	mlx_hook(fract->mlx_win, 3, 1L << 1, key_release, fract);
 	mlx_hook(fract->mlx_win, 6, 1L << 6, move_mouse, fract);
 	mlx_hook(fract->mlx_win, 17, 1L << 17, exit_hook, fract);
+	mlx_hook(fract->mlx_win, 4, 1L << 2, mouse_wheel, fract);
 	mlx_loop_hook(fract->mlx_ptr, next_frame, fract);
 	mlx_loop(fract->mlx_ptr);
 }

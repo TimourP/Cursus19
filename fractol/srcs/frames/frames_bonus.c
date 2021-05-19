@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:47:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 void	proceed_moves(t_fract *fract)
 {
-	static int count;
 	if (fract->zoom_on)
 	{
-		count++;
-		printf("%d\n", count);
-		fract->x_side = fract->x_side * 0.9;
-		fract->y_side = fract->y_side * 0.9;
 		fract->left += fract->x_side * 0.05;
 		fract->top += fract->y_side * 0.05;
+		fract->x_side = fract->x_side * 0.9;
+		fract->y_side = fract->y_side * 0.9;
+		fract->zoom_on = 0;
+	}
+	else if (fract->zoom_off)
+	{
+		fract->left -= fract->x_side * 0.05;
+		fract->top -= fract->y_side * 0.05;
+		fract->x_side = fract->x_side * 1.1;
+		fract->y_side = fract->y_side * 1.1;
+		fract->zoom_off = 0;
 	}
 	if (fract->up_move)
 		fract->top -= fract->y_side / 20;

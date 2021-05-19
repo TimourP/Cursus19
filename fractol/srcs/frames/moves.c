@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:58:33 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 14:29:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:37:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,16 @@ int	key_release(int key, t_fract *fract)
 		fract->down_move = 0;
 	else if (key == KEY_SPACE)
 		fract->zoom_on = 0;
+	return (0);
+}
+
+int	mouse_wheel(int btn, int x, int y, t_fract *fract)
+{
+	x = (int)x;
+	y = (int)y;
+	if (btn == 5)
+		fract->zoom_on = 1;
+	else if (btn == 4)
+		fract->zoom_off = 1;
 	return (0);
 }

@@ -6,19 +6,19 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:27:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:34:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_BONUS_H
 # define FRACTOL_BONUS_H
 
-#include "mlx.h"
-#include "../libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+# include "mlx.h"
+# include "../libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
 
-#include <pthread.h>
+# include <pthread.h>
 
 #include <stdio.h>
 
@@ -123,6 +123,7 @@ int		next_frame(t_fract *fract);
 int		move_mouse(int x, int y, t_fract *fract);
 int		key_release(int key, t_fract *fract);
 int		key_press(int key, t_fract *fract);
+int		mouse_wheel(int btn, int x, int y, t_fract *fract);
 
 /*
 **	fractals
