@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 10:28:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 12:03:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include <stdio.h>
 
 /*
 ** STRUCTS
@@ -34,6 +35,19 @@ typedef struct s_image
 	int			width;
 	int			height;
 }				t_image;
+
+typedef struct s_fract
+{
+	int		id;
+	t_image	*mlx_img;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		mouse_value;
+	double	top;
+	double	left;
+	double	x_side;
+	double	y_side;
+}				t_fract;
 
 /*
 ** MACROS
@@ -59,16 +73,35 @@ typedef struct s_image
 # define ARG_ERROR 0
 # define MALLOC_ERROR 1
 # define FRACTAL_NAME_ERROR 2
+# define CLOSE_WINDOW 3
+
+# define MAX_COUNT 30
 
 /*
 ** DRAW
 */
 
+void	draw_pixel(t_image *img, int x, int y, int color);
 
 /*
 ** UTILS
 */
 
 void	exit_message(int message);
+void	init_mlx(t_fract *fract);
+void	free_on_error(t_fract *fract, int message);
+
+/*
+** frames
+*/
+
+int		next_frame(t_fract *fract);
+int		move_mouse(int x, int y, t_fract *fract);
+
+/*
+**	fractals
+*/
+
+void	mandelbrot(t_fract *fract);
 
 #endif

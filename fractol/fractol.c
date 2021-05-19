@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:14:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 10:44:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:50:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,11 @@ void main_error(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+	t_fract *fract;
+
+	fract = malloc(sizeof(t_fract));
+	if (!fract)
+		exit_message(MALLOC_ERROR);
 	main_error(argc, argv);
+	init_mlx(fract);
 }

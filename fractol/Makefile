@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/19 10:36:31 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/19 11:29:49 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,20 @@ RESET		= $(shell tput -Txterm sgr0)
 
 
 UTILS_SRCS =	error.c \
+				init.c \
+
+FRACTALS_SRCS =	mandelbrot.c \
 
 DRAW_SRCS = draw.c \
+
+FRAMES_SRCS = 	frames.c \
+				moves.c \
 
 SRCS	=	fractol.c \
 			$(addprefix srcs/utils/, ${UTILS_SRCS}) \
 			$(addprefix srcs/draw/, ${DRAW_SRCS}) \
+			$(addprefix srcs/frames/, ${FRAMES_SRCS}) \
+			$(addprefix srcs/fractals/, ${FRACTALS_SRCS}) \
 
 LIBS = libmlx.a
 

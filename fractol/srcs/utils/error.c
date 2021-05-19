@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:24:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 10:44:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 11:13:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,19 @@ void	exit_message(int message)
 		write(1, "Error: invalid fractal name\n", 28);
 		print_settings();
 	}
+	else if (message == MALLOC_ERROR)
+		write(1, "Error: malloc fail\n", 19);
+	else if (message == CLOSE_WINDOW)
+	{
+		write(1, "By!\n", 4);
+		exit(EXIT_SUCCESS);
+	}
 	exit(EXIT_FAILURE);
+}
+
+void	free_on_error(t_fract *fract, int message)
+{
+	mlx_destroy_image(fract->mlx_ptr, fract->mlx_img);
+	mlx_destroy_window(fract->mlx_ptr, fract->mlx_win);
+	exit_message(message);
 }
