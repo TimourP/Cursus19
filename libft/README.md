@@ -7,7 +7,7 @@ The goal of this project is to assimilate correctly the concepts of variables, f
 
 If you want to use this library please run:
 ```
-git clone https://github.com/TimourP/Cursus19.git Cursus19 && cp -r libft/libft ./ && rm -rf Cursus19
+git clone https://github.com/TimourP/Cursus19.git Cursus19 && cp -r Cursus19/libft ./ && rm -rf Cursus19
 ```
 ## Usage
 **In the libft repo**, run ```make``` or ```make re```, it will generate a libft.a file. Use this file when compiling your code to use the libft.
