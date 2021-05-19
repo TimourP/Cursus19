@@ -10,7 +10,7 @@ Get next line takes as parameter a file descriptor and the address of a string. 
 | `0` | The line has been read and EOF  has been reached |
 | `1` | The line has been read |
 ## Instalation
-Before cloning this repo, please make sure that there are no files/folders called Cursus19 or get_next_line in the destination folder!!
+**Before cloning this repo, please make sure that there are no files/folders called Cursus19 or get_next_line in the destination folder!!**
 
 If you want to use this library please run:
 ```
