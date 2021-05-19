@@ -34,8 +34,8 @@ If you want to use this library please run:
 git clone https://github.com/TimourP/Cursus19.git Cursus19 && cp -r Cursus19/ft_printf ./ && rm -rf Cursus19
 ```
 ## Usage
-**In the printf repo**, run ```make``` or ```make re```, it will generate a libft_printf.a file. Use this file when compiling your code to use ft_printf.
+**In the printf repo**, run ```make``` or ```make re```, it will generate a libftprintf.a file. Use this file when compiling your code to use ft_printf.
 
 To remove objects files, run ```make clean```
 
-To remove objects files and the libft_printf.a file, run ```make fclean```
+To remove objects files and the libftprintf.a file, run ```make fclean```
