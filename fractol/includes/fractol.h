@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:21:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:27:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef struct s_fract
 	t_image	*mlx_img;
 	void	*mlx_ptr;
 	void	*mlx_win;
-	double	top;
-	double	left;
-	double	x_side;
-	double	y_side;
+	long double	top;
+	long double	left;
+	long double	x_side;
+	long double	y_side;
 	int		right_move;
 	int		left_move;
 	int		up_move;
@@ -62,8 +62,8 @@ typedef struct s_fract
 
 # define PI 3.1415926535
 
-# define WINDOW_WIDTH 108
-# define WINDOW_HEIGHT 72
+# define WINDOW_WIDTH 540
+# define WINDOW_HEIGHT 360
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 15:05:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	proceed_moves(t_fract *fract)
 
 int	next_frame(t_fract *fract)
 {
-	static double	last_left;
-	static double	last_top;
+	static long double	last_left;
+	static long double	last_top;
 
 	proceed_moves(fract);
 	if (last_left != fract->left || last_top != fract->top)

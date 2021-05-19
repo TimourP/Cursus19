@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:20:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	mandelbrot(void *thread)
 	int 	x;
 	int		y;
 	int		count;
-	double	x_scale;
-	double	y_scale;
-	double	za, zb, ca, tempx, cb;
+	long double	x_scale;
+	long double	y_scale;
+	long double	za, zb, ca, tempx, cb;
 	int		color;
 	t_thread	*thr;
 	int i;

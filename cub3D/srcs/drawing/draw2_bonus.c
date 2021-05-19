@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:39:26 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/12 12:11:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	red_color(int color, int red_value)
 		| (int)((color & 0x000000FF)));
 }
 
-static int	shadow(int color, double props)
+static int	shadow(int color, long double props)
 {
 	if (props < 0)
 		props = 0;
