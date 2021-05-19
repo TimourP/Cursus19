@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 14:53:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:01:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	julia(t_fract *fract)
 	y = -1;
 	x_scale = fract->x_side / WINDOW_WIDTH;
 	y_scale = fract->y_side / WINDOW_HEIGHT;
-	ca = (float)(4 * fract->mouse_x) / WINDOW_WIDTH - 2;
-	cb = (float)(4 * fract->mouse_y) / WINDOW_HEIGHT - 2;
+	ca = 0.285;
+	cb = 0.01;
 	while (++y < WINDOW_HEIGHT)
 	{
 		x = -1;

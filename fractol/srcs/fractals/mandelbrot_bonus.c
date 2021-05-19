@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 16:40:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:20:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	mandelbrot(void *thread)
 	x_scale = thr->x_side / WINDOW_WIDTH;
 	y_scale = thr->y_side / WINDOW_HEIGHT;
 	i = -1;
-	while (++i < WINDOW_WIDTH * WINDOW_HEIGHT / 16)
+	while (++i < WINDOW_WIDTH * WINDOW_HEIGHT / THREAD_COUNT)
 	{
-		x = (i * 16 + thr->id) % WINDOW_WIDTH;
-		y = (i * 16 + thr->id) / WINDOW_WIDTH;
+		x = (i * THREAD_COUNT + thr->id) % WINDOW_WIDTH;
+		y = (i * THREAD_COUNT + thr->id) / WINDOW_WIDTH;
 		ca = x * x_scale + thr->left;
 		cb = y * y_scale + thr->top;
 		za = 0;
@@ -45,8 +45,8 @@ void	mandelbrot(void *thread)
 			za = tempx;
 			count++;
 		}
-		color = (MAX_COUNT - count) * 100;
-		color = color == 0 ? 0 : color + 14942208;
+		color = (MAX_COUNT - count) * 1000;
+		color = color == 0 ? 0 : color;
 		draw_pixel(thr->mlx_img, x, y, color);
 	}
 }

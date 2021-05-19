@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 16:26:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:22:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	proceed_moves(t_fract *fract)
 {
+	static int count;
 	if (fract->zoom_on)
 	{
+		count++;
+		printf("%d\n", count);
 		fract->x_side = fract->x_side * 0.9;
 		fract->y_side = fract->y_side * 0.9;
 		fract->left += fract->x_side * 0.05;
@@ -44,7 +47,6 @@ int	next_frame(t_fract *fract)
 	{
 		last_top = fract->top;
 		last_left = fract->left;
-		printf("New frame bonus\n");
 		i = -1;
 		while (++i < THREAD_COUNT)
 		{
@@ -54,7 +56,7 @@ int	next_frame(t_fract *fract)
 			threads[i].x_side = fract->x_side;
 			threads[i].y_side = fract->y_side;
 			threads[i].mlx_img = fract->mlx_img;
-			pthread_create(&t_id[i], NULL, mandelbrot, (void*)&threads[i]);
+			pthread_create(&t_id[i], NULL, mandelbrot, &threads[i]);
 		}
 		i = -1;
 		while (++i < THREAD_COUNT)

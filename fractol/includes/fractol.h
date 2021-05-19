@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 16:38:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:21:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_fract
 
 # define PI 3.1415926535
 
-# define WINDOW_WIDTH 216
-# define WINDOW_HEIGHT 144
+# define WINDOW_WIDTH 108
+# define WINDOW_HEIGHT 72
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126
@@ -93,6 +93,7 @@ typedef struct s_fract
 */
 
 void	draw_pixel(t_image *img, int x, int y, int color);
+int		create_rgb(int r, int g, int b);
 
 /*
 ** UTILS
