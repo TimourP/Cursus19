@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 09:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 15:17:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:35:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 int		init_struct(t_printf_data *pf_var)
 {
