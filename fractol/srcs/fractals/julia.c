@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 11:23:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 15:38:44 by tpetit           ###   ########.fr       */
+/*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
+/*   Updated: 2021/05/19 14:53:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-void	mandelbrot(t_fract *fract)
+void	julia(t_fract *fract)
 {
 	int 	x;
 	int		y;
@@ -25,15 +25,15 @@ void	mandelbrot(t_fract *fract)
 	y = -1;
 	x_scale = fract->x_side / WINDOW_WIDTH;
 	y_scale = fract->y_side / WINDOW_HEIGHT;
+	ca = (float)(4 * fract->mouse_x) / WINDOW_WIDTH - 2;
+	cb = (float)(4 * fract->mouse_y) / WINDOW_HEIGHT - 2;
 	while (++y < WINDOW_HEIGHT)
 	{
 		x = -1;
 		while (++x < WINDOW_WIDTH)
 		{
-			ca = x * x_scale + fract->left;
-			cb = y * y_scale + fract->top;
-			za = 0;
-			zb = 0;
+			za = x * x_scale + fract->left;
+			zb = y * y_scale + fract->top;
 			count = 0;
 			while ((za * za + zb * zb <= 4) && (count < MAX_COUNT))
 			{

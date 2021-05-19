@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 16:38:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:39:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
 #include "mlx.h"
 #include "../libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+
+#include <pthread.h>
 
 #include <stdio.h>
 
@@ -35,6 +37,16 @@ typedef struct s_image
 	int			width;
 	int			height;
 }				t_image;
+
+typedef struct s_thread
+{
+	t_image	*mlx_img;
+	double	top;
+	double	left;
+	double	x_side;
+	double	y_side;
+	int		id;
+}				t_thread;
 
 typedef struct s_fract
 {
@@ -84,7 +96,7 @@ typedef struct s_fract
 # define FRACTAL_NAME_ERROR 2
 # define CLOSE_WINDOW 3
 
-# define MAX_COUNT 255
+# define MAX_COUNT 10000
 # define ZOOM_VALUE 0.9
 # define THREAD_COUNT 16
 
@@ -115,7 +127,7 @@ int		key_press(int key, t_fract *fract);
 **	fractals
 */
 
-void	mandelbrot(t_fract *fract);
+void	mandelbrot(void *thread);
 void	julia(t_fract *fract);
 
 #endif
