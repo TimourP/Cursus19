@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/20 13:57:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	proceed_moves(t_fract *fract)
 		fract->y_side = fract->y_side * 0.9;
 		fract->left += fract->x_side * 0.05;
 		fract->top += fract->y_side * 0.05;
+		fract->zoom_on = 0;
 	}
 	if (fract->up_move)
 		fract->top -= fract->y_side / 20;

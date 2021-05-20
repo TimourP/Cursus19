@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:34:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:23:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_thread
 	long double	left;
 	long double	x_side;
 	long double	y_side;
+	int			mouse_x;
+	int			mouse_y;
 	int		id;
 }				t_thread;
 
@@ -74,8 +76,8 @@ typedef struct s_fract
 
 # define PI 3.1415926535
 
-# define WINDOW_WIDTH 540
-# define WINDOW_HEIGHT 360
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126
@@ -96,9 +98,9 @@ typedef struct s_fract
 # define FRACTAL_NAME_ERROR 2
 # define CLOSE_WINDOW 3
 
-# define MAX_COUNT 255
+# define MAX_COUNT 30
 # define ZOOM_VALUE 0.9
-# define THREAD_COUNT 16
+# define THREAD_COUNT 8
 
 /*
 ** DRAW
@@ -130,6 +132,6 @@ int		mouse_wheel(int btn, int x, int y, t_fract *fract);
 */
 
 void	mandelbrot(void *thread);
-void	julia(t_fract *fract);
+void	julia(void *thread);
 
 #endif

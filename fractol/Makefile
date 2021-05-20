@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/19 15:51:49 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/20 14:15:41 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,14 @@ RESET		= $(shell tput -Txterm sgr0)
 UTILS_SRCS =	error.c \
 				init.c \
 
+BONUS_UTILS_SRCS =	error.c \
+					init_bonus.c \
+
 FRACTALS_SRCS =	mandelbrot.c \
 				julia.c \
 
 BONUS_FRACTALS_SRCS =	mandelbrot_bonus.c \
-						julia.c \
+						julia_bonus.c \
 
 DRAW_SRCS = draw.c \
 
@@ -38,7 +41,7 @@ SRCS	=	fractol.c \
 			$(addprefix srcs/fractals/, ${FRACTALS_SRCS}) \
 
 BONUS_SRCS	=	fractol.c \
-				$(addprefix srcs/utils/, ${UTILS_SRCS}) \
+				$(addprefix srcs/utils/, ${BONUS_UTILS_SRCS}) \
 				$(addprefix srcs/draw/, ${DRAW_SRCS}) \
 				$(addprefix srcs/frames/, ${BONUS_FRAMES_SRCS}) \
 				$(addprefix srcs/fractals/, ${BONUS_FRACTALS_SRCS}) \

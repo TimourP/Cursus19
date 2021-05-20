@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot_bonus.c                                 :+:      :+:    :+:   */
+/*   julia_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 10:33:30 by tpetit           ###   ########.fr       */
+/*   Created: 2021/05/20 14:12:05 by tpetit            #+#    #+#             */
+/*   Updated: 2021/05/20 14:20:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
 
-void	mandelbrot(void *thread)
+void	julia(void *thread)
 {
 	int 	x;
 	int		y;
@@ -28,15 +28,15 @@ void	mandelbrot(void *thread)
 	y = -1;
 	x_scale = thr->x_side / WINDOW_WIDTH;
 	y_scale = thr->y_side / WINDOW_HEIGHT;
+	ca = (float)(4 * thr->mouse_x) / WINDOW_WIDTH - 2;
+	cb = (float)(4 * thr->mouse_y) / WINDOW_HEIGHT - 2;
 	i = -1;
 	while (++i < WINDOW_WIDTH * WINDOW_HEIGHT / THREAD_COUNT)
 	{
 		x = (i * THREAD_COUNT + thr->id) % WINDOW_WIDTH;
 		y = (i * THREAD_COUNT + thr->id) / WINDOW_WIDTH;
-		ca = x * x_scale + thr->left;
-		cb = y * y_scale + thr->top;
-		za = 0;
-		zb = 0;
+		za = x * x_scale + thr->left;
+		zb = y * y_scale + thr->top;
 		count = 0;
 		while ((za * za + zb * zb <= 4) && (count < MAX_COUNT))
 		{

@@ -1,16 +1,16 @@
 R 1080 720
-NO ./images/purplestone.xpm
-SO ./images/mossy.xpm
-WE ./images/bluestone.xpm
-EA           ./images/redbrick.xpm
-S ./images/tree.xpm
+NO ./images/greystone.xpm
+SO ./images/greystone.xpm
+WE ./images/greystone.xpm
+EA           ./images/greystone.xpm
+S ./images/barrel.xpm
 F 84,84,84
-C 236, 64, 122
+C 127, 179, 213
 
         111111111111111111111111
         1000000000110000000000001
-        1011000001110000010000001
-        1001000200000000001000001
+        1011000001110000000000001
+        1001000200000000000000001
 111111111011000001110000000000001
 100000000011000001110111121111111
 11110111111111011100000010001
