@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:47:14 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/08 13:43:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:35:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 void	write_and_add(int *count, char c)
 {

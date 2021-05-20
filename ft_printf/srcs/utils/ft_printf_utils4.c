@@ -6,19 +6,17 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:47:36 by tpetit            #+#    #+#             */
-/*   Updated: 2021/02/23 14:48:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:39:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 static size_t	number_len_p(unsigned long long int n, int base_len)
 {
 	int i;
 
 	i = 0;
-	if (n < 0)
-		i = 1;
 	while (n && ++i)
 		n = n / base_len;
 	return (i);
@@ -34,8 +32,6 @@ char			*ft_itoa_base_p(unsigned long long int n,
 
 	i = -1;
 	neg = 0;
-	if (n < 0)
-		neg = 1;
 	if (!(num = malloc(sizeof(char) * (n_len + 1 + (int)(n == 0)))))
 		return (NULL);
 	num[n_len + (int)(n == 0)] = 0;
