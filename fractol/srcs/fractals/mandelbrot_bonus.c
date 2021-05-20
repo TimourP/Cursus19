@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 10:33:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:35:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
 
-void	mandelbrot(void *thread)
+void	*mandelbrot(void *thread)
 {
 	int 	x;
 	int		y;
@@ -49,4 +49,5 @@ void	mandelbrot(void *thread)
 		color = color == 0 ? 0 : color + 14942208;
 		draw_pixel(thr->mlx_img, x, y, color);
 	}
+	return (NULL);
 }

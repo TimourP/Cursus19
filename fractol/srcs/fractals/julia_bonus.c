@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:12:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 14:20:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/20 15:16:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
 
-void	julia(void *thread)
+void	*julia(void *thread)
 {
 	int 	x;
 	int		y;
@@ -49,4 +49,5 @@ void	julia(void *thread)
 		color = color == 0 ? 0 : color + 14942208;
 		draw_pixel(thr->mlx_img, x, y, color);
 	}
+	return (NULL);
 }

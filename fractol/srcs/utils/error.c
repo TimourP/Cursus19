@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:24:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 11:13:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/20 15:25:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static void	print_settings(void)
 {
-	const char	settings[185] = "The fractol executable takes as parameter the name of a fractal before displaying with mlx a representation of this fractal. Valid parameters are : \n\t- julia\n\t- mandelbrot\n\t- other\n";
+	const char	settings[185] = "The fractol executable \
+			takes as parameter the name of a fractal \
+			before displaying with mlx a representation \
+			of this fractal. Valid parameters are : \n\t- \
+			julia\n\t- mandelbrot\n\t- other\n";
+
 	write(1, settings, ft_strlen(settings));
 }
 

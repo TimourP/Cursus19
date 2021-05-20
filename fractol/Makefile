@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/20 14:15:41 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/20 14:33:27 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ UTILS_SRCS =	error.c \
 				init.c \
 
 BONUS_UTILS_SRCS =	error.c \
-					init_bonus.c \
+					init.c \
 
 FRACTALS_SRCS =	mandelbrot.c \
 				julia.c \
