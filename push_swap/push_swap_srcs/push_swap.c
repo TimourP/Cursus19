@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 10:00:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/21 10:16:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	re_swap(t_stack **a, t_stack **b,  int **groups, int *current)
 	while (++i < push)
 		r_reverse(b, "rrb\n");
 	len = len / 2 - !(len%2);
-	print_stack(*a, *b);
 	while (len > 2)
 	{
 		count = 0;
@@ -104,7 +103,6 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	{
 		if (groups[current_group] > 6)
 		{
-			print_stack(a, b);
 			re_swap(&a, &b, &groups, &current_group);
 		}
 		while (groups[current_group] <= 6 && groups[current_group] != -1)
@@ -113,7 +111,6 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 			current_group++;
 		}
 	}
-	print_stack(a, b);
 }
 
 static void	solve_swap(t_stack *a)
@@ -127,7 +124,6 @@ static void	solve_swap(t_stack *a)
 	b = NULL;
 	size = 0;
 	groups = get_swap_groups(a);
-	get_swap_groups(a);
 	while (ft_stacksize(a, &size) > 2)
 	{
 		count = -1;
@@ -161,7 +157,6 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
-		print_stack(a, b);
 		solve_swap(a);
 		print_count();
 	}
