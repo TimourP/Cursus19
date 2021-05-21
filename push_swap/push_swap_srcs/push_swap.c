@@ -6,113 +6,91 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:59:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/21 10:00:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	get_median_value(t_stack *stack, int len)
+static int *remake_groups(int *groups, int count)
 {
-	int	*num_list;
-	int	i;
-	int	temp;
+	int i;
+	int i_g;
+	int size;
+	int	*new_groups;
 
-	num_list = malloc(sizeof(int) * len);
 	i = -1;
-	while (i < len - 1)
-	{
-		num_list[++i] = stack->content;
-		stack = stack->next;
-	}
-	i = -1;
-	while (++i < len - 1)
-	{
-		if (num_list[i] > num_list[i + 1])
-		{
-			temp = num_list[i];
-			num_list[i] = num_list[i + 1];
-			num_list[i + 1] = temp;
-			i = -1;
-		}
-	}
-	return (num_list[len / 2]);
-}
-
-static int	*get_swap_groups(t_stack *a)
-{
-	int	*groups;
-	int	size;
-	int	stack_size;
-	int	i;
-
 	size = 0;
-	stack_size = 0;
-	ft_stacksize(a, &stack_size);
-	while (stack_size > 2)
-	{
-		stack_size = stack_size - stack_size / 2;
-		size++;
-	}
-	groups = malloc(sizeof(int) * (size + 1));
-	i = -1;
-	stack_size = ft_stacksize(a, &stack_size);
-	while (++i < size)
-	{
-		groups[size - i - 1] = stack_size / 2;
-		stack_size = stack_size - groups[size - i - 1];
-	}
-	groups[i] = -1;
-	return (groups);
+	while (groups[++i] != -1)
+		if (groups[i])
+			size++;
+	new_groups = malloc(sizeof(int) * (size + 1));
+	new_groups[0] = count;
+	i_g = -1;
+	i = 0;
+	while (groups[++i_g] != -1)
+		if (groups[i_g])
+			new_groups[++i] = groups[i_g];
+	new_groups[i + 1] = -1;
+	free(groups);
+	return (new_groups);
 }
 
-static void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
+static void	re_swap(t_stack **a, t_stack **b,  int **groups, int *current)
 {
-	int	med;
-	int	push;
-	int	count;
+	int	len;
+	int med;
+	int i;
+	int push;
+	int count;
 
-	while (groups[current] != 0)
+	len = (*groups)[*current];
+	(*groups)[*current] =  (*groups)[*current] - len / 2 + !(len%2);
+	med = get_median_value(*b, len);
+	i = -1;
+	push = 0;
+	while (++i < len)
 	{
-		graph_1line(*a, *b);
-		if (groups[current] == 1)
-		{
+		if ((*b)->content > med)
 			push_a(a, b, "pa\n");
-			groups[current] = 0;
-		}
-		else if (groups[current] == 2)
-		{
-			if ((*b)->content < (*b)->next->content)
-				swap(b, "sb\n");
-			push_a(a, b, "pa\n");
-			push_a(a, b, "pa\n");
-			groups[current] = 0;
-		}
 		else
 		{
-			med = get_median_value(*b, groups[current]);
-			count = 0;
-			push = 0;
-			while (count < 1 + (int)(groups[current] >= 5))
-			{
-				if ((*b)->content > med)
-				{
-					count++;
-					push_a(a, b, "pa\n");
-				}
-				else
-				{
-					push++;
-					rotate(b, "rb\n");
-				}
-			}
-			if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
-				swap(a, "sa\n");
-			while (--push > -1)
-				r_reverse(b, "rrb\n");
-			groups[current] = groups[current] - 1 - (int)(groups[current] >= 5);
+			push++;
+			rotate(b, "rb\n");
 		}
 	}
+	i = -1;
+	while (++i < push)
+		r_reverse(b, "rrb\n");
+	len = len / 2 - !(len%2);
+	print_stack(*a, *b);
+	while (len > 2)
+	{
+		count = 0;
+		med = get_median_value(*a, len);
+		push = 0;
+		while (count < len / 2 && *a && (*a)->next)
+		{
+			if ((*a)->content < med)
+			{
+				push_b(a, b, "pb\n");
+				count++;
+			}
+			else
+			{
+				rotate(a, "ra\n");
+				push++;
+			}
+		}
+		i = -1;
+		while (++i < push)
+			r_reverse(a, "rra\n");
+		len -= count;
+		*groups = remake_groups(*groups, count);
+	}
+	if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
+		swap(a, "sa\n");
+	*current = 0;
 }
 
 static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
@@ -122,11 +100,20 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	current_group = 0;
 	if (a && a->next && a->content > a->next->content)
 		swap(&a, "sa\n");
-	current_group--;
-	while (groups[++current_group] <= 6 && groups[current_group] != -1)
-		swap_med_simple(&a, &b, groups, current_group);
+	while (groups[current_group] != -1)
+	{
+		if (groups[current_group] > 6)
+		{
+			print_stack(a, b);
+			re_swap(&a, &b, &groups, &current_group);
+		}
+		while (groups[current_group] <= 6 && groups[current_group] != -1)
+		{
+			swap_med_simple(&a, &b, groups, current_group);
+			current_group++;
+		}
+	}
 	print_stack(a, b);
-	graph_1line(a, b);
 }
 
 static void	solve_swap(t_stack *a)
@@ -154,7 +141,6 @@ static void	solve_swap(t_stack *a)
 			}
 			else
 				rotate(&a, "ra\n");
-			graph_1line(a, b);
 		}
 		size = 0;
 	}

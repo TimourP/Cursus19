@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/14 13:45:27 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/21 09:02:03 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ BOTH_SRCS =	libft_utils.c \
 			main_error.c \
 			testing.c \
 
-PUSH_SWAP_SRCS = push_swap.c \
+PUSH_SWAP_SRCS = 	push_swap.c \
+					push_swap_utils.c \
 
 CHECKER_SRCS = checker.c \
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:58:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/21 09:04:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,13 @@ void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print);
 */
 
 int  check_args(int argc, char **argv);
+
+/*
+**	PUSH_SWAP
+*/
+
+int	get_median_value(t_stack *stack, int len);
+void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current);
+int	*get_swap_groups(t_stack *a);
 
 #endif
