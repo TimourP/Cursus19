@@ -6,24 +6,29 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:12:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:19:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:23:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
+
+static void	init_const(t_thread *thread, t_calc *c)
+{
+	c->y = -1;
+	c->i = -1;
+	c->x_scale = thread->x_side / WINDOW_WIDTH;
+	c->y_scale = thread->y_side / WINDOW_HEIGHT;
+	c->ca = 4 * thread->mouse_x / WINDOW_WIDTH - 2;
+	c->cb = 4 * thread->mouse_y / WINDOW_HEIGHT - 2;
+}
 
 void	*julia(void *thread)
 {
 	t_calc		c;
 	t_thread	*thr;
 
+	init_const(thread, &c);
 	thr = thread;
-	c.y = -1;
-	c.x_scale = thr->x_side / WINDOW_WIDTH;
-	c.y_scale = thr->y_side / WINDOW_HEIGHT;
-	c.ca = (float)(4 * thr->mouse_x) / WINDOW_WIDTH - 2;
-	c.cb = (float)(4 * thr->mouse_y) / WINDOW_HEIGHT - 2;
-	c.i = -1;
 	while (++c.i < WINDOW_WIDTH * WINDOW_HEIGHT / THREAD_COUNT)
 	{
 		c.x = (c.i * THREAD_COUNT + thr->id) % WINDOW_WIDTH;

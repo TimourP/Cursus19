@@ -6,11 +6,20 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:23:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:12:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:25:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
+
+static void	mandelbrot_var(t_fract *fract, t_calc *c)
+{
+	c->ca = c->x * c->x_scale + fract->left;
+	c->cb = c->y * c->y_scale + fract->top;
+	c->za = 0;
+	c->zb = 0;
+	c->count = 0;
+}
 
 void	mandelbrot(t_fract *fract)
 {
@@ -24,11 +33,7 @@ void	mandelbrot(t_fract *fract)
 		c.x = -1;
 		while (++c.x < WINDOW_WIDTH)
 		{
-			c.ca = c.x * c.x_scale + fract->left;
-			c.cb = c.y * c.y_scale + fract->top;
-			c.za = 0;
-			c.zb = 0;
-			c.count = 0;
+			mandelbrot_var(fract, &c);
 			while ((c.za * c.za + c.zb * c.zb <= 4) && (c.count < MAX_COUNT))
 			{
 				c.tempx = c.za * c.za - c.zb * c.zb + c.ca;

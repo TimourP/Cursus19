@@ -6,21 +6,26 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:19:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:22:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
+static void	init_const(t_fract *fract, t_calc *c)
+{
+	c->y = -1;
+	c->x_scale = fract->x_side / WINDOW_WIDTH;
+	c->y_scale = fract->y_side / WINDOW_HEIGHT;
+	c->ca = 4 * fract->mouse_x / WINDOW_WIDTH - 2;
+	c->cb = 4 * fract->mouse_y / WINDOW_HEIGHT - 2;
+}
+
 void	julia(t_fract *fract)
 {
 	t_calc	c;
 
-	c.y = -1;
-	c.x_scale = fract->x_side / WINDOW_WIDTH;
-	c.y_scale = fract->y_side / WINDOW_HEIGHT;
-	c.ca = 4 * fract->mouse_x / WINDOW_WIDTH - 2;
-	c.cb = 4 * fract->mouse_y / WINDOW_HEIGHT - 2;
+	init_const(fract, &c);
 	while (++c.y < WINDOW_HEIGHT)
 	{
 		c.x = -1;

@@ -6,11 +6,22 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:19:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:26:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
+
+static void	mandelbrot_var(t_thread *thr, t_calc *c)
+{
+	c->x = (c->i * THREAD_COUNT + thr->id) % WINDOW_WIDTH;
+	c->y = (c->i * THREAD_COUNT + thr->id) / WINDOW_WIDTH;
+	c->ca = c->x * c->x_scale + thr->left;
+	c->cb = c->y * c->y_scale + thr->top;
+	c->za = 0;
+	c->zb = 0;
+	c->count = 0;
+}
 
 void	*mandelbrot(void *thread)
 {
@@ -24,13 +35,7 @@ void	*mandelbrot(void *thread)
 	c.i = -1;
 	while (++c.i < WINDOW_WIDTH * WINDOW_HEIGHT / THREAD_COUNT)
 	{
-		c.x = (c.i * THREAD_COUNT + thr->id) % WINDOW_WIDTH;
-		c.y = (c.i * THREAD_COUNT + thr->id) / WINDOW_WIDTH;
-		c.ca = c.x * c.x_scale + thr->left;
-		c.cb = c.y * c.y_scale + thr->top;
-		c.za = 0;
-		c.zb = 0;
-		c.count = 0;
+		mandelbrot_var(thr, &c);
 		while ((c.za * c.za + c.zb * c.zb <= 4) && (c.count < MAX_COUNT))
 		{
 			c.tempx = c.za * c.za - c.zb * c.zb + c.ca;
