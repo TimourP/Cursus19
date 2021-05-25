@@ -1,46 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   beryl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:51:20 by tpetit           ###   ########.fr       */
+/*   Created: 2021/05/25 19:34:00 by tpetit            #+#    #+#             */
+/*   Updated: 2021/05/25 20:39:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-static void	init_const(t_fract *fract, t_calc *c)
+static void	beryl_loop(t_calc *c)
 {
-	c->y = -1;
-	c->x_scale = fract->x_side / WINDOW_WIDTH;
-	c->y_scale = fract->y_side / WINDOW_HEIGHT;
-	c->ca = 4 * fract->mouse_x / WINDOW_WIDTH - 2;
-	c->cb = 4 * fract->mouse_y / WINDOW_HEIGHT - 2;
+	c->atmp = (c->xa * c->za - c->xb * c->zb);
+	c->btmp = (c->xa * c->zb + c->xb * c->za);
+	c->xa = c->k * (c->xa + c->za);
+	c->xb = c->k * (c->xb + c->zb);
+	c->za = c->atmp;
+	c->zb = c->btmp;
+	c->count++;
 }
 
-void	julia(t_fract *fract)
+void	beryl(t_fract *fract)
 {
 	t_calc	c;
 
-	init_const(fract, &c);
+	c.k = 1;
+	c.y = -1;
+	c.x_scale = fract->x_side / WINDOW_WIDTH;
+	c.y_scale = fract->y_side / WINDOW_HEIGHT;
 	while (++c.y < WINDOW_HEIGHT)
 	{
 		c.x = -1;
 		while (++c.x < WINDOW_WIDTH)
 		{
-			c.za = c.x * c.x_scale + fract->left;
-			c.zb = c.y * c.y_scale + fract->top;
 			c.count = 0;
-			while ((c.za * c.za + c.zb * c.zb <= 4) && (c.count < MAX_COUNT))
-			{
-				c.tempx = c.za * c.za - c.zb * c.zb + c.ca;
-				c.zb = 2 * c.za * c.zb + c.cb;
-				c.za = c.tempx;
-				c.count++;
-			}
+			c.xa = c.x * c.x_scale + fract->left;
+			c.xb = c.y * c.y_scale + fract->top;
+			c.za = 1;
+			c.zb = 0;
+			while ((c.k * (c.xa + c.za) <= 4) && (c.count < MAX_COUNT))
+				beryl_loop(&c);
 			c.color = (MAX_COUNT - c.count) * 1000;
 			if (c.color != 0)
 				c.color = c.color + 14942208;

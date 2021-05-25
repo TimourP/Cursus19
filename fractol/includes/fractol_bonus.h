@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:16:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 20:44:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ typedef struct s_calc
 	long double	ca;
 	long double	tempx;
 	long double	cb;
+	long double	k;
+	long double	xa;
+	long double	xb;
+	long double	atmp;
+	long double	btmp;
 	int			color;
 	int			i;
 }				t_calc;
@@ -118,5 +123,6 @@ int		mouse_wheel(int btn, int x, int y, t_fract *fract);
 
 void	*mandelbrot(void *thread);
 void	*julia(void *thread);
+void	*beryl(void *thread);
 
 #endif

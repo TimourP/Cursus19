@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:10:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 20:43:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void	init_threads(t_fract *fract, pthread_t t_id[THREAD_COUNT],
 			pthread_create(&t_id[i], NULL, julia, (void *)&threads[i]);
 		else if (fract->id == 1)
 			pthread_create(&t_id[i], NULL, mandelbrot, (void *)&threads[i]);
+		else if (fract->id == 2)
+			pthread_create(&t_id[i], NULL, beryl, (void *)&threads[i]);
 	}
 }
 

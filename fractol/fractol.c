@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:14:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 15:50:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:38:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	main_error(int argc, char **argv, t_fract *fract)
 {
-	const char	*fractals_list[3] = {"julia", "mandelbrot", "other"};
+	const char	*fractals_list[3] = {"julia", "mandelbrot", "beryl"};
 	int			in_list;
 	int			i;
 
