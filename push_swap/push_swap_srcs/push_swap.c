@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 10:16:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/21 11:53:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 			current_group++;
 		}
 	}
+	print_stack(a, b);
 }
 
 static void	solve_swap(t_stack *a)
@@ -157,6 +158,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
+		print_stack(a, b);
 		solve_swap(a);
 		print_count();
 	}
