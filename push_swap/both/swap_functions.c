@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 11:39:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 10:51:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	push_a(t_stack **a, t_stack **b, const char *to_print)
 	if (to_print)
 		write(1, to_print, 3);
 	g_swap_count++;
-	//graph_1line(*a, *b);
 }
 
 void	push_b(t_stack **a, t_stack **b, const char *to_print)
@@ -69,7 +68,6 @@ void	push_b(t_stack **a, t_stack **b, const char *to_print)
 	if (to_print)
 		write(1, to_print, 3);
 	g_swap_count++;
-	//graph_1line(*a, *b);
 }
 
 void	rotate(t_stack **stack, const char *to_print)

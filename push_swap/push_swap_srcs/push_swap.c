@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 11:53:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 11:01:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static int *remake_groups(int *groups, int count)
 		if (groups[i])
 			size++;
 	new_groups = malloc(sizeof(int) * (size + 1));
+	if (!new_groups)
+	{
+		printf("J'exit\n");
+		exit(EXIT_FAILURE);
+	}
 	new_groups[0] = count;
 	i_g = -1;
 	i = 0;
