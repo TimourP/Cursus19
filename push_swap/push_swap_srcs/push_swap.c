@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:25:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:46:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,75 +23,10 @@ static int	check_sort(t_stack *a)
 	return (1);
 }
 
-static int	*remake_groups(int *groups, int count)
-{
-	int	i;
-	int	i_g;
-	int	size;
-	int	*new_groups;
-
-	i = -1;
-	size = 0;
-	while (groups[++i] != -1)
-		if (groups[i])
-			size++;
-	new_groups = malloc(sizeof(int) * (size + 2));
-	new_groups[0] = count;
-	i_g = -1;
-	i = 0;
-	while (groups[++i_g] != -1)
-		if (groups[i_g])
-			new_groups[++i] = groups[i_g];
-	new_groups[i + 1] = -1;
-	free(groups);
-	return (new_groups);
-}
-
-static void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
-{
-	int	len;
-	int	med;
-	int	i;
-	int	push;
-	int	count;
-
-	len = (*groups)[*current];
-	(*groups)[*current] = (*groups)[*current] - len / 2 + !(len % 2);
-	med = get_median_value(*b, len);
-	push = 0;
-	while (push < len / 2 - !len % 2)
-	{
-		if ((*b)->content > med)
-			push_a(a, b, "pa\n");
-		else if (++push)
-			rotate(b, "rb\n");
-	}
-	i = -1;
-	while (++i < push)
-		r_reverse(b, "rrb\n");
-	len = len / 2 - !(len % 2);
-	while (len > 2)
-	{
-		count = 0;
-		med = get_median_value(*a, len);
-		push = 0;
-		while (count < len / 2 && *a && (*a)->next)
-		{
-			if ((*a)->content < med && ++count)
-				push_b(a, b, "pb\n");
-			else if (++push)
-				rotate(a, "ra\n");
-		}
-		i = -1;
-		while (++i < push)
-			r_reverse(a, "rra\n");
-		len -= count;
-		*groups = remake_groups(*groups, count);
-	}
-	if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
-		swap(a, "sa\n");
-	*current = 0;
-}
+/*
+** lmipc
+** len - mediane - i - push - count
+*/
 
 static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 {
@@ -115,37 +50,6 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	free(groups);
 	ft_stackclear(&a);
 	ft_stackclear(&b);
-}
-
-static int	get_up_median(t_stack *stack, int med, int len)
-{
-	int	*num_list;
-	int	i;
-	int	temp;
-	int	ret;
-
-	num_list = malloc(sizeof(int) * len);
-	i = -1;
-	while (stack)
-	{
-		if (stack->content < med)
-			num_list[++i] = stack->content;
-		stack = stack->next;
-	}
-	i = -1;
-	while (++i < len - 1)
-	{
-		if (num_list[i] > num_list[i + 1])
-		{
-			temp = num_list[i];
-			num_list[i] = num_list[i + 1];
-			num_list[i + 1] = temp;
-			i = -1;
-		}
-	}
-	ret = num_list[len / 2];
-	free(num_list);
-	return (ret);
 }
 
 static void	solve_swap(t_stack *a)
