@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:09:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:25:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,8 @@ static void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 	{
 		if ((*b)->content > med)
 			push_a(a, b, "pa\n");
-		else
-		{
-			push++;
+		else if (++push)
 			rotate(b, "rb\n");
-		}
 	}
 	i = -1;
 	while (++i < push)
@@ -80,16 +77,10 @@ static void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 		push = 0;
 		while (count < len / 2 && *a && (*a)->next)
 		{
-			if ((*a)->content < med)
-			{
+			if ((*a)->content < med && ++count)
 				push_b(a, b, "pb\n");
-				count++;
-			}
-			else
-			{
+			else if (++push)
 				rotate(a, "ra\n");
-				push++;
-			}
 		}
 		i = -1;
 		while (++i < push)
@@ -174,11 +165,8 @@ static void	solve_swap(t_stack *a)
 		med = get_median_value(a, size);
 		while (count < size / 2 - 1 && a && a->next)
 		{
-			if (a->content < med)
-			{
+			if (a->content < med && (++count || 1))
 				push_b(&a, &b, "pb\n");
-				count++;
-			}
 			else
 				rotate(&a, "ra\n");
 		}

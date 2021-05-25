@@ -6,11 +6,29 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:07:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:20:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void	get_median_value_loop(int *num_list, int len)
+{
+	int	i;
+	int	temp;
+
+	i = -1;
+	while (++i < len - 1)
+	{
+		if (num_list[i] > num_list[i + 1])
+		{
+			temp = num_list[i];
+			num_list[i] = num_list[i + 1];
+			num_list[i + 1] = temp;
+			i = -1;
+		}
+	}
+}
 
 int	get_median_value(t_stack *stack, int len)
 {
@@ -26,17 +44,7 @@ int	get_median_value(t_stack *stack, int len)
 		num_list[++i] = stack->content;
 		stack = stack->next;
 	}
-	i = -1;
-	while (++i < len - 1)
-	{
-		if (num_list[i] > num_list[i + 1])
-		{
-			temp = num_list[i];
-			num_list[i] = num_list[i + 1];
-			num_list[i + 1] = temp;
-			i = -1;
-		}
-	}
+	get_median_value_loop(num_list, len);
 	ret = num_list[len / 2];
 	free(num_list);
 	return (ret);
@@ -69,6 +77,30 @@ int	*get_swap_groups(t_stack *a)
 	return (groups);
 }
 
+static void	swap_med_simple_loop(t_stack **a, t_stack **b,
+	int *groups, int current)
+{
+	int	med;
+	int	push;
+	int	count;
+
+	med = get_median_value(*b, groups[current]);
+	count = 0;
+	push = 0;
+	while (count < 1 + (int)(groups[current] >= 5))
+	{
+		if ((*b)->content > med && (++ count))
+			push_a(a, b, "pa\n");
+		else if (++push)
+			rotate(b, "rb\n");
+	}
+	if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
+		swap(a, "sa\n");
+	while (--push > -1)
+		r_reverse(b, "rrb\n");
+	groups[current] = groups[current] - 1 - (int)(groups[current] >= 5);
+}
+
 void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 {
 	int	med;
@@ -91,28 +123,6 @@ void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 			groups[current] = 0;
 		}
 		else
-		{
-			med = get_median_value(*b, groups[current]);
-			count = 0;
-			push = 0;
-			while (count < 1 + (int)(groups[current] >= 5))
-			{
-				if ((*b)->content > med)
-				{
-					count++;
-					push_a(a, b, "pa\n");
-				}
-				else
-				{
-					push++;
-					rotate(b, "rb\n");
-				}
-			}
-			if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
-				swap(a, "sa\n");
-			while (--push > -1)
-				r_reverse(b, "rrb\n");
-			groups[current] = groups[current] - 1 - (int)(groups[current] >= 5);
-		}
+			swap_med_simple_loop(a, b, groups, current);
 	}
 }
