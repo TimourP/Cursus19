@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:23:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/19 18:26:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:12:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,32 @@
 
 void	mandelbrot(t_fract *fract)
 {
-	int 	x;
-	int		y;
-	int		count;
-	long double	x_scale;
-	long double	y_scale;
-	long double	za, zb, ca, tempx, cb;
-	int		color;
+	t_calc	c;
 
-	y = -1;
-	x_scale = fract->x_side / WINDOW_WIDTH;
-	y_scale = fract->y_side / WINDOW_HEIGHT;
-	while (++y < WINDOW_HEIGHT)
+	c.y = -1;
+	c.x_scale = fract->x_side / WINDOW_WIDTH;
+	c.y_scale = fract->y_side / WINDOW_HEIGHT;
+	while (++c.y < WINDOW_HEIGHT)
 	{
-		x = -1;
-		while (++x < WINDOW_WIDTH)
+		c.x = -1;
+		while (++c.x < WINDOW_WIDTH)
 		{
-			ca = x * x_scale + fract->left;
-			cb = y * y_scale + fract->top;
-			za = 0;
-			zb = 0;
-			count = 0;
-			while ((za * za + zb * zb <= 4) && (count < MAX_COUNT))
+			c.ca = c.x * c.x_scale + fract->left;
+			c.cb = c.y * c.y_scale + fract->top;
+			c.za = 0;
+			c.zb = 0;
+			c.count = 0;
+			while ((c.za * c.za + c.zb * c.zb <= 4) && (c.count < MAX_COUNT))
 			{
-				tempx = za * za - zb * zb + ca;
-				zb = 2 * za * zb + cb;
-				za = tempx;
-				count++;
+				c.tempx = c.za * c.za - c.zb * c.zb + c.ca;
+				c.zb = 2 * c.za * c.zb + c.cb;
+				c.za = c.tempx;
+				c.count++;
 			}
-			color = (MAX_COUNT - count) * 1000;
-			color = color == 0 ? 0 : color + 14942208;
-			draw_pixel(fract->mlx_img, x, y, color);
+			c.color = (MAX_COUNT - c.count) * 1000;
+			if (c.color)
+				c.color = c.color + 14942208;
+			draw_pixel(fract->mlx_img, c.x, c.y, c.color);
 		}
 	}
 }

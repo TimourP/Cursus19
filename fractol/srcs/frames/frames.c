@@ -6,22 +6,41 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 15:26:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:10:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-void	proceed_moves(t_fract *fract)
+static void	zoom_on(t_fract *fract, int *change)
 {
+	fract->left += fract->x_side * 0.05;
+	fract->top += fract->y_side * 0.05;
+	fract->x_side = fract->x_side * 0.9;
+	fract->y_side = fract->y_side * 0.9;
+	fract->zoom_on = 0;
+	*change = 1;
+}
+
+static void	zoom_out(t_fract *fract, int *change)
+{
+	fract->left -= fract->x_side * 0.05;
+	fract->top -= fract->y_side * 0.05;
+	fract->x_side = fract->x_side * 1.1;
+	fract->y_side = fract->y_side * 1.1;
+	fract->zoom_off = 0;
+	*change = 1;
+}
+
+static int	proceed_moves(t_fract *fract)
+{
+	int	change;
+
+	change = 0;
 	if (fract->zoom_on)
-	{
-		fract->x_side = fract->x_side * 0.9;
-		fract->y_side = fract->y_side * 0.9;
-		fract->left += fract->x_side * 0.05;
-		fract->top += fract->y_side * 0.05;
-		fract->zoom_on = 0;
-	}
+		zoom_on(fract, &change);
+	else if (fract->zoom_off)
+		zoom_out(fract, &change);
 	if (fract->up_move)
 		fract->top -= fract->y_side / 20;
 	if (fract->down_move)
@@ -30,18 +49,20 @@ void	proceed_moves(t_fract *fract)
 		fract->left -= fract->x_side / 20;
 	if (fract->right_move)
 		fract->left += fract->x_side / 20;
+	if (fract->up_move || fract->down_move
+		|| fract->left_move || fract->right_move)
+		change = 1;
+	return (change);
 }
 
 int	next_frame(t_fract *fract)
 {
-	static long double	last_left;
-	static long double	last_top;
+	static int	init;
 
-	proceed_moves(fract);
-	if (last_left != fract->left || last_top != fract->top)
+	if (proceed_moves(fract) || !init)
 	{
-		last_top = fract->top;
-		last_left = fract->left;
+		if (!init)
+			init = 1;
 		printf("New frame\n");
 		if (fract->id == 0)
 			julia(fract);
