@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 13:50:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 16:19:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ int	get_median_value(t_stack *stack, int len)
 	int ret;
 
 	num_list = malloc(sizeof(int) * len);
-	if (!num_list)
-	{
-		printf("J'exit\n");
-		exit(EXIT_FAILURE);
-	}
 	i = -1;
 	while (i < len - 1)
 	{
@@ -62,12 +57,7 @@ int	*get_swap_groups(t_stack *a)
 		stack_size -= stack_size / 2;
 		size++;
 	}
-	groups = malloc(sizeof(int) * (size + 1));
-	if (!groups)
-	{
-		printf("J'exit\n");
-		exit(EXIT_FAILURE);
-	}
+	groups = malloc(sizeof(int) * (size + 2));
 	i = -1;
 	stack_size = ft_stacksize(a, &stack_size);
 	while (++i < size)

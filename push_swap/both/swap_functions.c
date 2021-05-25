@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 14:31:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 16:02:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	swap_swap(t_stack **a, t_stack **b, const char *to_print)
 	swap(b, to_print);
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count++;
+	g_swap_count--;
 }
 
 void	push_a(t_stack **a, t_stack **b, const char *to_print)
@@ -96,7 +96,7 @@ void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
 	rotate(b, to_print);
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count++;
+	g_swap_count--;
 }
 
 void	r_reverse(t_stack **stack, const char *to_print)
@@ -129,7 +129,7 @@ void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
 	r_reverse(b, to_print);
 	if (to_print)
 		write(1, to_print, 4);
-	g_swap_count++;
+	g_swap_count--;
 }
 
 void	print_count(void)
