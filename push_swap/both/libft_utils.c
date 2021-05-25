@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 10:11:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:46:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ char	*ft_strdup(const char *str)
 
 int	ft_strncmp(const char *s1, const char *s2)
 {
+	if (ft_strlen_until((char *)s1, 0) != ft_strlen_until((char *)s2, 0))
+		return (-1);
 	while (1)
 	{
 		if ((!*s1 || !*s2))

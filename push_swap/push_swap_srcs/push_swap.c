@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 11:01:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:19:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,7 @@ static int *remake_groups(int *groups, int count)
 	while (groups[++i] != -1)
 		if (groups[i])
 			size++;
-	new_groups = malloc(sizeof(int) * (size + 1));
-	if (!new_groups)
-	{
-		printf("J'exit\n");
-		exit(EXIT_FAILURE);
-	}
+	new_groups = malloc(sizeof(int) * (size + 2));
 	new_groups[0] = count;
 	i_g = -1;
 	i = 0;
@@ -116,7 +111,9 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 			current_group++;
 		}
 	}
-	print_stack(a, b);
+	free(groups);
+	ft_stackclear(&a);
+	ft_stackclear(&b);
 }
 
 static void	solve_swap(t_stack *a)
@@ -163,7 +160,6 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
-		print_stack(a, b);
 		solve_swap(a);
 		print_count();
 	}

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 11:02:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 13:50:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int	get_median_value(t_stack *stack, int len)
 	int	temp;
 	int ret;
 
-	if (len > 500)
-	{
-		printf("Hello\n");
-		exit(EXIT_SUCCESS);
-	}
 	num_list = malloc(sizeof(int) * len);
 	if (!num_list)
 	{

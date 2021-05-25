@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/21 09:02:03 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/25 14:05:39 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,14 @@ PUSH_SWAP_SRCS = 	push_swap.c \
 
 CHECKER_SRCS = checker.c \
 
-ALL_SWAP_SRCS = $(addprefix push_swap_srcs/, ${PUSH_SWAP_SRCS}) \
+ALL_SWAP_SRCS = get_next_line/get_next_line_utils.c \
+				get_next_line/get_next_line.c \
+				$(addprefix push_swap_srcs/, ${PUSH_SWAP_SRCS}) \
 				$(addprefix both/, ${BOTH_SRCS}) \
 
-ALL_CHECK_SRCS =	$(addprefix checker_srcs/, ${CHECKER_SRCS}) \
+ALL_CHECK_SRCS =	get_next_line/get_next_line_utils.c \
+					get_next_line/get_next_line.c \
+					$(addprefix checker_srcs/, ${CHECKER_SRCS}) \
 					$(addprefix both/, ${BOTH_SRCS}) \
 
 SWAP_OBJS	=	${ALL_SWAP_SRCS:.c=.o}

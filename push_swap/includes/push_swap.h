@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 09:04:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:06:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "unistd.h"
 # include "stdlib.h"
 # include "stdio.h"
+# include "../get_next_line/get_next_line.h"
 
 # define ARGS_NUMBER 0
 # define ARGS_TYPE_ERROR 1

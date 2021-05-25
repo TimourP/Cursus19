@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:21:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:47:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	get_entry(t_list **entry)
 {
 	int		bytes;
-	char	buff[64];
+	char	*buff;
 	t_list	*new;
 
 	bytes = 1;
 	while (bytes > 0)
 	{
-		bytes = read(0, buff, 64);
+		bytes = get_next_line(0, &buff);
 		if (bytes >= 0)
 		{
 			new = ft_lstnew(ft_strdup(buff));
@@ -33,6 +33,7 @@ static void	get_entry(t_list **entry)
 			}
 			ft_lstadd_back(entry, new);
 		}
+		free(buff);
 	}
 }
 
@@ -104,7 +105,6 @@ static void	resolve_checker(t_stack *a, t_list *entry)
 		}
 		entry = entry->next;
 	}
-	print_stack(a, b);
 	check_sort(a, b);
 }
 
