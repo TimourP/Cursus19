@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/25 14:05:39 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/25 18:02:49 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ BOTH_SRCS =	libft_utils.c \
 			lst_utils.c \
 			stack_utils.c \
 			swap_functions.c \
+			swap_functions2.c \
 			both_utils.c \
 			main_error.c \
 			testing.c \

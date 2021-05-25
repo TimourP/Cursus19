@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 16:18:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:03:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,12 +181,7 @@ static void	solve_swap(t_stack *a)
 				count++;
 			}
 			else
-			{
-				if (start && b && b->content < get_up_median(a, med, size / 2))
-					rotate_rotate(&a, &b, "rr\n");
-				else 
-					rotate(&a, "ra\n");
-			}
+				rotate(&a, "ra\n");
 		}
 		size = 0;
 		start = 0;
@@ -210,6 +205,7 @@ int	main(int argc, char **argv)
 		fill_struct(argc, argv, &a);
 		if (!check_sort(a))
 			solve_swap(a);
+		printf("Count: %d\n", print_count() + print_count2());
 		print_count();
 	}
 	return (0);

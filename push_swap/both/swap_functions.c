@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 16:02:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:01:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,69 +70,7 @@ void	push_b(t_stack **a, t_stack **b, const char *to_print)
 	g_swap_count++;
 }
 
-void	rotate(t_stack **stack, const char *to_print)
+int	print_count(void)
 {
-	t_stack	*start;
-	t_stack	*temp;
-
-	if (stack && *stack && (*stack)->next)
-	{
-		start = (*stack)->next;
-		temp = *stack;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = *stack;
-		(*stack)->next = NULL;
-		*stack = start;
-	}
-	if (to_print)
-		write(1, to_print, 3);
-	g_swap_count++;
-}
-
-void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
-{
-	rotate(a, to_print);
-	rotate(b, to_print);
-	if (to_print)
-		write(1, to_print, 3);
-	g_swap_count--;
-}
-
-void	r_reverse(t_stack **stack, const char *to_print)
-{
-	t_stack	*start;
-	t_stack	*temp;
-
-	if (stack && *stack && (*stack)->next)
-	{
-		start = *stack;
-		while (start->next)
-		{
-			if (start->next->next == NULL)
-				temp = start;
-			start = start->next;
-		}
-		if (temp && temp->next)
-			temp->next = NULL;
-		start->next = *stack;
-		*stack = start;
-	}
-	if (to_print)
-		write(1, to_print, 4);
-	g_swap_count++;
-}
-
-void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
-{
-	r_reverse(a, to_print);
-	r_reverse(b, to_print);
-	if (to_print)
-		write(1, to_print, 4);
-	g_swap_count--;
-}
-
-void	print_count(void)
-{
-	printf("%d\n", g_swap_count);
+	return (g_swap_count);
 }

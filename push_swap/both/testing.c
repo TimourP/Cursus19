@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:05:13 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/21 10:34:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:00:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	print_stack(t_stack *a, t_stack *b)
 	printf("-------------------\n");
 }
 
-char *str_char(char c, int len)
+char	*str_char(char c, int len)
 {
-	int 	i;
+	int		i;
 	char	*str;
 
 	i = -1;
@@ -64,7 +64,7 @@ void	graph_1line(t_stack *a, t_stack *b)
 
 void	graphic_stack(t_stack *a, t_stack *b)
 {
-	char *str;
+	char	*str;
 
 	while (a || b)
 	{

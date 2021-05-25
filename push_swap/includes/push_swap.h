@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 14:06:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:05:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }				t_stack;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
@@ -43,7 +43,8 @@ t_stack	*ft_stacknew(int content);
 void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
 int		ft_stacksize(t_stack *stack, int *size);
-void	print_count(void);
+int		print_count(void);
+int		print_count2(void);
 void	graphic_stack(t_stack *a, t_stack *b);
 void	graph_1line(t_stack *a, t_stack *b);
 
@@ -88,14 +89,14 @@ void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print);
 ** ERROR
 */
 
-int  check_args(int argc, char **argv);
+int		check_args(int argc, char **argv);
 
 /*
 **	PUSH_SWAP
 */
 
-int	get_median_value(t_stack *stack, int len);
+int		get_median_value(t_stack *stack, int len);
 void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current);
-int	*get_swap_groups(t_stack *a);
+int		*get_swap_groups(t_stack *a);
 
 #endif
