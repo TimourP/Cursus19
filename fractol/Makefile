@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/25 20:43:23 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/25 21:08:54 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 NAME	=	fractol
 LIBFT_NAME = libft.a
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 LIBFT_PATH	=	./libft
 
 all:			$(NAME)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 20:39:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:03:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:08:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	*beryl(void *thread)
 			c.color = c.color + 14942208 + thr->color_add;
 		draw_pixel(thr->mlx_img, c.x, c.y, c.color);
 	}
+	return (NULL);
 }
