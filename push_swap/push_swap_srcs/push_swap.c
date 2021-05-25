@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:03:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 18:09:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int	check_sort(t_stack *a)
 	return (1);
 }
 
-static int *remake_groups(int *groups, int count)
+static int	*remake_groups(int *groups, int count)
 {
-	int i;
-	int i_g;
-	int size;
+	int	i;
+	int	i_g;
+	int	size;
 	int	*new_groups;
 
 	i = -1;
@@ -47,19 +47,19 @@ static int *remake_groups(int *groups, int count)
 	return (new_groups);
 }
 
-static void	re_swap(t_stack **a, t_stack **b,  int **groups, int *current)
+static void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 {
 	int	len;
-	int med;
-	int i;
-	int push;
-	int count;
+	int	med;
+	int	i;
+	int	push;
+	int	count;
 
 	len = (*groups)[*current];
-	(*groups)[*current] =  (*groups)[*current] - len / 2 + !(len%2);
+	(*groups)[*current] = (*groups)[*current] - len / 2 + !(len % 2);
 	med = get_median_value(*b, len);
 	push = 0;
-	while (push < len / 2 - !len%2)
+	while (push < len / 2 - !len % 2)
 	{
 		if ((*b)->content > med)
 			push_a(a, b, "pa\n");
@@ -72,7 +72,7 @@ static void	re_swap(t_stack **a, t_stack **b,  int **groups, int *current)
 	i = -1;
 	while (++i < push)
 		r_reverse(b, "rrb\n");
-	len = len / 2 - !(len%2);
+	len = len / 2 - !(len % 2);
 	while (len > 2)
 	{
 		count = 0;
@@ -131,7 +131,7 @@ static int	get_up_median(t_stack *stack, int med, int len)
 	int	*num_list;
 	int	i;
 	int	temp;
-	int ret;
+	int	ret;
 
 	num_list = malloc(sizeof(int) * len);
 	i = -1;
@@ -164,7 +164,6 @@ static void	solve_swap(t_stack *a)
 	int		med;
 	int		count;
 	int		*groups;
-	int start = 1;
 
 	b = NULL;
 	size = 0;
@@ -184,7 +183,6 @@ static void	solve_swap(t_stack *a)
 				rotate(&a, "ra\n");
 		}
 		size = 0;
-		start = 0;
 	}
 	solve_swap2(a, b, groups);
 }
