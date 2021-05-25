@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 20:43:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:02:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ static int	proceed_moves(t_fract *fract)
 		fract->left -= fract->x_side / 20;
 	if (fract->right_move)
 		fract->left += fract->x_side / 20;
-	if (fract->up_move || fract->down_move
-		|| fract->left_move || fract->right_move)
+	if (fract->color)
+		fract->color_add += 1000;
+	if (fract->up_move || fract->down_move || fract->left_move
+		|| fract->right_move || fract->color)
 		change = 1;
 	return (change);
 }
@@ -71,6 +73,7 @@ static void	init_threads(t_fract *fract, pthread_t t_id[THREAD_COUNT],
 		threads[i].mlx_img = fract->mlx_img;
 		threads[i].mouse_y = fract->mouse_y;
 		threads[i].mouse_x = fract->mouse_x;
+		threads[i].color_add = fract->color_add;
 		if (fract->id == 0)
 			pthread_create(&t_id[i], NULL, julia, (void *)&threads[i]);
 		else if (fract->id == 1)

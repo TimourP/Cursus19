@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 20:36:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:06:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ typedef struct s_fract
 	int			zoom_off;
 	int			mouse_x;
 	int			mouse_y;
+	int			color;
+	int			color_add;
 }				t_fract;
 
 typedef struct s_calc
 {
-	int 		x;
+	int			x;
 	int			y;
 	int			count;
 	long double	x_scale;

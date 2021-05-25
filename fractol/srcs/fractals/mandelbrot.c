@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:23:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:25:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 20:56:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	mandelbrot(t_fract *fract)
 			}
 			c.color = (MAX_COUNT - c.count) * 1000;
 			if (c.color)
-				c.color = c.color + 14942208;
+				c.color = c.color + 14942208 + fract->color_add;
 			draw_pixel(fract->mlx_img, c.x, c.y, c.color);
 		}
 	}

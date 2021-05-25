@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:12:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:23:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:04:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	init_const(t_thread *thread, t_calc *c)
 	c->i = -1;
 	c->x_scale = thread->x_side / WINDOW_WIDTH;
 	c->y_scale = thread->y_side / WINDOW_HEIGHT;
-	c->ca = 4 * thread->mouse_x / WINDOW_WIDTH - 2;
-	c->cb = 4 * thread->mouse_y / WINDOW_HEIGHT - 2;
+	c->ca = (float)(4 * thread->mouse_x) / WINDOW_WIDTH - 2;
+	c->cb = (float)(4 * thread->mouse_y) / WINDOW_HEIGHT - 2;
 }
 
 void	*julia(void *thread)
@@ -45,7 +45,7 @@ void	*julia(void *thread)
 		}
 		c.color = (MAX_COUNT - c.count) * 1000;
 		if (c.color != 0)
-			c.color = c.color + 14942208;
+			c.color = c.color + 14942208 + thr->color_add;
 		draw_pixel(thr->mlx_img, c.x, c.y, c.color);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:39:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:00:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ static int	proceed_moves(t_fract *fract)
 		fract->left -= fract->x_side / 20;
 	if (fract->right_move)
 		fract->left += fract->x_side / 20;
-	if (fract->up_move || fract->down_move
-		|| fract->left_move || fract->right_move)
+	if (fract->color)
+		fract->color_add += 1000;
+	if (fract->up_move || fract->down_move || fract->left_move
+		|| fract->right_move || fract->color)
 		change = 1;
 	return (change);
 }

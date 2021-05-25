@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:41:18 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 19:26:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:03:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*mandelbrot(void *thread)
 		}
 		c.color = (MAX_COUNT - c.count) * 1000;
 		if (c.color != 0)
-			c.color = c.color + 14942208;
+			c.color = c.color + 14942208 + thr->color_add;
 		draw_pixel(thr->mlx_img, c.x, c.y, c.color);
 	}
 	return (NULL);

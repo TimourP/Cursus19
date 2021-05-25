@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:52:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/20 15:25:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/25 20:53:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_fract(t_fract *fract)
 	fract->left_move = 0;
 	fract->zoom_on = 0;
 	fract->zoom_off = 0;
+	fract->color = 0;
 }
 
 void	init_mlx(t_fract *fract)
