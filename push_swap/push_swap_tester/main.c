@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:09:36 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 16:52:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 18:21:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,23 @@ int main(void)
 	FILE	*out_f = fopen("trash.txt", "w");
 	FILE	*in_f = fopen("tmp.txt", "r");
 	char	buff[100];
+	char	*print_error;
 
+	int		corrent_swap;
+	int		total_lines;
+	int		t;
+	char	*bigest;
+	char	*lowest;
+	int		bigest_n;
+	int		lowest_n;
+
+	lowest_n = -1;
+	bigest_n = -1;
+	bigest = NULL;
+	lowest = NULL;
+	corrent_swap = 0;
+	total_lines = 0;
+	t = 0;
 	system("clear");
 	printf("Please indicate the number of tests to be performed: ");
 	scan_value = scanf("%d", &test_num);
@@ -156,6 +172,7 @@ int main(void)
 	i = -1;
 	while (++i < test_num)
 	{
+		fclose(in_f);
 		swap_line = ft_strdup("./push_swap ");
 		j = -1;
 		while (++j < val_num)
@@ -163,6 +180,16 @@ int main(void)
 			swap_line = ft_strjoin(swap_line, ft_itoa(lst[i][j]));
 			swap_line = ft_strjoin(swap_line, ft_strdup(" "));
 		}
+		print_error = ft_strdup(swap_line);
+		line_num = ft_strdup(print_error);
+		line_num = ft_strjoin(line_num, ft_strdup("| wc -l > count.txt"));
+		system(line_num);
+		t = 0;
+		in_f = fopen("count.txt", "r");
+		fscanf(in_f, "%d", &t);
+		t = t - 1;
+		fclose(in_f);
+		free(line_num);
 		swap_line = ft_strjoin(swap_line, ft_strdup("| ./checker "));
 		j = -1;
 		while (++j < val_num)
@@ -190,6 +217,34 @@ int main(void)
 		printf("%s\n", buff);
 		printf("\033[0m");
 		free(swap_line);
+		if (buff[0] != 'O')
+		{
+			printf("%s\n", print_error);
+			free(print_error);
+		}
+		else
+		{
+			corrent_swap++;
+			total_lines += t;
+			if (t > bigest_n || bigest_n == -1)
+			{
+				bigest_n = t;
+				free(bigest);
+				bigest = print_error;
+			} else if (t < lowest_n || lowest_n == -1)
+			{
+				lowest_n = t;
+				free(lowest);
+				lowest = print_error;
+			} else
+				free(print_error);
+		}
 		swap_line = NULL;
 	}
+	printf("Reussi: %d / %d\n", corrent_swap, test_num);
+	printf("Moyenne: %d\n", total_lines / test_num);
+	printf("Lowest: %d\n%s\n\n", lowest_n, lowest);
+	printf("Biggest: %d\n%s\n", bigest_n, bigest);
+	free(lowest);
+	free(bigest);
 }
