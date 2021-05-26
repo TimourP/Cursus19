@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:09:36 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 18:21:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 18:40:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,21 +230,31 @@ int main(void)
 			{
 				bigest_n = t;
 				free(bigest);
+				bigest = NULL;
 				bigest = print_error;
+				if (t < lowest_n || lowest_n == -1)
+				{
+					lowest_n = t;
+					free(lowest);
+					lowest = NULL;
+					lowest = ft_strdup(print_error);
+				}
 			} else if (t < lowest_n || lowest_n == -1)
 			{
 				lowest_n = t;
 				free(lowest);
+				lowest = NULL;
 				lowest = print_error;
 			} else
 				free(print_error);
 		}
 		swap_line = NULL;
 	}
-	printf("Reussi: %d / %d\n", corrent_swap, test_num);
-	printf("Moyenne: %d\n", total_lines / test_num);
-	printf("Lowest: %d\n%s\n\n", lowest_n, lowest);
-	printf("Biggest: %d\n%s\n", bigest_n, bigest);
+	printf("\n\n\nReussi: %d / %d\n", corrent_swap, test_num);
+	printf("Moyenne: %d swap pour %d elements\n", total_lines / test_num, test_num);
+	printf("Lowest: %d swaps\n%s\n\n", lowest_n, lowest);
+	printf("Biggest: %d swaps\n%s\n", bigest_n, bigest);
 	free(lowest);
 	free(bigest);
+	return (0);
 }
