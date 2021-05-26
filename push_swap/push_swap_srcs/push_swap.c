@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:46:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 12:13:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	solve_swap(t_stack *a)
 	b = NULL;
 	size = 0;
 	groups = get_swap_groups(a);
-	while (ft_stacksize(a, &size) > 2 && !check_sort(a))
+	while (ft_stacksize(a, &size) > 2)
 	{
 		count = -1;
 		med = get_median_value(a, size);
@@ -95,8 +95,7 @@ int	main(int argc, char **argv)
 		fill_struct(argc, argv, &a);
 		if (!check_sort(a))
 			solve_swap(a);
-		printf("Count: %d\n", print_count() + print_count2());
-		print_count();
+		//printf("Count: %d\n", print_count() + print_count2());
 	}
 	return (0);
 }

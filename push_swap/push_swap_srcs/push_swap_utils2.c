@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:46:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 12:12:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 	(*groups)[*current] = (*groups)[*current] - lmipc[0] / 2 + !(lmipc[0] % 2);
 	lmipc[1] = get_median_value(*b, lmipc[0]);
 	lmipc[3] = 0;
-	while (lmipc[3] < lmipc[0] / 2 - !lmipc[0] % 2)
+	lmipc[2] = 0;
+	while (lmipc[2] < lmipc[0] / 2 - !(lmipc[0] % 2))
 	{
-		if ((*b)->content > lmipc[1])
+		if ((*b)->content > lmipc[1] && ++lmipc[2])
 			push_a(a, b, "pa\n");
 		else if (++lmipc[3])
 			rotate(b, "rb\n");
