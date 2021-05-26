@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 19:15:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 19:17:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,41 +47,6 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	ft_stackclear(&b);
 }
 
-int	get_up_median_value(t_stack *stack, int len, int med, int size)
-{
-	int	*num_list;
-	int	i;
-	int j;
-	int	temp;
-	int	ret;
-
-	num_list = malloc(sizeof(int) * size);
-	i = -1;
-	j = -1;
-	while (++j < len - 1)
-	{
-		if (stack->content < med)
-			num_list[++i] = stack->content;
-		stack = stack->next;
-	}
-	i = -1;
-	while (++i < size - 1)
-	{
-		if (num_list[i] > num_list[i + 1])
-		{
-			temp = num_list[i];
-			num_list[i] = num_list[i + 1];
-			num_list[i + 1] = temp;
-			i = -1;
-		}
-	}
-	i = -1;
-	ret = num_list[size / 2];
-	free(num_list);
-	printf("%d\n", ret);
-	return (ret);
-}
-
 static void	solve_swap(t_stack *a)
 {
 	t_stack	*b;
@@ -89,33 +54,22 @@ static void	solve_swap(t_stack *a)
 	int		med;
 	int		count;
 	int		*groups;
-	int		first;
-	int		up_med;
 
 	b = NULL;
-	first = 1;
 	size = 0;
 	groups = get_swap_groups(a);
 	while (ft_stacksize(a, &size) > 2)
 	{
 		count = -1;
 		med = get_median_value(a, size);
-		if (first)
-			up_med = get_up_median_value(a, size, med, size / 2);
 		while (count < size / 2 - 1 && a && a->next)
 		{
 			if (a->content < med && (++count || 1))
 				push_b(&a, &b, "pb\n");
 			else
-			{
-				if (first && b && b->content < up_med)
-					rotate_rotate(&a, &b, "rr\n");
-				else
-					rotate(&a, "ra\n");
-			}
+				rotate(&a, "ra\n");
 		}
 		size = 0;
-		first = 0;
 	}
 	solve_swap2(a, b, groups);
 }
