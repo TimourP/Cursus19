@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:02:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 14:18:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ static void	zoom_on(t_fract *fract, int *change)
 	fract->y_side = fract->y_side * 0.9;
 	fract->zoom_on = 0;
 	*change = 1;
+	if (fract->mouse_x - WINDOW_WIDTH / 2 < 0)
+		fract->left -= fract->x_side * 0.1 * (1.0
+				- (float)fract->mouse_x / (WINDOW_WIDTH / 2));
+	else
+		fract->left += fract->x_side * 0.1 * ((float)(fract->mouse_x
+					- WINDOW_WIDTH / 2) / (WINDOW_WIDTH / 2));
+	if (fract->mouse_y - WINDOW_HEIGHT / 2 < 0)
+		fract->top -= fract->y_side * 0.1 * (1.0
+				- (float)fract->mouse_y / (WINDOW_HEIGHT / 2));
+	else
+		fract->top += fract->y_side * 0.1 * ((float)(fract->mouse_y
+					- WINDOW_HEIGHT / 2) / (WINDOW_HEIGHT / 2));
 }
 
 static void	zoom_out(t_fract *fract, int *change)
@@ -30,6 +42,18 @@ static void	zoom_out(t_fract *fract, int *change)
 	fract->y_side = fract->y_side * 1.1;
 	fract->zoom_off = 0;
 	*change = 1;
+	if (fract->mouse_x - WINDOW_WIDTH / 2 < 0)
+		fract->left += fract->x_side * 0.1 * (1.0
+				- (float)fract->mouse_x / (WINDOW_WIDTH / 2));
+	else
+		fract->left -= fract->x_side * 0.1 * ((float)(fract->mouse_x
+					- WINDOW_WIDTH / 2) / (WINDOW_WIDTH / 2));
+	if (fract->mouse_y - WINDOW_HEIGHT / 2 < 0)
+		fract->top += fract->y_side * 0.1 * (1.0
+				- (float)fract->mouse_y / (WINDOW_HEIGHT / 2));
+	else
+		fract->top -= fract->y_side * 0.1 * ((float)(fract->mouse_y
+					- WINDOW_HEIGHT / 2) / (WINDOW_HEIGHT / 2));
 }
 
 static int	proceed_moves(t_fract *fract)
@@ -85,15 +109,19 @@ static void	init_threads(t_fract *fract, pthread_t t_id[THREAD_COUNT],
 
 int	next_frame(t_fract *fract)
 {
-	static int			init;
-	int					i;
-	pthread_t			t_id[THREAD_COUNT];
-	t_thread			threads[THREAD_COUNT];
+	static int	mouse_xy[2];
+	static int	init;
+	int			i;
+	pthread_t	t_id[THREAD_COUNT];
+	t_thread	threads[THREAD_COUNT];
 
-	if (proceed_moves(fract) || !init)
+	if (proceed_moves(fract) || !init || ((mouse_xy[0] != fract->mouse_x
+				|| mouse_xy[1] != fract->mouse_y) && fract->id == 0))
 	{
 		if (!init)
 			init = 1;
+		mouse_xy[0] = fract->mouse_x;
+		mouse_xy[1] = fract->mouse_y;
 		init_threads(fract, t_id, threads);
 		i = -1;
 		while (++i < THREAD_COUNT)

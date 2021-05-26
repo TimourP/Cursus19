@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:00:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 14:17:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,16 @@ static int	proceed_moves(t_fract *fract)
 int	next_frame(t_fract *fract)
 {
 	static int	init;
+	static int	mouse_x;
+	static int	mouse_y;
 
-	if (proceed_moves(fract) || !init)
+	if (proceed_moves(fract) || !init || ((mouse_x != fract->mouse_x
+				|| mouse_y != fract->mouse_y) && fract->id == 0))
 	{
 		if (!init)
 			init = 1;
-		printf("New frame\n");
+		mouse_x = fract->mouse_x;
+		mouse_y = fract->mouse_y;
 		if (fract->id == 0)
 			julia(fract);
 		else if (fract->id == 1)
