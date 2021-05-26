@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:08:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 12:13:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 13:01:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 {
 	int			ra;
 	const int	min_max[2] = {0, 10000};
-	const int	total = 4000;
+	const int	total = 500;
 	int			*list;
 	int			i;
 
