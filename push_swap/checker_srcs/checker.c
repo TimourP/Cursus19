@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 13:28:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 13:31:42 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,5 @@ int	main(int argc, char **argv)
 		get_entry(&entry);
 		resolve_checker(a, entry);
 	}
-	system("leaks checker");
 	return (0);
 }

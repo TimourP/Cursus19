@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:08:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 13:01:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 13:34:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ int	is_in_int(int *list, int elem, int size)
 	while (++i < size)
 		if (list[i] == elem)
 			return (1);
+	return (0);
+}
+
+static int	free_return(int *lst)
+{
+	free(lst);
+	lst = NULL;
 	return (0);
 }
 
@@ -52,6 +59,5 @@ int	main(void)
 	while (++i < total)
 		printf("%d ", list[i]);
 	printf(" && rm a.out\n");
-	free(list);
-	return (0);
+	return (free_return(list));
 }

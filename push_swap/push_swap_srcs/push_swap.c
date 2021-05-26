@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 12:13:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 13:29:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ static int	check_sort(t_stack *a)
 	}
 	return (1);
 }
-
-/*
-** lmipc
-** len - mediane - i - push - count
-*/
 
 static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 {
@@ -95,7 +90,6 @@ int	main(int argc, char **argv)
 		fill_struct(argc, argv, &a);
 		if (!check_sort(a))
 			solve_swap(a);
-		//printf("Count: %d\n", print_count() + print_count2());
 	}
 	return (0);
 }

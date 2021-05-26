@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 12:12:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 13:29:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static int	*remake_groups(int *groups, int count)
 	free(groups);
 	return (new_groups);
 }
+
+/*
+** lmipc
+** len - mediane - i - push - count
+*/
 
 static void	re_swap_loop(t_stack **a, t_stack **b, int **groups, int lmipc[5])
 {
