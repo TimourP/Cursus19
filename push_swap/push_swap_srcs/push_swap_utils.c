@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 18:20:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 16:36:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	*get_swap_groups(t_stack *a)
 		stack_size -= stack_size / 2;
 		size++;
 	}
-	groups = malloc(sizeof(int) * (size + 2));
+	groups = malloc(sizeof(int) * (size + 1));
 	i = -1;
 	stack_size = ft_stacksize(a, &stack_size);
 	while (++i < size)

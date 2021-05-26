@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 13:29:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/26 16:53:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	main(int argc, char **argv)
 		fill_struct(argc, argv, &a);
 		if (!check_sort(a))
 			solve_swap(a);
+		printf("Count: %d\n", print_count() + print_count2());
 	}
 	return (0);
 }
