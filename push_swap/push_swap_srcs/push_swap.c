@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 19:39:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 16:43:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	get_up_median_value(t_stack *stack, int len, int med, int size)
 	i = -1;
 	ret = num_list[size / 2];
 	free(num_list);
-	printf("%d\n", ret);
 	return (ret);
 }
 

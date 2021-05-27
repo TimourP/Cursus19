@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:09:36 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 18:40:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 15:58:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,7 @@ int main(void)
 		swap_line = NULL;
 	}
 	printf("\n\n\nReussi: %d / %d\n", corrent_swap, test_num);
-	printf("Moyenne: %d swap pour %d elements\n", total_lines / test_num, test_num);
+	printf("Moyenne: %d swap pour %d elements\n", total_lines / corrent_swap, test_num);
 	printf("Lowest: %d swaps\n%s\n\n", lowest_n, lowest);
 	printf("Biggest: %d swaps\n%s\n", bigest_n, bigest);
 	free(lowest);
