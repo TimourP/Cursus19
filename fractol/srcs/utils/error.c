@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:24:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 14:51:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 18:37:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	exit_message(int message)
 		printf("Error: malloc fail\n");
 	else if (message == CLOSE_WINDOW)
 	{
-		printf("By!\n");
+		printf("Bye!\n");
 		exit(EXIT_SUCCESS);
 	}
 	exit(EXIT_FAILURE);
