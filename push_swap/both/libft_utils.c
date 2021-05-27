@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 12:44:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 20:12:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,9 @@ void	print_errors(int error)
 		ft_putstr("Error: malloc fail.\n");
 }
 
-char	*ft_strdup(const char *str)
-{
-	int		i;
-	char	*dest;
-
-	i = -1;
-	while (str[++i])
-		;
-	dest = malloc((i + 1) * sizeof(char));
-	if (!dest)
-		return (NULL);
-	i = -1;
-	while (str[++i])
-		dest[i] = str[i];
-	dest[i] = '\0';
-	return (dest);
-}
-
 static size_t	ft_strlen_until(char *str, char c)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	if (!str)

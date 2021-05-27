@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/27 12:43:39 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/27 20:12:49 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ GREEN		= $(shell tput -Txterm setaf 2)
 RESET		= $(shell tput -Txterm sgr0)
 
 BOTH_SRCS =	libft_utils.c \
+			libft_utils2.c \
 			lst_utils.c \
 			stack_utils.c \
 			swap_functions.c \
