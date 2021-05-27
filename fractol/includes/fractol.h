@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 14:47:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:54:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ int		mouse_wheel(int btn, int x, int y, t_fract *fract);
 
 void	mandelbrot(t_fract *fract);
 void	julia(t_fract *fract);
-void	beryl(t_fract *fract);
 
 #endif

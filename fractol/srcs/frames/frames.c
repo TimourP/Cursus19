@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:02:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 12:31:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:56:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	next_frame(t_fract *fract)
 	static int	mouse_x;
 	static int	mouse_y;
 
-	if (proceed_moves(fract) || !init || ((mouse_x != fract->mouse_x
-				|| mouse_y != fract->mouse_y) && fract->id == 0))
+	if (proceed_moves(fract) || !init)
 	{
 		if (!init)
 			init = 1;
@@ -61,8 +60,6 @@ int	next_frame(t_fract *fract)
 			julia(fract);
 		else if (fract->id == 1)
 			mandelbrot(fract);
-		else if (fract->id == 2)
-			beryl(fract);
 		mlx_put_image_to_window(fract->mlx_ptr, fract->mlx_win,
 			fract->mlx_img->mlx_img, 0, 0);
 	}
