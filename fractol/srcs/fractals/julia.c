@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:08:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:00:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static void	init_const(t_fract *fract, t_calc *c)
 	c->y_scale = fract->y_side / WINDOW_HEIGHT;
 	c->ca = (float)(4 * fract->mouse_x) / WINDOW_WIDTH - 2;
 	c->cb = (float)(4 * fract->mouse_y) / WINDOW_HEIGHT - 2;
+	if (!BONUS)
+	{
+		c->ca = 0.285;
+		c->cb = 0.01;
+	}
 }
 
 void	julia(t_fract *fract)
@@ -41,7 +46,7 @@ void	julia(t_fract *fract)
 				c.za = c.tempx;
 				c.count++;
 			}
-			c.color = (MAX_COUNT - c.count) * 1000;
+			c.color = (MAX_COUNT - c.count) * 3000;
 			if (c.color != 0)
 				c.color = c.color + 14942208 + fract->color_add;
 			draw_pixel(fract->mlx_img, c.x, c.y, c.color);

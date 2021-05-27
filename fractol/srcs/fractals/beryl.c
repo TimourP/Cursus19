@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:34:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:01:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:04:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	beryl(t_fract *fract)
 			c.zb = 0;
 			while ((c.k * (c.xa + c.za) <= 4) && (c.count < MAX_COUNT))
 				beryl_loop(&c);
-			c.color = (MAX_COUNT - c.count) * 1000;
+			c.color = (MAX_COUNT - c.count) * 3000;
 			if (c.color != 0)
 				c.color = c.color + 14942208 + fract->color_add;
 			draw_pixel(fract->mlx_img, c.x, c.y, c.color);

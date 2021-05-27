@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frames_bonus.c                                     :+:      :+:    :+:   */
+/*   old_frames_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 15:49:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 12:22:54 by tpetit           ###   ########.fr       */
+/*   Created: 2021/05/27 12:22:20 by tpetit            #+#    #+#             */
+/*   Updated: 2021/05/27 13:04:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol_bonus.h"
+#include <pthread.h>
 
 static void	zoom_on(t_fract *fract, int *change)
 {
@@ -81,25 +82,51 @@ static int	proceed_moves(t_fract *fract)
 	return (change);
 }
 
+static void	init_threads(t_fract *fract, pthread_t t_id[THREAD_COUNT],
+	t_thread threads[THREAD_COUNT])
+{
+	int	i;
+
+	i = -1;
+	while (++i < THREAD_COUNT)
+	{
+		threads[i].id = i;
+		threads[i].left = fract->left;
+		threads[i].top = fract->top;
+		threads[i].x_side = fract->x_side;
+		threads[i].y_side = fract->y_side;
+		threads[i].mlx_img = fract->mlx_img;
+		threads[i].mouse_y = fract->mouse_y;
+		threads[i].mouse_x = fract->mouse_x;
+		threads[i].color_add = fract->color_add;
+		if (fract->id == 0)
+			pthread_create(&t_id[i], NULL, julia, (void *)&threads[i]);
+		else if (fract->id == 1)
+			pthread_create(&t_id[i], NULL, mandelbrot, (void *)&threads[i]);
+		else if (fract->id == 2)
+			pthread_create(&t_id[i], NULL, beryl, (void *)&threads[i]);
+	}
+}
+
 int	next_frame(t_fract *fract)
 {
+	static int	mouse_xy[2];
 	static int	init;
-	static int	mouse_x;
-	static int	mouse_y;
+	int			i;
+	pthread_t	t_id[THREAD_COUNT];
+	t_thread	threads[THREAD_COUNT];
 
-	if (proceed_moves(fract) || !init || ((mouse_x != fract->mouse_x
-				|| mouse_y != fract->mouse_y) && fract->id == 0))
+	if (proceed_moves(fract) || !init || ((mouse_xy[0] != fract->mouse_x
+				|| mouse_xy[1] != fract->mouse_y) && fract->id == 0))
 	{
 		if (!init)
 			init = 1;
-		mouse_x = fract->mouse_x;
-		mouse_y = fract->mouse_y;
-		if (fract->id == 0)
-			julia(fract);
-		else if (fract->id == 1)
-			mandelbrot(fract);
-		else if (fract->id == 2)
-			beryl(fract);
+		mouse_xy[0] = fract->mouse_x;
+		mouse_xy[1] = fract->mouse_y;
+		init_threads(fract, t_id, threads);
+		i = -1;
+		while (++i < THREAD_COUNT)
+			pthread_join(t_id[i], NULL);
 		mlx_put_image_to_window(fract->mlx_ptr, fract->mlx_win,
 			fract->mlx_img->mlx_img, 0, 0);
 	}

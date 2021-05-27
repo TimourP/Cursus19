@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 14:46:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 12:44:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ char	*ft_strdup(const char *str)
 		dest[i] = str[i];
 	dest[i] = '\0';
 	return (dest);
+}
+
+static size_t	ft_strlen_until(char *str, char c)
+{
+	size_t i;
+
+	i = -1;
+	if (!str)
+		return (0);
+	while (str[++i] && str[i] != c)
+		;
+	return (i);
 }
 
 int	ft_strncmp(const char *s1, const char *s2)

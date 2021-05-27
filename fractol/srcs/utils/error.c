@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:24:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:13:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:09:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void	print_settings(void)
 	write(1, "The fractol executable takes as parameter the name", 50);
 	write(1, " a fractal before displaying with mlx a representa", 50);
 	write(1, "tion of this fractal.\nValid parameters are : \n\t- j", 50);
-	write(1, "ulia\n\t- mandelbrot\n\t- other\n", 28);
+	if (BONUS)
+		write(1, "ulia\n\t- mandelbrot\n\t- beryl\n", 28);
+	else
+		write(1, "ulia\n\t- mandelbrot\n", 19);
 }
 
 void	exit_message(int message)
