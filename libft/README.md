@@ -3,7 +3,7 @@ Libft consists in rewriting the main functions of standard C library in order to
 
 The goal of this project is to assimilate correctly the concepts of variables, functions, pointers and linked list in C. Moreover, this project requires to be able to manage properly the malloc and free functions in order to access the power of the heap memory and to avoid leaks.
 ## Instalation
-**Before cloning this repo, please make sure that there are no files/folders called Cursus19 or libft in the destination folder!!**
+:warning: **Before cloning this repo, please make sure that there are no files/folders called Cursus19 or libft in the destination folder!!** :warning:
 
 If you want to use this library please run:
 ```

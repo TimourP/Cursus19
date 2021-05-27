@@ -27,7 +27,7 @@ Ft_printf imitates the behavior of the printf function ( for more information ab
 | `0` | Add leading zeros until the minimum width is reached. </br>Flag `0` is ignored when flag `-` is present. |
 
 ## Instalation
-**Before cloning this repo, please make sure that there are no files/folders called Cursus19 or ft_printf in the destination folder!!**
+:warning: **Before cloning this repo, please make sure that there are no files/folders called Cursus19 or ft_printf in the destination folder!!** :warning:
 
 If you want to use this library please run:
 ```
