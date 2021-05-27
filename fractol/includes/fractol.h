@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 14:54:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 15:04:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "mlx.h"
 # include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
 # include "fractol_macros.h"
 # include <stdio.h>
 
