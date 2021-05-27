@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:24:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 13:09:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:32:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	exit_message(int message)
 
 void	free_on_error(t_fract *fract, int message)
 {
-	mlx_destroy_image(fract->mlx_ptr, fract->mlx_img);
+	mlx_destroy_image(fract->mlx_ptr, fract->mlx_img->mlx_img);
 	mlx_destroy_window(fract->mlx_ptr, fract->mlx_win);
+	free(fract->mlx_img);
 	exit_message(message);
 }

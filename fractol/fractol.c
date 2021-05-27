@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:14:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 13:08:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:22:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,22 @@ void	main_error(int argc, char **argv, t_fract *fract)
 
 	in_list = 0;
 	i = 0;
-	if (argc != 2)
+	if (argc == 1)
+	{
+		free(fract);
+		fract = NULL;
 		exit_message(ARG_ERROR);
+	}
 	while (++i <= 2 + BONUS)
 		if (ft_strncmp(argv[1], fractals_list[i - 1],
 				ft_strlen(fractals_list[i - 1])) == 0)
 			in_list = i;
 	if (!in_list)
+	{
+		free(fract);
+		fract = NULL;
 		exit_message(FRACTAL_NAME_ERROR);
+	}
 	fract->id = in_list - 1;
 }
 

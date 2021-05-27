@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:18:19 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 21:06:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:32:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 # include "fractol_macros.h"
 
-# include <stdio.h>
-
 /*
 ** STRUCTS
 */
@@ -29,7 +27,6 @@ typedef struct s_image
 {
 	void		*mlx_img;
 	char		*addr;
-	char		*path;
 	int			bpp;
 	int			line_l;
 	int			edian;

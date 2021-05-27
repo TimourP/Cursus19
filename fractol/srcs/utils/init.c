@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:52:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/25 20:53:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:25:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,24 @@ void	init_mlx(t_fract *fract)
 	fract->mlx_win = mlx_new_window(fract->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "FRACTOL");
 	fract->mlx_img = malloc(sizeof(t_image));
+	if (!fract->mlx_img)
+	{
+		free(fract);
+		fract = NULL;
+		exit_message(MALLOC_ERROR);
+	}
 	fract->mlx_img->mlx_img = mlx_new_image(fract->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!fract->mlx_img->mlx_img)
+	{
+		free(fract->mlx_img);
+		free(fract);
+		fract = NULL;
+		exit_message(MALLOC_ERROR);
+	}
 	fract->mlx_img->addr = mlx_get_data_addr(fract->mlx_img->mlx_img,
-			&fract->mlx_img->bpp,
-			&fract->mlx_img->line_l, &fract->mlx_img->edian);
+		&fract->mlx_img->bpp,
+		&fract->mlx_img->line_l, &fract->mlx_img->edian);
 	mlx_hook(fract->mlx_win, 2, 1L << 0, key_press, fract);
 	mlx_hook(fract->mlx_win, 3, 1L << 1, key_release, fract);
 	mlx_hook(fract->mlx_win, 6, 1L << 6, move_mouse, fract);
