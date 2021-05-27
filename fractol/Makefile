@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 14:30:14 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/27 14:55:11 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/27 19:46:38 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ DRAW_SRCS = draw.c \
 FRAMES_SRCS = 	frames.c \
 				moves.c \
 
-BONUS_FRAMES_SRCS = 	frames_bonus.c \
+BONUS_FRAMES_SRCS = 	old_frames_bonus.c \
 						moves.c \
 
 SRCS	=	fractol.c \
@@ -49,7 +49,7 @@ BONUS_SRCS	=	fractol.c \
 				$(addprefix srcs/utils/, ${BONUS_UTILS_SRCS}) \
 				$(addprefix srcs/draw/, ${DRAW_SRCS}) \
 				$(addprefix srcs/frames/, ${BONUS_FRAMES_SRCS}) \
-				$(addprefix srcs/fractals/, ${BONUS_FRACTALS_SRCS}) \
+				$(addprefix srcs/fractals/, ${OLD_BONUS_FRACTALS_SRCS}) \
 
 LIBS = libmlx.a
 

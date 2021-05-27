@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:52:00 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 14:36:45 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 19:01:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	init_fract(t_fract *fract)
 {
 	fract->mouse_x = 0;
 	fract->mouse_y = 0;
-	fract->top = -0.75;
-	fract->y_side = 1.5;
+	fract->top = -1;
+	fract->y_side = 2;
 	fract->left = -2;
 	fract->x_side = 4;
 	fract->up_move = 0;

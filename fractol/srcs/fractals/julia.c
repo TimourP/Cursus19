@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:55:07 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 13:00:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 19:04:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_const(t_fract *fract, t_calc *c)
 	if (!BONUS)
 	{
 		c->ca = 0.285;
-		c->cb = 0.01;
+		c->cb = -0.01;
 	}
 }
 
