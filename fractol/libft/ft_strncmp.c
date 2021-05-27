@@ -6,12 +6,16 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 10:04:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:13:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (-1);
 	while (*s1 && *s1 == ' ')
 		s1++;
 	while (1)
