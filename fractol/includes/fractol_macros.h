@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:31:25 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 13:06:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:34:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define THREAD_COUNT 8
 
 # ifndef BONUS
-# define BONUS 0
+#  define BONUS 0
 # endif
 
 #endif
