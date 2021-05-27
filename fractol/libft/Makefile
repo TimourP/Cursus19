@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 19:55:10 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/27 14:29:03 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/27 14:41:11 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@ar -rcs $(NAME) $(OBJS)
-	@echo "${GREEN}libft.a created${RESET}"
 
 .c.o:
 	@gcc $(CFLAG) -c -I./ $< -o ${<:.c=.o}
