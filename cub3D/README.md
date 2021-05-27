@@ -6,7 +6,9 @@ Screen Record |![Image](https://github.com/TimourP/ReadmeFiles/blob/main/Cub3D/r
 Implementations | Map (file) parsing<br>Raycasting<br>Wall textures<br>Ceiling and floor colors<br>Sprites<br>Image save to bpm format | All mandatory implementations<br>Monsters that follow you<br>More than one different sprite<br>Consomable stuff<br>Life and hunger bar<br>Minimap<br>Sound and musics<br>Sky box<br>Look up/down<br>Mouse control
 
 ## Instalation
-**Before cloning this repo, please make sure that there are no files/folders called Cursus19 or cub3D in the destination folder!!**
+The graphic rendering of this project is generated thanks to the functions of a graphic library based on OpenGL and called MiniLibX. This library is very difficult to install by yourself because it has many different dependencies. But in case you have installed all the necessary dependencies on your machine, here is how to install and run fractol on your computer.
+
+:warning: **Before cloning this repo, please make sure that there are no files/folders called Cursus19 or cub3D in the destination folder!!** :warning:
 
 If you want to use this library please run:
 ```
