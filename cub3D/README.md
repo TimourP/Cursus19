@@ -14,7 +14,7 @@ git clone https://github.com/TimourP/Cursus19.git Cursus19 && cp -r Cursus19/cub
 ```
 
 ## Usage
-**In the cub3D repo**, run ```make``` or ```make re``` (```make bonus``` or ```make rebonus``` for the bonus part), it will generate a cub3D executable file. Execute it with ./cub3D and enjoy!
+**In the cub3D repo**, run ```make``` or ```make re``` (```make bonus``` or ```make rebonus``` for the bonus part), it will generate a cub3D executable file. Execute it with ```./cub3D map_path``` and enjoy!
 
 To remove objects files, run ```make clean```
 
