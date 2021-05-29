@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/28 15:58:18 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/29 09:11:27 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,6 @@ allup : all clean
 
 re:		fclean all
 
-re_client: fclean checker
+re_client: fclean client
 
 .PHONY:	all clean fclean allup re re_client

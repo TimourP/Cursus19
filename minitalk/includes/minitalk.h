@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/28 13:59:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/29 11:17:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,13 @@
 # include "../libft/libft.h"
 
 # include <stdio.h>
+
+typedef struct s_server
+{
+	int		current_bit;
+	int		end_transmission;
+	char	current_char;
+	int		char_count;
+}				t_server;
 
 #endif

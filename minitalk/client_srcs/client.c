@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/28 15:56:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/29 11:19:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-static void	send_char(char c, pid_t server_pid)
+static void	send_char(char c, int server_pid)
 {
 	int	current_bit;
 
@@ -23,7 +23,7 @@ static void	send_char(char c, pid_t server_pid)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		usleep(50);
+		usleep(10);
 		current_bit--;
 	}
 	
@@ -31,7 +31,7 @@ static void	send_char(char c, pid_t server_pid)
 
 int main(int argc, char **argv)
 {
-	pid_t	server_pid;
+	int		server_pid;
 	int		i;
 
 	server_pid = ft_atoi(argv[1]);
