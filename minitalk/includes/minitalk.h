@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 09:46:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/30 10:28:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@
 
 typedef struct s_server
 {
-	int		current_bit;
-	int		end_transmission;
-	int		char_count;
-	int		len_count;
+	int				current_bit;
+	int				end_transmission;
+	int				char_count;
+	int				len_count;
 	unsigned int	total_char;
-	unsigned int	total_bits;
-	char	current_char;
-	char	*current_str;
+	char			current_char;
+	char			*current_str;
 }				t_server;
 
 # define ARGS_ERROR 0
-# define CLIENT_SLEEP 100
+# define CLIENT_SLEEP 500
 
 /*
 ** UTILS

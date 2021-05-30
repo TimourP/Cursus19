@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 09:53:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/05/30 10:22:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void decode_binary(int signal)
 	if (signal == SIGUSR2)
 		g_server->current_char += ft_pow(2, 7 - g_server->current_bit);
 	g_server->current_bit++;
-	g_server->total_bits++;
 	if (g_server->current_bit >= 8)
 	{
 		g_server->current_str = ft_join_one(g_server->current_str, g_server->current_char);
@@ -70,7 +69,6 @@ static void	init_server(void)
 	g_server->len_count = 0;
 	g_server->total_char = 0;
 	g_server->current_str = NULL;
-	g_server->total_bits = 0;
 }
 
 int main(void)
@@ -88,7 +86,7 @@ int main(void)
 		usleep(CLIENT_SLEEP * 4);
 		if (g_server->end_transmission == 1 && g_server->current_str)
 		{
-			if (g_server->total_bits != g_server->total_char)
+			if (ft_strlen(g_server->current_str) != g_server->total_char)
 				printf("Error\n");
 			else
 				printf("%s", g_server->current_str);
@@ -99,7 +97,6 @@ int main(void)
 			g_server->current_bit = 0;
 			g_server->current_char = 0;
 			g_server->char_count = 0;
-			g_server->total_bits = 0;
 		}
 	}
 	return (0);
