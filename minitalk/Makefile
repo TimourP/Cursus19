@@ -6,17 +6,21 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/05/29 09:11:27 by tpetit           ###   ########.fr        #
+#    Updated: 2021/05/30 08:47:22 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+UTILS_SRCS =	error.c \
 
 SERVER_SRCS = 	server.c \
 
 CLIENT_SRCS = client.c \
 
 ALL_SERVER_SRCS =	$(addprefix server_srcs/, ${SERVER_SRCS}) \
+					$(addprefix utils/, ${UTILS_SRCS}) \
 
 ALL_CLIENT_SRCS =	$(addprefix client_srcs/, ${CLIENT_SRCS}) \
+					$(addprefix utils/, ${UTILS_SRCS}) \
 
 SERVER_OBJS	=	${ALL_SERVER_SRCS:.c=.o}
 CLIENT_OBJS	=	${ALL_CLIENT_SRCS:.c=.o}
