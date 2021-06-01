@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 12:18:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 12:45:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	send_char(char c, int server_pid)
 {
 	int	current_bit;
+	int	sleep_status;
 
 	current_bit = 7;
 	while (current_bit > -1)
@@ -23,8 +24,9 @@ static void	send_char(char c, int server_pid)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		usleep(CLIENT_SLEEP);
-		current_bit--;
+		sleep_status = usleep(1000);
+		if (sleep_status == -1)
+			current_bit--;
 	}
 }
 
@@ -50,8 +52,34 @@ static void	send_len(int server_pid, char **argv)
 		}
 		else
 			kill(server_pid, SIGUSR1);
-		usleep(CLIENT_SLEEP);
+		usleep(1000);
 	}
+}
+
+static void	send_pid(int server_pid)
+{
+	int		client_pid;
+	int		current_bit;
+
+	current_bit = 32;
+	client_pid = (int)getpid();
+	printf("Pid: %d\n", client_pid);
+	while (--current_bit > -1)
+	{
+		if (client_pid >= ft_pow(2, current_bit))
+		{
+			kill(server_pid, SIGUSR2);
+			client_pid -= ft_pow(2, current_bit);
+		}
+		else
+			kill(server_pid, SIGUSR1);
+		usleep(1000);
+	}
+}
+
+static void	test(int test)
+{
+	;
 }
 
 int	main(int argc, char **argv)
@@ -62,6 +90,8 @@ int	main(int argc, char **argv)
 	main_error(argc, argv);
 	server_pid = ft_atoi(argv[1]);
 	send_len(server_pid, argv);
+	send_pid(server_pid);
+	signal(SIGUSR1, test);
 	i = -1;
 	while (argv[2][++i])
 		send_char(argv[2][i], server_pid);

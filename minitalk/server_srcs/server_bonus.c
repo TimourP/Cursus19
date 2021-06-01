@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 12:46:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 12:08:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,7 @@ static void	decode_binary(int signal)
 		g_server->len_count++;
 		return ;
 	}
-	if (g_server->len_count < 64)
-	{
-		if (signal == SIGUSR2)
-			g_server->client_pid += ft_pow(2, 64 - g_server->len_count - 1);
-		g_server->len_count++;
-		return ;
-	}
-	if (g_server->len_count == 64)
+	if (g_server->len_count == 32)
 		malloc_server();
 	if (signal == SIGUSR2)
 		g_server->current_char += ft_pow(2, 7 - g_server->current_bit);
@@ -53,7 +46,6 @@ static void	decode_binary(int signal)
 		g_server->current_char = 0;
 		g_server->current_bit = 0;
 	}
-	kill(g_server->client_pid, SIGUSR1);
 }
 
 static void	init_server(void)
@@ -63,7 +55,6 @@ static void	init_server(void)
 	g_server->char_count = 0;
 	g_server->len_count = 0;
 	g_server->total_char = 0;
-	g_server->client_pid = 0;
 	g_server->current_str = NULL;
 }
 
@@ -79,7 +70,7 @@ int	main(void)
 		return (1);
 	while (1)
 	{
-		sleep_value = usleep(CLIENT_SLEEP * 10 + 1000);
+		sleep_value = usleep(CLIENT_SLEEP * 10);
 		if (sleep_value == 0 && g_server->current_str)
 		{
 			if (g_server->char_count != g_server->total_char)
