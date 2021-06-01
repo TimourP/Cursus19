@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 08:45:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 08:56:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 11:49:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	exit_message(int message, int status)
 
 unsigned int	ft_pow(int base, int exp)
 {
-	int i;
-	int val;
+	int	i;
+	int	val;
 
 	i = -1;
 	val = 1;
