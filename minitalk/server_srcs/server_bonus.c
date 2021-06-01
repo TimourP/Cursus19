@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 12:08:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 14:33:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ t_server	*g_server;
 static void	malloc_server(void)
 {
 	g_server->len_count++;
+	if (g_server->client_pid < g_server->server_pid)
+	{
+		exit(EXIT_SUCCESS);
+	}
 	g_server->current_str = malloc(sizeof(char) * g_server->total_char + 1);
 	g_server->current_str[g_server->total_char] = 0;
 }
@@ -32,7 +36,14 @@ static void	decode_binary(int signal)
 		g_server->len_count++;
 		return ;
 	}
-	if (g_server->len_count == 32)
+	if (g_server->len_count < 64)
+	{
+		if (signal == SIGUSR2)
+			g_server->client_pid += ft_pow(2, 63 - g_server->len_count);
+		g_server->len_count++;
+		return ;
+	}
+	if (g_server->len_count == 64)
 		malloc_server();
 	if (signal == SIGUSR2)
 		g_server->current_char += ft_pow(2, 7 - g_server->current_bit);
@@ -46,6 +57,8 @@ static void	decode_binary(int signal)
 		g_server->current_char = 0;
 		g_server->current_bit = 0;
 	}
+	usleep(10);
+	kill(g_server->client_pid, SIGUSR1);
 }
 
 static void	init_server(void)
@@ -55,6 +68,7 @@ static void	init_server(void)
 	g_server->char_count = 0;
 	g_server->len_count = 0;
 	g_server->total_char = 0;
+	g_server->client_pid = 0;
 	g_server->current_str = NULL;
 }
 
@@ -64,19 +78,17 @@ int	main(void)
 
 	g_server = malloc(sizeof(t_server));
 	init_server();
-	printf("%d\n", getpid());
+	g_server->server_pid = getpid();
+	printf("%d\n", g_server->server_pid);
 	if (signal(SIGUSR1, decode_binary) == SIG_ERR
 		|| signal(SIGUSR2, decode_binary) == SIG_ERR)
 		return (1);
 	while (1)
 	{
-		sleep_value = usleep(CLIENT_SLEEP * 10);
+		sleep_value = usleep(100000);
 		if (sleep_value == 0 && g_server->current_str)
 		{
-			if (g_server->char_count != g_server->total_char)
-				printf("Error\n");
-			else
-				printf("%s", g_server->current_str);
+			printf("Str: %s\n", g_server->current_str);
 			free(g_server->current_str);
 			init_server();
 		}
