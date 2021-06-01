@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 12:17:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 13:45:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_server
 	int				char_count;
 	int				len_count;
 	int				client_pid;
+	int				server_pid;
 	unsigned int	total_char;
 	char			current_char;
 	char			*current_str;
