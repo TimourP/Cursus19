@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 10:22:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 10:29:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 t_server *g_server;
 
-static char	*ft_join_one(char *str, char c)
+static char	*ft_join_one(char c)
 {
 	int i;
 	char *new_str;
 	int len;
 
-	if (!str)
+	if (!g_server->current_str)
 	{
 		new_str = malloc(sizeof(char) * 2);
 		new_str[0] = c;
@@ -28,18 +28,21 @@ static char	*ft_join_one(char *str, char c)
 		return (new_str);
 	}
 	i = -1;
-	len = ft_strlen(str);
+	len = ft_strlen(g_server->current_str);
 	new_str = malloc(sizeof(char) * (len + 2));
 	while (++i < len)
-		new_str[i] = str[i];
+		new_str[i] = g_server->current_str[i];
 	new_str[i] = c;
 	new_str[i + 1] = 0;
-	free(str);
+	free(g_server->current_str);
+	g_server->current_str = NULL;
 	return (new_str);
 }
 
 void decode_binary(int signal)
 {
+	char *pending;
+
 	g_server->end_transmission = 0;
 	if (g_server->len_count < 32)
 	{
@@ -48,12 +51,19 @@ void decode_binary(int signal)
 		g_server->len_count++;
 		return ;
 	}
+	if (g_server->len_count == 32)
+	{
+		g_server->len_count++;
+		g_server->current_str = malloc(sizeof(char) * g_server->total_char + 1);
+		g_server->current_str[g_server->total_char] = 0;
+	}
 	if (signal == SIGUSR2)
 		g_server->current_char += ft_pow(2, 7 - g_server->current_bit);
 	g_server->current_bit++;
 	if (g_server->current_bit >= 8)
 	{
-		g_server->current_str = ft_join_one(g_server->current_str, g_server->current_char);
+		if (g_server->char_count < g_server->total_char)
+			g_server->current_str[g_server->char_count] = g_server->current_char;
 		g_server->char_count++;
 		g_server->current_char = 0;
 		g_server->current_bit = 0;
@@ -83,10 +93,10 @@ int main(void)
 	while (1)
 	{
 		g_server->end_transmission = 1;
-		usleep(CLIENT_SLEEP * 4);
+		usleep(CLIENT_SLEEP * 10);
 		if (g_server->end_transmission == 1 && g_server->current_str)
 		{
-			if (ft_strlen(g_server->current_str) != g_server->total_char)
+			if (g_server->char_count != g_server->total_char)
 				printf("Error\n");
 			else
 				printf("%s", g_server->current_str);

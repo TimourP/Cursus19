@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 10:28:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 10:27:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_server
 }				t_server;
 
 # define ARGS_ERROR 0
-# define CLIENT_SLEEP 500
+# define CLIENT_SLEEP 10
 
 /*
 ** UTILS

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/30 10:22:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 09:51:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 	current_bit = 32;
 	server_pid = ft_atoi(argv[1]);
 	str_len = ft_strlen(argv[2]) + 1;
+	printf("Strlen: %d\n", str_len);
 	while (--current_bit > -1)
 	{
 		if (str_len >= ft_pow(2, current_bit))
