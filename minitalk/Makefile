@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/01 14:39:12 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/01 16:36:23 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,13 @@ UTILS_SRCS =	error.c \
 
 SERVER_SRCS = 	server.c \
 
-CLIENT_SRCS = client.c \
+SERVER_BONUS_SRCS =	server_bonus.c \
+
+CLIENT_SRCS = 	client.c \
+				client_utils.c \
+
+CLIENT_BONUS_SRCS =	client_bonus.c \
+					client_utils.c \
 
 ALL_SERVER_SRCS =	$(addprefix server_srcs/, ${SERVER_SRCS}) \
 					$(addprefix utils/, ${UTILS_SRCS}) \
@@ -22,8 +28,16 @@ ALL_SERVER_SRCS =	$(addprefix server_srcs/, ${SERVER_SRCS}) \
 ALL_CLIENT_SRCS =	$(addprefix client_srcs/, ${CLIENT_SRCS}) \
 					$(addprefix utils/, ${UTILS_SRCS}) \
 
+ALL_SERVER_BONUS_SRCS =	$(addprefix server_srcs/, ${SERVER_BONUS_SRCS}) \
+						$(addprefix utils/, ${UTILS_SRCS}) \
+
+ALL_CLIENT_BONUS_SRCS =	$(addprefix client_srcs/, ${CLIENT_BONUS_SRCS}) \
+						$(addprefix utils/, ${UTILS_SRCS}) \
+
 SERVER_OBJS	=	${ALL_SERVER_SRCS:.c=.o}
+SERVER_BONUS_OBJS = ${ALL_SERVER_BONUS_SRCS:.c=.o}
 CLIENT_OBJS	=	${ALL_CLIENT_SRCS:.c=.o}
+CLIENT_BONUS_OBJS = ${ALL_CLIENT_BONUS_SRCS:.c=.o}
 
 SERVER	=	server
 CLIENT = client
@@ -41,6 +55,16 @@ $(SERVER):
 $(CLIENT):
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(ALL_CLIENT_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
+
+both:
+	@make -C $(LIBFT_PATH)
+	@$(CC) $(CFLAGS) $(ALL_SERVER_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
+	@$(CC) $(CFLAGS) $(ALL_CLIENT_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
+
+both_bonus:
+	@make -C $(LIBFT_PATH)
+	@$(CC) $(CFLAGS) $(ALL_SERVER_BONUS_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
+	@$(CC) $(CFLAGS) $(ALL_CLIENT_BONUS_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
 
 clean:
 	@rm -f $(SWAP_OBJS)

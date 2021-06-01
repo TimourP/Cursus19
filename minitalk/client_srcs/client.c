@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 12:18:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:52:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ static void	send_char(char c, int server_pid)
 	}
 }
 
-static void	main_error(int argc, char **argv)
-{
-	if (argc != 3)
-		exit_message(ARGS_ERROR, EXIT_FAILURE);
-}
-
 static void	send_len(int server_pid, char **argv)
 {
 	int		str_len;
 	int		current_bit;
 
 	current_bit = 32;
-	str_len = ft_strlen(argv[2]) + 1;
+	str_len = ft_strlen(argv[2]);
 	while (--current_bit > -1)
 	{
 		if (str_len >= ft_pow(2, current_bit))
@@ -65,6 +59,5 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (argv[2][++i])
 		send_char(argv[2][i], server_pid);
-	send_char('\n', server_pid);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 13:45:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:45:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 
 # include <stdio.h>
 
+typedef struct s_client
+{
+	int		c;
+	int		server_pid;
+	int		current_bit;
+	int		current_char;
+	int		sleep_status;
+	char	*str;
+}				t_client;
+
 typedef struct s_server
 {
 	int				current_bit;
@@ -27,13 +37,15 @@ typedef struct s_server
 	int				len_count;
 	int				client_pid;
 	int				server_pid;
+	int				total_bits;
+	int				yet_print;
 	unsigned int	total_char;
 	char			current_char;
 	char			*current_str;
 }				t_server;
 
 # define ARGS_ERROR 0
-# define CLIENT_SLEEP 50
+# define CLIENT_SLEEP 5
 
 /*
 ** UTILS
@@ -41,5 +53,6 @@ typedef struct s_server
 
 void			exit_message(int message, int status);
 unsigned int	ft_pow(int base, int exp);
+void			main_error(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 14:40:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:52:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(void)
 			if (g_server->char_count != g_server->total_char)
 				printf("Error\n");
 			else
-				printf("%s", g_server->current_str);
+				printf("%s\n", g_server->current_str);
 			free(g_server->current_str);
 			init_server();
 		}

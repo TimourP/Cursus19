@@ -6,34 +6,39 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 14:34:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:50:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-static void	send_char(char c, int server_pid)
-{
-	int	current_bit;
-	int	sleep_status;
+t_client	*g_client;
 
-	current_bit = 7;
-	while (current_bit > -1)
-	{
-		if (((c >> current_bit) & 1) == 0)
-			kill(server_pid, SIGUSR1);
-		else
-			kill(server_pid, SIGUSR2);
-		sleep_status = usleep(50000);
-		if (sleep_status == -1)
-			current_bit--;
-	}
+static void	init_client(void)
+{
+	g_client->c = 0;
+	g_client->current_bit = 7;
+	g_client->server_pid = 0;
+	g_client->current_char = 0;
+	g_client->sleep_status = -1;
 }
 
-static void	main_error(int argc, char **argv)
+static void	send_char(int signal)
 {
-	if (argc != 3)
-		exit_message(ARGS_ERROR, EXIT_FAILURE);
+	if (((g_client->c >> g_client->current_bit) & 1) == 0)
+		kill(g_client->server_pid, SIGUSR1);
+	else
+		kill(g_client->server_pid, SIGUSR2);
+	if (g_client->sleep_status == -1)
+		g_client->current_bit--;
+	if (g_client->current_bit < 0)
+	{
+		g_client->current_bit = 7;
+		g_client->current_char++;
+		g_client->c = g_client->str[g_client->current_char];
+		if (!(g_client->str[g_client->current_char]))
+			exit(EXIT_SUCCESS);
+	}
 }
 
 static void	send_len(int server_pid, char **argv)
@@ -63,7 +68,6 @@ static void	send_pid(int server_pid)
 
 	current_bit = 32;
 	client_pid = (int)getpid();
-	printf("Pid: %d\n", client_pid);
 	while (--current_bit > -1)
 	{
 		if (client_pid >= ft_pow(2, current_bit))
@@ -77,23 +81,27 @@ static void	send_pid(int server_pid)
 	}
 }
 
-static void	test(int test)
-{
-	;
-}
-
 int	main(int argc, char **argv)
 {
 	int	server_pid;
 	int	i;
 
 	main_error(argc, argv);
+	g_client = malloc(sizeof(t_client));
+	init_client();
 	server_pid = ft_atoi(argv[1]);
+	g_client->server_pid = server_pid;
+	g_client->str = argv[2];
 	send_len(server_pid, argv);
 	send_pid(server_pid);
-	signal(SIGUSR1, test);
+	signal(SIGUSR1, send_char);
 	i = -1;
-	while (argv[2][++i])
-		send_char(argv[2][i], server_pid);
+	g_client->c = argv[2][0];
+	send_char(0);
+	while (1)
+	{
+		g_client->sleep_status = usleep(10000);
+	}
+	free(g_client);
 	return (0);
 }
