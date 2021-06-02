@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 13:29:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 16:53:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,40 @@ void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 	if ((*a) && (*a)->next && (*a)->content > (*a)->next->content)
 		swap(a, "sa\n");
 	*current = 0;
+}
+
+static void	get_up_median_loop(int *num_list, int i)
+{
+	int	temp;
+
+	temp = num_list[i];
+	num_list[i] = num_list[i + 1];
+	num_list[i + 1] = temp;
+	i = -1;
+}
+
+int	get_up_median_value(t_stack *stack, int len, int med, int size)
+{
+	int	*num_list;
+	int	i;
+	int	j;
+	int	ret;
+
+	num_list = malloc(sizeof(int) * size);
+	i = -1;
+	j = -1;
+	while (++j < len - 1)
+	{
+		if (stack->content < med)
+			num_list[++i] = stack->content;
+		stack = stack->next;
+	}
+	i = -1;
+	while (++i < size - 1)
+		if (num_list[i] > num_list[i + 1])
+			get_up_median_loop(num_list, i);
+	i = -1;
+	ret = num_list[size / 2];
+	free(num_list);
+	return (ret);
 }

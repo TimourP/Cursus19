@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 20:30:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 17:09:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,74 +47,40 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	ft_stackclear(&b);
 }
 
-int	get_up_median_value(t_stack *stack, int len, int med, int size)
+static void	solve_swap_loop(int mucf[4], t_stack **a, t_stack **b)
 {
-	int	*num_list;
-	int	i;
-	int	j;
-	int	temp;
-	int	ret;
-
-	num_list = malloc(sizeof(int) * size);
-	i = -1;
-	j = -1;
-	while (++j < len - 1)
+	if ((*a)->content < mucf[0] && (++mucf[2] || 1))
+		push_b(a, b, "pb\n");
+	else
 	{
-		if (stack->content < med)
-			num_list[++i] = stack->content;
-		stack = stack->next;
+		if (mucf[3] && *b && (*b)->content < mucf[1])
+			rotate_rotate(a, b, "rr\n");
+		else
+			rotate(a, "ra\n");
 	}
-	i = -1;
-	while (++i < size - 1)
-	{
-		if (num_list[i] > num_list[i + 1])
-		{
-			temp = num_list[i];
-			num_list[i] = num_list[i + 1];
-			num_list[i + 1] = temp;
-			i = -1;
-		}
-	}
-	i = -1;
-	ret = num_list[size / 2];
-	free(num_list);
-	return (ret);
 }
 
 static void	solve_swap(t_stack *a)
 {
 	t_stack	*b;
 	int		size;
-	int		med;
-	int		count;
+	int		mucf[4];
 	int		*groups;
-	int		first;
-	int		up_med;
 
 	b = NULL;
-	first = 1;
+	mucf[3] = 1;
 	size = 0;
 	groups = get_swap_groups(a);
 	while (ft_stacksize(a, &size) > 2)
 	{
-		count = -1;
-		med = get_median_value(a, size);
-		if (first)
-			up_med = get_up_median_value(a, size, med, size / 2);
-		while (count < size / 2 - 1 && a && a->next)
-		{
-			if (a->content < med && (++count || 1))
-				push_b(&a, &b, "pb\n");
-			else
-			{
-				if (first && b && b->content < up_med)
-					rotate_rotate(&a, &b, "rr\n");
-				else
-					rotate(&a, "ra\n");
-			}
-		}
+		mucf[2] = -1;
+		mucf[0] = get_median_value(a, size);
+		if (mucf[3])
+			mucf[1] = get_up_median_value(a, size, mucf[0], size / 2);
+		while (mucf[2] < size / 2 - 1 && a && a->next)
+			solve_swap_loop(mucf, &a, &b);
 		size = 0;
-		first = 0;
+		mucf[3] = 0;
 	}
 	solve_swap2(a, b, groups);
 }
