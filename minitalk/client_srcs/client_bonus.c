@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 15:10:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 15:27:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ static void	init_client(void)
 static void	send_char(int signal)
 {
 	signal = (int)signal;
+	if (g_client->sleep_status == 0 && g_client->current_bit < 7)
+		g_client->current_bit++;
 	if (((g_client->c >> g_client->current_bit) & 1) == 0)
 		kill_exit(g_client->server_pid, SIGUSR1);
 	else
 		kill_exit(g_client->server_pid, SIGUSR2);
-	if (g_client->sleep_status == -1)
-		g_client->current_bit--;
+	g_client->current_bit--;
 	if (g_client->current_bit < 0)
 	{
 		g_client->current_bit = 7;
@@ -102,6 +103,10 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		g_client->sleep_status = usleep(10000);
+		if (g_client->sleep_status == 0)
+		{
+			send_char(0);
+		}
 	}
 	free(g_client);
 	return (0);

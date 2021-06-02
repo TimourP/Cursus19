@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 08:45:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 11:49:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 15:39:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	exit_message(int message, int status)
 {
 	if (message == ARGS_ERROR)
 		write(1, "ERROR: Incorrect number of arguments, required 2.\n", 50);
+	else if (message == STR_PID)
+		write(1, "ERROR: PID value has to be a number bigger than 0.\n", 51);
+	else if (message == INVALID_PID)
+		write(1, "ERROR: Invalid PID.\n", 20);
 	exit(status);
 }
 
@@ -29,4 +33,10 @@ unsigned int	ft_pow(int base, int exp)
 	while (++i < exp)
 		val *= base;
 	return (val);
+}
+
+void	kill_exit(int pid, int signal)
+{
+	if (kill(pid, signal) == -1)
+		exit_message(INVALID_PID, EXIT_FAILURE);
 }
