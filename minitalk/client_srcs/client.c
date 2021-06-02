@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 14:30:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 15:08:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	send_char(char c, int server_pid)
 		if (((c >> current_bit) & 1) == 0)
 			kill_exit(server_pid, SIGUSR1);
 		else
-			kill(server_pid, SIGUSR2);
+			kill_exit(server_pid, SIGUSR2);
 		usleep(CLIENT_SLEEP);
 		current_bit--;
 	}
@@ -37,13 +37,13 @@ static void	send_len(int server_pid, char **argv)
 	str_len = ft_strlen(argv[2]);
 	while (--current_bit > -1)
 	{
-		if (str_len >= (int)ft_pow(2, current_bit))
+		if ((unsigned int)str_len >= ft_pow(2, current_bit))
 		{
-			kill(server_pid, SIGUSR2);
+			kill_exit(server_pid, SIGUSR2);
 			str_len -= ft_pow(2, current_bit);
 		}
 		else
-			kill(server_pid, SIGUSR1);
+			kill_exit(server_pid, SIGUSR1);
 		usleep(CLIENT_SLEEP);
 	}
 }

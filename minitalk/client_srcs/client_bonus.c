@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 14:22:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 15:10:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	send_char(int signal)
 {
 	signal = (int)signal;
 	if (((g_client->c >> g_client->current_bit) & 1) == 0)
-		kill(g_client->server_pid, SIGUSR1);
+		kill_exit(g_client->server_pid, SIGUSR1);
 	else
-		kill(g_client->server_pid, SIGUSR2);
+		kill_exit(g_client->server_pid, SIGUSR2);
 	if (g_client->sleep_status == -1)
 		g_client->current_bit--;
 	if (g_client->current_bit < 0)
@@ -51,13 +51,13 @@ static void	send_len(int server_pid, char **argv)
 	str_len = ft_strlen(argv[2]);
 	while (--current_bit > -1)
 	{
-		if (str_len >= (int)ft_pow(2, current_bit))
+		if ((unsigned int)str_len >= ft_pow(2, current_bit))
 		{
-			kill(server_pid, SIGUSR2);
+			kill_exit(server_pid, SIGUSR2);
 			str_len -= ft_pow(2, current_bit);
 		}
 		else
-			kill(server_pid, SIGUSR1);
+			kill_exit(server_pid, SIGUSR1);
 		usleep(1000);
 	}
 }
@@ -71,13 +71,13 @@ static void	send_pid(int server_pid)
 	client_pid = (int)getpid();
 	while (--current_bit > -1)
 	{
-		if (client_pid >= (int)ft_pow(2, current_bit))
+		if ((unsigned int)client_pid >= ft_pow(2, current_bit))
 		{
-			kill(server_pid, SIGUSR2);
+			kill_exit(server_pid, SIGUSR2);
 			client_pid -= ft_pow(2, current_bit);
 		}
 		else
-			kill(server_pid, SIGUSR1);
+			kill_exit(server_pid, SIGUSR1);
 		usleep(1000);
 	}
 }
