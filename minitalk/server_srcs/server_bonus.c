@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 16:48:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 13:58:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	decode_binary(int signal)
 	kill(g_server->client_pid, SIGUSR1);
 	if (!g_server->yet_print && g_server->total_char == g_server->char_count)
 	{
-		printf("%s\n", g_server->current_str);
+		put_str(g_server->current_str);
 		free(g_server->current_str);
 		init_server();
 	}
@@ -93,7 +93,7 @@ int	main(void)
 	g_server = malloc(sizeof(t_server));
 	init_server();
 	g_server->server_pid = getpid();
-	printf("%d\n", g_server->server_pid);
+	ft_putnbr(g_server->server_pid);
 	if (signal(SIGUSR1, decode_binary) == SIG_ERR
 		|| signal(SIGUSR2, decode_binary) == SIG_ERR)
 		return (1);
@@ -103,8 +103,7 @@ int	main(void)
 		if (sleep_value == 0 && g_server->current_str)
 		{
 			if (!g_server->yet_print)
-				printf("Str: %s(%d)\n", g_server->current_str,
-					g_server->total_bits);
+				put_str(g_server->current_str);
 			free(g_server->current_str);
 			init_server();
 		}

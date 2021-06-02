@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/10 20:24:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/03/23 10:04:39 by tpetit           ###   ########.fr       */
+/*   Created: 2021/06/02 13:49:13 by tpetit            #+#    #+#             */
+/*   Updated: 2021/06/02 13:52:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
+#include "../includes/minitalk.h"
+
+void	put_str(const char *s)
 {
-	while (*s1 && *s1 == ' ')
-		s1++;
-	while (1)
+	if (s)
 	{
-		if ((!*s1 && !*s2) || !n)
-			return (0);
-		if (*s1 == *s2)
-		{
-			s1++;
-			s2++;
-			n--;
-		}
-		else
-			return ((int)((unsigned char)(*s1) - (unsigned char)(*s2)));
+		write(1, s, ft_strlen(s));
+		write(1, "\n", 1);
 	}
 }

@@ -6,11 +6,12 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/01 16:36:23 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/02 13:51:25 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 UTILS_SRCS =	error.c \
+				libft.c \
 
 SERVER_SRCS = 	server.c \
 

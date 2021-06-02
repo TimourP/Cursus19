@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 16:52:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:01:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ static void	init_server(void)
 	g_server->current_str = NULL;
 }
 
+static void	wait_end_error(void)
+{
+	put_str("Error");
+	while (usleep(10000) != 0)
+		;
+}
+
 int	main(void)
 {
 	int	sleep_value;
@@ -66,7 +73,7 @@ int	main(void)
 	g_server = malloc(sizeof(t_server));
 	init_server();
 	g_server->server_pid = getpid();
-	printf("%d\n", g_server->server_pid);
+	ft_putnbr(g_server->server_pid);
 	if (signal(SIGUSR1, decode_binary) == SIG_ERR
 		|| signal(SIGUSR2, decode_binary) == SIG_ERR)
 		return (1);
@@ -76,9 +83,9 @@ int	main(void)
 		if (sleep_value == 0 && g_server->current_str)
 		{
 			if (g_server->char_count != g_server->total_char)
-				printf("Error\n");
+				wait_end_error();
 			else
-				printf("%s\n", g_server->current_str);
+				put_str(g_server->current_str);
 			free(g_server->current_str);
 			init_server();
 		}
