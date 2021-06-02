@@ -6,12 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:24:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 15:38:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 15:44:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
-#include <stdio.h>
 
 void	main_error(int argc, char **argv)
 {
