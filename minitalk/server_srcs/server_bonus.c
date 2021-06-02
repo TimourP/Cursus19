@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 13:58:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:23:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	decode_binary(int signal)
 	g_server->total_bits++;
 	if (g_server->current_bit >= 8)
 	{
-		if (g_server->char_count < g_server->total_char)
+		if (g_server->char_count < (int)g_server->total_char)
 			g_server->current_str[g_server->char_count]
 				= g_server->current_char;
 		g_server->char_count++;
@@ -77,7 +77,8 @@ static void	decode_binary(int signal)
 		g_server->current_bit = 0;
 	}
 	kill(g_server->client_pid, SIGUSR1);
-	if (!g_server->yet_print && g_server->total_char == g_server->char_count)
+	if (!g_server->yet_print && (int)g_server->total_char
+		== g_server->char_count)
 	{
 		put_str(g_server->current_str);
 		free(g_server->current_str);

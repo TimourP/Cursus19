@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 16:52:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:19:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	send_len(int server_pid, char **argv)
 	str_len = ft_strlen(argv[2]);
 	while (--current_bit > -1)
 	{
-		if (str_len >= ft_pow(2, current_bit))
+		if (str_len >= (int)ft_pow(2, current_bit))
 		{
 			kill(server_pid, SIGUSR2);
 			str_len -= ft_pow(2, current_bit);

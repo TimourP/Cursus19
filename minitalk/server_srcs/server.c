@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 14:01:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:19:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static void	malloc_server(void)
 
 static void	decode_binary(int signal)
 {
-	char	*pending;
-
 	if (g_server->len_count < 32)
 	{
 		if (signal == SIGUSR2)
@@ -39,7 +37,7 @@ static void	decode_binary(int signal)
 	g_server->current_bit++;
 	if (g_server->current_bit >= 8)
 	{
-		if (g_server->char_count < g_server->total_char)
+		if (g_server->char_count < (int)g_server->total_char)
 			g_server->current_str[g_server->char_count]
 				= g_server->current_char;
 		g_server->char_count++;
@@ -82,7 +80,7 @@ int	main(void)
 		sleep_value = usleep(CLIENT_SLEEP * 10);
 		if (sleep_value == 0 && g_server->current_str)
 		{
-			if (g_server->char_count != g_server->total_char)
+			if (g_server->char_count != (int)g_server->total_char)
 				wait_end_error();
 			else
 				put_str(g_server->current_str);

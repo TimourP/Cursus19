@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/01 16:50:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:22:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	init_client(void)
 
 static void	send_char(int signal)
 {
+	signal = (int)signal;
 	if (((g_client->c >> g_client->current_bit) & 1) == 0)
 		kill(g_client->server_pid, SIGUSR1);
 	else
@@ -50,7 +51,7 @@ static void	send_len(int server_pid, char **argv)
 	str_len = ft_strlen(argv[2]);
 	while (--current_bit > -1)
 	{
-		if (str_len >= ft_pow(2, current_bit))
+		if (str_len >= (int)ft_pow(2, current_bit))
 		{
 			kill(server_pid, SIGUSR2);
 			str_len -= ft_pow(2, current_bit);
@@ -70,7 +71,7 @@ static void	send_pid(int server_pid)
 	client_pid = (int)getpid();
 	while (--current_bit > -1)
 	{
-		if (client_pid >= ft_pow(2, current_bit))
+		if (client_pid >= (int)ft_pow(2, current_bit))
 		{
 			kill(server_pid, SIGUSR2);
 			client_pid -= ft_pow(2, current_bit);
