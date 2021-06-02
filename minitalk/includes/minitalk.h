@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 14:15:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/02 14:30:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void			exit_message(int message, int status);
 unsigned int	ft_pow(int base, int exp);
 void			main_error(int argc, char **argv);
 void			put_str(const char *s);
+void			kill_exit(int pid, int signal);
 
 #endif
