@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:12:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:29:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	*remake_groups(int *groups, int count)
 		if (groups[i])
 			size++;
 	new_groups = malloc(sizeof(int) * (size + 2));
+	if (!new_groups)
+		return (NULL);
 	new_groups[0] = count;
 	i_g = -1;
 	i = 0;
@@ -58,6 +60,11 @@ static void	re_swap_loop(t_stack **a, t_stack **b, int **groups, int lmipc[5])
 		r_reverse(a, "rra\n");
 	lmipc[0] -= lmipc[4];
 	*groups = remake_groups(*groups, lmipc[4]);
+	if (!(*groups))
+	{
+		ft_stackclear(b);
+		exit_message(MALLOC_ERROR, a);
+	}
 }
 
 void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)

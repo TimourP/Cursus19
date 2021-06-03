@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/03 20:23:59 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/03 20:30:35 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,9 @@ CHECK_OBJS	=	${ALL_CHECK_SRCS:.c=.o}
 NAME	=	push_swap
 CHECK_NAME = checker
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
-all:			$(NAME)
+all:			$(NAME) $(CHECK_NAME)
 
 $(NAME):
 	@$(CC) $(CFLAGS) $(ALL_SWAP_SRCS) -o $(NAME)

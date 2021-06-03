@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:02:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:21:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:27:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_stackclear(t_stack **lst)
 {
 	t_stack	*tmp;
 
-	write(1, "Passe\n", 6);
 	while (*lst)
 	{
 		tmp = (*lst)->next;

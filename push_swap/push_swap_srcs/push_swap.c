@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:24:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:27:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	while (groups[current_group] != -1)
 	{
 		if (groups[current_group] > 6)
-		{
 			re_swap(&a, &b, &groups, &current_group);
-		}
 		while (groups[current_group] <= 6 && groups[current_group] != -1)
 		{
 			swap_med_simple(&a, &b, groups, current_group);
@@ -43,7 +41,6 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 		}
 	}
 	free(groups);
-	write(1, "THEEND\n", 7);
 	ft_stackclear(&a);
 	ft_stackclear(&b);
 }
