@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 20:12:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 17:17:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,6 @@ void	print_errors(int error)
 		ft_putstr("Error: args must be integer type.\n");
 	else if (error == MALLOC_ERROR)
 		ft_putstr("Error: malloc fail.\n");
-}
-
-static size_t	ft_strlen_until(char *str, char c)
-{
-	size_t	i;
-
-	i = -1;
-	if (!str)
-		return (0);
-	while (str[++i] && str[i] != c)
-		;
-	return (i);
 }
 
 int	ft_strncmp(const char *s1, const char *s2)

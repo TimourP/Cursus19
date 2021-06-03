@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:02:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:06:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 15:38:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	ft_stacksize(t_stack *stack, int *size)
 	while (stack)
 	{
 		count++;
-		*size = *size + 1;
+		if (size)
+			*size = *size + 1;
 		stack = stack->next;
 	}
 	return (count);
