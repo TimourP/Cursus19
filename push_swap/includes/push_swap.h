@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 18:09:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:09:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	print_errors(int error);
 char	*ft_strdup(const char *str);
 int		ft_strncmp(const char *s1, const char *s2);
 void	ft_putstr(char *str);
+void	exit_message(int error, t_stack **stack);
 
 /*
 **	SWAP
@@ -95,7 +96,7 @@ int		check_args(int argc, char **argv);
 **	PUSH_SWAP
 */
 
-int		get_median_value(t_stack *stack, int len);
+int		get_median_value(t_stack *stack, int len, t_stack *free_on_error);
 void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current);
 int		*get_swap_groups(t_stack *a);
 void	re_swap(t_stack **a, t_stack **b, int **groups, int *current);

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:37:52 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 16:53:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:12:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	*remake_groups(int *groups, int count)
 static void	re_swap_loop(t_stack **a, t_stack **b, int **groups, int lmipc[5])
 {
 	lmipc[4] = 0;
-	lmipc[1] = get_median_value(*a, lmipc[0]);
+	lmipc[1] = get_median_value(*a, lmipc[0], *b);
 	lmipc[3] = 0;
 	while (lmipc[4] < lmipc[0] / 2 && *a && (*a)->next)
 	{
@@ -66,7 +66,7 @@ void	re_swap(t_stack **a, t_stack **b, int **groups, int *current)
 
 	lmipc[0] = (*groups)[*current];
 	(*groups)[*current] = (*groups)[*current] - lmipc[0] / 2 + !(lmipc[0] % 2);
-	lmipc[1] = get_median_value(*b, lmipc[0]);
+	lmipc[1] = get_median_value(*b, lmipc[0], *a);
 	lmipc[3] = 0;
 	lmipc[2] = 0;
 	while (lmipc[2] < lmipc[0] / 2 - !(lmipc[0] % 2))
@@ -105,6 +105,8 @@ int	get_up_median_value(t_stack *stack, int len, int med, int size)
 	int	ret;
 
 	num_list = malloc(sizeof(int) * size);
+	if (!num_list)
+		exit_message(MALLOC_ERROR, &stack);
 	i = -1;
 	j = -1;
 	while (++j < len - 1)

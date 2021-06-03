@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 18:13:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:24:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 		}
 	}
 	free(groups);
+	write(1, "THEEND\n", 7);
 	ft_stackclear(&a);
 	ft_stackclear(&b);
 }
@@ -74,7 +75,7 @@ static void	solve_swap(t_stack *a)
 	while (ft_stacksize(a, &size) > 2)
 	{
 		mucf[2] = -1;
-		mucf[0] = get_median_value(a, size);
+		mucf[0] = get_median_value(a, size, NULL);
 		if (mucf[3])
 			mucf[1] = get_up_median_value(a, size, mucf[0], size / 2);
 		while (mucf[2] < size / 2 - 1 && a && a->next)
@@ -88,10 +89,8 @@ static void	solve_swap(t_stack *a)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	t_stack	*b;
 
 	a = NULL;
-	b = NULL;
 	if (argc <= 1)
 		print_errors(ARGS_NUMBER);
 	else if (!check_args(argc, argv))
@@ -101,6 +100,8 @@ int	main(int argc, char **argv)
 		fill_struct(argc, argv, &a);
 		if (!check_sort(a))
 			solve_swap(a);
+		else
+			ft_stackclear(&a);
 	}
 	return (0);
 }

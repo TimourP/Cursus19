@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 19:55:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:13:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	get_entry(t_list **entry, t_stack **a)
 			if (!new)
 			{
 				ft_lstclear(entry, free);
-				ft_lstclear(a, free);
+				ft_stackclear(a);
 				print_errors(MALLOC_ERROR);
 				exit(EXIT_FAILURE);
 			}

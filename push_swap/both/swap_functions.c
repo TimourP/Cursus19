@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 19:04:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:13:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	g_swap_count = 0;
 void	swap(t_stack **stack, const char *to_print)
 {
 	t_stack	*tmp;
-	t_stack	*start;
 
 	if (stack && *stack && (*stack)->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 12:25:10 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/18 11:04:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:10:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
+	if (!lst)
+		return ;
 	while (*lst)
 	{
 		tmp = (*lst)->next;

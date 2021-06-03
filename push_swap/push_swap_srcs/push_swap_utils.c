@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 16:56:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 20:25:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,19 @@ static void	get_median_value_loop(int *num_list, int len)
 	}
 }
 
-int	get_median_value(t_stack *stack, int len)
+int	get_median_value(t_stack *stack, int len, t_stack *free_on_error)
 {
 	int	*num_list;
 	int	i;
-	int	temp;
 	int	ret;
 
 	num_list = malloc(sizeof(int) * len);
+	if (!num_list && 0)
+	{
+		if (free_on_error)
+			ft_stackclear(&free_on_error);
+		exit_message(MALLOC_ERROR, &stack);
+	}
 	i = -1;
 	while (i < len - 1)
 	{
@@ -66,6 +71,8 @@ int	*get_swap_groups(t_stack *a)
 		size++;
 	}
 	groups = malloc(sizeof(int) * (size + 1));
+	if (!groups)
+		exit_message(MALLOC_ERROR, &a);
 	i = -1;
 	stack_size = ft_stacksize(a, &stack_size);
 	while (++i < size)
@@ -84,7 +91,7 @@ static void	swap_med_simple_loop(t_stack **a, t_stack **b,
 	int	push;
 	int	count;
 
-	med = get_median_value(*b, groups[current]);
+	med = get_median_value(*b, groups[current], *a);
 	count = 0;
 	push = 0;
 	while (count < 1 + (int)(groups[current] >= 5))
@@ -103,10 +110,6 @@ static void	swap_med_simple_loop(t_stack **a, t_stack **b,
 
 void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 {
-	int	med;
-	int	push;
-	int	count;
-
 	while (groups[current] != 0)
 	{
 		if (groups[current] == 1)
