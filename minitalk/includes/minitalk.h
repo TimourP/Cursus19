@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 14:02:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:39:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_server
 # define ARGS_ERROR 0
 # define INVALID_PID 1
 # define STR_PID 2
+# define MALLOC_ERROR 3
 # define CLIENT_SLEEP 100
 
 /*

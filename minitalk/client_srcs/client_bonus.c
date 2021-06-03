@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:09:30 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 13:56:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:39:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,17 @@ static void	send_pid(int server_pid)
 
 int	main(int argc, char **argv)
 {
-	int	server_pid;
 	int	i;
 
 	main_error(argc, argv);
 	g_client = malloc(sizeof(t_client));
+	if (!g_client)
+		exit_message(MALLOC_ERROR, EXIT_FAILURE);
 	init_client();
-	server_pid = ft_atoi(argv[1]);
-	g_client->server_pid = server_pid;
+	g_client->server_pid = ft_atoi(argv[1]);
 	g_client->str = argv[2];
-	send_len(server_pid, argv);
-	send_pid(server_pid);
+	send_len(g_client->server_pid, argv);
+	send_pid(g_client->server_pid);
 	signal(SIGUSR1, send_char);
 	i = -1;
 	g_client->c = argv[2][0];

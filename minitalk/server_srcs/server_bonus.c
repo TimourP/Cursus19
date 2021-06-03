@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 14:14:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:45:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ static void	malloc_server(void)
 		exit(EXIT_FAILURE);
 	}
 	g_server->current_str = malloc(sizeof(char) * g_server->total_char + 1);
+	if (!g_server->current_str)
+	{
+		free(g_server);
+		exit_message(MALLOC_ERROR, EXIT_FAILURE);
+	}
 	g_server->current_str[g_server->total_char] = 0;
 }
 
@@ -98,6 +103,8 @@ int	main(void)
 
 	sleep_value = -1;
 	g_server = malloc(sizeof(t_server));
+	if (!g_server)
+		exit_message(MALLOC_ERROR, EXIT_FAILURE);
 	init_server();
 	g_server->server_pid = getpid();
 	ft_putnbr(g_server->server_pid);
