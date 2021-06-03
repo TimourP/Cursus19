@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:06:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 14:45:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 15:05:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(void)
 		return (1);
 	while (1)
 	{
-		sleep_value = usleep(100000);
+		sleep_value = usleep(10000);
 		if (sleep_value == 0 && g_server->current_str)
 			main_loop(g_server);
 	}

@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/03 14:22:37 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/03 15:04:45 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ CLIENT_BONUS_OBJS = ${ALL_CLIENT_BONUS_SRCS:.c=.o}
 SERVER	=	server
 CLIENT = client
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 LIBFT_NAME = libft.a
 LIBFT_PATH	=	./libft
 
