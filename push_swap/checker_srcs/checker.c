@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 13:31:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 19:55:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	get_entry(t_list **entry)
+static void	get_entry(t_list **entry, t_stack **a)
 {
 	int		bytes;
 	char	*buff;
@@ -28,6 +28,7 @@ static void	get_entry(t_list **entry)
 			if (!new)
 			{
 				ft_lstclear(entry, free);
+				ft_lstclear(a, free);
 				print_errors(MALLOC_ERROR);
 				exit(EXIT_FAILURE);
 			}
@@ -124,7 +125,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
-		get_entry(&entry);
+		get_entry(&entry, &a);
 		resolve_checker(a, entry);
 	}
 	return (0);
