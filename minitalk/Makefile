@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/03 14:02:49 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/03 14:22:37 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,27 +50,33 @@ LIBFT_PATH	=	./libft
 
 all:	$(SERVER)
 
-$(SERVER):
+$(SERVER): $(SERVER_OBJS)
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(ALL_SERVER_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
 
-$(CLIENT):
+$(CLIENT): $(CLIENT_OBJS)
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(ALL_CLIENT_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
 
-both:
+both: $(SERVER_OBJS) $(CLIENT_OBJS)
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(ALL_SERVER_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
 	@$(CC) $(CFLAGS) $(ALL_CLIENT_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
 
-both_bonus:
+both_bonus: $(SERVER_BONUS_OBJS) $(CLIENT_BONUS_OBJS)
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(CFLAGS) $(ALL_SERVER_BONUS_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
-	@$(CC) $(CFLAGS) $(ALL_CLIENT_BONUS_SRCS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
+	@$(CC) $(CFLAGS) $(SERVER_BONUS_OBJS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(SERVER)
+	@$(CC) $(CFLAGS) $(CLIENT_BONUS_OBJS) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(CLIENT)
+
+.c.o:
+	@gcc $(CFLAG) -c -I./ $< -o ${<:.c=.o}
 
 clean:
-	@rm -f $(SWAP_OBJS)
-	@rm -f $(SWAP_OBJS)
+	@rm -f $(SERVER_OBJS)
+	@rm -f $(CLIENT_OBJS)
+	@rm -f $(SERVER_BONUS_OBJS)
+	@rm -f $(CLIENT_BONUS_OBJS)
+	@make clean -C $(LIBFT_PATH)
 
 fclean: clean
 	@rm -f $(SERVER)
