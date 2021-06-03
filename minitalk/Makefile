@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 15:32:17 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/02 15:05:03 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/03 14:02:49 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ UTILS_SRCS =	error.c \
 SERVER_SRCS = 	server.c \
 
 SERVER_BONUS_SRCS =	server_bonus.c \
+					server_utils_bonus.c \
 
 CLIENT_SRCS = 	client.c \
 				client_utils.c \

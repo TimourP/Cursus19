@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 08:45:31 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 15:39:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/03 13:54:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ unsigned int	ft_pow(int base, int exp)
 	return (val);
 }
 
-void	kill_exit(int pid, int signal)
+void	kill_exit(int pid, int signal, t_client *g_client)
 {
 	if (kill(pid, signal) == -1)
+	{
+		if (g_client)
+			free(g_client);
 		exit_message(INVALID_PID, EXIT_FAILURE);
+	}
 }
