@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:10:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 15:44:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,48 @@ static void	solve_swap(t_stack *a)
 	solve_swap2(a, b, groups);
 }
 
+int	get_p(t_stack *stack, int value)
+{
+	int	bigger_than;
+
+	bigger_than = 1;
+	while (stack)
+	{
+		if (stack->content < value)
+			bigger_than++;
+		stack = stack->next;
+	}
+	return (bigger_than);
+}
+
+#include <stdio.h>
+
+void	tiny_swap(t_stack *a)
+{
+	if (get_p(a, a->content) == 1 && get_p(a, a->next->content)
+		== 3 && get_p(a, a->next->next->content) == 2)
+	{
+		rotate(&a, "ra\n");
+		swap(&a, "sa\n");
+		r_reverse(&a, "rra\n");
+	}
+	else if (get_p(a, a->content) == 2 && get_p(a, a->next->content)
+		== 1 && get_p(a, a->next->next->content) == 3)
+		swap(&a, "sa\n");
+	else if (get_p(a, a->content) == 2 && get_p(a, a->next->content)
+		== 3 && get_p(a, a->next->next->content) == 1)
+		r_reverse(&a, "rra\n");
+	else if (get_p(a, a->content) == 3 && get_p(a, a->next->content)
+		== 1 && get_p(a, a->next->next->content) == 2)
+		rotate(&a, "ra\n");
+	else
+	{
+		r_reverse(&a, "rra\n");
+		r_reverse(&a, "rra\n");
+		swap(&a, "sa\n");
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -95,8 +137,10 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
-		if (!check_sort(a))
+		if (!check_sort(a) && ft_stacksize(a, NULL) != 3)
 			solve_swap(a);
+		else if (!check_sort(a))
+			tiny_swap(a);
 		else
 			ft_stackclear(&a);
 	}

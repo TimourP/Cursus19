@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:09:36 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/02 16:56:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 15:41:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,6 @@ int main(void)
 		t = 0;
 		in_f = fopen("count.txt", "r");
 		fscanf(in_f, "%d", &t);
-		t = t - 1;
 		fclose(in_f);
 		free(line_num);
 		swap_line = ft_strjoin(swap_line, ft_strdup("| ./checker "));
