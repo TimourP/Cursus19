@@ -6,15 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:27:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:48:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "unistd.h"
-# include "stdlib.h"
 # include "../get_next_line/get_next_line.h"
 
 # define ARGS_NUMBER 0
