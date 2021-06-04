@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/04 10:52:29 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/04 11:41:21 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,11 +48,11 @@ CHECK_NAME = checker
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
-all:			$(NAME) $(CHECK_NAME)
-
 $(NAME):
 	@$(CC) $(CFLAGS) $(ALL_SWAP_SRCS) -o $(NAME)
 	@echo "${GREEN}Push_swap executable ready!${RESET}"
+
+all:			$(NAME) $(CHECK_NAME)
 
 $(CHECK_NAME):
 	@$(CC) $(CFLAGS) $(ALL_CHECK_SRCS) -o $(CHECK_NAME)

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:27:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:38:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_errors(int error)
 	else if (error == ARGS_TYPE_ERROR)
 		write(2, "Error\n", 6);
 	else if (error == MALLOC_ERROR)
-		write(2, "Error: malloc fail\n", 19);
+		write(2, "Error\n", 6);
 	else if (error == DUPLICATES_ARGS)
 		write(2, "Error\n", 6);
 }
