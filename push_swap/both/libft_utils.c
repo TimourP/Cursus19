@@ -6,17 +6,17 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:11:20 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:06:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:27:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, t_stack **stack)
 {
-	unsigned long long	num;
-	int					neg;
-	int					length;
+	long	num;
+	int		neg;
+	int		length;
 
 	neg = 1;
 	num = 0;
@@ -34,10 +34,13 @@ int	ft_atoi(const char *str)
 		num = 10 * num + (*str - '0');
 		str++;
 	}
+	if ((num * neg) > (long)(2147483647) || (num * neg)
+		< (long)(-2147483648) || length > 9)
+		exit_message(ARGS_TYPE_ERROR, stack);
 	return ((int)(num * neg));
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(const char *str)
 {
 	int	i;
 
@@ -50,13 +53,13 @@ void	ft_putstr(char *str)
 void	print_errors(int error)
 {
 	if (error == ARGS_NUMBER)
-		ft_putstr("Error: number of args must be at least 1.\n");
+		write(2, "Error\n", 6);
 	else if (error == ARGS_TYPE_ERROR)
-		ft_putstr("Error: args must be integer type.\n");
+		write(2, "Error\n", 6);
 	else if (error == MALLOC_ERROR)
-		ft_putstr("Error: malloc fail.\n");
+		write(2, "Error: malloc fail\n", 19);
 	else if (error == DUPLICATES_ARGS)
-		ft_putstr("Error: he stack must not contain duplicates.\n");
+		write(2, "Error\n", 6);
 }
 
 void	exit_message(int error, t_stack **stack)

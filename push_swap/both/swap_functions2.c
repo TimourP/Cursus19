@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:00:24 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 10:50:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:26:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rotate(t_stack **stack, const char *to_print)
 		*stack = start;
 	}
 	if (to_print)
-		write(1, to_print, 3);
+		ft_putstr(to_print);
 }
 
 void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
@@ -36,7 +36,7 @@ void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
 	rotate(a, NULL);
 	rotate(b, NULL);
 	if (to_print)
-		write(1, to_print, 3);
+		ft_putstr(to_print);
 }
 
 void	r_reverse(t_stack **stack, const char *to_print)
@@ -59,7 +59,7 @@ void	r_reverse(t_stack **stack, const char *to_print)
 		*stack = start;
 	}
 	if (to_print)
-		write(1, to_print, 4);
+		ft_putstr(to_print);
 }
 
 void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
@@ -67,5 +67,5 @@ void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
 	r_reverse(a, NULL);
 	r_reverse(b, NULL);
 	if (to_print)
-		write(1, to_print, 4);
+		ft_putstr(to_print);
 }

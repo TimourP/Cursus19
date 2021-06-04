@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:05:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:27:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	fill_struct(int argc, char **argv, t_stack **stack);
 ** LIBFT_UTILS
 */
 
-int		ft_atoi(const char *str);
+int		ft_atoi(const char *str, t_stack **stack);
 void	print_errors(int error);
 char	*ft_strdup(const char *str);
 int		ft_strncmp(const char *s1, const char *s2);
-void	ft_putstr(char *str);
+void	ft_putstr(const char *str);
 void	exit_message(int error, t_stack **stack);
 
 /*

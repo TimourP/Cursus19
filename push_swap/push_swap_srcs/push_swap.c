@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:27:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:10:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	if (argc <= 1)
-		print_errors(ARGS_NUMBER);
+		return (0);
 	else if (!check_args(argc, argv))
 		print_errors(ARGS_TYPE_ERROR);
 	else

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 10:49:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:27:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	swap(t_stack **stack, const char *to_print)
 		(*stack) = tmp;
 	}
 	if (to_print)
-		write(1, to_print, 3);
+		ft_putstr(to_print);
 }
 
 void	swap_swap(t_stack **a, t_stack **b, const char *to_print)
@@ -32,7 +32,7 @@ void	swap_swap(t_stack **a, t_stack **b, const char *to_print)
 	swap(a, NULL);
 	swap(b, NULL);
 	if (to_print)
-		write(1, to_print, 3);
+		ft_putstr(to_print);
 }
 
 void	push_a(t_stack **a, t_stack **b, const char *to_print)
@@ -60,5 +60,5 @@ void	push_b(t_stack **a, t_stack **b, const char *to_print)
 	temp->next = *b;
 	*b = temp;
 	if (to_print)
-		write(1, to_print, 3);
+		ft_putstr(to_print);
 }

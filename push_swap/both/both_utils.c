@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:38:21 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:07:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:19:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	fill_struct(int argc, char **argv, t_stack **stack)
 	i = 0;
 	while (++i < argc)
 	{
-		value = ft_atoi(argv[i]);
+		value = ft_atoi(argv[i], stack);
 		is_yet(stack, value);
 		new = ft_stacknew(value);
 		if (!new)
