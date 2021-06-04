@@ -6,13 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:58:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:13:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 10:49:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	g_swap_count = 0;
 
 void	swap(t_stack **stack, const char *to_print)
 {
@@ -27,7 +25,6 @@ void	swap(t_stack **stack, const char *to_print)
 	}
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count++;
 }
 
 void	swap_swap(t_stack **a, t_stack **b, const char *to_print)
@@ -36,7 +33,6 @@ void	swap_swap(t_stack **a, t_stack **b, const char *to_print)
 	swap(b, NULL);
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count--;
 }
 
 void	push_a(t_stack **a, t_stack **b, const char *to_print)
@@ -51,7 +47,6 @@ void	push_a(t_stack **a, t_stack **b, const char *to_print)
 	(*b) = temp;
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count++;
 }
 
 void	push_b(t_stack **a, t_stack **b, const char *to_print)
@@ -66,10 +61,4 @@ void	push_b(t_stack **a, t_stack **b, const char *to_print)
 	*b = temp;
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count++;
-}
-
-int	print_count(void)
-{
-	return (g_swap_count);
 }

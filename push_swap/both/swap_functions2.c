@@ -6,13 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:00:24 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/26 19:04:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 10:50:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	g_swap_count2 = 0;
 
 void	rotate(t_stack **stack, const char *to_print)
 {
@@ -31,7 +29,6 @@ void	rotate(t_stack **stack, const char *to_print)
 	}
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count2++;
 }
 
 void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
@@ -40,7 +37,6 @@ void	rotate_rotate(t_stack **a, t_stack **b, const char *to_print)
 	rotate(b, NULL);
 	if (to_print)
 		write(1, to_print, 3);
-	g_swap_count2--;
 }
 
 void	r_reverse(t_stack **stack, const char *to_print)
@@ -64,7 +60,6 @@ void	r_reverse(t_stack **stack, const char *to_print)
 	}
 	if (to_print)
 		write(1, to_print, 4);
-	g_swap_count2++;
 }
 
 void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
@@ -73,10 +68,4 @@ void	r_r_reverse(t_stack **a, t_stack **b, const char *to_print)
 	r_reverse(b, NULL);
 	if (to_print)
 		write(1, to_print, 4);
-	g_swap_count2--;
-}
-
-int	print_count2(void)
-{
-	return (g_swap_count2);
 }

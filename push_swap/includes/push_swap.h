@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/03 20:09:26 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 11:05:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "unistd.h"
 # include "stdlib.h"
-# include "stdio.h"
 # include "../get_next_line/get_next_line.h"
 
 # define ARGS_NUMBER 0
 # define ARGS_TYPE_ERROR 1
 # define MALLOC_ERROR 2
+# define DUPLICATES_ARGS 3
 
 typedef struct s_stack
 {
@@ -43,10 +43,6 @@ t_stack	*ft_stacknew(int content);
 void	ft_stackclear(t_stack **lst);
 void	print_stack(t_stack *a, t_stack *b);
 int		ft_stacksize(t_stack *stack, int *size);
-int		print_count(void);
-int		print_count2(void);
-void	graphic_stack(t_stack *a, t_stack *b);
-void	graph_1line(t_stack *a, t_stack *b);
 
 /*
 ** LST UTILS
