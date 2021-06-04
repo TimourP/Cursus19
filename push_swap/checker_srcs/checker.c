@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 15:25:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/04 15:47:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,6 @@ static void	resolve_checker(t_stack *a, t_list *entry)
 				execute_move(&a, &b, i);
 				break ;
 			}
-		}
-		if (i == 11)
-		{
-			ft_stackclear(&a);
-			ft_lstclear(&entry, free);
-			exit_message(ARGS_TYPE_ERROR, &a);
 		}
 		entry = entry->next;
 	}
