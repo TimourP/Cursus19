@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/04 11:53:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/05 13:48:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define ARGS_TYPE_ERROR 1
 # define MALLOC_ERROR 2
 # define DUPLICATES_ARGS 3
+# define INVALID_MOVE 4
 
 typedef struct s_stack
 {
