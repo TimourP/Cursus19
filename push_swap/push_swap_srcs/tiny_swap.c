@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:36:12 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 13:36:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 14:12:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	get_p(t_stack *stack, int value)
+int	get_p(t_stack *stack, int value)
 {
 	int	bigger_than;
 
@@ -31,9 +31,8 @@ void	tiny_swap(t_stack *a)
 	if (get_p(a, a->content) == 1 && get_p(a, a->next->content)
 		== 3 && get_p(a, a->next->next->content) == 2)
 	{
-		rotate(&a, "ra\n");
-		swap(&a, "sa\n");
 		r_reverse(&a, "rra\n");
+		swap(&a, "sa\n");
 	}
 	else if (get_p(a, a->content) == 2 && get_p(a, a->next->content)
 		== 1 && get_p(a, a->next->next->content) == 3)
@@ -46,8 +45,7 @@ void	tiny_swap(t_stack *a)
 		rotate(&a, "ra\n");
 	else
 	{
-		r_reverse(&a, "rra\n");
-		r_reverse(&a, "rra\n");
 		swap(&a, "sa\n");
+		r_reverse(&a, "rra\n");
 	}
 }

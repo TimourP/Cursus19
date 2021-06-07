@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 13:36:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 14:48:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void	tiny_swap(t_stack *a);
 */
 
 void	exit_entry(t_list **entry, t_stack **a, char *line);
+int		get_p(t_stack *stack, int value);
 
 #endif
