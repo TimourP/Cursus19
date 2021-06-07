@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 11:29:13 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/07 13:37:08 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/07 15:59:35 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ PUSH_SWAP_SRCS = 	push_swap.c \
 					push_swap_utils.c \
 					push_swap_utils2.c \
 					tiny_swap.c \
+					chunk_three.c \
 
 CHECKER_SRCS =	checker.c \
 				checker_utils.c \

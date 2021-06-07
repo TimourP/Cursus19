@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 15:36:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 15:58:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,32 +108,6 @@ static void	swap_med_simple_loop(t_stack **a, t_stack **b,
 	groups[current] = groups[current] - 1 - (int)(groups[current] >= 5);
 }
 
-int		b_pos(t_stack *b, int id, int len)
-{
-	int	c_val;
-	int i;
-	int	bigger_than;
-	t_stack *tmp;
-
-	c_val = b->content;
-	i = -1;
-	tmp = b;
-	while (++i < id + 1)
-	{
-		c_val = tmp->content;
-		tmp = tmp->next;
-	}
-	bigger_than = 1;
-	i = -1;
-	while (b && ++i < len)
-	{
-		if (b->content < c_val)
-			bigger_than++;
-		b = b->next;
-	}
-	return (bigger_than);
-}
-
 void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 {
 	while (groups[current] != 0)
@@ -152,59 +126,7 @@ void	swap_med_simple(t_stack **a, t_stack **b, int *groups, int current)
 			groups[current] = 0;
 		}
 		else if (groups[current] == 3)
-		{
-			if (b_pos(*b, 0, 3) == 1 && b_pos(*b, 1, 3)
-				== 2 && b_pos(*b, 2, 3) == 3)
-			{
-				push_a(a, b, "pa\n");
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				swap(a, "sa\n");
-				push_a(a, b, "pa\n");
-				swap(a, "sa\n");
-			}
-			else if (b_pos(*b, 0, 3) == 1 && b_pos(*b, 1, 3)
-				== 3 && b_pos(*b, 2, 3) == 2)
-			{
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-			}
-			else if (b_pos(*b, 0, 3) == 2 && b_pos(*b, 1, 3)
-				== 1 && b_pos(*b, 2, 3) == 3)
-			{
-				push_a(a, b, "pa\n");
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				swap(a, "sa\n");
-				push_a(a, b, "pa\n");
-			}
-			else if (b_pos(*b, 0, 3) == 2 && b_pos(*b, 1, 3)
-				== 3 && b_pos(*b, 2, 3) == 1)
-			{
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-			}
-			else if (b_pos(*b, 0, 3) == 3 && b_pos(*b, 1, 3)
-				== 1 && b_pos(*b, 2, 3) == 2)
-			{
-				push_a(a, b, "pa\n");
-				swap(b, "sb\n");
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-			}
-			else
-			{
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-				push_a(a, b, "pa\n");
-			}
-			groups[current] = 0;
-		}
+			swap_med_simple_three(a, b, groups, current);
 		else
 			swap_med_simple_loop(a, b, groups, current);
 	}
