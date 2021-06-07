@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 13:59:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 15:58:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 16:23:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	re_swap(t_stack **a, t_stack **b, int **groups, int *current);
 int		get_up_median_value(t_stack *stack, int len, int med, int size);
 void	tiny_swap(t_stack **a);
 void	swap_med_simple_three(t_stack **a, t_stack **b,
-	int *groups, int current);
+			int *groups, int current);
 
 /*
 ** CHECKER

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 11:49:28 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 13:34:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 16:21:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	get_entry(t_list **entry, t_stack **a)
 	while (bytes > 0)
 	{
 		bytes = get_next_line(0, &buff);
-		exit_entry(entry, a, buff);
+		if (bytes > 0)
+			exit_entry(entry, a, buff);
 		if (bytes >= 0)
 		{
 			new = ft_lstnew(ft_strdup(buff));

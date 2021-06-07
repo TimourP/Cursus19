@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:33:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 13:34:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 16:20:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exit_entry(t_list **entry, t_stack **a, char *line)
 	while (++i < 11)
 		if (ft_strncmp(line, move[i]) == 0 || !line[0])
 			value = 1;
-	if (!value)
+	if (!value || line[0] == 0)
 	{
 		ft_lstclear(entry, free);
 		free(line);
