@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 14:47:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 15:42:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static void	solve_swap2(t_stack *a, t_stack *b, int *groups)
 	int	current_group;
 
 	current_group = 0;
-	if (a && a->next && a->content > a->next->content)
+	if (!check_sort(a) && ft_stacksize(a, NULL) == 2)
 		swap(&a, "sa\n");
+	else if (!check_sort(a) && ft_stacksize(a, NULL) == 3)
+		tiny_swap(&a);
 	while (groups[current_group] != -1)
 	{
 		if (groups[current_group] > 6)
@@ -69,7 +71,7 @@ static void	solve_swap(t_stack *a)
 	mucf[3] = 1;
 	size = 0;
 	groups = get_swap_groups(a);
-	while (ft_stacksize(a, &size) > 2)
+	while (ft_stacksize(a, &size) > 3)
 	{
 		mucf[2] = -1;
 		mucf[0] = get_median_value(a, size, NULL);
@@ -95,12 +97,12 @@ int	main(int argc, char **argv)
 	else
 	{
 		fill_struct(argc, argv, &a);
-		if (!check_sort(a) && ft_stacksize(a, NULL) != 3)
-			solve_swap(a);
-		else if (!check_sort(a))
-			tiny_swap(a);
-		else
+		if (check_sort(a))
 			ft_stackclear(&a);
+		else if (ft_stacksize(a, NULL) != 3)
+			solve_swap(a);
+		else
+			tiny_swap(&a);
 	}
 	return (0);
 }

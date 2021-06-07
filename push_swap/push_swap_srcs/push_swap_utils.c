@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 09:01:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 14:48:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/07 15:36:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	*get_swap_groups(t_stack *a)
 	size = 0;
 	stack_size = 0;
 	ft_stacksize(a, &stack_size);
-	while (stack_size > 2)
+	while (stack_size > 3)
 	{
 		stack_size -= stack_size / 2;
 		size++;
