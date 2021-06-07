@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/07 18:40:07 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/07 18:57:29 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,15 +60,15 @@ CFLAGS	=	#-Wall -Wextra -Werror
 all:			$(NAME) $(CHECK_NAME)
 
 $(PHI1): $(PHILO_ONE_OBJS)
-	@$(CC) $(CFLAGS) $(PHILO_ONE_OBJS) -o $(PHI1)
+	@$(CC) $(CFLAGS) $(PHILO_ONE_OBJS) -lpthread -o $(PHI1)
 	@echo "${GREEN}philo_one executable ready!${RESET}"
 
 $(PHI2): $(PHILO_TWO_OBJS)
-	@$(CC) $(CFLAGS) $(PHILO_TWO_OBJS) -o $(PHI2)
+	@$(CC) $(CFLAGS) $(PHILO_TWO_OBJS) -lpthread -o $(PHI2)
 	@echo "${GREEN}philo_two executable ready!${RESET}"
 
 $(PHI3): $(PHILO_THREE_OBJS)
-	@$(CC) $(CFLAGS) $(PHILO_THREE_OBJS) -o $(PHI3)
+	@$(CC) $(CFLAGS) $(PHILO_THREE_OBJS) -lpthread -o $(PHI3)
 	@echo "${GREEN}philo_three executable ready!${RESET}"
 
 clean:			
