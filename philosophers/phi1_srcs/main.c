@@ -6,26 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 16:17:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:00:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo1.h"
-
-static void	*philo_loop(void *phi)
-{
-	t_philo *philo;
-
-	philo = phi;
-	while (1)
-	{
-		eat(philo);
-		display_status(philo->id, SLEEPING);
-		usleep(1000 * philo->config->time_sleep);
-		display_status(philo->id, THINKING);
-	}
-	return (NULL);
-}
 
 static int	check_die(int *die_lst, int nbr_phi)
 {
@@ -36,6 +21,36 @@ static int	check_die(int *die_lst, int nbr_phi)
 		if (die_lst[i] == 1)
 			return (1);
 	return (0);
+}
+
+static void	*exit_philo(t_philo *philo)
+{
+	if (!philo->config->die_lst[philo->id + 1])
+		philo->config->die_lst[philo->id + 1] = 1;
+	pthread_mutex_destroy(philo->right_fork);
+	free(philo);
+	return (NULL);
+}
+
+static void	*philo_loop(void *phi)
+{
+	t_philo *philo;
+	long	value;
+
+	philo = phi;
+	while (!check_die(philo->config->die_lst, philo->config->nbr_phi) && !eat(philo))
+	{
+		value = display_status(philo, SLEEPING);
+		if (value < 0)
+			return (exit_philo(philo));
+		if (value < 1000 * philo->config->time_sleep)
+			usleep(value);
+		else
+			usleep(1000 * philo->config->time_sleep);
+		if (display_status(philo, THINKING) < 0)
+			return (exit_philo(philo));
+	}
+	return (exit_philo(philo));
 }
 
 static void	init_philosophers(int argc, char **argv)
@@ -53,6 +68,7 @@ static void	init_philosophers(int argc, char **argv)
 	config->time_eat = phi_atoi(argv[3]);
 	config->time_sleep = phi_atoi(argv[4]);
 	config->die_lst = malloc(sizeof(int) * config->nbr_phi);
+	config->start_time = get_current();
 	i = -1;
 	while (++i < config->nbr_phi)
 		config->die_lst[i] = 0;
@@ -66,6 +82,7 @@ static void	init_philosophers(int argc, char **argv)
 		current = malloc(sizeof(t_philo));
 		current->id = i + 1;
 		current->config = config;
+		current->last_eat = config->start_time;
 		if (i == 0)
 		{
 			first = malloc(sizeof(pthread_mutex_t));
@@ -97,8 +114,9 @@ int	main(int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
 		exit_message(NBR_ARGS_ERROR);
-	if (!check_argv(argc, argv))
+	else if (!check_argv(argc, argv))
 		exit_message(ARGS_ERROR);
-	init_philosophers(argc, argv);
+	else
+		init_philosophers(argc, argv);
 	return (0);
 }
