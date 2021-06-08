@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 19:01:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:21:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ long	get_current(void)
 
 long	display_status(t_philo *philo, int status)
 {
-	struct timeval	current_time;
 	const char		*status_txt[] = {"has taken a fork", "is eating",
 		"is sleeping", "is thinking", "died"};
 	long			c_time;
@@ -49,7 +48,6 @@ long	display_status(t_philo *philo, int status)
 		philo->config->die_lst[philo->id - 1] = 1;
 		return (-1);
 	}
-	gettimeofday(&current_time, NULL);
 	printf("%ld %d %s\n", get_current() / 1000, philo->id, status_txt[status]);
 	return (philo->config->time_die * 1000 - (c_time - philo->last_eat));
 }
