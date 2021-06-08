@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/07 18:57:29 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/08 15:52:55 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ LIBFT_UTILS =	phi_atoi.c \
 UTILS_SRCS =	error.c \
 
 PHILO_ONE =	main.c \
+			actions.c \
 
 PHILO_TWO =	main.c \
 
