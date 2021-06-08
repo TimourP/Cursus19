@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:33:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/07 15:42:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:23:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int	main(int argc, char **argv)
 		else if (ft_stacksize(a, NULL) != 3)
 			solve_swap(a);
 		else
+		{
 			tiny_swap(&a);
+			ft_stackclear(&a);
+		}
 	}
 	return (0);
 }
