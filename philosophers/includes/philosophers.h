@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 15:25:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 16:28:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 {
 	int				id;
 	long			last_eat;
+	long			last_since_eat_time;
 	pthread_t		p_id;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;

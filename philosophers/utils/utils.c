@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 16:02:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 16:29:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ long	display_status(t_philo *philo, int status)
 	}
 	c_time = get_current();
 	if (status == EATING)
+	{
+		philo->last_since_eat_time = c_time - philo->last_eat;
 		philo->last_eat = c_time;
+	}
 	else if (c_time - philo->last_eat >= philo->config->time_die * 1000)
 	{
 		printf("%-13ld %d %s\n", get_current() / 1000 - philo->config->start_time / 1000, philo->id, "died");

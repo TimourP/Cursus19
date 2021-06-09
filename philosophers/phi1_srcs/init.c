@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 16:07:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 16:55:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static int	init_forks(t_philo *current, t_config *config, int i)
 void	init_philosophers(int argc, char **argv)
 {
 	int				i;
-	pthread_t		p_id;
 	t_config		*config;
 	t_philo			*current;
 	t_philo_lst		*start;
@@ -77,13 +76,37 @@ void	init_philosophers(int argc, char **argv)
 		current->id = i + 1;
 		current->config = config;
 		current->last_eat = config->start_time;
+		current->last_since_eat_time = 0;
 		init_forks(current, config, i);
 		new = philo_lst_new(current);
 		philo_lst_add_back(&start, new);
-		pthread_create(&p_id, NULL, philo_loop, (void *)current);
-		new->philo->p_id = p_id;
 	}
 	new = start;
+	while (new)
+	{
+		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new->philo);
+		new = new->next;
+	}
+	new = start;
+	while (!config->one_die && new)
+	{
+		if (new->philo->last_since_eat_time > config->time_die * 1000
+			|| get_current() - new->philo->last_eat > config->time_die * 1000)
+		{
+			pthread_mutex_lock(config->phi_died);
+			if (!config->phi_died)
+			{
+				config->one_die = 1;
+				printf("%-13ld %d %s\n", get_current() / 1000 - config->start_time / 1000, new->philo->id, "died");
+			}
+			pthread_mutex_unlock(config->phi_died);
+			break ;
+		}
+		new = new->next;
+		if (!new)
+			new = start;
+	}
+	
 	while (new)
 	{
 		pthread_join(new->philo->p_id, NULL);
