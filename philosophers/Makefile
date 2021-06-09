@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/06/08 16:28:24 by tpetit           ###   ########.fr        #
+#    Updated: 2021/06/09 15:20:58 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ LIBFT_UTILS =	phi_atoi.c \
 
 UTILS_SRCS =	error.c \
 				utils.c \
+				philo_lst_utils.c \
 
 PHILO_ONE =	main.c \
 			actions.c \
+			init.c \
 
 PHILO_TWO =	main.c \
 
@@ -57,7 +59,7 @@ PHI1 = philo_one
 PHI2 = philo_two
 PHI3 = philo_three
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
 all:			$(NAME) $(CHECK_NAME)
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 10:16:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 15:25:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_config
 	int				time_eat;
 	int				time_sleep;
 	int				each_eat;
-	int				*die_lst;
+	int				one_die;
 	long			start_time;
 	pthread_mutex_t	*phi_died;
 }				t_config;
@@ -45,10 +45,17 @@ typedef struct s_philo
 {
 	int				id;
 	long			last_eat;
+	pthread_t		p_id;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	t_config		*config;
 }				t_philo;
+
+typedef struct s_philo_lst
+{
+	t_philo				*philo;
+	struct s_philo_lst	*next;
+}				t_philo_lst;
 
 /*
 **	UTILS
@@ -59,5 +66,13 @@ int		check_argv(int argc, char **argv);
 int		phi_atoi(const char *str);
 long	display_status(t_philo *philo, int status);
 long	get_current(void);
+
+/*
+**	LST
+*/
+
+void		philo_lst_clear(t_philo_lst **lst);
+t_philo_lst	*philo_lst_new(t_philo *content);
+void		philo_lst_add_back(t_philo_lst **alst, t_philo_lst *new);
 
 #endif

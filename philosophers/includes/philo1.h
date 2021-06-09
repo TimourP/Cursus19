@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:50:17 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 16:10:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 12:04:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 ** ACTIONS
 */
 
-int	eat(t_philo *philo);
+int		eat(t_philo *philo);
+void	init_philosophers(int argc, char **argv);
+void	*philo_loop(void *phi);
 
 #endif

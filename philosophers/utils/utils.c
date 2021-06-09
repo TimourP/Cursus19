@@ -6,22 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 10:45:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 16:02:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
-
-static int	check_die(int *die_lst, int nbr_phi)
-{
-	int	i;
-
-	i = -1;
-	while (++i < nbr_phi)
-		if (die_lst[i] == 1)
-			return (1);
-	return (0);
-}
+#include "../includes/philo1.h"
 
 long	get_current(void)
 {
@@ -38,7 +27,7 @@ long	display_status(t_philo *philo, int status)
 	long			c_time;
 
 	pthread_mutex_lock(philo->config->phi_died);
-	if (check_die(philo->config->die_lst, philo->config->nbr_phi))
+	if (philo->config->one_die)
 	{
 		pthread_mutex_unlock(philo->config->phi_died);
 		return (-1);
@@ -46,15 +35,14 @@ long	display_status(t_philo *philo, int status)
 	c_time = get_current();
 	if (status == EATING)
 		philo->last_eat = c_time;
-	else if (c_time - philo->last_eat > philo->config->time_die
-		* 1000 && status != DIED)
+	else if (c_time - philo->last_eat >= philo->config->time_die * 1000)
 	{
-		printf("%ld %d %s\n", get_current() / 1000, philo->id, "died");
-		philo->config->die_lst[philo->id - 1] = 1;
+		printf("%-13ld %d %s\n", get_current() / 1000 - philo->config->start_time / 1000, philo->id, "died");
+		philo->config->one_die = 1;
 		pthread_mutex_unlock(philo->config->phi_died);
 		return (-1);
 	}
-	printf("%ld %d %s\n", get_current() / 1000, philo->id, status_txt[status]);
+	printf("%-13ld %d %s\n", get_current() / 1000 - philo->config->start_time / 1000, philo->id, status_txt[status]);
 	pthread_mutex_unlock(philo->config->phi_died);
 	return (philo->config->time_die * 1000 - (c_time - philo->last_eat));
 }
