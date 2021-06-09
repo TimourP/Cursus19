@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 18:46:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 10:16:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@
 
 typedef struct s_config
 {
-	int		nbr_phi;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		each_eat;
-	int		*die_lst;
-	long	start_time;
+	int				nbr_phi;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				each_eat;
+	int				*die_lst;
+	long			start_time;
+	pthread_mutex_t	*phi_died;
 }				t_config;
 
 typedef struct s_philo

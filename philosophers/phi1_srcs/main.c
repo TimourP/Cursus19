@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 19:00:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 10:43:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,24 @@ static int	check_die(int *die_lst, int nbr_phi)
 	return (0);
 }
 
+
+static int	check_all_die(int *die_lst, int nbr_phi)
+{
+	int	i;
+
+	i = -1;
+	while (++i < nbr_phi)
+		if (die_lst[i] != 1)
+			return (0);
+	return (1);
+}
+
 static void	*exit_philo(t_philo *philo)
 {
-	if (!philo->config->die_lst[philo->id + 1])
-		philo->config->die_lst[philo->id + 1] = 1;
+	if (!philo->config->die_lst[philo->id - 1])
+		philo->config->die_lst[philo->id - 1] = 1;
 	pthread_mutex_destroy(philo->right_fork);
+	free(philo->right_fork);
 	free(philo);
 	return (NULL);
 }
@@ -69,6 +82,8 @@ static void	init_philosophers(int argc, char **argv)
 	config->time_sleep = phi_atoi(argv[4]);
 	config->die_lst = malloc(sizeof(int) * config->nbr_phi);
 	config->start_time = get_current();
+	config->phi_died = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(config->phi_died, NULL);
 	i = -1;
 	while (++i < config->nbr_phi)
 		config->die_lst[i] = 0;
@@ -106,8 +121,12 @@ static void	init_philosophers(int argc, char **argv)
 		pthread_create(&p_id, NULL, philo_loop, (void *)current);
 		pthread_detach(p_id);
 	}
-	while (!check_die(config->die_lst, config->nbr_phi))
+	while (!check_all_die(config->die_lst, config->nbr_phi))
 		;
+	pthread_mutex_destroy(config->phi_died);
+	free(config->phi_died);
+	free(config->die_lst);
+	free(config);
 }
 
 int	main(int argc, char **argv)

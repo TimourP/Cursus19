@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/08 19:21:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/09 10:45:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,24 @@ long	display_status(t_philo *philo, int status)
 		"is sleeping", "is thinking", "died"};
 	long			c_time;
 
-	c_time = get_current();
+	pthread_mutex_lock(philo->config->phi_died);
 	if (check_die(philo->config->die_lst, philo->config->nbr_phi))
-		return (-1);
-	else if (status == EATING)
-		philo->last_eat = c_time;
-	else if (c_time - philo->last_eat > philo->config->time_die * 1000 && status != DIED)
 	{
-		display_status(philo, DIED);
+		pthread_mutex_unlock(philo->config->phi_died);
+		return (-1);
+	}
+	c_time = get_current();
+	if (status == EATING)
+		philo->last_eat = c_time;
+	else if (c_time - philo->last_eat > philo->config->time_die
+		* 1000 && status != DIED)
+	{
+		printf("%ld %d %s\n", get_current() / 1000, philo->id, "died");
 		philo->config->die_lst[philo->id - 1] = 1;
+		pthread_mutex_unlock(philo->config->phi_died);
 		return (-1);
 	}
 	printf("%ld %d %s\n", get_current() / 1000, philo->id, status_txt[status]);
+	pthread_mutex_unlock(philo->config->phi_died);
 	return (philo->config->time_die * 1000 - (c_time - philo->last_eat));
 }
