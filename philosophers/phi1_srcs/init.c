@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 16:55:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/11 10:57:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void	init_philosophers(int argc, char **argv)
 		philo_lst_add_back(&start, new);
 	}
 	new = start;
+	config->start_time = get_current();
 	while (new)
 	{
+		new->philo->last_eat = config->start_time;
 		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new->philo);
 		new = new->next;
 	}
@@ -91,10 +93,10 @@ void	init_philosophers(int argc, char **argv)
 	while (!config->one_die && new)
 	{
 		if (new->philo->last_since_eat_time > config->time_die * 1000
-			|| get_current() - new->philo->last_eat > config->time_die * 1000)
+			|| (get_current() - new->philo->last_eat) > config->time_die * 1000)
 		{
 			pthread_mutex_lock(config->phi_died);
-			if (!config->phi_died)
+			if (!config->one_die)
 			{
 				config->one_die = 1;
 				printf("%-13ld %d %s\n", get_current() / 1000 - config->start_time / 1000, new->philo->id, "died");
