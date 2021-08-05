@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/11 10:57:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/14 11:33:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	init_philosophers(int argc, char **argv)
 		if (!new)
 			new = start;
 	}
-	
 	while (new)
 	{
 		pthread_join(new->philo->p_id, NULL);

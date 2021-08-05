@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 16:28:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/06/14 11:33:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ typedef struct s_philo_lst
 **	UTILS
 */
 
-void	exit_message(int message);
-int		check_argv(int argc, char **argv);
-int		phi_atoi(const char *str);
-long	display_status(t_philo *philo, int status);
-long	get_current(void);
+void		exit_message(int message);
+int			check_argv(int argc, char **argv);
+int			phi_atoi(const char *str);
+long		display_status(t_philo *philo, int status);
+long		get_current(void);
 
 /*
 **	LST
