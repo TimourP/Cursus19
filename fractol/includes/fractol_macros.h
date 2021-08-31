@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:31:25 by tpetit            #+#    #+#             */
-/*   Updated: 2021/05/27 19:44:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 11:59:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define PI 3.1415926535
 
-# define WINDOW_WIDTH 560
-# define WINDOW_HEIGHT 360
+# define WINDOW_WIDTH 192
+# define WINDOW_HEIGHT 108
 
 # define KEY_ESC 53
 # define KEY_UP_ARROW 126

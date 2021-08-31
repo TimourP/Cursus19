@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/08/19 14:08:08 by tpetit           ###   ########.fr        #
+#    Updated: 2021/08/31 11:42:10 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,15 @@
 GREEN		= $(shell tput -Txterm setaf 2)
 RESET		= $(shell tput -Txterm sgr0)
 
-LIBFT_UTILS =	phi_atoi.c \
+LIBFT_UTILS =	phi_atoi
 
-UTILS_SRCS =	error.c \
-				utils.c \
-				philo_lst_utils.c \
+UTILS =	error utils philo_lst_utils
 
-PHILO_ONE =	main.c \
-			actions.c \
-			init.c \
+SRCS =	main actions init
 
-PHILO_SRCS =	$(addprefix utils/, ${UTILS_SRCS}) \
-					$(addprefix phi1_srcs/, ${PHILO_ONE}) \
-					$(addprefix libft_utils/, ${LIBFT_UTILS}) \
+PHILO_SRCS =	${addsuffix .c, ${addprefix srcs/, ${SRCS}}} \
+				${addsuffix .c, ${addprefix libft_utils/, ${LIBFT_UTILS}}} \
+				${addsuffix .c, ${addprefix utils/, ${UTILS}}} \
 
 
 PHILO_OBJS	=	${PHILO_SRCS:.c=.o}
@@ -46,6 +42,9 @@ PHILO_OBJS	=	${PHILO_SRCS:.c=.o}
 PHI = philo
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
+
+%.o: %.c
+	@${CC} ${CFLAGS} ${RFLAGS} -c $< -o $@ 
 
 all:			$(PHI)
 
