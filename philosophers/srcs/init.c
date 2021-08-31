@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 12:25:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 14:17:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,15 @@ static int	init_forks(t_philo *current, t_config *config, int i)
 	return (1);
 }
 
-void	init_philosophers(int argc, char **argv)
+static t_philo_lst	*init_philos(t_config *config)
 {
 	int				i;
-	t_config		*config;
 	t_philo			*current;
 	t_philo_lst		*start;
 	t_philo_lst		*new;
 
-	config = malloc(sizeof(t_config));
-	start = NULL;
-	if (!init_config(argc, argv, config))
-		return ;
 	i = -1;
+	start = NULL;
 	while (++i < config->nbr_phi)
 	{
 		current = malloc(sizeof(t_philo));
@@ -81,14 +77,13 @@ void	init_philosophers(int argc, char **argv)
 		new = philo_lst_new(current);
 		philo_lst_add_back(&start, new);
 	}
-	new = start;
-	config->start_time = get_current();
-	while (new)
-	{
-		new->philo->last_eat = config->start_time;
-		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new->philo);
-		new = new->next;
-	}
+	return (start);
+}
+
+static int	main_loop_check(t_philo_lst	*start, t_config *config)
+{
+	t_philo_lst		*new;
+
 	new = start;
 	while (!config->one_die && new)
 	{
@@ -99,7 +94,8 @@ void	init_philosophers(int argc, char **argv)
 			if (!config->one_die)
 			{
 				config->one_die = 1;
-				printf("%-13ld %d %s\n", get_current() / 1000 - config->start_time / 1000, new->philo->id, "died");
+				printf("%-13ld %d %s\n", get_current() / 1000
+					- config->start_time / 1000, new->philo->id, "died");
 			}
 			pthread_mutex_unlock(config->phi_died);
 			break ;
@@ -108,6 +104,14 @@ void	init_philosophers(int argc, char **argv)
 		if (!new)
 			new = start;
 	}
+	return (0);
+}
+
+static void	free_stop_philos(t_philo_lst *start, t_config *config)
+{
+	t_philo_lst		*new;
+
+	new = start;
 	while (new)
 	{
 		pthread_join(new->philo->p_id, NULL);
@@ -119,4 +123,28 @@ void	init_philosophers(int argc, char **argv)
 	pthread_mutex_destroy(config->phi_died);
 	free(config->phi_died);
 	free(config);
+}
+
+void	init_philosophers(int argc, char **argv)
+{
+	t_config		*config;
+	t_philo_lst		*start;
+	t_philo_lst		*new;
+
+	config = malloc(sizeof(t_config));
+	if (!init_config(argc, argv, config))
+		return ;
+	start = init_philos(config);
+	if (!start)
+		return ;
+	new = start;
+	config->start_time = get_current();
+	while (new)
+	{
+		new->philo->last_eat = config->start_time;
+		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new->philo);
+		new = new->next;
+	}
+	main_loop_check(start, config);
+	free_stop_philos(start, config);
 }

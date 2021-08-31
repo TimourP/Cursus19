@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 12:25:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 14:05:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,26 @@ long	get_current(void)
 	return (current_time.tv_sec * 1000000 + current_time.tv_usec);
 }
 
-long	display_status(t_philo *philo, int status)
+static int	get_current_lock(t_philo *philo, long *c_time)
 {
-	const char		*status_txt[] = {"has taken a fork", "is eating",
-		"is sleeping", "is thinking", "died"};
-	long			c_time;
-
 	pthread_mutex_lock(philo->config->phi_died);
 	if (philo->config->one_die)
 	{
 		pthread_mutex_unlock(philo->config->phi_died);
 		return (-1);
 	}
-	c_time = get_current();
+	*c_time = get_current();
+	return (0);
+}
+
+long	display_status(t_philo *philo, int status)
+{
+	const char		*status_txt[] = {"has taken a fork", "is eating",
+		"is sleeping", "is thinking", "died"};
+	long			c_time;
+
+	if (get_current_lock(philo, &c_time) < 0)
+		return (-1);
 	if (status == EATING)
 	{
 		philo->last_since_eat_time = c_time - philo->last_eat;
