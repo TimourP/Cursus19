@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 14:17:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 16:32:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,22 @@ static int	init_forks(t_philo *current, t_config *config, int i)
 	return (1);
 }
 
+static void	set_prev(t_philo_lst *start)
+{
+	t_philo_lst *last;
+
+	last = start;
+	start->prev = NULL;
+	while (start)
+	{
+		start = start->next;
+		if (start) {
+			start->prev = last;
+		}
+		last = start;
+	}
+}
+
 static t_philo_lst	*init_philos(t_config *config)
 {
 	int				i;
@@ -70,6 +86,7 @@ static t_philo_lst	*init_philos(t_config *config)
 	{
 		current = malloc(sizeof(t_philo));
 		current->id = i + 1;
+		current->eat_count = 0;
 		current->config = config;
 		current->last_eat = config->start_time;
 		current->last_since_eat_time = 0;
@@ -77,6 +94,7 @@ static t_philo_lst	*init_philos(t_config *config)
 		new = philo_lst_new(current);
 		philo_lst_add_back(&start, new);
 	}
+	set_prev(start);
 	return (start);
 }
 
@@ -142,7 +160,7 @@ void	init_philosophers(int argc, char **argv)
 	while (new)
 	{
 		new->philo->last_eat = config->start_time;
-		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new->philo);
+		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new);
 		new = new->next;
 	}
 	main_loop_check(start, config);
