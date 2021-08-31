@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:48:56 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 16:44:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 18:13:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	take_fork_first_right(t_philo *philo)
 
 static int	dispatch_fork(t_philo *philo)
 {
-	if (philo->id % 2)
+	if (philo->id % 2 || philo->config->nbr_phi % 2)
 	{
 		if (take_fork_first_left(philo))
 			return (1);
@@ -67,8 +67,8 @@ int	eat(t_philo *philo)
 		pthread_mutex_unlock(philo->right_fork);
 		return (1);
 	}
-	usleep(1000 * philo->config->time_eat);
 	philo->eat_count++;
+	usleep(1000 * philo->config->time_eat);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	return (0);

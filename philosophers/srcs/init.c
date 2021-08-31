@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 16:32:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 18:11:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,14 @@ static int	init_forks(t_philo *current, t_config *config, int i)
 	static pthread_mutex_t	*first;
 	static pthread_mutex_t	*last;
 
-	if (i == 0)
+	if (config->nbr_phi == 1)
+	{
+		first = malloc(sizeof(pthread_mutex_t));
+		current->left_fork = first;
+		current->right_fork = first;
+		pthread_mutex_init(current->left_fork, NULL);
+	}
+	else if (i == 0)
 	{
 		first = malloc(sizeof(pthread_mutex_t));
 		current->left_fork = first;
@@ -132,9 +139,8 @@ static void	free_stop_philos(t_philo_lst *start, t_config *config)
 	new = start;
 	while (new)
 	{
-		pthread_join(new->philo->p_id, NULL);
 		pthread_mutex_unlock(new->philo->right_fork);
-		pthread_mutex_unlock(new->philo->left_fork);
+		pthread_join(new->philo->p_id, NULL);
 		new = new->next;
 	}
 	philo_lst_clear(&start);
