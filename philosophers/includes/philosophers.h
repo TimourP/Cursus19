@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 16:29:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 18:15:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_philo_lst
 {
 	t_philo				*philo;
 	struct s_philo_lst	*next;
-	struct s_philo_lst	*prev;
 }				t_philo_lst;
 
 /*

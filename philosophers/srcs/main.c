@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 18:13:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 18:15:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*philo_loop(void *phi)
 {
-	t_philo	*philo;
-	t_philo_lst *phi_lst;
-	long	value;
+	t_philo		*philo;
+	t_philo_lst	*phi_lst;
+	long		value;
 
 	phi_lst = phi;
 	philo = phi_lst->philo;

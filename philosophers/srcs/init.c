@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 18:11:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 18:25:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static int	init_config(int argc, char **argv, t_config *config)
 	config->each_eat = 0;
 	config->one_die = 0;
 	config->phi_died = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(config->phi_died, NULL);
+	if (!config->phi_died)
+		return (0);
+	if (pthread_mutex_init(config->phi_died, NULL))
+		return (0);
 	if (argc == 6)
 		config->each_eat = phi_atoi(argv[5]);
 	return (1);
@@ -64,22 +67,6 @@ static int	init_forks(t_philo *current, t_config *config, int i)
 	return (1);
 }
 
-static void	set_prev(t_philo_lst *start)
-{
-	t_philo_lst *last;
-
-	last = start;
-	start->prev = NULL;
-	while (start)
-	{
-		start = start->next;
-		if (start) {
-			start->prev = last;
-		}
-		last = start;
-	}
-}
-
 static t_philo_lst	*init_philos(t_config *config)
 {
 	int				i;
@@ -101,7 +88,6 @@ static t_philo_lst	*init_philos(t_config *config)
 		new = philo_lst_new(current);
 		philo_lst_add_back(&start, new);
 	}
-	set_prev(start);
 	return (start);
 }
 
@@ -156,11 +142,13 @@ void	init_philosophers(int argc, char **argv)
 	t_philo_lst		*new;
 
 	config = malloc(sizeof(t_config));
-	if (!init_config(argc, argv, config))
+	if (!config)
 		return ;
+	if (!init_config(argc, argv, config))
+		return ; // free config if not working
 	start = init_philos(config);
 	if (!start)
-		return ;
+		return ; // free philos if error
 	new = start;
 	config->start_time = get_current();
 	while (new)
