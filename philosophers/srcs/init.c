@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/14 11:33:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 12:25:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo1.h"
+#include "../includes/philosophers.h"
 
 static int	init_config(int argc, char **argv, t_config *config)
 {

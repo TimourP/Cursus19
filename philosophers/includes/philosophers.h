@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/14 11:33:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 12:27:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,13 @@ long		get_current(void);
 void		philo_lst_clear(t_philo_lst **lst);
 t_philo_lst	*philo_lst_new(t_philo *content);
 void		philo_lst_add_back(t_philo_lst **alst, t_philo_lst *new);
+
+/*
+** SRCS
+*/
+
+int		eat(t_philo *philo);
+void	init_philosophers(int argc, char **argv);
+void	*philo_loop(void *phi);
 
 #endif

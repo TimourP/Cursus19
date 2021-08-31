@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/14 11:33:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 12:25:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo1.h"
+#include "../includes/philosophers.h"
 
 long	get_current(void)
 {

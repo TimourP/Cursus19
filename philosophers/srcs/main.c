@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/06/09 16:14:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/08/31 12:30:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo1.h"
+#include "../includes/philosophers.h"
 
 void	*philo_loop(void *phi)
 {
@@ -18,7 +18,7 @@ void	*philo_loop(void *phi)
 	long	value;
 
 	philo = phi;
-	while (!philo->config->one_die && eat(philo))
+	while (!philo->config->one_die && !eat(philo))
 	{
 		value = display_status(philo, SLEEPING);
 		if (value < 0)
