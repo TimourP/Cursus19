@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 11:13:08 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 11:54:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 11:55:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ t_philo_lst	*return_free(t_philo_lst *start, t_philo *current)
 	philo_lst_clear(&start);
 	if (current)
 	{
-		pthread_mutex_destroy(current->right_fork);
+		if (current->right_fork)
+			pthread_mutex_destroy(current->right_fork);
 		free(current->right_fork);
 		free(current);
 	}

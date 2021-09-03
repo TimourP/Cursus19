@@ -1,7 +1,12 @@
 #!/bin/bash
 
-make fclean && make philo_one
-for i in {1..500}
+make fclean && make
+./philo $1 400 100 100 3 > test.txt
+START=1
+for (( i=$START; i<=$1; i++ ))
 do
-   ./philo_one 5 80 30 30 | grep "died" | wc -l | grep -v 1
+   echo "$i:"
+   cat test.txt | grep "$i is eating" | wc -l
 done
+cat test.txt | grep "died"
+make fclean

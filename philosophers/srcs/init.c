@@ -6,17 +6,36 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 11:37:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 14:22:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
+static void	main_loop_check_end(t_philo_lst **new, t_philo_lst
+	*start, int *min_eat, t_config *config)
+{
+	if ((*new)->philo->eat_count < *min_eat || *min_eat == 0)
+		*min_eat = (*new)->philo->eat_count;
+	*new = (*new)->next;
+	if (!(*new))
+	{
+		if (*min_eat >= config->each_eat && config->each_eat != 0)
+		{
+			config->one_die = 1;
+		}
+		*min_eat = 0;
+		(*new) = start;
+	}
+}
+
 static int	main_loop_check(t_philo_lst	*start, t_config *config)
 {
 	t_philo_lst		*new;
+	int				min_eat;
 
 	new = start;
+	min_eat = 0;
 	while (!config->one_die && new)
 	{
 		if (new->philo->last_since_eat_time > config->time_die * 1000
@@ -32,9 +51,7 @@ static int	main_loop_check(t_philo_lst	*start, t_config *config)
 			pthread_mutex_unlock(config->phi_died);
 			break ;
 		}
-		new = new->next;
-		if (!new)
-			new = start;
+		main_loop_check_end(&new, start, &min_eat, config);
 	}
 	return (0);
 }
