@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 15:28:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 15:42:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,12 @@ void	philo_print(t_philo *philo, const char *status)
 {
 	const long	timestamp = get_current() / 1000
 			- philo->config->start_time / 1000;
+	int			len;
 
-	ft_putnbr(timestamp);
-	write(1, " ", 1);
+	len = ft_putnbr(timestamp);
+	write(1, "               ", 14 - len);
 	ft_putnbr(philo->id);
-	if (status == EATING)
-		write(1, " " EATING "\n", ft_strlen(EATING) + 2);
-	else if (status == SLEEPING)
-		write(1, " " SLEEPING "\n", ft_strlen(SLEEPING) + 2);
-	else if (status == THINKING)
-		write(1, " " THINKING "\n", ft_strlen(THINKING) + 2);
-	else if (status == TAKE_FORK)
-		write(1, " " TAKE_FORK "\n", ft_strlen(TAKE_FORK) + 2);
-	else if (status == DIED)
-		write(1, " " DIED "\n", ft_strlen(DIED) + 2);
+	write(1, status, ft_strlen(status));
 }
 
 long	display_status(t_philo *philo, char *status)

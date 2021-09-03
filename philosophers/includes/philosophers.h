@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 14:58:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 15:41:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define NBR_ARGS_ERROR 1
 # define ARGS_ERROR 2
 
-# define TAKE_FORK "has taken a fork"
-# define EATING "is eating"
-# define SLEEPING "is sleeping"
-# define THINKING "is thinking"
-# define DIED "died"
+# define TAKE_FORK " has taken a fork\n"
+# define EATING " is eating\n"
+# define SLEEPING " is sleeping\n"
+# define THINKING " is thinking\n"
+# define DIED " died\n"
 
 typedef struct s_config
 {
