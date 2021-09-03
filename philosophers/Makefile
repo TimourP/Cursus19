@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/09/03 14:48:42 by tpetit           ###   ########.fr        #
+#    Updated: 2021/09/03 16:04:59 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ RESET		= $(shell tput -Txterm sgr0)
 
 LIBFT_UTILS =	phi_atoi
 
-UTILS =	error utils philo_lst_utils init_utils libft_utils
+UTILS =	error utils philo_lst_utils init_utils libft_utils sleep
 
 SRCS =	main actions init
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 16:01:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 16:04:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,4 @@ int	display_status(t_philo *philo, char *status)
 	philo_print(philo, status);
 	pthread_mutex_unlock(philo->config->phi_died);
 	return (0);
-}
-
-void	ft_sleep(long ms)
-{
-	const long time_start = get_current();
-
-	while (get_current() - time_start < ms * 1000)
-		usleep(80);
 }
