@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 11:14:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 14:58:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define NBR_ARGS_ERROR 1
 # define ARGS_ERROR 2
 
-# define TAKE_FORK 0
-# define EATING 1
-# define SLEEPING 2
-# define THINKING 3
-# define DIED 4
+# define TAKE_FORK "has taken a fork"
+# define EATING "is eating"
+# define SLEEPING "is sleeping"
+# define THINKING "is thinking"
+# define DIED "died"
 
 typedef struct s_config
 {
@@ -66,10 +66,11 @@ typedef struct s_philo_lst
 void		exit_message(int message);
 int			check_argv(int argc, char **argv);
 int			phi_atoi(const char *str);
-long		display_status(t_philo *philo, int status);
+long		display_status(t_philo *philo, char *status);
 long		get_current(void);
 int			init_config(int argc, char **argv, t_config *config);
 t_philo_lst	*init_philos(t_config *config);
+int			ft_putnbr(long nb);
 
 /*
 **	LST

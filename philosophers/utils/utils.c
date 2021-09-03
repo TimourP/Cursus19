@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 15:00:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 15:02:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,38 @@ static int	get_current_lock(t_philo *philo, long *c_time)
 	return (0);
 }
 
-long	display_status(t_philo *philo, int status)
+int	ft_strlen(const char	*str)
 {
-	const char		*status_txt[] = {"has taken a fork", "is eating",
-		"is sleeping", "is thinking", "died"};
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		;
+	return (i);
+}
+
+void	philo_print(t_philo *philo, const char *status)
+{
+	const long	timestamp = get_current() / 1000
+			- philo->config->start_time / 1000;
+
+	ft_putnbr(timestamp);
+	write(1, " ", 1);
+	ft_putnbr(philo->id);
+	if (status == EATING)
+		write(1, " " EATING "\n", ft_strlen(EATING) + 2);
+	else if (status == SLEEPING)
+		write(1, " " SLEEPING "\n", ft_strlen(SLEEPING) + 2);
+	else if (status == THINKING)
+		write(1, " " THINKING "\n", ft_strlen(THINKING) + 2);
+	else if (status == TAKE_FORK)
+		write(1, " " TAKE_FORK "\n", ft_strlen(TAKE_FORK) + 2);
+	else if (status == DIED)
+		write(1, " " DIED "\n", ft_strlen(DIED) + 2);
+}
+
+long	display_status(t_philo *philo, char *status)
+{
 	long			c_time;
 
 	if (get_current_lock(philo, &c_time) < 0)
@@ -47,14 +75,12 @@ long	display_status(t_philo *philo, int status)
 	}
 	else if (c_time - philo->last_eat >= philo->config->time_die * 1000)
 	{
-		printf("%-13ld %d %s\n", get_current() / 1000
-			- philo->config->start_time / 1000, philo->id, "died");
+		philo_print(philo, DIED);
 		philo->config->one_die = 1;
 		pthread_mutex_unlock(philo->config->phi_died);
 		return (-1);
 	}
-	printf("%-13ld %d %s\n", get_current() / 1000
-		- philo->config->start_time / 1000, philo->id, status_txt[status]);
+	philo_print(philo, status);
 	pthread_mutex_unlock(philo->config->phi_died);
 	return (philo->config->time_die * 1000 - (c_time - philo->last_eat));
 }
