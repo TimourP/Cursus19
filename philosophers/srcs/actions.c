@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:48:56 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 15:55:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 16:50:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	eat(t_philo *philo)
 	}
 	philo->eat_count++;
 	if (philo->config->time_eat < philo->config->time_die)
-		ft_sleep(philo->config->time_eat);
+		ft_sleep(philo->config->time_eat, philo->config);
 	else
-		ft_sleep(philo->config->time_die);
+		ft_sleep(philo->config->time_die, philo->config);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	return (0);
