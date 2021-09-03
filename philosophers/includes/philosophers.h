@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 16:02:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 16:10:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int			init_config(int argc, char **argv, t_config *config);
 t_philo_lst	*init_philos(t_config *config);
 int			ft_putnbr(long nb);
 void		ft_sleep(long ms);
+void		ft_sleep_not_null(long ms);
 
 /*
 **	LST

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 15:29:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 16:34:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	init_philosophers(int argc, char **argv)
 	while (new)
 	{
 		new->philo->last_eat = config->start_time;
-		pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new);
+		if (pthread_create(&new->philo->p_id, NULL, philo_loop, (void *)new))
+			return (free_config(config, 1));
 		new = new->next;
 	}
 	main_loop_check(start, config);

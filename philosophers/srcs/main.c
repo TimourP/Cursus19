@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 16:05:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 16:09:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	*philo_loop(void *phi)
 	philo = phi_lst->philo;
 	if (philo->config->time_sleep > philo->config->time_die
 		&& philo->config->nbr_phi % 2 && philo->id % 2)
-		ft_sleep((philo->config->time_die / 2.0));
+		ft_sleep_not_null((philo->config->time_die / 2.0));
 	else if (philo->config->nbr_phi % 2 && philo->id % 2)
-		ft_sleep((philo->config->time_eat / 2.0));
+		ft_sleep_not_null((philo->config->time_eat / 2.0));
 	while (!philo->config->one_die)
 	{
 		if (eat(philo))
