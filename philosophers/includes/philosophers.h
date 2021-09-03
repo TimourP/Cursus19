@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 18:15:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 11:14:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int			check_argv(int argc, char **argv);
 int			phi_atoi(const char *str);
 long		display_status(t_philo *philo, int status);
 long		get_current(void);
+int			init_config(int argc, char **argv, t_config *config);
+t_philo_lst	*init_philos(t_config *config);
 
 /*
 **	LST

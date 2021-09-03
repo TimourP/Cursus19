@@ -6,90 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/08/31 18:25:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/09/03 11:37:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-static int	init_config(int argc, char **argv, t_config *config)
-{
-	config->nbr_phi = phi_atoi(argv[1]);
-	config->time_die = phi_atoi(argv[2]);
-	config->time_eat = phi_atoi(argv[3]);
-	config->time_sleep = phi_atoi(argv[4]);
-	config->start_time = get_current();
-	config->each_eat = 0;
-	config->one_die = 0;
-	config->phi_died = malloc(sizeof(pthread_mutex_t));
-	if (!config->phi_died)
-		return (0);
-	if (pthread_mutex_init(config->phi_died, NULL))
-		return (0);
-	if (argc == 6)
-		config->each_eat = phi_atoi(argv[5]);
-	return (1);
-}
-
-static int	init_forks(t_philo *current, t_config *config, int i)
-{
-	static pthread_mutex_t	*first;
-	static pthread_mutex_t	*last;
-
-	if (config->nbr_phi == 1)
-	{
-		first = malloc(sizeof(pthread_mutex_t));
-		current->left_fork = first;
-		current->right_fork = first;
-		pthread_mutex_init(current->left_fork, NULL);
-	}
-	else if (i == 0)
-	{
-		first = malloc(sizeof(pthread_mutex_t));
-		current->left_fork = first;
-		pthread_mutex_init(current->left_fork, NULL);
-		current->right_fork = malloc(sizeof(pthread_mutex_t));
-		last = current->right_fork;
-		pthread_mutex_init(current->right_fork, NULL);
-	}
-	else if (i == config->nbr_phi - 1)
-	{
-		current->left_fork = last;
-		current->right_fork = first;
-	}
-	else
-	{
-		current->left_fork = last;
-		current->right_fork = malloc(sizeof(pthread_mutex_t));
-		last = current->right_fork;
-		pthread_mutex_init(current->right_fork, NULL);
-	}
-	return (1);
-}
-
-static t_philo_lst	*init_philos(t_config *config)
-{
-	int				i;
-	t_philo			*current;
-	t_philo_lst		*start;
-	t_philo_lst		*new;
-
-	i = -1;
-	start = NULL;
-	while (++i < config->nbr_phi)
-	{
-		current = malloc(sizeof(t_philo));
-		current->id = i + 1;
-		current->eat_count = 0;
-		current->config = config;
-		current->last_eat = config->start_time;
-		current->last_since_eat_time = 0;
-		init_forks(current, config, i);
-		new = philo_lst_new(current);
-		philo_lst_add_back(&start, new);
-	}
-	return (start);
-}
 
 static int	main_loop_check(t_philo_lst	*start, t_config *config)
 {
@@ -135,6 +56,14 @@ static void	free_stop_philos(t_philo_lst *start, t_config *config)
 	free(config);
 }
 
+void	free_config(t_config *conf, int destroy_mutex)
+{
+	if (destroy_mutex)
+		pthread_mutex_destroy(conf->phi_died);
+	free(conf->phi_died);
+	free(conf);
+}
+
 void	init_philosophers(int argc, char **argv)
 {
 	t_config		*config;
@@ -145,10 +74,10 @@ void	init_philosophers(int argc, char **argv)
 	if (!config)
 		return ;
 	if (!init_config(argc, argv, config))
-		return ; // free config if not working
+		return (free_config(config, 0));
 	start = init_philos(config);
 	if (!start)
-		return ; // free philos if error
+		return (free_config(config, 1));
 	new = start;
 	config->start_time = get_current();
 	while (new)
