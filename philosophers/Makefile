@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 18:13:02 by tpetit            #+#    #+#              #
-#    Updated: 2021/09/03 16:04:59 by tpetit           ###   ########.fr        #
+#    Updated: 2021/10/19 08:51:03 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ PHILO_OBJS	=	${PHILO_SRCS:.c=.o}
 PHI = philo
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-CFLAGS =
 
 %.o: %.c
 	@${CC} ${CFLAGS} ${RFLAGS} -c $< -o $@ 

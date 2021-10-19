@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:04:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 16:54:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/19 08:48:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*philo_loop(void *phi)
 {
 	t_philo		*philo;
 	t_philo_lst	*phi_lst;
-	long		value;
 
 	phi_lst = phi;
 	philo = phi_lst->philo;
@@ -31,6 +30,7 @@ void	*philo_loop(void *phi)
 		if (display_status(philo, THINKING) < 0)
 			return (NULL);
 	}
+	printf("Je meurt\n");
 	return (NULL);
 }
 
@@ -43,4 +43,10 @@ int	main(int argc, char **argv)
 	else
 		init_philosophers(argc, argv);
 	return (0);
+}
+
+void	exit_if_create_error(t_philo_lst *start, t_config *config)
+{
+	config->one_die = 1;
+	free_stop_philos(start, config);
 }

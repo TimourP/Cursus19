@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:59:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 16:50:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/19 08:49:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_philo_lst	*init_philos(t_config *config);
 int			ft_putnbr(long nb);
 void		ft_sleep(long ms, t_config *conf);
 void		ft_sleep_not_null(long ms, t_config *conf);
+void		exit_if_create_error(t_philo_lst *start, t_config *config);
+void		free_stop_philos(t_philo_lst *start, t_config *config);
 
 /*
 **	LST
