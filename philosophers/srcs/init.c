@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/19 08:49:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/19 11:15:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	free_stop_philos(t_philo_lst *start, t_config *config)
 	free(config);
 }
 
-void	free_config(t_config *conf, int destroy_mutex)
+static void	free_config(t_config *conf, int destroy_mutex)
 {
 	if (destroy_mutex)
 		pthread_mutex_destroy(conf->phi_died);
