@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:06:05 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 17:14:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/19 09:17:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ int	check_argv(int argc, char **argv)
 		if (phi_atoi(argv[i]) < 0)
 			return (0);
 	return (1);
+}
+
+void	exit_if_create_error(t_philo_lst *start, t_config *config)
+{
+	config->one_die = 1;
+	free_stop_philos(start, config);
 }
