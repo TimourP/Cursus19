@@ -1,19 +1,27 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-void to_u(char *str)
-{
-	int i;
 
-	i = -1;
-	while (++i)
-		str[i] = toupper(str[i]);
-}
+
+#include <iostream>
+#include <cctype>
 
 int main(int argc, char** argv)
 {
-	char test[] = "hello";
-	toupper(test);
-	printf("%s", test);
-    return 0;
+	int i;
+	int j;
+	
+	j = 0;
+	if (argc == 1)
+	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		return (0);
+	}
+	while (++j < argc)
+	{
+		i = -1;
+		while (argv[j][++i])
+		{
+			std::cout << (char)toupper(argv[j][i]);
+		}
+	}
+	std::cout << std::endl;
+	
 }
