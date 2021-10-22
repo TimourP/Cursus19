@@ -16,46 +16,37 @@ int main(int argc, char **argv)
 {
 	PhoneBook phone_book;
 	std::string tmp;
+	Contact *contact;
 
 	while (1)
 	{
 		std::cout << "Please write a command (EXIT, ADD or SEARCH): ";
-		std::cin >> tmp;
+		std::getline(std::cin, tmp);
 		if (tmp == "EXIT")
 			break;
 		else if (tmp == "ADD")
 		{
-			Contact contact = Contact();
+			contact = phone_book.get_contact();
 			std::cout << "In order to create a new contact we need some information" << std::endl;
 			std::cout << "First name: ";
-			std::cin >> tmp;
-			contact.set_first_name(tmp);
+			std::getline(std::cin, tmp);
+			contact->set_first_name(tmp);
 			std::cout << "Last name: ";
-			std::cin >> tmp;
-			contact.set_last_name(tmp);
+			std::getline(std::cin, tmp);
+			contact->set_last_name(tmp);
 			std::cout << "Nickname: ";
-			std::cin >> tmp;
-			contact.set_nickname(tmp);
+			std::getline(std::cin, tmp);
+			contact->set_nickname(tmp);
 			std::cout << "Phone number: ";
-			std::cin >> tmp;
-			contact.set_phone_number(tmp);
+			std::getline(std::cin, tmp);
+			contact->set_phone_number(tmp);
 			std::cout << "Darkest secret: ";
-			std::cin >> tmp;
-			contact.set_darkest_secret(tmp);
-			phone_book.add_contact(contact);
+			std::getline(std::cin, tmp);
+			contact->set_darkest_secret(tmp);
+			phone_book.add_contact();
 		}
 		else if (tmp == "SEARCH")
 			phone_book.show_contacts();
-		else
-		{
-			Contact contact = Contact();
-			contact.set_first_name(tmp);
-			contact.set_last_name("tmp");
-			contact.set_nickname("tmp");
-			contact.set_phone_number("tmp");
-			contact.set_darkest_secret("tmp");
-			phone_book.add_contact(contact);
-		}
 	}
 
 	return (0);

@@ -23,7 +23,8 @@ public:
 	~PhoneBook(void);
 
 	void show_contacts(void);
-	void add_contact(Contact new_contact);
+	void add_contact(void);
+	Contact *get_contact(void);
 
 private:
 	Contact _contact_list[8];
