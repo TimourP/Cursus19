@@ -14,6 +14,7 @@
 #define PHONEBOOK_H
 
 #include "Contact.hpp"
+#include <cstring>
 
 class PhoneBook
 {

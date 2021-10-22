@@ -21,9 +21,13 @@ PhoneBook::~PhoneBook(void) {}
 
 void PhoneBook::show_contacts(void)
 {
+	std::string line;
+	std::string buff;
+
 	for (size_t i = 0; i < this->_contact_count; i++)
 	{
-		std::cout << this->_contact_list->get_first_name() << std::endl;
+		buff = this->_contact_list[i].get_first_name();
+		std::cout << buff << std::endl;
 	}
 }
 

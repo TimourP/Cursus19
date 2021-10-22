@@ -15,7 +15,6 @@
 int main(int argc, char **argv)
 {
 	PhoneBook phone_book;
-	Contact contact;
 	std::string tmp;
 
 	while (1)
@@ -26,6 +25,7 @@ int main(int argc, char **argv)
 			break;
 		else if (tmp == "ADD")
 		{
+			Contact contact = Contact();
 			std::cout << "In order to create a new contact we need some information" << std::endl;
 			std::cout << "First name: ";
 			std::cin >> tmp;
@@ -46,6 +46,16 @@ int main(int argc, char **argv)
 		}
 		else if (tmp == "SEARCH")
 			phone_book.show_contacts();
+		else
+		{
+			Contact contact = Contact();
+			contact.set_first_name(tmp);
+			contact.set_last_name("tmp");
+			contact.set_nickname("tmp");
+			contact.set_phone_number("tmp");
+			contact.set_darkest_secret("tmp");
+			phone_book.add_contact(contact);
+		}
 	}
 
 	return (0);
