@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:00:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 15:12:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 15:45:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Karen {
 	public:
 		Karen( void );
 		~Karen( void );
-		void complain( std::string level );
+		void complain_filter( std::string level );
 	
 	private:
 		void debug( void );

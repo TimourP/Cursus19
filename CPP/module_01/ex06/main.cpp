@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Karen.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 15:00:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 15:12:59 by tpetit           ###   ########.fr       */
+/*   Created: 2021/10/26 15:27:34 by tpetit            #+#    #+#             */
+/*   Updated: 2021/10/26 15:50:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KAREN_H
-# define KAREN_H
+#include "Karen.hpp"
 
-# include "string"
-# include "iostream"
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		return (0);
+	}
+	Karen karen;
 
-class Karen {
-	public:
-		Karen( void );
-		~Karen( void );
-		void complain( std::string level );
-	
-	private:
-		void debug( void );
-		void info( void );
-		void warning( void );
-		void error( void );
-
-};
-
-#endif // KAREN_H
-	
+	karen.complain_filter(argv[1]);
+}
