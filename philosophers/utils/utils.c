@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/09/03 17:15:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:51:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,8 @@ int	display_status(t_philo *philo, char *status)
 		philo->last_since_eat_time = c_time - philo->last_eat;
 		philo->last_eat = c_time;
 	}
-	else if ((c_time - philo->last_eat) / 1000 >= philo->config->time_die)
-	{
-		philo_print(philo, DIED);
-		philo->config->one_die = 1;
-		pthread_mutex_unlock(philo->config->phi_died);
+	else if (philo->config->one_die)
 		return (-1);
-	}
 	philo_print(philo, status);
 	pthread_mutex_unlock(philo->config->phi_died);
 	return (0);

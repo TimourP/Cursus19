@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:03:22 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/19 11:15:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:51:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static int	main_loop_check(t_philo_lst	*start, t_config *config)
 	min_eat = 0;
 	while (!config->one_die && new)
 	{
-		if ((new->philo->last_since_eat_time) / 1000 > config->time_die
-			|| (get_current() - new->philo->last_eat) / 1000 > config->time_die)
+		if (get_current() - new->philo->last_eat > config->time_die * 1000)
 		{
 			pthread_mutex_lock(config->phi_died);
 			if (!config->one_die)
