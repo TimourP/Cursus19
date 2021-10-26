@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 08:51:35 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 08:56:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 09:43:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 Zombie* newZombie( std::string name )
 {
-	Zombie* new_zombie = new Zombie(name);
+	Zombie* new_zombie = new Zombie;
 
+	new_zombie->name_zombie(name);
 	return (new_zombie);
 }

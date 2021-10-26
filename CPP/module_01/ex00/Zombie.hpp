@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 08:43:15 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 09:05:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 09:41:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 class Zombie {
 	public:
-		Zombie( std::string name );
+		Zombie( void );
 		~Zombie( void );
 
-		void annonce(void);
+		void annonce(void) const;
+		void name_zombie( std::string name );
 
 	private:
 		std::string _name;

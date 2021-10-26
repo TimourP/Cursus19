@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 09:04:21 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 09:05:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/10/26 09:44:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void randomChump( std::string name )
 {
-	Zombie new_zombie(name);
+	Zombie new_zombie;
 
+	new_zombie.name_zombie(name);
 	new_zombie.annonce();
 }
