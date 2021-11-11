@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 14:27:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/11 14:46:43 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
+/*   Updated: 2021/11/11 16:45:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ Fixed::Fixed( void ) {
 	return ;
 }
 
-Fixed::Fixed( Fixed &to_copy ) {
+Fixed::Fixed( const Fixed &to_copy ) {
 	std::cout << "Copy constructor called" << std::endl;
 	this->_fixed = to_copy.getRawBits();
+}
+
+Fixed::Fixed( int initial ) {
+	this->_fixed = initial << this->fract_bit;
+}
+Fixed::Fixed( float initial ) {
+	this->_fixed = initial * (1 << this->fract_bit);
+	std::cout << this->_fixed << std::endl;
 }
 
 Fixed::~Fixed( void ) {
@@ -43,4 +51,18 @@ int	Fixed::getRawBits( void ) const
 void	Fixed::setRawBits( int const raw )
 {
 	this->_fixed = raw;
+}
+
+float Fixed::toFloat(void) const {
+	return (float)this->_fixed / (1 << this->fract_bit);
+}
+
+int Fixed::toInt(void) const {
+	return  this->_fixed >> 8;
+}
+
+std::ostream	&operator<<(std::ostream &out, const Fixed &in)
+{
+	out << in.toFloat();
+	return out;
 }
