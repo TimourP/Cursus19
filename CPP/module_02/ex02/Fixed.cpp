@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/11 18:23:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/11 18:51:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,27 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &in)
 	return out;
 }
 
-Fixed & Fixed::operator+( Fixed const & rhs )
-{
-	Fixed f;
+//a= 3, b = 5
+//a + b + c
+//a==8
 
-	f.setRawBits(this->_fixed + rhs.getRawBits());
-	return f;
+Fixed Fixed::operator+( Fixed const & rhs )
+{
+	Fixed* f = new Fixed;
+
+	f->setRawBits(this->_fixed + rhs.getRawBits());
+	return *f;
 }
 
-Fixed & Fixed::operator-( Fixed const & rhs )
+Fixed Fixed::operator-( Fixed const & rhs )
 {
 
 }
-Fixed & Fixed::operator*( Fixed const & rhs )
+Fixed Fixed::operator*( Fixed const & rhs )
 {
 
 }
-Fixed & Fixed::operator/( Fixed const & rhs )
+Fixed Fixed::operator/( Fixed const & rhs )
 {
 
 }

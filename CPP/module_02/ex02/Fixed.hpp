@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/11 18:15:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/11 18:51:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class Fixed {
 		void	setRawBits( int const raw );
 
 		Fixed & operator=( Fixed const & rhs );
-		Fixed & operator+( Fixed const & rhs );
-		Fixed & operator-( Fixed const & rhs );
-		Fixed & operator*( Fixed const & rhs );
-		Fixed & operator/( Fixed const & rhs );
+		Fixed operator+( Fixed const & rhs );
+		Fixed operator-( Fixed const & rhs );
+		Fixed operator*( Fixed const & rhs );
+		Fixed operator/( Fixed const & rhs );
 		Fixed & operator++( void );
 		Fixed & operator++( int rhs );
 		Fixed & operator--( void );
