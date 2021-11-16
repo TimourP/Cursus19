@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:50:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 15:58:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 17:05:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 		DiamondTrap & operator=( DiamondTrap const & rhs );
 		void whoAmI( void ) const;
 	
-	private:
-
+	protected:
+		std::string _name;
 };
 
 #endif // DIAMONDTRAP_H

@@ -5,19 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 15:50:15 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 17:07:07 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
+/*   Updated: 2021/10/26 14:05:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "DiamondTrap.hpp"
+#include "Cat.hpp"
 
-int main(void)
-{
-	DiamondTrap diam("Jhon");
+Cat::Cat( void ) {}
 
-	diam.whoAmI();
-	diam.guardGate();
-	diam.highFivesGuys();
-	diam.attack("Jhon");
-}
+Cat::~Cat( void ) {}
+
+Cat::Cat( Cat const &to_copy ) {}
+
+Cat	&Cat::operator=( Cat const & rhs ) {}
+	

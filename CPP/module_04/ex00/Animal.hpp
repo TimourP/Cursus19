@@ -5,19 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 15:50:15 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 17:07:07 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/16 17:14:41 by tpetit            #+#    #+#             */
+/*   Updated: 2021/10/26 14:05:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "DiamondTrap.hpp"
+#ifndef ANIMAL_H
+# define ANIMAL_H
 
-int main(void)
-{
-	DiamondTrap diam("Jhon");
+# include <string>
+# include <iostream>
 
-	diam.whoAmI();
-	diam.guardGate();
-	diam.highFivesGuys();
-	diam.attack("Jhon");
-}
+class Animal {
+	public:
+		Animal( void );
+		~Animal( void );
+		Animal( Animal const & copy );
+		Animal & operator=( Animal const & rhs );
+	
+	private:
+
+};
+
+#endif // ANIMAL_H
+	
