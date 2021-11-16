@@ -22,13 +22,15 @@ def return_class_h_string(class_name):
 #ifndef {class_name.upper()}_H
 # define {class_name.upper()}_H
 
-# include "string"
-# include "iostream"
+# include <string>
+# include <iostream>
 
 class {class_name} {special_char_1}
 	public:
 		{class_name}( void );
 		~{class_name}( void );
+		{class_name}( {class_name} const & copy );
+		{class_name} & operator=( {class_name} const & rhs );
 	
 	private:
 
@@ -58,6 +60,10 @@ def return_class_cpp_string(class_name):
 {class_name}::{class_name}( void ) {special_char_1}{special_char_2}
 
 {class_name}::~{class_name}( void ) {special_char_1}{special_char_2}
+
+{class_name}::{class_name}( {class_name} const &to_copy ) {special_char_1}{special_char_2}
+
+{class_name}	&{class_name}::operator=( {class_name} const & rhs ) {special_char_1}{special_char_2}
 	"""
 	return stri
 

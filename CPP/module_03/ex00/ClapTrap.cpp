@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 10:32:25 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 10:09:15 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/16 10:04:18 by tpetit            #+#    #+#             */
+/*   Updated: 2021/11/16 10:10:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_H
-# define HUMANA_H
+#include "ClapTrap.hpp"
 
-# include <string>
-# include <iostream>
-# include "Weapon.hpp"
+ClapTrap::ClapTrap( void ) {}
 
-class HumanA {
-	public:
-		HumanA(std::string name, Weapon& weapon);
-		~HumanA( void );
-		void	attack( void );
+ClapTrap::~ClapTrap( void ) {}
+
 	
-	private:
-		Weapon& _weapon;
-		std::string _name;
-};
-
-#endif // HUMANA_H

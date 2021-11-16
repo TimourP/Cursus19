@@ -6,15 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 08:30:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 10:08:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_H
 # define FIXED_H
 
-# include "string"
-# include "iostream"
+# include <string>
+# include <iostream>
 # include <math.h>
 
 class Fixed {

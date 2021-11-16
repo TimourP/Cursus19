@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 10:32:25 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 10:09:15 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/16 10:07:57 by tpetit            #+#    #+#             */
+/*   Updated: 2021/11/16 10:31:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_H
-# define HUMANA_H
+#ifndef POINT_H
+# define POINT_H
 
 # include <string>
 # include <iostream>
-# include "Weapon.hpp"
+# include "Fixed.hpp"
 
-class HumanA {
+class Point {
 	public:
-		HumanA(std::string name, Weapon& weapon);
-		~HumanA( void );
-		void	attack( void );
+		Point( void );
+		~Point( void );
+		Point( Point const & copy );
+		Point( Fixed const & x, Fixed const & y);
+
+		Point & operator=( Point const & rhs );
+
+		const Fixed & getX( void ) const;
+		const Fixed & getY( void ) const;
 	
 	private:
-		Weapon& _weapon;
-		std::string _name;
+		Fixed const _x;
+		Fixed const _y;
+
 };
 
-#endif // HUMANA_H
+#endif // POINT_H
+	

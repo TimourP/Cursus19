@@ -6,16 +6,16 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:15:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 14:51:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 10:08:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REPLACE_H
 # define REPLACE_H
 
-# include "string"
-# include "iostream"
-# include "fstream"
+# include <string>
+# include <iostream>
+# include <fstream>
 
 class Replace {
 	public:

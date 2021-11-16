@@ -6,15 +6,15 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:27:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 08:30:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 10:08:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_H
 # define FIXED_H
 
-# include "string"
-# include "iostream"
+# include <string>
+# include <iostream>
 
 class Fixed {
 	public:
