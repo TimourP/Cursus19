@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/11 18:51:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 09:13:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_H
 
 # include "string"
+# include <math.h>
 # include "iostream"
 
 class Fixed {
@@ -37,19 +38,25 @@ class Fixed {
 		Fixed & operator--( void );
 		Fixed & operator--( int rhs);
 
-		bool	operator>( Fixed const & rhs);
-		bool	operator>=( Fixed const & rhs);
-		bool	operator<( Fixed const & rhs);
-		bool	operator<=( Fixed const & rhs);
-		bool	operator==( Fixed const & rhs);
-		bool	operator!=( Fixed const & rhs);
+		bool	operator>( Fixed const & rhs) const;
+		bool	operator>=( Fixed const & rhs) const;
+		bool	operator<( Fixed const & rhs) const;
+		bool	operator<=( Fixed const & rhs) const;
+		bool	operator==( Fixed const & rhs) const;
+		bool	operator!=( Fixed const & rhs) const;
 
 		float toFloat(void) const;
 		int toInt(void) const;
+
+		static Fixed & max(Fixed & fx1, Fixed & fx2);
+		static Fixed & min(Fixed & fx1, Fixed & fx2);
+
+		const static Fixed & max(Fixed const & fx1, Fixed const & fx2);
+		const static Fixed & min(Fixed const & fx1, Fixed const & fx2);
 	
 	private:
 		int					_fixed;
-		static const int	fract_bit = 8;
+		static const int	_fract_bit = 8;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &in);

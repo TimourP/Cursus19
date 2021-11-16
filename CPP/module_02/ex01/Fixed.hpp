@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/11 16:42:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 08:30:08 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "string"
 # include "iostream"
+# include <math.h>
 
 class Fixed {
 	public:
@@ -34,7 +35,7 @@ class Fixed {
 	
 	private:
 		int					_fixed;
-		static const int	fract_bit = 8;
+		static const int	_fract_bit = 8;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &in);
