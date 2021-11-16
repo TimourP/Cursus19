@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:07:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 10:40:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 14:12:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ const Fixed & Point::getX( void ) const {
 
 const Fixed & Point::getY( void ) const {
 	return (this->_y);
+}
+
+const float Point::getXV( void ) const {
+	return (this->_x.toFloat());
+}
+
+const float Point::getYV( void ) const {
+	return (this->_y.toFloat());
 }
