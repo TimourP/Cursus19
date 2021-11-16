@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:16:39 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 14:56:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 15:22:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ ClapTrap::ClapTrap( void ) {
 	this->_hit_points = 10;
 	this->_energy_points = 10;
 	this->_attack_damage = 0;
-	std::cout << "ClapTrap constructor called" << std::endl;
+	std::cout << "ClapTrap default constructor called. " << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string name ) : _name(name) {
 	this->_hit_points = 10;
 	this->_energy_points = 10;
 	this->_attack_damage = 0;
-	std::cout << "ClapTrap constructor called" << std::endl;
+	std::cout << "ClapTrap constructor called. " << this->_name << " is born." << std::endl;
 }
 
 ClapTrap::~ClapTrap( void ) {
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "ClapTrap destructor called. " << this->_name << " died." << std::endl;
 }
 
 ClapTrap::ClapTrap( ClapTrap const &to_copy ) {
@@ -36,7 +36,7 @@ ClapTrap::ClapTrap( ClapTrap const &to_copy ) {
 	this->_hit_points = to_copy._hit_points;
 	this->_energy_points = to_copy._energy_points;
 	this->_attack_damage = to_copy._attack_damage;
-	std::cout << "ClapTrap copy constructor called" << std::endl;
+	std::cout << "ClapTrap copy constructor called. " << this->_name << " is born." << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=( ClapTrap const & rhs ) {

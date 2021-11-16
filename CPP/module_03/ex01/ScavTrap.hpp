@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:16:39 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 14:47:31 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/16 14:58:16 by tpetit            #+#    #+#             */
+/*   Updated: 2021/11/16 15:26:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_H
-# define CLAPTRAP_H
+#ifndef SCAVTRAP_H
+# define SCAVTRAP_H
 
 # include <string>
 # include <iostream>
+# include "ClapTrap.hpp"
 
-class ClapTrap {
+class ScavTrap : public virtual ClapTrap {
 	public:
-		ClapTrap( void );
-		ClapTrap( std::string name );
-		~ClapTrap( void );
-		ClapTrap( ClapTrap const & copy );
-		ClapTrap & operator=( ClapTrap const & rhs );
+		ScavTrap( void );
+		ScavTrap( std::string name );
+		~ScavTrap( void );
+		ScavTrap( ScavTrap const & copy );
+		ScavTrap & operator=( ScavTrap const & rhs );
 
 		void attack( std::string const & target ) const;
-		void takeDamage( unsigned int amount ) ;
-		void beRepaired( unsigned int amount ) ;
-	
-	private:
-		std::string _name;
-		int			_hit_points;
-		int			_energy_points;
-		int			_attack_damage;
+		void guardGate(void) const;
 };
 
-#endif // CLAPTRAP_H
+#endif // SCAVTRAP_H
 	

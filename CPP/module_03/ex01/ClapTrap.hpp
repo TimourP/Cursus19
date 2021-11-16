@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:16:39 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 14:47:31 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/16 15:10:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ClapTrap {
 		void takeDamage( unsigned int amount ) ;
 		void beRepaired( unsigned int amount ) ;
 	
-	private:
+	protected:
 		std::string _name;
 		int			_hit_points;
 		int			_energy_points;
