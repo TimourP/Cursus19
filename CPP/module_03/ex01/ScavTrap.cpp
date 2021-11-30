@@ -6,13 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:58:16 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 16:58:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/30 12:35:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap( void ) : ClapTrap() {
+ScavTrap::ScavTrap(void) : ClapTrap()
+{
 	this->_name = "BOB";
 	this->_hit_points = 100;
 	this->_energy_points = 50;
@@ -20,7 +21,8 @@ ScavTrap::ScavTrap( void ) : ClapTrap() {
 	std::cout << "ScavTrap default constructor called. " << std::endl;
 }
 
-ScavTrap::ScavTrap( std::string name ) : ClapTrap(name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+{
 	this->_name = name;
 	this->_hit_points = 100;
 	this->_energy_points = 50;
@@ -28,11 +30,13 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name) {
 	std::cout << "ScavTrap constructor called. " << this->_name << " is born." << std::endl;
 }
 
-ScavTrap::~ScavTrap( void ) {
+ScavTrap::~ScavTrap(void)
+{
 	std::cout << "ScavTrap destructor called. " << this->_name << " died." << std::endl;
 }
 
-ScavTrap::ScavTrap( ScavTrap const &to_copy ) {
+ScavTrap::ScavTrap(ScavTrap const &to_copy) : ClapTrap()
+{
 	this->_name = to_copy._name;
 	this->_hit_points = to_copy._hit_points;
 	this->_energy_points = to_copy._energy_points;
@@ -40,7 +44,8 @@ ScavTrap::ScavTrap( ScavTrap const &to_copy ) {
 	std::cout << "ScavTrap copy constructor called. " << this->_name << " is born." << std::endl;
 }
 
-ScavTrap	&ScavTrap::operator=( ScavTrap const & rhs ) {
+ScavTrap &ScavTrap::operator=(ScavTrap const &rhs)
+{
 	this->_name = rhs._name;
 	this->_hit_points = rhs._hit_points;
 	this->_energy_points = rhs._energy_points;
@@ -48,7 +53,8 @@ ScavTrap	&ScavTrap::operator=( ScavTrap const & rhs ) {
 	return (*this);
 }
 
-void ScavTrap::attack( std::string const & target ) const {
+void ScavTrap::attack(std::string const &target) const
+{
 	std::cout << "ScavTrap " << this->_name << " attack " << target << ", causing " << this->_attack_damage << " points of damage!" << std::endl;
 }
 

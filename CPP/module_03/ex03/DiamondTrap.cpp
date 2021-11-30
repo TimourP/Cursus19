@@ -6,13 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:50:43 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 17:11:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/30 12:38:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap( void ) : ClapTrap(), FragTrap(), ScavTrap() {
+DiamondTrap::DiamondTrap(void) : ClapTrap(), FragTrap(), ScavTrap()
+{
 	this->_name = "BOB";
 	this->_hit_points = 10;
 	this->_energy_points = 10;
@@ -20,7 +21,8 @@ DiamondTrap::DiamondTrap( void ) : ClapTrap(), FragTrap(), ScavTrap() {
 	std::cout << "DiamondTrap default constructor called. " << std::endl;
 }
 
-DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name), FragTrap(name), ScavTrap(name) {
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), ScavTrap(name)
+{
 	ClapTrap::_name = name + "_clap_name";
 	this->_name = name;
 	this->_hit_points = FragTrap::_hit_points;
@@ -29,11 +31,13 @@ DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name), FragTrap(name), S
 	std::cout << "DiamondTrap constructor called. " << this->_name << " is born." << std::endl;
 }
 
-DiamondTrap::~DiamondTrap( void ) {
+DiamondTrap::~DiamondTrap(void)
+{
 	std::cout << "DiamondTrap destructor called. " << this->_name << " died." << std::endl;
 }
 
-DiamondTrap::DiamondTrap( DiamondTrap const &to_copy ) {
+DiamondTrap::DiamondTrap(DiamondTrap const &to_copy) : ClapTrap(), FragTrap(), ScavTrap()
+{
 	this->_name = to_copy._name;
 	this->_hit_points = to_copy._hit_points;
 	this->_energy_points = to_copy._energy_points;
@@ -41,7 +45,8 @@ DiamondTrap::DiamondTrap( DiamondTrap const &to_copy ) {
 	std::cout << "DiamondTrap copy constructor called. " << this->_name << " is born." << std::endl;
 }
 
-DiamondTrap	&DiamondTrap::operator=( DiamondTrap const & rhs ) {
+DiamondTrap &DiamondTrap::operator=(DiamondTrap const &rhs)
+{
 	this->_name = rhs._name;
 	this->_hit_points = rhs._hit_points;
 	this->_energy_points = rhs._energy_points;
@@ -49,7 +54,7 @@ DiamondTrap	&DiamondTrap::operator=( DiamondTrap const & rhs ) {
 	return (*this);
 }
 
-void DiamondTrap::whoAmI( void ) const
+void DiamondTrap::whoAmI(void) const
 {
 	std::cout << this->_name << " " << ClapTrap::_name << std::endl;
 }
