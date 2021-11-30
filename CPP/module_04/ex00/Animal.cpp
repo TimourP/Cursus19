@@ -6,15 +6,21 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 13:59:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2021/11/30 14:09:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal(void) {}
+Animal::Animal(void)
+{
+	std::cout << "I'm born as an animal" << std::endl;
+}
 
-Animal::~Animal(void) {}
+Animal::~Animal(void)
+{
+	std::cout << "I'm dead as an animal" << std::endl;
+}
 
 Animal::Animal(Animal const &to_copy) {}
 

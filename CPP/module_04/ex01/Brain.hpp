@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 13:43:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:11:58 by tpetit           ###   ########.fr       */
+/*   Created: 2021/11/30 14:16:51 by tpetit            #+#    #+#             */
+/*   Updated: 2021/11/30 14:41:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#ifndef BRAIN_H
+#define BRAIN_H
 
-int main(void)
+#include <string>
+#include <iostream>
+
+class Brain
 {
-	const Animal *meta = new Animal();
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+public:
+	Brain(void);
+	~Brain(void);
+	Brain(Brain const &copy);
+	Brain &operator=(Brain const &rhs);
 
-	delete meta;
-	delete j;
-	delete i;
-}
+	std::string getIdea(int index) const;
+	void haveIdea(std::string idea);
+
+private:
+	std::string _ideas[100];
+	int _idea_index;
+};
+
+#endif // BRAIN_H
