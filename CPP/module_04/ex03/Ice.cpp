@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:09:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 14:39:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 16:09:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void Ice::use(ICharacter &target)
 
 AMateria *Ice::clone() const
 {
-	Ice *clone = new Ice(*this);
-	return clone;
+	return new Ice(*this);
 }

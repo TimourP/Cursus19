@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:19:51 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 15:10:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 16:05:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void MateriaSource::learnMateria(AMateria* materia) {
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->_inventory[i]) {
+			std::cout << "Hey" << std::endl;
 			this->_inventory[i] = materia->clone();
 			break ;
 		}
