@@ -57,13 +57,19 @@ def return_class_cpp_string(class_name):
 
 #include "{class_name}.hpp"
 
-{class_name}::{class_name}( void ) {special_char_1}{special_char_2}
+{class_name}::{class_name}( void ) {special_char_1}
+	std::cout << "{class_name} is born" << std::endl;
+{special_char_2}
 
-{class_name}::~{class_name}( void ) {special_char_1}{special_char_2}
+{class_name}::~{class_name}( void ) {special_char_1}
+	std::cout << "{class_name} is gone" << std::endl;
+{special_char_2}
 
 {class_name}::{class_name}( {class_name} const &to_copy ) {special_char_1}{special_char_2}
 
-{class_name}	&{class_name}::operator=( {class_name} const & rhs ) {special_char_1}{special_char_2}
+{class_name}	&{class_name}::operator=( {class_name} const & rhs ) {special_char_1}
+	return *this;
+{special_char_2}
 	"""
 	return stri
 

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 13:53:11 by tpetit           ###   ########.fr       */
+/*   Created: 2022/02/08 13:54:50 by tpetit            #+#    #+#             */
+/*   Updated: 2022/02/08 13:57:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#ifndef WRONGANIMAL_H
+# define WRONGANIMAL_H
 
-Cat::Cat(void) : Animal()
-{
-	this->_type = "Cat";
-	std::cout << "Cat is born" << std::endl;
-}
+# include <string>
+# include <iostream>
 
-Cat::~Cat(void)
-{
-	std::cout << "Cat is gone" << std::endl;
-}
+class WrongAnimal {
+public:
+	WrongAnimal(void);
+	virtual ~WrongAnimal(void);
+	WrongAnimal(WrongAnimal const &copy);
+	WrongAnimal &operator=(WrongAnimal const &rhs);
 
-Cat::Cat(Cat const &to_copy) {}
+	void makeSound(void) const;
+	std::string getType(void) const;
 
-Cat &Cat::operator=(Cat const &rhs)
-{
-	return *this;
-}
+protected:
+	std::string _type;
 
-void Cat::makeSound(void) const
-{
-	std::cout << "Miaouuuuu" << std::endl;
-}
+};
+
+#endif // WRONGANIMAL_H
+	

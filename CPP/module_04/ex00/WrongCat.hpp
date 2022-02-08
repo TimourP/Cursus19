@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 13:53:11 by tpetit           ###   ########.fr       */
+/*   Created: 2022/02/08 13:54:44 by tpetit            #+#    #+#             */
+/*   Updated: 2022/02/08 14:01:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#ifndef WRONGCAT_H
+# define WRONGCAT_H
 
-Cat::Cat(void) : Animal()
-{
-	this->_type = "Cat";
-	std::cout << "Cat is born" << std::endl;
-}
+# include <string>
+# include <iostream>
+# include "WrongAnimal.hpp"
 
-Cat::~Cat(void)
-{
-	std::cout << "Cat is gone" << std::endl;
-}
+class WrongCat : public virtual WrongAnimal {
+public:
+	WrongCat( void );
+	~WrongCat( void );
+	WrongCat( WrongCat const & copy );
+	WrongCat & operator=( WrongCat const & rhs );
 
-Cat::Cat(Cat const &to_copy) {}
+	void makeSound(void) const;
 
-Cat &Cat::operator=(Cat const &rhs)
-{
-	return *this;
-}
+};
 
-void Cat::makeSound(void) const
-{
-	std::cout << "Miaouuuuu" << std::endl;
-}
+#endif // WRONGCAT_H
+	

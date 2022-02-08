@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 13:53:11 by tpetit           ###   ########.fr       */
+/*   Created: 2022/02/08 13:54:44 by tpetit            #+#    #+#             */
+/*   Updated: 2022/02/08 14:02:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void) : Animal()
-{
-	this->_type = "Cat";
-	std::cout << "Cat is born" << std::endl;
+WrongCat::WrongCat( void ) {
+	this->_type = "WrongCat";
+	std::cout << "WrongCat is born" << std::endl;
 }
 
-Cat::~Cat(void)
-{
-	std::cout << "Cat is gone" << std::endl;
+WrongCat::~WrongCat( void ) {
+	std::cout << "WrongCat is gone" << std::endl;
 }
 
-Cat::Cat(Cat const &to_copy) {}
+WrongCat::WrongCat( WrongCat const &to_copy ) {}
 
-Cat &Cat::operator=(Cat const &rhs)
-{
+WrongCat	&WrongCat::operator=( WrongCat const & rhs ) {
 	return *this;
 }
 
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
 	std::cout << "Miaouuuuu" << std::endl;
 }
