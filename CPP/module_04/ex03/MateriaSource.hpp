@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:19:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 15:21:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 14:52:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iostream>
 #include "IMateriaSource.hpp"
 
-class MateriaSource
+class MateriaSource : public virtual IMateriaSource
 {
 public:
 	MateriaSource(void);
@@ -25,8 +25,11 @@ public:
 	MateriaSource(MateriaSource const &copy);
 	MateriaSource &operator=(MateriaSource const &rhs);
 
-	void learnMateria(AMateria *);
+	void learnMateria(AMateria * materia);
 	AMateria *createMateria(std::string const &type);
+
+private:
+	AMateria *_inventory[4];
 };
 
 #endif // MATERIASOURCE_H

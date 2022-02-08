@@ -37,7 +37,7 @@ void PhoneBook::show_contacts(void)
 
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 
-	for (size_t i = 0; i < this->_contact_count; i++)
+	for (int i = 0; i < this->_contact_count; i++)
 	{
 		buff = std::to_string(i);
 		out_and_trim(buff);

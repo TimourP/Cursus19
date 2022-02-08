@@ -5,19 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/30 12:26:52 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/08 14:13:00 by tpetit           ###   ########.fr        #
+#    Created: 2021/10/21 11:02:55 by tpetit            #+#    #+#              #
+#    Updated: 2022/02/08 14:09:27 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = 
-
-SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
-
-NAME = abstract_class
+CPPFLAGS = -Wall -Wextra -Werror
 
 all:
-	g++ $(CPPFLAGS) $(SRCS) -o $(NAME)
+	g++ $(CPPFLAGS) Account.cpp tests.cpp -o account
 	
 clean:
-	rm $(NAME)
+	rm account

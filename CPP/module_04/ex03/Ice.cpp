@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:09:34 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 16:15:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 14:39:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ Ice::Ice(void)
 
 Ice::~Ice(void) {}
 
-Ice::Ice(Ice const &to_copy) {}
+Ice::Ice(Ice const &to_copy) {
+	this->_type = to_copy.getType();
+}
 
 Ice &Ice::operator=(Ice const &rhs)
 {
@@ -33,6 +35,6 @@ void Ice::use(ICharacter &target)
 
 AMateria *Ice::clone() const
 {
-	Ice *clone = new Ice();
+	Ice *clone = new Ice(*this);
 	return clone;
 }

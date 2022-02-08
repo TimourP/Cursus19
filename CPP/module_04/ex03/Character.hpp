@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:19:38 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 16:19:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 14:18:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Character : public virtual ICharacter
 {
 public:
 	Character(void);
-	Character(std::string name);
+	Character(std::string const name);
 	~Character(void);
 	Character(Character const &copy);
 	Character &operator=(Character const &rhs);

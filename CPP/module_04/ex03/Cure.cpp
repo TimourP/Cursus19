@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:09:37 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 16:11:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 14:38:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ Cure::Cure(void)
 
 Cure::~Cure(void) {}
 
-Cure::Cure(Cure const &to_copy) {}
+Cure::Cure(Cure const &to_copy) {
+	this->_type = to_copy.getType();
+}
 
 Cure &Cure::operator=(Cure const &rhs)
 {
@@ -33,6 +35,6 @@ void Cure::use(ICharacter &target)
 
 AMateria *Cure::clone() const
 {
-	Cure *clone = new Cure();
-	return clone;
+	Cure *clone = new Cure(*this);
+	return new Cure();
 }

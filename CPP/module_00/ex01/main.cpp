@@ -12,7 +12,7 @@
 
 #include "PhoneBook.hpp"
 
-int main(int argc, char **argv)
+int main( void )
 {
 	PhoneBook phone_book;
 	std::string tmp;
