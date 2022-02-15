@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:59:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:10:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 12:17:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Form::Form( void ) : _name("FormToForm"), _is_signed(false),  _grade_to_sign(150
 	std::cout << "Form is born" << std::endl;
 }
 
-Form::Form( std::string const name, int const grade_to_sign, int const grade_to_exec ) : _name(name), _is_signed(false),  _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec) {
+Form::Form( std::string const name, std::string const target, int const grade_to_sign, int const grade_to_exec ) : _name(name), _target(target), _is_signed(false),  _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec) {
 	std::cout << "Form is born" << std::endl;
 }
 
@@ -33,6 +33,10 @@ Form	&Form::operator=( Form const & rhs ) {
 
 std::string Form::getName( void ) const {
 	return this->_name;
+}
+
+std::string Form::getTarget( void ) const {
+	return this->_target;
 }
 
 bool Form::getIsSigned( void ) const {

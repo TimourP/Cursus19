@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:59:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:09:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 12:27:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Bureaucrat;
 class Form {
 public:
 	Form( void );
-	Form( std::string const name, int const grade_to_sign, int const grade_to_exec);
-	~Form( void );
+	Form( std::string const name, std::string const target, int const grade_to_sign, int const grade_to_exec);
+	virtual ~Form( void );
 	Form( Form const & copy );
 	Form & operator=( Form const & rhs );
 
@@ -31,6 +31,9 @@ public:
 	bool getIsSigned( void ) const;
 	int getGradeToSign( void ) const;
 	int getGradeToExec( void ) const;
+	std::string getTarget( void ) const;
+
+	virtual void execute(Bureaucrat const & executor) const = 0;
 
 	void beSigned( Bureaucrat const &b );
 
@@ -48,11 +51,19 @@ public:
 			}
 	};
 
+	class NotEvenSignedException : public std::exception {
+		public:
+			virtual const char* what() const throw() {
+				return "This form is not even signed. Please signe it before execute it.";
+			}
+	};
+
 private:
 	std::string const _name;
 	bool _is_signed;
 	int const _grade_to_sign;
 	int const _grade_to_exec;
+	std::string const _target;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Form &in);

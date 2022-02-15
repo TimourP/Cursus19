@@ -6,33 +6,43 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:39:10 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:11:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:13:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+
 int main(void) {
-	Bureaucrat *b = new Bureaucrat("Bob", 1);
-	Form *f = new Form("main_form", 5, 5);
-	std::cout << *b << std::endl;
-	
+	Bureaucrat *bob = new Bureaucrat("bob", 1);
+	Form *p_f = new PresidentialPardonForm("bob the target");
+	Form *r_r = new RobotomyRequestForm("bob the target");
+	Form *s_r = new ShrubberyCreationForm("bob the target");
+
+	std::cout << *p_f << std::endl;
 	try
 	{
-		b->increaseGrade();
+		p_f->execute(*bob);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
 	
-	b->decreaseGrade();
+	bob->signForm(*p_f);
+	p_f->execute(*bob);
 
-	b->signForm(*f);
-	delete f;
-	f = new Form("main_form", 1, 1);;
-	b->signForm(*f);
-	std::cout << *b << std::endl;
-	delete f;
-	delete b;
+	bob->signForm(*r_r);
+	r_r->execute(*bob);
+
+	bob->signForm(*s_r);
+	s_r->execute(*bob);
+
+	delete bob;
+	delete p_f;
+	delete r_r;
+	delete s_r;
 }
