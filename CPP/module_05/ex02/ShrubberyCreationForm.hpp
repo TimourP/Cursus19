@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:03 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:29:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:45:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ShrubberyCreationForm : public virtual Form {
 		ShrubberyCreationForm( ShrubberyCreationForm const & copy );
 		ShrubberyCreationForm & operator=( ShrubberyCreationForm const & rhs );
 	
-		void execute(Bureaucrat const & executor) const;
+		void execteAction(Bureaucrat const & executor) const;
 	private:
 
 };

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:59:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 12:27:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:46:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ public:
 	int getGradeToExec( void ) const;
 	std::string getTarget( void ) const;
 
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	virtual void execteAction(Bureaucrat const & executor) const = 0;
+	void execute(Bureaucrat const & executor) const;
 
 	void beSigned( Bureaucrat const &b );
 

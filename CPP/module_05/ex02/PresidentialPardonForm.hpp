@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:17 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 12:22:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:44:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class PresidentialPardonForm : public virtual Form {
 		PresidentialPardonForm( PresidentialPardonForm const & copy );
 		PresidentialPardonForm & operator=( PresidentialPardonForm const & rhs );
 	
-		void execute(Bureaucrat const & executor) const;
+		void execteAction(Bureaucrat const & executor) const;
 	private:
 
 };

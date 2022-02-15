@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:59:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 12:17:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:44:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ void Form::beSigned( Bureaucrat const &b ) {
 	} else {
 		throw Form::GradeTooHighException();
 	}
+}
+
+void Form::execute(Bureaucrat const & executor) const {
+	if (this->getIsSigned() && executor.getGrade() <= this->getGradeToExec()) {
+		this->execteAction(executor);
+	}
+	else if (!this->getIsSigned())
+		throw Form::NotEvenSignedException();
+	else
+		throw Form::GradeTooLowException();
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &in)

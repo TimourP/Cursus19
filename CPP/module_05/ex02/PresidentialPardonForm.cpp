@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:17 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:14:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:45:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=( PresidentialPardonFor
 	return *this;
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-	if (this->getIsSigned() && executor.getGrade() <= this->getGradeToExec())
-		std::cout << this->getTarget() << " has been forgiven by Zaphod Beeblebrox." << std::endl;
-	else if (!this->getIsSigned())
-		throw PresidentialPardonForm::NotEvenSignedException();
-	else
-		throw PresidentialPardonForm::GradeTooLowException();
+void PresidentialPardonForm::execteAction(Bureaucrat const & executor) const {
+	std::cout << this->getTarget() << " has been forgiven by Zaphod Beeblebrox." << std::endl;
 }

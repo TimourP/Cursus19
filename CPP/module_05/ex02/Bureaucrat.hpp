@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:21:54 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:09:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:47:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ public:
 	void decreaseGrade( void );
 
 	void signForm( Form &f ) const;
+	void executeForm(Form const & f) const;
 
 	class GradeTooHighException : public std::exception {
 		public:

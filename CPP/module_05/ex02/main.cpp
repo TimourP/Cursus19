@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:39:10 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:13:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:48:35 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int main(void) {
 	}
 	
 	bob->signForm(*p_f);
-	p_f->execute(*bob);
+	bob->executeForm(*p_f);
 
 	bob->signForm(*r_r);
-	r_r->execute(*bob);
+	bob->executeForm(*r_r);
 
 	bob->signForm(*s_r);
-	s_r->execute(*bob);
+	bob->executeForm(*s_r);
 
 	delete bob;
 	delete p_f;

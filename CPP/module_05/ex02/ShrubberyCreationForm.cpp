@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:03 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:33:20 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:45:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=( ShrubberyCreationForm c
 	return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-	if (this->getIsSigned() && executor.getGrade() <= this->getGradeToExec()) {
-		std::ofstream new_file;
+void ShrubberyCreationForm::execteAction(Bureaucrat const & executor) const {
+	std::ofstream new_file;
 		new_file.open(this->getTarget() + "_shrubbery");
 		new_file << "               ,@@@@@@@," << std::endl;
 		new_file << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
@@ -45,9 +44,4 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 		new_file << "       |.|        | |         | |" << std::endl;
 		new_file << "jgs \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_" << std::endl;
 		new_file.close();
-	}
-	else if (!this->getIsSigned())
-		throw ShrubberyCreationForm::NotEvenSignedException();
-	else
-		throw ShrubberyCreationForm::GradeTooLowException();
 }

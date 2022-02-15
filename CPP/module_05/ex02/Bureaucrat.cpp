@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:21:54 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:06:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:48:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ void Bureaucrat::signForm( Form &f ) const {
 	{
 		std::cout << this->_name << " couldn’t sign " << f.getName() << " because his grade is too low." << std::endl;
 	}
+}
+
+void Bureaucrat::executeForm(Form const & f) const {
+	f.execute(*this);
 }
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &in)

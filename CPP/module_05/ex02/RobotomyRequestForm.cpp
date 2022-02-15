@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:10 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:23:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:45:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,11 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=( RobotomyRequestForm const &
 	return *this;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-	if (this->getIsSigned() && executor.getGrade() <= this->getGradeToExec()) {
-		std::srand (time(NULL));
-		std::cout << "Brouoouououou je suis un bruit de perceuse!! ";
-		if (std::rand() % 2)
-			std::cout << this->getTarget() << " a été robotomisée avec succès!" << std::endl;
-		else
-			std::cout << this->getTarget() << " n'a pas été robotomisée. Erreur." << std::endl;
-	}
-	else if (!this->getIsSigned())
-		throw RobotomyRequestForm::NotEvenSignedException();
+void RobotomyRequestForm::execteAction(Bureaucrat const & executor) const {
+	std::srand (time(NULL));
+	std::cout << "Brouoouououou je suis un bruit de perceuse!! ";
+	if (std::rand() % 2)
+		std::cout << this->getTarget() << " a été robotomisée avec succès!" << std::endl;
 	else
-		throw RobotomyRequestForm::GradeTooLowException();
+		std::cout << this->getTarget() << " n'a pas été robotomisée. Erreur." << std::endl;
 }
