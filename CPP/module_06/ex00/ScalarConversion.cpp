@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:07:01 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 08:33:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/26 10:48:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ bool ScalarConversion::is_int(void)
 
 bool ScalarConversion::is_float(void)
 {
+	if (this->_value == "nanf" || this->_value == "+inff" || this->_value == "-inff")
+		return true;
 	for (size_t i = 0; i < this->_value.length(); i++)
 	{
 		if (this->_value[i] != '.' && this->_value[i] != 'f' && !isdigit(this->_value[i]))
@@ -62,6 +64,8 @@ bool ScalarConversion::is_float(void)
 
 bool ScalarConversion::is_double(void)
 {
+	if (this->_value == "nan" || this->_value == "+inf" || this->_value == "-inf")
+		return true;
 	for (size_t i = 0; i < this->_value.length(); i++)
 	{
 		if (this->_value[i] != '.' && !isdigit(this->_value[i]))
@@ -73,11 +77,3 @@ bool ScalarConversion::is_double(void)
 		return false;
 	return true;
 }
-
-char ScalarConversion::convert_to_char(void) { return '0'; }
-
-int ScalarConversion::convert_to_int(void) { return 0; }
-
-float ScalarConversion::convert_to_float(void) { return 0.0f; }
-
-double ScalarConversion::convert_to_double(void) { return 0.0; }

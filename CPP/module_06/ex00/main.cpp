@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 08:11:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/26 11:04:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(int argc, char **argv)
 {
+	double first_value;
 	if (argc != 2)
 	{
 		std::cout << "Usage: ./scalar_conversion arg1" << std::endl;
@@ -30,10 +31,54 @@ int main(int argc, char **argv)
 		}
 	}
 
-	std::cout << "Is char " << conversion->is_char() << std::endl;
-	std::cout << "Is int " << conversion->is_int() << std::endl;
-	std::cout << "Is float " << conversion->is_float() << std::endl;
-	std::cout << "Is double " << conversion->is_double() << std::endl;
+	if (conversion->is_char())
+		first_value = static_cast<char>(*conversion);
+	else if (conversion->is_int())
+		first_value = static_cast<int>(*conversion);
+	else if (conversion->is_float())
+		first_value = static_cast<float>(*conversion);
+	else if (conversion->is_double())
+		first_value = static_cast<double>(*conversion);
+
+	// print char equivalent
+	if (first_value >= 0 && first_value <= 255)
+	{
+		char c = static_cast<char>(first_value);
+		if (isprint(first_value))
+		{
+			std::cout << "char: '" << c << "'" << std::endl;
+		}
+		else
+		{
+			std::cout << "char: Non displayable" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "char: impossible" << std::endl;
+	}
+
+	// print int equivalent
+	if (first_value >= INT32_MIN && first_value <= INT32_MAX)
+	{
+		std::cout << "int: " << static_cast<int>(first_value) << std::endl;
+	}
+	else
+	{
+		std::cout << "int: impossible" << std::endl;
+	}
+
+	// print float and double equivalent
+	if (static_cast<int>(first_value) == first_value)
+	{
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(first_value) << "f" << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(first_value) << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << static_cast<float>(first_value) << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(first_value) << std::endl;
+	}
 
 	return (0);
 }
