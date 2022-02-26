@@ -6,15 +6,15 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/26 08:26:44 by tpetit           ###   ########.fr        #
+#    Updated: 2022/02/26 08:27:28 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = 
+CPPFLAGS = -fpermissive
 
-SRCS = main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Bureaucrat.cpp
+SRCS = main.cpp ScalarConversion.cpp
 
-NAME = intern
+NAME = scalar_conversion
 
 all:
 	g++ $(CPPFLAGS) $(SRCS) -o $(NAME)
