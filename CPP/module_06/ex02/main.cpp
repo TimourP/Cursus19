@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 11:19:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/26 11:31:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ Base *generate(void)
 	switch (num)
 	{
 	case 0:
+		std::cout << "Je genere un A" << std::endl;
 		return new A();
 	case 1:
+		std::cout << "Je genere un B" << std::endl;
 		return new B();
 	case 2:
+		std::cout << "Je genere un C" << std::endl;
 		return new C();
 	default:
 		return NULL;
