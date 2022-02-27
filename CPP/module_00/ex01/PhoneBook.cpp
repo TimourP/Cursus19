@@ -58,6 +58,17 @@ void PhoneBook::show_contacts(void)
 
 	std::cout << "Please enter the contact id: ";
 	std::getline(std::cin, buff);
+	if (buff.length() == 0)
+		return;
+	for (size_t i = 0; i < buff.length(); i++)
+	{
+		if (!isdigit(buff[i]))
+		{
+			std::cout << "I'm just a phone book that sucks. Don't be too mean to me." << std::endl;
+			return;
+		}
+	}
+
 	id = std::stoi(buff);
 	if (id < 0 || id >= this->_contact_count)
 		std::cout << "I'm just a phone book that sucks. Don't be too mean to me." << std::endl;
@@ -73,17 +84,15 @@ void PhoneBook::show_contacts(void)
 
 void PhoneBook::add_contact(void)
 {
-	if (this->_contact_count < 7)
-	{
-		this->_contact_count++;
-	}
-	else
-	{
-		std::cout << "PhoneBook is full..." << std::endl;
-	}
+	this->_contact_count++;
 }
 
 Contact *PhoneBook::get_contact(void)
 {
+	if (this->_contact_count >= MAX_CONTACT)
+	{
+		std::cout << "PhoneBook is full..." << std::endl;
+		return NULL;
+	}
 	return (&this->_contact_list[this->_contact_count]);
 }

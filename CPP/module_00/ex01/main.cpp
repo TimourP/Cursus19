@@ -12,7 +12,7 @@
 
 #include "PhoneBook.hpp"
 
-int main( void )
+int main(void)
 {
 	PhoneBook phone_book;
 	std::string tmp;
@@ -22,30 +22,57 @@ int main( void )
 	{
 		std::cout << "Please write a command (EXIT, ADD or SEARCH): ";
 		std::getline(std::cin, tmp);
-		if (tmp == "EXIT")
+		if (tmp == "EXIT" || tmp == "exit")
 			break;
-		else if (tmp == "ADD")
+		else if (tmp == "ADD" || tmp == "add")
 		{
 			contact = phone_book.get_contact();
+			if (!contact)
+				continue;
 			std::cout << "In order to create a new contact we need some information" << std::endl;
 			std::cout << "First name: ";
 			std::getline(std::cin, tmp);
+			if (tmp.length() == 0)
+			{
+				std::cout << "Contact field cannot be empty. Please retry." << std::endl;
+				continue;
+			}
 			contact->set_first_name(tmp);
 			std::cout << "Last name: ";
 			std::getline(std::cin, tmp);
+			if (tmp.length() == 0)
+			{
+				std::cout << "Contact field cannot be empty. Please retry." << std::endl;
+				continue;
+			}
 			contact->set_last_name(tmp);
 			std::cout << "Nickname: ";
 			std::getline(std::cin, tmp);
+			if (tmp.length() == 0)
+			{
+				std::cout << "Contact field cannot be empty. Please retry." << std::endl;
+				continue;
+			}
 			contact->set_nickname(tmp);
 			std::cout << "Phone number: ";
 			std::getline(std::cin, tmp);
+			if (tmp.length() == 0)
+			{
+				std::cout << "Contact field cannot be empty. Please retry." << std::endl;
+				continue;
+			}
 			contact->set_phone_number(tmp);
 			std::cout << "Darkest secret: ";
 			std::getline(std::cin, tmp);
+			if (tmp.length() == 0)
+			{
+				std::cout << "Contact field cannot be empty. Please retry." << std::endl;
+				continue;
+			}
 			contact->set_darkest_secret(tmp);
 			phone_book.add_contact();
 		}
-		else if (tmp == "SEARCH")
+		else if (tmp == "SEARCH" || tmp == "search")
 			phone_book.show_contacts();
 	}
 

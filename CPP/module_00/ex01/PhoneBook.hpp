@@ -16,6 +16,8 @@
 #include "Contact.hpp"
 #include <cstring>
 
+#define MAX_CONTACT 2
+
 class PhoneBook
 {
 public:
@@ -27,7 +29,7 @@ public:
 	Contact *get_contact(void);
 
 private:
-	Contact _contact_list[8];
+	Contact _contact_list[MAX_CONTACT];
 	int _contact_count;
 };
 
