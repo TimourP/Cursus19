@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 08:44:53 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 09:43:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/28 11:12:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Zombie::~Zombie( void )
 
 void Zombie::annonce( void ) const
 {
-	std::cout << this->_name << " BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 void Zombie::name_zombie( std::string name )
