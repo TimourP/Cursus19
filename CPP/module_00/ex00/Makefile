@@ -10,10 +10,29 @@
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -Wall -Wextra -Werror
+CXX = c++
 
-all:
-	c++ $(CPPFLAGS) megaphone.cpp -o megaphone
-	
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+NAME = megaphone
+
+SRCS = megaphone.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm megaphone
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all
