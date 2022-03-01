@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:00:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 15:43:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 15:48:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,23 @@ void Karen::error( void )
 	std::cout << "This is unacceptable, I want to speak to the manager now." << std::endl;
 }
 
-enum ComplainLevel {DEBUG, INFO, WARNING, ERROR};
-
 void Karen::complain( std::string level )
 {
-	const std::string ini = "DEBUG     INFO      WARNING   ERROR     ";
-	if (ini.find(level) == std::string::npos)
+	const	std::string complain[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	typedef void (Karen::*fc)( void );
+	fc fctptr[4] = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
+	int		complain_id = -1;
+
+	for (size_t i = 0; i < 4; i++)
 	{
-		std::cout << "Comments level are DEBUG, INFO, WARNING and ERROR." << " \"" << level << "\" is not in this list." << std::endl;
+		if (level == complain[i]) {
+			complain_id = i;
+			break ;
+		}
+	}
+	if (complain_id < 0) {
+		std::cout << "I don't know this complain level..." << std::endl;
 		return ;
 	}
-	ComplainLevel l = ComplainLevel(ini.find(level) / 10);
-
-	switch (l)
-	{
-	case DEBUG:
-		this->debug();
-		break;
-	case INFO:
-		this->info();
-		break;
-	case WARNING:
-		this->warning();
-		break;
-	case ERROR:
-		this->error();
-		break;
-	default:
-		break;
-	}
+	(this->*(fctptr[complain_id]))();
 }

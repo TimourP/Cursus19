@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:00:27 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 15:52:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 15:51:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,39 +45,27 @@ void Karen::error( void )
 	std::cout << std::endl;
 }
 
-enum ComplainLevel {DEBUG, INFO, WARNING, ERROR};
-
 void Karen::complain_filter( std::string level )
 {
-	const std::string ini = "DEBUG     INFO      WARNING   ERROR     ";
-	if (ini.find(level) == std::string::npos)
+	const	std::string complain[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	typedef void (Karen::*fc)( void );
+	fc fctptr[4] = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
+	int		complain_id = -1;
+
+	for (size_t i = 0; i < 4; i++)
 	{
+		if (level == complain[i]) {
+			complain_id = i;
+			break ;
+		}
+	}
+	if (complain_id < 0) {
 		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		return ;
 	}
-	ComplainLevel l = ComplainLevel(ini.find(level) / 10);
-
-	switch (l)
+	for (; complain_id < 4; complain_id++)
 	{
-	case DEBUG:
-		this->debug();
-		this->info();
-		this->warning();
-		this->error();
-		break;
-	case INFO:
-		this->info();
-		this->warning();
-		this->error();
-		break;
-	case WARNING:
-		this->warning();
-		this->error();
-		break;
-	case ERROR:
-		this->error();
-		break;
-	default:
-		break;
+		(this->*(fctptr[complain_id]))();
 	}
+	
 }
