@@ -6,18 +6,33 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 15:26:31 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/28 11:21:12 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/01 12:32:40 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -Wall -Wextra -Werror
+CXX = c++
 
-SRCS = main.cpp Karen.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = karen
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS = main.cpp Karen.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all

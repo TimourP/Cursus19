@@ -6,18 +6,33 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 10:07:51 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/28 11:18:38 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/01 12:31:57 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -Wall -Wextra -Werror
+CXX = c++
 
-SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = unnecessaryViolence
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all
