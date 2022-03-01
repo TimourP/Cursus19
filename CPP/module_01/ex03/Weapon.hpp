@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:36:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 10:09:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 15:55:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Weapon {
 		Weapon(std::string type);
 		~Weapon( void );
 
-		std::string&	getType( void );
+		const std::string&	getType( void ) const;
 		void			setType( std::string type );
 
 	private:

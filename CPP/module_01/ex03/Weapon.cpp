@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:39:55 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 10:53:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 15:57:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ Weapon::Weapon( std::string type ) : _type(type) {}
 
 Weapon::~Weapon( void ){}
 
-std::string& Weapon::getType( void )
+const std::string& Weapon::getType( void ) const
 {
-	std::string&	typeRef = this->_type;
+	const std::string&	typeRef = this->_type;
 
 	return (typeRef);
 }

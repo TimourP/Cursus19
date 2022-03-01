@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/03/01 12:29:47 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/01 15:53:55 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = BraiiiiiiinnnzzzZ
 
-SRCS = newZombie.cpp ransomChump.cpp Zombie.cpp
+SRCS = newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
