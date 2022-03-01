@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:15:02 by tpetit            #+#    #+#             */
-/*   Updated: 2021/10/26 14:59:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 16:36:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ bool	Replace::check_argv( void ) const
 
 std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t start_pos = 0;
+	std::string tmp;
+
     while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-        str.replace(start_pos, from.length(), to);
+		tmp = str.substr(0, start_pos);
+		str = tmp + to + str.substr(start_pos + from.length(), str.length() - 1);
         start_pos += to.length();
     }
     return str;
