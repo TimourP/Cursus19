@@ -6,17 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 09:16:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 17:19:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
-{
-	this->_fixed = 0;
-	return;
-}
+Fixed::Fixed(void) : _fixed(0) {}
 
 Fixed::Fixed(const Fixed &to_copy)
 {

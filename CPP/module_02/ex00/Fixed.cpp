@@ -6,16 +6,14 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:27:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 08:30:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/01 17:19:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed( void ) {
+Fixed::Fixed( void ) : _fixed(0) {
 	std::cout << "Default constructor called" << std::endl;
-	this->_fixed = 0;
-	return ;
 }
 
 Fixed::Fixed( Fixed &to_copy ) {

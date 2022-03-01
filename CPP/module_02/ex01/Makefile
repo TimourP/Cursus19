@@ -6,18 +6,33 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 12:26:32 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/28 11:06:58 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/01 17:18:15 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -Wall -Wextra -Werror
+CXX = c++
 
-SRCS = main.cpp Fixed.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = fixed
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS = main.cpp Fixed.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all
