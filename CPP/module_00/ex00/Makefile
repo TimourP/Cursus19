@@ -13,7 +13,7 @@
 CPPFLAGS = -Wall -Wextra -Werror
 
 all:
-	g++ $(CPPFLAGS) megaphone.cpp -o megaphone
+	c++ $(CPPFLAGS) megaphone.cpp -o megaphone
 	
 clean:
 	rm megaphone

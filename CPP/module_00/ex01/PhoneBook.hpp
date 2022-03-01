@@ -16,7 +16,7 @@
 #include "Contact.hpp"
 #include <cstring>
 
-#define MAX_CONTACT 2
+#define MAX_CONTACT 8
 
 class PhoneBook
 {
