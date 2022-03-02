@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 10:08:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 10:30:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ class Fixed {
 		Fixed operator*( Fixed const & rhs );
 		Fixed operator/( Fixed const & rhs );
 		Fixed & operator++( void );
-		Fixed & operator++( int rhs );
+		Fixed & operator++( int );
 		Fixed & operator--( void );
-		Fixed & operator--( int rhs);
+		Fixed & operator--( int );
 
 		bool	operator>( Fixed const & rhs) const;
 		bool	operator>=( Fixed const & rhs) const;

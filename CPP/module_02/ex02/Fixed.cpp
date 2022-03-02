@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2022/03/01 17:19:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 10:32:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,20 @@ Fixed &Fixed::operator++(void)
 	this->_fixed += 1;
 	return *this;
 }
-Fixed &Fixed::operator++(int rhs)
+Fixed &Fixed::operator++(int)
 {
 	Fixed *f = new Fixed(*this);
 	this->_fixed += 1;
 	return *f;
 }
+
 Fixed &Fixed::operator--(void)
 {
 	this->_fixed -= 1;
 	return *this;
 }
-Fixed &Fixed::operator--(int rhs)
+
+Fixed &Fixed::operator--(int)
 {
 	Fixed *f = new Fixed(*this);
 	this->_fixed -= 1;

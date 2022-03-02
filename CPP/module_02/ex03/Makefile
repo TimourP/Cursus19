@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 12:27:00 by tpetit            #+#    #+#              #
-#    Updated: 2022/03/01 17:18:46 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/02 10:34:07 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = fixed
 
-SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
+SRCS = Fixed.cpp Point.cpp bsp.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

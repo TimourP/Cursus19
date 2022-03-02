@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2022/03/01 17:23:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 11:39:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Fixed::Fixed( void ) : _fixed(0) {
 	std::cout << "Default constructor called" << std::endl;
-	return ;
 }
 
 Fixed::Fixed( const Fixed &to_copy ) {
@@ -23,11 +22,12 @@ Fixed::Fixed( const Fixed &to_copy ) {
 }
 
 Fixed::Fixed( int initial ) {
+	std::cout << "Int constructor called" << std::endl;
 	this->_fixed = initial << this->_fract_bit;
 }
 Fixed::Fixed( float initial ) {
+	std::cout << "Float constructor called" << std::endl;
 	this->_fixed = roundf(initial * (1 << this->_fract_bit));
-	std::cout << this->_fixed << std::endl;
 }
 
 Fixed::~Fixed( void ) {
@@ -36,14 +36,13 @@ Fixed::~Fixed( void ) {
 
 Fixed	&Fixed::operator=( Fixed const & rhs )
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Copy assignement operator called" << std::endl;
 	this->_fixed = rhs.getRawBits();
 	return *this;
 }
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixed);
 }
 

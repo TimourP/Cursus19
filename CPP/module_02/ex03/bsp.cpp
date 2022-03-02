@@ -6,18 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:18:54 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 14:15:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 10:36:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
 #include "Point.hpp"
-
-static void print_point( Point const & p )
-{
-	std::cout << "x:" << p.getX() << " y:" << p.getY() <<std::endl;
-}
 
 static float sign(Point const & p1, Point const & p2, Point const & p3)
 {

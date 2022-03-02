@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:07:57 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/16 14:12:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 10:35:40 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class Point {
 		const Fixed & getX( void ) const;
 		const Fixed & getY( void ) const;
 
-		const float getXV( void ) const;
-		const float getYV( void ) const;
+		float getXV( void ) const;
+		float getYV( void ) const;
 	
 	private:
 		Fixed const _x;
