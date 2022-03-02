@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:54:23 by tpetit            #+#    #+#             */
-/*   Updated: 2022/03/02 11:52:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 12:52:55 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,55 +66,55 @@ std::ostream &operator<<(std::ostream &out, const Fixed &in)
 
 Fixed Fixed::operator+(Fixed const &rhs)
 {
-	Fixed *f = new Fixed;
+	Fixed f = *this;
 
-	f->setRawBits(this->_fixed + rhs.getRawBits());
-	return *f;
+	f.setRawBits(this->_fixed + rhs.getRawBits());
+	return f;
 }
 
 Fixed Fixed::operator-(Fixed const &rhs)
 {
-	Fixed *f = new Fixed;
+	Fixed f = *this;
 
-	f->setRawBits(this->_fixed - rhs.getRawBits());
-	return *f;
+	f.setRawBits(this->_fixed - rhs.getRawBits());
+	return f;
 }
 Fixed Fixed::operator*(Fixed const &rhs)
 {
-	Fixed *f = new Fixed;
+	Fixed f = *this;
 
-	f->setRawBits(this->_fixed * rhs.getRawBits() >> 8);
-	return *f;
+	f.setRawBits(this->_fixed * rhs.getRawBits() >> 8);
+	return f;
 }
 Fixed Fixed::operator/(Fixed const &rhs)
 {
-	Fixed *f = new Fixed(this->toFloat() / rhs.toFloat());
+	Fixed f(this->toFloat() / rhs.toFloat());
 
-	return *f;
+	return f;
 }
 Fixed &Fixed::operator++(void)
 {
-	this->_fixed += 1;
+	this->_fixed++;
 	return *this;
 }
-Fixed &Fixed::operator++(int)
+Fixed Fixed::operator++(int)
 {
-	Fixed *f = new Fixed(*this);
-	this->_fixed += 1;
-	return *f;
+	Fixed f = *this;
+	this->_fixed++;
+	return f;
 }
 
 Fixed &Fixed::operator--(void)
 {
-	this->_fixed -= 1;
+	this->_fixed--;
 	return *this;
 }
 
-Fixed &Fixed::operator--(int)
+Fixed Fixed::operator--(int)
 {
-	Fixed *f = new Fixed(*this);
-	this->_fixed -= 1;
-	return *f;
+	Fixed f = *this;
+	this->_fixed--;
+	return f;
 }
 
 bool Fixed::operator>(Fixed const &rhs) const
