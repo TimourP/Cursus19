@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:07:57 by tpetit            #+#    #+#             */
-/*   Updated: 2022/03/02 10:35:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 11:56:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ class Point {
 		Fixed const _y;
 
 };
+
+bool bsp(Point const & p1, Point const & p2, Point const & p3, Point const & point);
 
 #endif // POINT_H
 	
