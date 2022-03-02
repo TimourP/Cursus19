@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 18:05:45 by tpetit            #+#    #+#             */
-/*   Updated: 2022/03/02 12:52:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/03/02 13:01:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int main(void) {
 		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a == b) << std::endl;
 		a = a + 1;
 		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a == b) << std::endl;
+		std::cout << "!=" << std::endl;
+		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a != b) << std::endl;
 		std::cout << ">" << std::endl;
 		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a > b) << std::endl;
 		std::cout << "<" << std::endl;
@@ -50,5 +52,7 @@ int main(void) {
 		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a / b) << std::endl;
 		std::cout << "+" << std::endl;
 		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a + b) << std::endl;
+		std::cout << "-" << std::endl;
+		std::cout << "(a: " << a << " ; b: " << b << ") "  << (a - b) << std::endl;
 	}
 }
