@@ -6,13 +6,13 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 12:26:52 by tpetit            #+#    #+#              #
-#    Updated: 2022/03/02 13:14:50 by tpetit           ###   ########.fr        #
+#    Updated: 2022/03/02 16:04:39 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = clap_trap
 
