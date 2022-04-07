@@ -23,10 +23,14 @@ Dog::~Dog(void)
 	std::cout << "Dog is gone" << std::endl;
 }
 
-Dog::Dog(Dog const &to_copy) {}
+Dog::Dog(Dog const &to_copy) : Animal()
+{
+	this->_type = to_copy.getType();
+}
 
 Dog &Dog::operator=(Dog const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 

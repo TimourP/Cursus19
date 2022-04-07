@@ -22,10 +22,13 @@ Animal::~Animal(void)
 	std::cout << "Animal is gone" << std::endl;
 }
 
-Animal::Animal(Animal const &to_copy) {}
+Animal::Animal(Animal const &to_copy) : _type(to_copy.getType())
+{
+}
 
 Animal &Animal::operator=(Animal const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 

@@ -12,18 +12,27 @@
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat( void ) {
+WrongCat::WrongCat(void)
+{
 	this->_type = "WrongCat";
 	std::cout << "WrongCat is born" << std::endl;
 }
 
-WrongCat::~WrongCat( void ) {
+WrongCat::~WrongCat(void)
+{
 	std::cout << "WrongCat is gone" << std::endl;
 }
 
-WrongCat::WrongCat( WrongCat const &to_copy ) {}
+WrongCat::WrongCat(WrongCat const &to_copy) : WrongAnimal()
+{
+	this->_type = to_copy.getType();
+}
 
-WrongCat	&WrongCat::operator=( WrongCat const & rhs ) {
+WrongCat
+	&
+	WrongCat::operator=(WrongCat const &rhs)
+{
+	this->_type = rhs.getType();
 	return *this;
 }
 

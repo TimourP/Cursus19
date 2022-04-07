@@ -23,10 +23,14 @@ Cat::~Cat(void)
 	std::cout << "Cat is gone" << std::endl;
 }
 
-Cat::Cat(Cat const &to_copy) {}
+Cat::Cat(Cat const &to_copy) : Animal()
+{
+	this->_type = to_copy.getType();
+}
 
 Cat &Cat::operator=(Cat const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 

@@ -10,14 +10,29 @@
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = 
+CXX = c++
 
-SRCS = main.cpp AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = abstract_class
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS = main.cpp AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
+	rm -f $(OBJS)
+
+fclean: clean
 	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all

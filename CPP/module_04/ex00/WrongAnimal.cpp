@@ -12,17 +12,21 @@
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal( void ) {
+WrongAnimal::WrongAnimal(void)
+{
 	std::cout << "WrongAnimal is born" << std::endl;
 }
 
-WrongAnimal::~WrongAnimal( void ) {
+WrongAnimal::~WrongAnimal(void)
+{
 	std::cout << "WrongAnimal is gone" << std::endl;
 }
 
-WrongAnimal::WrongAnimal( WrongAnimal const &to_copy ) {}
+WrongAnimal::WrongAnimal(WrongAnimal const &to_copy) : _type(to_copy.getType()) {}
 
-WrongAnimal	&WrongAnimal::operator=( WrongAnimal const & rhs ) {
+WrongAnimal &WrongAnimal::operator=(WrongAnimal const &rhs)
+{
+	this->_type = rhs.getType();
 	return *this;
 }
 
