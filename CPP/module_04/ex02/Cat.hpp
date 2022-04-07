@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:52:08 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/07 10:03:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include <string>
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public virtual Animal
+class Cat : public virtual AAnimal
 {
 public:
 	Cat(void);

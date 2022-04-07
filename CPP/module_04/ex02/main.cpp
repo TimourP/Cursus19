@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 13:43:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 15:00:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/07 10:03:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
@@ -30,7 +30,7 @@ int main(void)
 	}
 
 	const int list_size = 10;
-	Animal *animal_list[list_size];
+	AAnimal *animal_list[list_size];
 
 	for (size_t i = 0; i < list_size; i++)
 	{

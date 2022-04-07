@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 15:01:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/07 10:02:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#ifndef AANIMAL_H
+#define AANIMAL_H
 
-Animal::Animal(void)
+#include <string>
+#include <iostream>
+
+class AAnimal
 {
-}
+public:
+	AAnimal(void);
+	virtual ~AAnimal(void);
+	AAnimal(AAnimal const &copy);
+	AAnimal &operator=(AAnimal const &rhs);
 
-Animal::~Animal(void)
-{
-}
+	virtual void makeSound(void) const = 0;
+	std::string getType(void) const;
 
-Animal::Animal(Animal const &to_copy) {}
+protected:
+	std::string _type;
+};
 
-Animal &Animal::operator=(Animal const &rhs)
-{
-	return *this;
-}
-
-std::string Animal::getType(void) const
-{
-	return this->_type;
-}
+#endif // AANIMAL_H

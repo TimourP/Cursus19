@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:44 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:55:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/07 10:03:32 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void) : Animal()
+Dog::Dog(void) : AAnimal()
 {
 	this->_type = "Dog";
 	this->_brain = new Brain();
@@ -35,7 +35,7 @@ Brain *Dog::getBrain(void) const
 	return this->_brain;
 }
 
-Dog::Dog(Dog const &to_copy) : Animal()
+Dog::Dog(Dog const &to_copy) : AAnimal()
 {
 	this->_type = "Dog";
 	this->_brain = new Brain();

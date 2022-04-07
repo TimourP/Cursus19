@@ -6,13 +6,13 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:52:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/07 10:03:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void) : AAnimal()
 {
 	this->_type = "Cat";
 	this->_brain = new Brain();
@@ -30,7 +30,7 @@ Brain *Cat::getBrain(void) const
 	return this->_brain;
 }
 
-Cat::Cat(Cat const &to_copy) : Animal()
+Cat::Cat(Cat const &to_copy) : AAnimal()
 {
 	this->_type = "Cat";
 	this->_brain = new Brain();
