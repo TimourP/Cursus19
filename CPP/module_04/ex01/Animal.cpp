@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:41 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:20:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/02/08 13:59:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 Animal::Animal(void)
 {
-	std::cout << "I'm born as an animal" << std::endl;
+	std::cout << "Animal is born" << std::endl;
 }
 
 Animal::~Animal(void)
 {
-	std::cout << "I'm dead as an animal" << std::endl;
+	std::cout << "Animal is gone" << std::endl;
 }
 
-Animal::Animal(Animal const &to_copy) {}
+Animal::Animal(Animal const &to_copy) : _type(to_copy.getType())
+{
+}
 
 Animal &Animal::operator=(Animal const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 
