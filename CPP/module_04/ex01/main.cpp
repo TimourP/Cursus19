@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 13:43:11 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:57:07 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:21:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main(void)
 
 		std::cout << copy_cat.getBrain()->getIdea(0) << std::endl;
 	}
-
 	const int list_size = 10;
 	Animal *animal_list[list_size];
 

@@ -6,10 +6,10 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 12:26:52 by tpetit            #+#    #+#              #
-#    Updated: 2022/04/07 09:59:45 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/08 10:05:32 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-	
+
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

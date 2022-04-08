@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:16:51 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:45:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:20:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,29 @@ Brain::~Brain(void)
 	std::cout << "By consciousness..." << std::endl;
 }
 
-Brain::Brain(Brain const &to_copy) {}
+Brain::Brain(Brain const &to_copy) {
+	int i;
+	std::string tmp;
+
+	i = -1;
+	while (++i < 100 && !(tmp = to_copy.getIdea(i)).empty())
+	{
+		this->haveIdea(tmp);
+	}
+}
 
 Brain &Brain::operator=(Brain const &rhs)
 {
+	int i;
+	std::string tmp;
+
+	std::cout << "Hello je passe" << std::endl << std::endl;
+
+	i = -1;
+	while (++i < 100 && !(tmp = rhs.getIdea(i)).empty())
+	{
+		this->haveIdea(tmp);
+	}
 	return *this;
 }
 

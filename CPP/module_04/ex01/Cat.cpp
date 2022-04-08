@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:46 by tpetit            #+#    #+#             */
-/*   Updated: 2021/11/30 14:52:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:22:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ Cat::Cat(Cat const &to_copy) : Animal()
 {
 	this->_type = "Cat";
 	this->_brain = new Brain();
-	for (size_t i = 0; i < 100; i++)
-	{
-		this->_brain->haveIdea(to_copy.getBrain()->getIdea(i));
-	}
+	*this->_brain = *to_copy.getBrain();
 }
 
 Cat &Cat::operator=(Cat const &rhs)
 {
+	this->_type = "Cat";
+	this->_brain = new Brain();
+	*this->_brain = *rhs.getBrain();
 	return *this;
 }
 
