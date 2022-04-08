@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:59:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 11:10:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 13:58:38 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void Form::beSigned( Bureaucrat const &b ) {
 	if (b.getGrade() <= this->_grade_to_sign) {
 		this->_is_signed = true;
 	} else {
-		throw Form::GradeTooHighException();
+		throw Form::GradeTooLowException();
 	}
 }
 

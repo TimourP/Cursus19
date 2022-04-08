@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:10 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:45:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:05:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const &to_copy ) :
 }
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs ) {
+	(void)rhs;
 	return *this;
 }
 
 void RobotomyRequestForm::execteAction(Bureaucrat const & executor) const {
+	(void)executor;
 	std::srand (time(NULL));
 	std::cout << "Brouoouououou je suis un bruit de perceuse!! ";
 	if (std::rand() % 2)

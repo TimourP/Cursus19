@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:17 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:45:46 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:05:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const &to
 }
 
 PresidentialPardonForm	&PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs ) {
+	(void)rhs;
 	return *this;
 }
 
 void PresidentialPardonForm::execteAction(Bureaucrat const & executor) const {
+	(void)executor;
 	std::cout << this->getTarget() << " has been forgiven by Zaphod Beeblebrox." << std::endl;
 }

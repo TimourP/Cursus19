@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/04/08 11:21:23 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/08 14:13:28 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = bureaucrat
 
-SRCS = main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Bureaucrat.cpp
+SRCS = main.cpp Intern.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Bureaucrat.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:20:03 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/15 14:45:29 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:06:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void ) {
 ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const &to_copy ) : Form(to_copy.getName(), to_copy.getTarget(), 25, 5) {}
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs ) {
+	(void)rhs;
 	return *this;
 }
 
 void ShrubberyCreationForm::execteAction(Bureaucrat const & executor) const {
+	(void)executor;
 	std::ofstream new_file;
 		new_file.open(this->getTarget() + "_shrubbery");
 		new_file << "               ,@@@@@@@," << std::endl;
