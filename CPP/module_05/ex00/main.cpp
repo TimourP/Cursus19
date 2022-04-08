@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:39:10 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/08 11:30:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:40:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ int main(void) {
 	
 	b->decreaseGrade();
 	std::cout << *b << std::endl;
+	delete b;
+	delete new_b;
 }
