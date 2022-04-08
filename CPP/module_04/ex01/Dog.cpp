@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:14:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/08 10:24:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 11:00:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Dog::Dog(Dog const &to_copy) : Animal()
 
 Dog &Dog::operator=(Dog const &rhs)
 {
-	this->_type = "Cat";
+	this->_type = "Dog";
 	this->_brain = new Brain();
 	*this->_brain = *rhs.getBrain();
 	return *this;

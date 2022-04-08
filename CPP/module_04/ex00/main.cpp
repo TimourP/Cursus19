@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 13:43:11 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 14:01:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:49:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int main(void)
 	std::cout << i->getType() << " " << std::endl;
 	c->makeSound();
 	wrong_meta->makeSound();
+
+	const WrongCat *wrong_cat = new WrongCat();
+	wrong_cat->makeSound();
 
 	delete wrong_meta;
 	delete c;
