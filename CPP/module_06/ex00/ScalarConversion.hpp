@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:07:01 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 10:59:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:38:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ public:
 	operator float() const
 	{
 		float num;
-
 		if (this->_value == "+inff")
 			return (INFINITY);
 		else if (this->_value == "-inff")
 			return (-INFINITY);
 		else if (this->_value == "nanf")
 			return (NAN);
+		std::string new_value = this->_value.substr(0, this->_value.length() - 2);
 		std::stringstream stream;
-		stream << this->_value;
+		stream << new_value;
 		stream >> num;
 		return num;
 	}
