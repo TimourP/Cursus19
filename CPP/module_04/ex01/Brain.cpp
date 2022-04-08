@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:16:51 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/08 10:20:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 11:06:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ Brain &Brain::operator=(Brain const &rhs)
 {
 	int i;
 	std::string tmp;
-
-	std::cout << "Hello je passe" << std::endl << std::endl;
 
 	i = -1;
 	while (++i < 100 && !(tmp = rhs.getIdea(i)).empty())

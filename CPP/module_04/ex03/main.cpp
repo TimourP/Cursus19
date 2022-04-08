@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:22:56 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 15:11:42 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 11:10:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	me->unequip(1);
+	delete tmp;
 	delete bob;
 	delete me;
 	delete src;
