@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:09:37 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 16:09:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:41:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Cure::Cure(Cure const &to_copy) {
 
 Cure &Cure::operator=(Cure const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:03:53 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 15:03:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:38:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ AMateria::~AMateria(void) {
 	std::cout << "AMateria is gone" << std::endl;
 }
 
-AMateria::AMateria(AMateria const &to_copy) {}
+AMateria::AMateria(AMateria const &to_copy) : _type(to_copy.getType()) {}
 
 AMateria &AMateria::operator=(AMateria const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 

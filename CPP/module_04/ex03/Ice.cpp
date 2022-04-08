@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:09:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/08 16:09:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/08 10:43:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Ice::Ice(Ice const &to_copy) {
 
 Ice &Ice::operator=(Ice const &rhs)
 {
+	this->_type = rhs.getType();
 	return *this;
 }
 
