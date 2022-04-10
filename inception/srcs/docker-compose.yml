@@ -1,0 +1,66 @@
+version: '3'
+services:
+
+  nginx:
+    build: requirements/nginx/
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - html_data:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+    restart: always
+
+  wordpress:
+    build: requirements/wordpress/
+    container_name: wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - html_data:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    restart: always
+    environment:
+      MYSQL_HOST:       ${MYSQL_HOST}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      WP_DATABASE_USR:  ${WP_DATABASE_USR}
+      WP_DATABASE_PWD:  ${WP_DATABASE_PWD}
+      DOMAIN_NAME:      ${DOMAIN_NAME}
+      WP_TITLE:         ${WP_TITLE}
+      WP_ADMIN_USR:     ${WP_ADMIN_USR}
+      WP_ADMIN_PWD:     ${WP_ADMIN_PWD}
+      WP_ADMIN_EMAIL:   ${WP_ADMIN_EMAIL}
+      WP_USR:           ${WP_USR}
+      WP_PWD:           ${WP_PWD}
+      WP_EMAIL:         ${WP_EMAIL}
+
+  mariadb:
+    build: requirements/mariadb/
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - inception
+    restart: always
+    environment:
+      MYSQL_ROOT_PWD:   ${MYSQL_ROOT_PWD}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      WP_DATABASE_USR:  ${WP_DATABASE_USR}
+      WP_DATABASE_PWD:  ${WP_DATABASE_PWD}
+
+networks:
+  inception:
+
+volumes:
+  html_data:
+
+  mysql_data:
