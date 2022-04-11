@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:09:04 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 14:00:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 14:03:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ int main(int, char**)
 			std::cerr << e.what() << '\n';
 		}
 		std::cout << numbers << std::endl;
+	}
+	{
+		std::cout << "MY MAIN TRY COPY" << std::endl;
+		Array<int> numbers(5);
+		numbers[0] = 45;
+		numbers[4] = 455;
+
+		Array<int> numbers_copy = numbers;
+		numbers_copy[0] = 42;
+
+		std::cout << numbers << std::endl;
+		std::cout << numbers_copy << std::endl;
 	}
     {
 		std::cout << "DEFAULT MAIN" << std::endl;
