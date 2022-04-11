@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:09:04 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 15:18:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 13:45:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 
 int main(void)
 {
+	
 	{
-		Array<int> *arr = new Array<int>(4);
+		Array<int> *arr = new Array<int>(0);
 		Array<int> &arr_ref = *arr;
 
 		arr_ref[0] = 90;

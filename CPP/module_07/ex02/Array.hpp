@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:10:11 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 15:10:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 13:48:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ Array<T> &Array<T>::operator=(Array<T> const &rhs)
 template <typename T>
 T &Array<T>::operator[](size_t const index) const
 {
-	if (index >= _size || index < 0)
+	if (index >= this->size() || index < 0)
 	{
 		throw std::out_of_range("Index out of range");
 	}

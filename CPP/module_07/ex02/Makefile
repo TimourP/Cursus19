@@ -6,18 +6,33 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/02/28 11:06:58 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/11 13:34:58 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -fpermissive
+CXX = c++
 
-SRCS = main.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = array
+NAME = array_out
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS =  main.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all
