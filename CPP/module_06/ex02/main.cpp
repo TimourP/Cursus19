@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 11:31:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:17:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,24 @@ void identify(Base &p)
 {
 	try
 	{
-		dynamic_cast<A &>(p);
+		A &new_a = dynamic_cast<A &>(p);
+		(void)new_a;
 		std::cout << "Class A" << std::endl;
 	}
 	catch (const std::bad_cast &e)
 	{
 		try
 		{
-			dynamic_cast<B &>(p);
+			B &new_b = dynamic_cast<B &>(p);
+			(void)new_b;
 			std::cout << "Class B" << std::endl;
 		}
 		catch (const std::bad_cast &e)
 		{
 			try
 			{
-				dynamic_cast<C &>(p);
+				C &new_c = dynamic_cast<C &>(p);
+				(void)new_c;
 				std::cout << "Class C" << std::endl;
 			}
 			catch (const std::bad_cast &e)
@@ -88,7 +91,7 @@ void identify(Base &p)
 	}
 }
 
-int main(int argc, char **argv)
+int main()
 {
 	Base *random = generate();
 

@@ -6,18 +6,33 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/04/08 16:32:48 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/11 09:55:13 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPPFLAGS = -fpermissive
+CXX = c++
 
-SRCS = main.cpp ScalarConversion.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = convert
 
-all:
-	c++ $(CPPFLAGS) $(SRCS) -o $(NAME)
-	
+SRCS =  main.cpp ScalarConversion.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+allup : all clean
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean all

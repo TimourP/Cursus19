@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 11:47:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 11:58:35 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:15:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ Data::~Data(void)
 	std::cout << this->_name << " is gone" << std::endl;
 }
 
-Data::Data(Data const &to_copy) {}
+Data::Data(Data const &to_copy) : _name(to_copy.getName()) {}
 
 Data &Data::operator=(Data const &rhs)
 {
+	this->_name = rhs.getName();
 	return *this;
 }
 

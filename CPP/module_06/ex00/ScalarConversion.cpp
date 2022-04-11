@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:07:01 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/08 16:31:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:12:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ ScalarConversion::ScalarConversion(std::string const initial_value) : _value(ini
 
 ScalarConversion::~ScalarConversion(void) {}
 
-ScalarConversion::ScalarConversion(ScalarConversion const &to_copy) {}
+ScalarConversion::ScalarConversion(ScalarConversion const &to_copy) : _value(to_copy._value) {}
 
 ScalarConversion &ScalarConversion::operator=(ScalarConversion const &rhs)
 {
+	this->_value = rhs._value;
 	return *this;
 }
 

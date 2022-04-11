@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/08 16:38:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:14:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int main(int argc, char **argv)
 {
-	double first_value;
+	double first_value = 0.0;
+
 	if (argc != 2)
 	{
 		std::cout << "Usage: ./scalar_conversion arg1" << std::endl;
 		return (-1);
 	}
 	std::string str_in = argv[1];
+
 	ScalarConversion *conversion = new ScalarConversion(str_in);
+
 	for (size_t i = 0; i < str_in.length(); i++)
 	{
 		if (!isprint(str_in[i]))
