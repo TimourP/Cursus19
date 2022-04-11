@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 10:17:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:31:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 Base *generate(void)
 {
 	int num;
-	std::srand(time(0));
 
 	num = rand() % 3;
 	switch (num)
@@ -93,9 +92,12 @@ void identify(Base &p)
 
 int main()
 {
-	Base *random = generate();
-
-	identify(random);
-	identify(*random);
-	delete random;
+	std::srand(time(NULL));
+	for (size_t i = 0; i < 10; i++)
+	{
+		Base *random = generate();
+		identify(random);
+		identify(*random);
+		delete random;
+	}
 }

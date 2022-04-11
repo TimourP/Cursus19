@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 11:57:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:27:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ int main(void)
 	uintptr_t serialize_elem;
 
 	std::cout << elem << std::endl;
+	std::cout << elem->getName() << std::endl;
 	serialize_elem = serialize(elem);
+	std::cout << &serialize_elem << std::endl;
 	std::cout << serialize_elem << std::endl;
+	elem = deserialize(serialize_elem);
+	std::cout << elem << std::endl;
+	std::cout << elem->getName() << std::endl;
 	delete deserialize(serialize_elem);
 	return 0;
 }

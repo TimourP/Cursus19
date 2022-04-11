@@ -6,7 +6,7 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 09:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/04/11 09:56:19 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/11 10:26:01 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = identify
+NAME = serialize
 
 SRCS = main.cpp Data.cpp
 
