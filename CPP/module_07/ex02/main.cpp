@@ -6,71 +6,45 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:09:04 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 13:45:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 13:57:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "Array.hpp"
 
 #define MAX_VAL 750
-
-int main(void)
+int main(int, char**)
 {
-	
 	{
-		Array<int> *arr = new Array<int>(0);
-		Array<int> &arr_ref = *arr;
+		std::cout << "MY MAIN" << std::endl;
+		Array<int> numbers(5);
 
-		arr_ref[0] = 90;
-
-		std::cout << "DEFAULT TESTS" << std::endl;
-
-		std::cout << arr_ref;
-
+		std::cout << numbers << std::endl;
+		numbers[0] = 45;
+		numbers[4] = 455;
 		try
 		{
-			arr_ref[10];
+			numbers[-1] = 10;
 		}
-		catch (const std::out_of_range &e)
+		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-
 		try
 		{
-			arr_ref[-1];
+			numbers[5] = 10;
 		}
-		catch (const std::out_of_range &e)
+		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-
-		std::cout << std::endl;
-		std::cout << "COPY TESTS" << std::endl;
-
-		Array<int> arr_copy(arr_ref);
-		arr_ref[0] = 0;
-		arr_copy[1] = 20;
-		std::cout << "Initial: " << std::endl
-				  << arr_ref;
-		std::cout << "Copy: " << std::endl
-				  << arr_copy;
-
-		std::cout << std::endl;
-		std::cout << "AFFECT TESTS" << std::endl;
-
-		Array<int> arr_affect = arr_ref;
-		arr_ref[0] = 50;
-		arr_affect[1] = 20;
-		std::cout << "Initial: " << std::endl
-				  << arr_ref;
-		std::cout << "Copy: " << std::endl
-				  << arr_affect;
-		delete arr;
+		std::cout << numbers << std::endl;
 	}
-	{
+    {
+		std::cout << "DEFAULT MAIN" << std::endl;
 		Array<int> numbers(MAX_VAL);
-		int *mirror = new int[MAX_VAL];
+		int* mirror = new int[MAX_VAL];
 		srand(time(NULL));
 		for (int i = 0; i < MAX_VAL; i++)
 		{
@@ -78,7 +52,7 @@ int main(void)
 			numbers[i] = value;
 			mirror[i] = value;
 		}
-		// SCOPE
+		//SCOPE
 		{
 			Array<int> tmp = numbers;
 			Array<int> test(tmp);
@@ -96,7 +70,7 @@ int main(void)
 		{
 			numbers[-2] = 0;
 		}
-		catch (const std::exception &e)
+		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
@@ -104,7 +78,7 @@ int main(void)
 		{
 			numbers[MAX_VAL] = 0;
 		}
-		catch (const std::exception &e)
+		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
@@ -113,6 +87,8 @@ int main(void)
 		{
 			numbers[i] = rand();
 		}
-		delete[] mirror; //
+
+		delete [] mirror;//
+		return 0;
 	}
 }
