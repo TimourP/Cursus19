@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:07:01 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 10:41:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 11:16:00 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ public:
 	{
 		char num;
 
-		std::stringstream stream;
-		stream << this->_value;
-		stream >> num;
+		num = this->_value[1];
 		return num;
 	}
 
