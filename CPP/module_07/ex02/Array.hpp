@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:10:11 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 13:48:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 14:01:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ private:
 };
 
 template <typename T>
-Array<T>::Array(void) : _size(0), _args(NULL){};
+Array<T>::Array(void) : _size(0), _args(new T[0]){};
 
 template <typename T>
 Array<T>::~Array(void)
 {
-	delete this->_args;
+	delete[] this->_args;
 };
 
 template <typename T>

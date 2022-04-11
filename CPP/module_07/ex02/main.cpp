@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:09:04 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 13:57:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 14:00:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(int, char**)
 	{
 		std::cout << "MY MAIN" << std::endl;
 		Array<int> numbers(5);
+		Array<int> empty;
 
 		std::cout << numbers << std::endl;
 		numbers[0] = 45;
