@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:09:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/11 10:14:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/11 10:58:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ int main(int argc, char **argv)
 
 	if (conversion->is_char())
 		first_value = static_cast<char>(*conversion);
-	else if (conversion->is_int())
+	else if (conversion->is_int()) {
 		first_value = static_cast<int>(*conversion);
+	}
 	else if (conversion->is_float())
 		first_value = static_cast<float>(*conversion);
 	else if (conversion->is_double())
 		first_value = static_cast<double>(*conversion);
+	else {
+		std::cout << "Error: entry is not valid" << std::endl;
+		delete conversion;
+		return 0;
+	}
+
 
 	// print char equivalent
 	if (first_value >= 0 && first_value <= 255)
@@ -82,6 +89,8 @@ int main(int argc, char **argv)
 		std::cout << "float: " << static_cast<float>(first_value) << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(first_value) << std::endl;
 	}
+
+	delete conversion;
 
 	return (0);
 }
