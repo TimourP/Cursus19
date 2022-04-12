@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:10:51 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 11:14:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:44:46 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ int main()
 	{
 		Span sp = Span(50);
 		int arr[] = { 0, 10 };
+		int n = sizeof(arr) / sizeof(arr[0]);
+	
+		std::vector<int> vect(arr, arr + n);
+		sp.addNumber(vect.begin(), vect.end());
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	{
+		Span sp = Span(50);
+		int arr[] = { -10, 0, 10 };
 		int n = sizeof(arr) / sizeof(arr[0]);
 	
 		std::vector<int> vect(arr, arr + n);

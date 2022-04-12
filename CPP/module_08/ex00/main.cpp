@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 15:41:19 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 09:57:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:29:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(void)
 		std::cerr << e.what() << '\n';
 	}
 
-		try
+	try
 	{
 		std::cout << *easyfind(vect1, 19) << std::endl;
 	}

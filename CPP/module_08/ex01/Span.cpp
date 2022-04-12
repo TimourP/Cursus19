@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 11:12:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:32:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Span::Span(void) : _N(0)
 {
+	this->_nbrs = new std::vector<int>;
 }
 
 Span::~Span(void)
