@@ -17,6 +17,12 @@ COPY conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 COPY conf/index.html /tmp/index.html
 COPY conf/wp-config.php /tmp/wp-config.php
 
+# download wp
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+# put it in bin in order to execute it with only wp
+RUN cp wp-cli.phar /usr/bin/wp
+
 # set spawn path to /var/www/html/wordpress
 WORKDIR /var/www/html/wordpress
 
