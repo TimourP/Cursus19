@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 10:25:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 10:33:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,29 @@ int main()
 		std::stack<int> s(mstack);
 	}
 	{
-		std::cout << "MY TESTS" << std::endl;
+		std::cout << "MY TESTS COPY" << std::endl;
 		MutantStack<int> mstack;
 		mstack.push(5);
 		mstack.push(17);
 
 		MutantStack<int> mstack_copy(mstack);
+		mstack.pop();
+		MutantStack<int>::iterator it = mstack_copy.begin();
+		MutantStack<int>::iterator ite = mstack_copy.end();
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+	}
+
+	{
+		std::cout << "MY TESTS ASIGN" << std::endl;
+		MutantStack<int> mstack;
+		mstack.push(5);
+		mstack.push(17);
+
+		MutantStack<int> mstack_copy = mstack;
 		mstack.pop();
 		MutantStack<int>::iterator it = mstack_copy.begin();
 		MutantStack<int>::iterator ite = mstack_copy.end();
