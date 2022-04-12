@@ -6,13 +6,13 @@
 #    By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 05:11:27 by tpetit            #+#    #+#              #
-#    Updated: 2022/04/12 06:42:45 by tpetit           ###   ########.fr        #
+#    Updated: 2022/04/12 10:00:29 by tpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 
-CXXFLAGS =  -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = span_out
 

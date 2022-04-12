@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 15:41:19 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 16:06:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 09:57:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void editInt(int &i)
 
 void printInt(int i)
 {
-	std::cout << i << std::endl;
+	std::cout << i;
 }
 
 int main(void)
@@ -31,9 +31,31 @@ int main(void)
 
 	std::for_each(vect1.begin(), vect1.end(), editInt);
 	std::for_each(vect1.begin(), vect1.end(), printInt);
+	std::cout << std::endl;
 
-	*easyfind<std::vector<int>>(vect1, 6) = 9;
+	std::cout << *easyfind(vect1, 6) << std::endl;
+	std::cout << *easyfind(vect1, 2) << std::endl;
 
-	std::for_each(vect1.begin(), vect1.end(), printInt);
+	std::vector<int> vect2;
+
+	try
+	{
+		std::cout << *easyfind(vect2, 6) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+		try
+	{
+		std::cout << *easyfind(vect1, 19) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+
 	return 0;
 }
