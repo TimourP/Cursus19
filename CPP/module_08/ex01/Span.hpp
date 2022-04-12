@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 06:35:28 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:48:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ public:
 	void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	unsigned int shortestSpan(void) const;
 	unsigned int longestSpan(void) const;
+
+	class NoSpaceException : public std::exception {
+		public:
+			virtual const char* what() const throw() {
+				return "This span is full.";
+			}
+	};
 
 private:
 	std::vector<int> *_nbrs;

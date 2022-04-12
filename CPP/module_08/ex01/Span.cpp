@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 11:32:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:48:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Span &Span::operator=(Span const &rhs)
 void Span::addNumber(int n)
 {
 	if (this->_nbrs->size() == this->_N)
-		throw std::out_of_range("Index out of range");
+		throw Span::NoSpaceException();
 	this->_nbrs->push_back(n);
 }
 
@@ -50,7 +50,7 @@ void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterato
 	while (begin != end)
 	{
 		if (this->_nbrs->size() == this->_N)
-			throw std::out_of_range("Index out of range");
+			throw Span::NoSpaceException();
 		this->_nbrs->push_back(*begin);
 		begin++;
 	}
