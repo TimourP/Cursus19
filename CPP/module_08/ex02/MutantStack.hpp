@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 09:52:05 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 06:24:38 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 10:23:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@
 #include <iostream>
 #include <stack>
 
+// stack definition: template <class T, class Container = deque<T> > class stack;
+
 template <typename T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container>
 {
 public:
-	MutantStack(void) : std::stack<T, Container>(){};
+	MutantStack(void) : std::stack<T>(){};
 	~MutantStack(void){};
-	MutantStack(MutantStack const &copy) : std::stack<T, Container>(copy) {}
+	MutantStack(MutantStack const &copy) : std::stack<T, Container>(copy) {
+		
+	}
 
 	MutantStack &operator=(MutantStack const &rhs)
 	{
+		this->c = rhs.c;
 		return *this;
 	}
 

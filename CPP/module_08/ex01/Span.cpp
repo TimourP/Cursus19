@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 06:55:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 10:10:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterato
 
 unsigned int Span::shortestSpan(void) const
 {
-	unsigned int shortestSpan = -1;
-	unsigned int last_number = 0;
+	int shortestSpan = -1;
+	int last_number = 0;
 
 	std::sort(this->_nbrs->begin(), this->_nbrs->end());
 
@@ -78,7 +78,7 @@ unsigned int Span::shortestSpan(void) const
 
 unsigned int Span::longestSpan(void) const
 {
-	unsigned int longestSpan;
+	int longestSpan;
 
 	longestSpan = *std::max_element(this->_nbrs->begin(), this->_nbrs->end()) - *std::min_element(this->_nbrs->begin(), this->_nbrs->end());
 	return longestSpan;
