@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/12 10:10:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 11:12:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ Span::Span(unsigned int const N) : _N(N)
 	this->_nbrs = new std::vector<int>;
 };
 
-Span::Span(Span const &to_copy) : _N(to_copy._N){};
+Span::Span(Span const &to_copy) : _N(to_copy._N){
+	this->_nbrs = new std::vector<int>(to_copy._nbrs->begin(), to_copy._nbrs->end());
+};
 
 Span &Span::operator=(Span const &rhs)
 {
