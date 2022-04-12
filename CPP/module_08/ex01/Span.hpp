@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 17:28:41 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 06:35:28 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <string>
 #include <iostream>
-#include <list>
+#include <algorithm>
+#include <vector>
 
 class Span
 {
@@ -27,13 +28,13 @@ public:
 	Span &operator=(Span const &rhs);
 
 	void addNumber(int n);
+	void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	unsigned int shortestSpan(void) const;
 	unsigned int longestSpan(void) const;
 
 private:
-	std::list<int> *_nbrs;
+	std::vector<int> *_nbrs;
 	unsigned int _N;
-	unsigned int _current;
 };
 
 #endif // SPAN_H

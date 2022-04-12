@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 16:09:44 by tpetit            #+#    #+#             */
-/*   Updated: 2022/02/26 17:36:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/12 06:55:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ Span::~Span(void)
 
 Span::Span(unsigned int const N) : _N(N)
 {
-	this->_nbrs = new std::list<int>;
+	this->_nbrs = new std::vector<int>;
 };
 
 Span::Span(Span const &to_copy) : _N(to_copy._N){};
 
 Span &Span::operator=(Span const &rhs)
 {
+	this->_nbrs = rhs._nbrs;
+	this->_N = rhs._N;
 	return *this;
 }
 
@@ -40,44 +42,44 @@ void Span::addNumber(int n)
 	this->_nbrs->push_back(n);
 }
 
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	while (begin != end)
+	{
+		if (this->_nbrs->size() == this->_N)
+			throw std::out_of_range("Index out of range");
+		this->_nbrs->push_back(*begin);
+		begin++;
+	}
+}
+
 unsigned int Span::shortestSpan(void) const
 {
-	unsigned int shortest_span = -1;
-	int last_num = 0;
-	bool unset = true;
+	unsigned int shortestSpan = -1;
+	unsigned int last_number = 0;
 
-	this->_nbrs->sort();
-	for (int i : *this->_nbrs)
+	std::sort(this->_nbrs->begin(), this->_nbrs->end());
+
+	last_number = *this->_nbrs->begin();
+
+	for (std::vector<int>::iterator it = this->_nbrs->begin(); it != this->_nbrs->end(); ++it)
 	{
-		if (unset)
+		if (it != this->_nbrs->begin())
 		{
-			last_num = i;
-			unset = false;
+			if (shortestSpan == -1 || shortestSpan >= *it - last_number)
+			{
+				shortestSpan = *it - last_number;
+				last_number = *it;
+			}
 		}
-		else if (i - last_num < shortest_span || shortest_span == -1)
-		{
-			shortest_span = i - last_num;
-		}
-		last_num = i;
 	}
-	return shortest_span;
+	return shortestSpan;
 }
 
 unsigned int Span::longestSpan(void) const
 {
-	bool unset = true;
-	int lowest_num = 0;
-	int biggest_num = 0;
+	unsigned int longestSpan;
 
-	for (int i : *this->_nbrs)
-	{
-		if (unset || i < lowest_num)
-			lowest_num = i;
-		if (unset || i > biggest_num)
-			biggest_num = i;
-		if (unset)
-			unset = false;
-	}
-
-	return biggest_num - lowest_num;
+	longestSpan = *std::max_element(this->_nbrs->begin(), this->_nbrs->end()) - *std::min_element(this->_nbrs->begin(), this->_nbrs->end());
+	return longestSpan;
 }
