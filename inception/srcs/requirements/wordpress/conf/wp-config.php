@@ -37,8 +37,8 @@ define( 'DB_CHARSET', 'utf8' );
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
-define( 'WP_HOME', 'https://tpetit.42.fr' );
-define( 'WP_SITEURL', 'https://tpetit.42.fr' );
+define( 'WP_HOME', 'https://tpetit.42.fr/wordpress/' );
+define( 'WP_SITEURL', 'https://tpetit.42.fr/wordpress/' );
 
 /**#@+
  * Authentication unique keys and salts.
