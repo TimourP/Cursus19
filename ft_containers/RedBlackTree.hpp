@@ -190,7 +190,7 @@ void DoubleRedIfSIsRed(RBTNode *y)
 	}
 	else if (!z->parent->is_black)
 	{
-		if (!z->parent->parent->left_child || z->parent->parent->left_child->is_black || !z->parent->parent->right_child || z->parent->parent->right_child->is_black)
+		if (!z->parent->parent->left_child || z->parent->parent->left_child->is_black)
 		{
 			DoubleRedIfSIsBlack(z->parent);
 		}
@@ -201,8 +201,16 @@ void DoubleRedIfSIsRed(RBTNode *y)
 	}
 }
 
+int kind_of_child(RBTNode *leaf)
+{
+	if (!leaf->parent)
+		return 0;
+	return (leaf->parent->right_child == leaf ? 1 : -1);
+}
+
 void RedBlackTree::insert(int key, RBTNode *leaf)
 {
+	int tmp_key;
 	if (key < leaf->key)
 	{
 		if (leaf->left_child != NULL)
@@ -215,7 +223,22 @@ void RedBlackTree::insert(int key, RBTNode *leaf)
 			leaf->left_child->right_child = NULL;
 			leaf->left_child->is_black = false;
 			leaf->left_child->parent = leaf;
-			if (!leaf->is_black)
+			if (kind_of_child(leaf) == 1 && !leaf->right_child)
+			{
+				tmp_key = leaf->key;
+				leaf->key = key;
+				leaf->left_child->key = tmp_key;
+				leaf->right_child = leaf->left_child;
+				leaf->left_child = NULL;
+				if (!leaf->is_black)
+				{
+					if (!leaf->parent->left_child || leaf->parent->left_child->is_black)
+						DoubleRedIfSIsBlack(leaf);
+					else
+						DoubleRedIfSIsRed(leaf);
+				}
+			}
+			else if (!leaf->is_black)
 			{
 				if (!leaf->parent->right_child || leaf->parent->right_child->is_black)
 					DoubleRedIfSIsBlack(leaf);
@@ -224,7 +247,7 @@ void RedBlackTree::insert(int key, RBTNode *leaf)
 			}
 		}
 	}
-	else if (key >= leaf->key)
+	else
 	{
 		if (leaf->right_child != NULL)
 			insert(key, leaf->right_child);
@@ -236,7 +259,22 @@ void RedBlackTree::insert(int key, RBTNode *leaf)
 			leaf->right_child->right_child = NULL;
 			leaf->right_child->is_black = false;
 			leaf->right_child->parent = leaf;
-			if (!leaf->is_black)
+			if (kind_of_child(leaf) == -1 && !leaf->left_child)
+			{
+				tmp_key = leaf->key;
+				leaf->key = key;
+				leaf->right_child->key = tmp_key;
+				leaf->left_child = leaf->right_child;
+				leaf->right_child = NULL;
+				if (!leaf->is_black)
+				{
+					if (!leaf->parent->right_child || leaf->parent->right_child->is_black)
+						DoubleRedIfSIsBlack(leaf);
+					else
+						DoubleRedIfSIsRed(leaf);
+				}
+			}
+			else if (!leaf->is_black)
 			{
 				if (!leaf->parent->left_child || leaf->parent->left_child->is_black)
 					DoubleRedIfSIsBlack(leaf);
