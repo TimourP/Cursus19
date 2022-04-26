@@ -89,8 +89,11 @@ public:
 		get_len_real(this->root);
 		std::cout << node_count << std::endl;
 	};
-
-	void destroy(void) { this->destroy(this->root); };
+	void delete_node(int key);
+	void destroy(void) { 
+		this->destroy(this->root);
+		this->root = NULL;
+	};
 	void insert(int key);
 	RBTNode *search(int key) { return this->search(key, this->root); };
 
@@ -265,6 +268,67 @@ void RedBlackTree::insert(int key, RBTNode *leaf)
 			balance(leaf->right_child);
 			this->root->is_black = true;
 		}
+	}
+}
+
+RBTNode *minimum_value(RBTNode *from) {
+	if (from->left_child)
+		return minimum_value(from->left_child);
+	return from;
+}
+
+void RedBlackTree::delete_node(int key)
+{
+	RBTNode *nodeToBeDeleted = this->search(key);
+	RBTNode *x;
+	RBTNode *y;
+	int originalColor = nodeToBeDeleted->is_black;
+
+	if (!nodeToBeDeleted)
+		return ;
+	if (nodeToBeDeleted == this->root && !nodeToBeDeleted->right_child && !nodeToBeDeleted->left_child) {
+		delete nodeToBeDeleted;
+		this->root = NULL;
+	}
+	else if (!nodeToBeDeleted->left_child) {
+		if (!nodeToBeDeleted->right_child) {
+			if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
+				nodeToBeDeleted->parent->right_child = NULL;
+			else
+				nodeToBeDeleted->parent->left_child = NULL;
+			delete nodeToBeDeleted;
+			return;
+		}
+		x = nodeToBeDeleted->right_child;
+		x->parent = nodeToBeDeleted->parent;
+		if (!nodeToBeDeleted->parent)
+			this->root = x;
+		else if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
+			nodeToBeDeleted->parent->right_child = x;
+		else
+			nodeToBeDeleted->parent->left_child = x;
+		delete nodeToBeDeleted;
+	} else if (!nodeToBeDeleted->right_child) {
+		x = nodeToBeDeleted->left_child;
+		x->parent = nodeToBeDeleted->parent;
+		if (!nodeToBeDeleted->parent)
+			this->root = x;
+		else if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
+			nodeToBeDeleted->parent->right_child = x;
+		else
+			nodeToBeDeleted->parent->left_child = x;
+		delete nodeToBeDeleted;
+	} else {
+		y = minimum_value(nodeToBeDeleted->right_child);
+		originalColor = y->is_black;
+		x = y->right_child;
+		if (y->parent == nodeToBeDeleted) {
+			x->parent = y;
+			y->left_child = x;
+		} else {
+			
+		}
+		
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/26 13:27:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/26 13:35:41 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void)
 		std::getline(std::cin, tmp);
 		if (!tmp.empty() && tmp[0] == 'd') {
 			value = std::atoi(tmp.substr(1).c_str());
-			//rbt.d(value);
+			rbt.delete_node(value);
 		}
 		else {
 			value = std::atoi(tmp.c_str());

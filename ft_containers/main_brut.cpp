@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/26 13:27:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/04/26 13:29:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main(void)
 
 	srand (time(NULL));
 
-	for (size_t i = 0; i < 5000; i++)
+	for (size_t i = 0; i < 500; i++)
 	{
-		rbt.insert(rand() % 10 + 1);
+		rbt.insert(rand() % 100 + 1);
 	}
 	rbt.print();
 }
