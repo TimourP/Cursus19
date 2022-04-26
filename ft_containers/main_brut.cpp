@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   main_brut.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/04/26 13:27:50 by tpetit           ###   ########.fr       */
+/*   Created: 2022/04/26 13:26:27 by tpetit            #+#    #+#             */
+/*   Updated: 2022/04/26 13:27:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,13 @@
 int main(void)
 {
 	RedBlackTree rbt;
-	std::string tmp;
-	int value;
+	BinaryTree bt;
 
-	while (tmp != "exit")
+	srand (time(NULL));
+
+	for (size_t i = 0; i < 5000; i++)
 	{
-		std::getline(std::cin, tmp);
-		if (!tmp.empty() && tmp[0] == 'd') {
-			value = std::atoi(tmp.substr(1).c_str());
-			//rbt.d(value);
-		}
-		else {
-			value = std::atoi(tmp.c_str());
-			rbt.insert(value);
-		}
-		system("clear");
-		rbt.print();
+		rbt.insert(rand() % 10 + 1);
 	}
-	
+	rbt.print();
 }
