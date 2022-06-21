@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/21 16:58:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:42:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ namespace ft
 			vector (const vector& x) {};
 
 			~vector(void) {
-				for (size_t i = 0; i < this->_size; i++)
-				{
-					this->_alloc.destroy(&this->_data[i]);
-				}
+				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
 			};
 
@@ -94,7 +91,25 @@ namespace ft
 			// Linear complexity and double linear if realloc
 			// If n < size => reduce to n first elem
 			// If n > size => new elem as copy of val (can realloc if needed)
-			void resize (size_type n, value_type val = value_type());
+			void resize (size_type n, value_type val = value_type()) {
+				if (n < this->_size)
+				{
+					size_type i = n;
+					while (++i <= this->_size)
+						this->_alloc.destroy(&this->_data[i - 1]);
+					this->_size = n;
+				} else if (n > this->_capacity) {
+					this->realloc(n);
+				}
+				if (n > this->_size)
+				{
+					while (this->_size < n)
+					{
+						this->_alloc.construct(&this->_data[this->_size], val);
+						this->_size++;
+					}
+				}
+			};
 
 			// Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
 			// Constant complexity
@@ -111,7 +126,10 @@ namespace ft
 			// Requests that the vector capacity be at least enough to contain n elements.
 			// If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater).
 			// If realloc linear complexity
-			void reserve (size_type n);
+			void reserve (size_type n) {
+				if (n > this->_capacity)
+					this->realloc(n);
+			};
 
 			// Returns a reference to the element at position n in the vector container.
 			value_type& operator[] (size_type n) {
@@ -186,7 +204,13 @@ namespace ft
 			void swap (vector& x);
 
 			// Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
-			void clear();
+			void clear() {
+				for (size_t i = 0; i < this->_size; i++)
+				{
+					this->_alloc.destroy(&this->_data[i]);
+				}
+				this->_size = 0;
+			};
 
 		private:
 
@@ -205,9 +229,11 @@ namespace ft
 
 			void realloc(size_type new_size) {
 				pointer tmp = this->_alloc.allocate(new_size);
+
 				for (size_t i = 0; i < this->_size; i++)
 				{
-					this->_alloc.construct(&tmp[i], this->_data[i]);
+					if (i < new_size)
+						this->_alloc.construct(&tmp[i], this->_data[i]);
 					this->_alloc.destroy(&this->_data[i]);
 				}
 				this->_alloc.deallocate(this->_data, this->_capacity);

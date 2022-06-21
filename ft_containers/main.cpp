@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/21 16:58:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:17:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ void showVector(ft::vector<T>& vect) {
 
 int main(void)
 {
-	ft::vector<int> test(2);
-	test.pop_back();
+	ft::vector<int> test(1);
+	test.push_back(2);
+	test.push_back(3);
 	test.push_back(4);
-
+	test.push_back(5);
+	test.push_back(6);
+	test.push_back(7);
+	test.resize(50);
 	showVector(test);
 }
