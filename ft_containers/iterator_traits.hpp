@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:00:39 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/22 12:17:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/22 13:47:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 namespace ft
 {
 
-	typedef random_access_iterator_tag;
+	struct random_access_iterator_tag {};
 	// https://m.cplusplus.com/reference/iterator/iterator_traits/ for declarations
 
 	template <class Iterator>

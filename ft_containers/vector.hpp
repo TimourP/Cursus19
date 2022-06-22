@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/22 11:35:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:21:30 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <iostream>
 # include <vector>
 # include <iterator>
+# include <stdexcept>
+# include "random_access_iterator.hpp"
 
 
 namespace ft
@@ -32,17 +34,17 @@ namespace ft
 	class vector{
 
 		public:
-			typedef T								value_type;
-			typedef Allocator						allocator_type;
-			typedef typename allocator_type::reference		reference;
+			typedef T											value_type;
+			typedef Allocator									allocator_type;
+			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
-			typedef typename allocator_type::pointer 		pointer;
-			//typedef std::iterator<std::random_access_iterator_tag, T, ptrdiff_t, T*, T&> iterator;
-			// typename T const_iterator;
+			typedef typename allocator_type::pointer 			pointer;
+			typedef ft::random_access_iterator<T>				iterator;
+			typedef ft::random_access_iterator<const T>			const_iterator;
 			// typename T reverse_iterator;
 			// typename T const_reverse_iterator;
 			typedef int								difference_type;
-			typedef unsigned int					size_type;
+			typedef size_t					size_type;
 
 		public:
 
@@ -67,24 +69,59 @@ namespace ft
 
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
-					const allocator_type& alloc = allocator_type());
+					const allocator_type& alloc = allocator_type())
+			: _alloc(alloc), _size(0)
+			{
+				for (InputIterator i = first; i != last; i++)
+					this->_size++;
+				int i = 0;
+				this->_data = this->_alloc.allocate(this->_size);
+				this->_capacity = this->_size;
+				while (first != last)
+				{
+					this->_alloc.construct(&this->_data[i], *first);
+					i++;
+					++first;
+				}
+			};
 
-
-			vector (const vector& x) {};
+			vector (const vector& x)
+			: _alloc(x._alloc), _size(0)
+			{
+				iterator begin = x.begin();
+				iterator end = x.end();
+				for (iterator i = begin; i != end; i++)
+					this->_size++;
+				int i = 0;
+				this->_data = this->_alloc.allocate(this->_size);
+				this->_capacity = this->_size;
+				while (begin != end)
+				{
+					this->_alloc.construct(&this->_data[i], *begin);
+					i++;
+					++begin;
+				}
+			};
 
 			~vector(void) {
 				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
 			};
 
-			iterator begin() {
+			iterator begin() const {
 				return iterator(this->_data);
 			};
-			//const_iterator begin() const;
-			iterator end() {
+
+			const_iterator cbegin() const {
+				return iterator(this->_data);
+			};
+
+			iterator end() const {
 				return iterator(this->_data + this->_size);
 			};
-			//const_iterator end() const;
+			const_iterator cend() const {
+				return iterator(this->_data + this->_size);
+			};
 
 			// Returns the number of elements in the vector.
 			// Constant complexity because get size attribute
@@ -95,7 +132,7 @@ namespace ft
 			// Returns the maximum number of elements that the vector can hold.
 			// Constant complexity
 			size_type max_size() const {
-				return this->_max_size;
+				return this->_alloc.max_size();
 			};
 
 			// Resizes the container so that it contains n elements.
@@ -153,8 +190,16 @@ namespace ft
 
 			// Returns a reference to the element at position n in the vector.
 			// throw an out_of_range exception if n out of bound
-			value_type& at (size_type n);
-			const value_type& at (size_type n) const;
+			value_type& at (size_type n) {
+				if (n >= this->_size)
+					throw std::out_of_range("vector");
+				return this->_data[n];
+			};
+			const value_type& at (size_type n) const {
+				if (n >= this->_size)
+					throw std::out_of_range("vector");
+				return this->_data[n];
+			};
 
 			// Returns a reference to the first element in the vector.
 			// Undefind behavior if empty container

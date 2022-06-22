@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/22 11:59:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:21:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,10 @@ int main(void)
 	ft::vector<int> test;
 	for (size_t i = 0; i < 10; i++)
 		test.push_back(i);
+	
+	ft::vector<int> test2(test);
+	std::cout << test.max_size();
 
+	showVector(test);
+	showVector(test2);
 }
