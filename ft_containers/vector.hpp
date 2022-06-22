@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/21 17:42:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/22 11:35:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 # include <string>
 # include <iostream>
-
+# include <vector>
+# include <iterator>
 
 
 namespace ft
@@ -30,17 +31,18 @@ namespace ft
 	template <class T, class Allocator = std::allocator<T> >
 	class vector{
 
-		typedef T								value_type;
-		typedef Allocator						allocator_type;
-		typedef typename allocator_type::reference		reference;
-		typedef typename allocator_type::const_reference	const_reference;
-		typedef typename allocator_type::pointer 		pointer;
-		// typename T iterator;
-		// typename T const_iterator;
-		// typename T reverse_iterator;
-		// typename T const_reverse_iterator;
-		typedef int								difference_type;
-		typedef unsigned int					size_type;
+		public:
+			typedef T								value_type;
+			typedef Allocator						allocator_type;
+			typedef typename allocator_type::reference		reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer 		pointer;
+			//typedef std::iterator<std::random_access_iterator_tag, T, ptrdiff_t, T*, T&> iterator;
+			// typename T const_iterator;
+			// typename T reverse_iterator;
+			// typename T const_reverse_iterator;
+			typedef int								difference_type;
+			typedef unsigned int					size_type;
 
 		public:
 
@@ -74,6 +76,15 @@ namespace ft
 				this->clear();
 				this->_alloc.deallocate(this->_data, this->_capacity);
 			};
+
+			iterator begin() {
+				return iterator(this->_data);
+			};
+			//const_iterator begin() const;
+			iterator end() {
+				return iterator(this->_data + this->_size);
+			};
+			//const_iterator end() const;
 
 			// Returns the number of elements in the vector.
 			// Constant complexity because get size attribute
@@ -201,7 +212,31 @@ namespace ft
 			};
 
 			// Exchanges the content of the container by the content of x, which is another vector object of the same type. Sizes may differ.
-			void swap (vector& x);
+			void swap (vector& x) {
+				allocator_type	tmp_alloc;
+				size_type		tmp_size;
+				size_type		tmp_capacity;
+				size_type		tmp_max_size;
+				pointer			tmp_data;
+
+				tmp_alloc = this->_alloc;
+				tmp_size = this->_size;
+				tmp_capacity = this->_capacity;
+				tmp_max_size = this->_max_size;
+				tmp_data = this->_data;
+
+				this->_alloc = x._alloc;
+				this->_size = x._size;
+				this->_capacity = x._capacity;
+				this->_max_size = x._max_size;
+				this->_data = x._data;
+
+				x._alloc = tmp_alloc;
+				x._size = tmp_size;
+				x._capacity = tmp_capacity;
+				x._max_size = tmp_max_size;
+				x._data = tmp_data;
+			};
 
 			// Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
 			void clear() {
