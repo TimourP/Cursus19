@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/22 17:21:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:15:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <iterator>
 # include <stdexcept>
 # include "random_access_iterator.hpp"
-
+# include "enable_if.hpp"
 
 namespace ft
 {
@@ -69,7 +69,7 @@ namespace ft
 
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
-					const allocator_type& alloc = allocator_type())
+					const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = nullptr)
 			: _alloc(alloc), _size(0)
 			{
 				for (InputIterator i = first; i != last; i++)
@@ -102,6 +102,27 @@ namespace ft
 					++begin;
 				}
 			};
+
+			vector & operator=( vector const & rhs ) {
+				this->clear();
+				if (this->_data)
+					this->_alloc.deallocate(this->_data, this->_capacity);
+				iterator begin = rhs.begin();
+				iterator end = rhs.end();
+				for (iterator i = begin; i != end; i++)
+					this->_size++;
+				int i = 0;
+				this->_data = this->_alloc.allocate(this->_size);
+				this->_capacity = this->_size;
+				while (begin != end)
+				{
+					this->_alloc.construct(&this->_data[i], *begin);
+					i++;
+					++begin;
+				}
+				return *this;
+			};
+
 
 			~vector(void) {
 				this->clear();
@@ -232,9 +253,62 @@ namespace ft
 
 			// Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
 			template <class InputIterator>
-			void assign (InputIterator first, InputIterator last);
+			void assign (InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = nullptr) {
+				size_type size = 0;
+				for (InputIterator i = first; i != last; i++)
+					size++;
+				if (size <= this->_size)
+				{
+					for (size_type i = 0; i < this->_size; i++)
+					{
+						this->_alloc.destroy(&this->_data[i]);
+						if (first != last)
+						{
+							this->_alloc.construct(&this->_data[i], *first);
+							++first;
+						}
+					}
+				} else
+				{
+					pointer new_data = this->_alloc.allocate(size);
+					size_type i = 0;
+					while (first != last)
+					{
+						this->_alloc.construct(&new_data[i], *first);
+						++i;
+						++first;
+					}
+					this->clear();
+					this->_data = new_data;
+					this->_capacity = size;
+					this->_size = size;
+				}
+			};
 
-			void assign (size_type n, const value_type& val);
+			void assign (size_type n, const value_type& val) {
+				if (n <= this->_size)
+				{
+					for (size_type i = 0; i < this->_size; i++)
+					{
+						this->_alloc.destroy(&this->_data[i]);
+						if (n > 0)
+						{
+							this->_alloc.construct(&this->_data[i], val);
+							--n;
+						}
+					}
+				} else
+				{
+					pointer new_data = this->_alloc.allocate(n);
+					size_type i = -1;
+					while (++i < n)
+						this->_alloc.construct(&new_data[i], val);
+					this->clear();
+					this->_data = new_data;
+					this->_capacity = n;
+					this->_size = n;
+				}
+			};
 
 			// Adds a new element at the end of the vector, after its current last element. The content of val is copied (or moved) to the new element.
 			void push_back (const value_type& val) {
@@ -254,6 +328,76 @@ namespace ft
 					this->_size--;
 					this->_alloc.destroy(&this->_data[this->_size]);
 				}
+			};
+
+			iterator insert (iterator position, const value_type& val) {
+				this->insert(position, 1, val);
+				return (this->end() - 1);
+			};
+
+			void insert (iterator position, size_type n, const value_type& val) {
+				if (this->_size == 0)
+				{
+					int i = -1;
+					this->_size = n;
+					this->_data = this->_alloc.allocate(this->_size);
+					this->_capacity = this->_size;
+					while (++i < n)
+						this->_alloc.construct(&this->_data[i], val);
+
+				} else if (this->_size + n > this->_capacity)
+				{
+					size_type new_size = this->_size * 2;
+					while (new_size < this->_size + n)
+						new_size*=2;
+					pointer new_data = this->_alloc.allocate(new_size);
+					iterator begin = this->begin();
+					size_type i = 0;
+					size_type j = -1;
+					while (begin != position && this->_size != 0) {
+						this->_alloc.construct(&new_data[i], this->_data[i]);
+						i++;
+					}
+					while (++j <  n) {
+						this->_alloc.construct(&new_data[i + j], val);
+					}
+					--i;
+					while (++i < this->_size + n)
+						this->_alloc.construct(&new_data[i + j], this->_data[i]);
+					i = this->_size + n;
+					this->clear();
+					this->_alloc.deallocate(this->_data, this->_capacity);
+					this->_data = new_data;
+					this->_size = i;
+					this->_capacity = new_size;
+				} else {
+					size_type i = -1;
+					iterator end = this->end() - 1;
+					this->resize(this->_size + n);
+					while (end + 1 != position)
+					{
+						*(end + n) = *end;
+						--end;
+					}
+					while (++i < n)
+					{
+						*position = val;
+						++position;
+					}
+					
+				}
+			};
+
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = nullptr) {
+				
+			};
+
+			iterator erase (iterator position) {
+				
+			};
+			iterator erase (iterator first, iterator last) {
+				
 			};
 
 			// Exchanges the content of the container by the content of x, which is another vector object of the same type. Sizes may differ.
@@ -292,6 +436,10 @@ namespace ft
 				this->_size = 0;
 			};
 
+			allocator_type get_allocator() const {
+				return allocator_type(this->_alloc);
+			};
+
 		private:
 
 			allocator_type	_alloc;
@@ -320,7 +468,41 @@ namespace ft
 				this->_capacity = new_size;
 				this->_data = tmp;
 			}
+	};
+	template <class T>
+	bool operator== (const vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
+	};
+	
+	template <class T>
+	bool operator!= (const  vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
+	};
 
+	template <class T>
+	bool operator< (const  vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
+	};
+
+	template <class T>
+	bool operator<= (const  vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
+	};
+
+	template <class T>
+	bool operator> (const  vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
+	};
+
+	template <class T>
+	bool operator>= (const  vector<T>& lhs,
+					const vector<T>& rhs) {
+		return false;
 	};
 }
 
