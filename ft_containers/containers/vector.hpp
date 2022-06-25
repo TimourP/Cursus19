@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 17:50:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/25 18:59:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include <vector>
 #include <iterator>
 #include <stdexcept>
-#include "random_access_iterator.hpp"
-#include "reverse_iterator.hpp"
-#include "enable_if.hpp"
+#include "../iterators/random_access_iterator.hpp"
+#include "../iterators/reverse_iterator.hpp"
+#include "../utils/enable_if.hpp"
 
 namespace ft
 {
@@ -127,40 +127,40 @@ namespace ft
 			this->_alloc.deallocate(this->_data, this->_capacity);
 		};
 
-		iterator begin() const
+		iterator begin(void) const
 		{
 			return iterator(this->_data);
 		};
 
-		const_iterator cbegin() const
+		const_iterator cbegin(void) const
 		{
 			return const_iterator(this->_data);
 		};
 
-		iterator end() const
+		iterator end(void) const
 		{
 			return iterator(this->_data + this->_size);
 		};
-		const_iterator cend() const
+		const_iterator cend(void) const
 		{
 			return const_iterator(this->_data + this->_size);
 		};
 
-		reverse_iterator rbegin() const
+		reverse_iterator rbegin(void) const
 		{
 			return reverse_iterator(this->_data);
 		};
 
-		const_reverse_iterator crbegin() const
+		const_reverse_iterator crbegin(void) const
 		{
 			return const_reverse_iterator(this->_data);
 		};
 
-		reverse_iterator rend() const
+		reverse_iterator rend(void) const
 		{
 			return reverse_iterator(this->_data + this->_size);
 		};
-		const_reverse_iterator crend() const
+		const_reverse_iterator crend(void) const
 		{
 			return const_reverse_iterator(this->_data + this->_size);
 		};

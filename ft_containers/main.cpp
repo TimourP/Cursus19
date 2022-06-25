@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 17:18:09 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/25 18:29:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,26 +100,29 @@ void cmp(const TESTED_NAMESPACE::vector<T, Alloc> &lhs, const TESTED_NAMESPACE::
 
 int main(void)
 {
-	TESTED_NAMESPACE::vector<TESTED_TYPE> vct(4);
-	TESTED_NAMESPACE::vector<TESTED_TYPE> vct2(4);
+	const int size = 5;
+	TESTED_NAMESPACE::vector<TESTED_TYPE> vct(size);
+	TESTED_NAMESPACE::vector<TESTED_TYPE>::reverse_iterator it = vct.rbegin();
+	TESTED_NAMESPACE::vector<TESTED_TYPE>::const_reverse_iterator ite = vct.rbegin();
 
-	cmp(vct, vct);	// 0
-	cmp(vct, vct2); // 1
+	for (int i = 0; i < size; ++i)
+		it[i] = (size - i) * 5;
 
-	vct2.resize(10);
+	it = it + 5;
+	it = 1 + it;
+	it = it - 4;
+	std::cout << *(it += 2) << std::endl;
+	std::cout << *(it -= 1) << std::endl;
 
-	cmp(vct, vct2); // 2
-	cmp(vct2, vct); // 3
+	*(it -= 2) = 42;
+	*(it += 2) = 21;
 
-	vct[2] = 42;
+	std::cout << "const_ite +=/-=: " << *(ite += 2) << " | " << *(ite -= 2) << std::endl;
 
-	cmp(vct, vct2); // 4
-	cmp(vct2, vct); // 5
+	std::cout << "(it == const_it): " << (ite == it) << std::endl;
+	std::cout << "(const_ite - it): " << (ite - it) << std::endl;
+	std::cout << "(ite + 3 == it): " << (ite + 3 == it) << std::endl;
 
-	swap(vct, vct2);
-
-	cmp(vct, vct2); // 6
-	cmp(vct2, vct); // 7
-
+	printSize(vct, true);
 	return (0);
 }

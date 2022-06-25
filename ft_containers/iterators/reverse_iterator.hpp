@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:13:31 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 18:02:56 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/25 18:26:36 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ namespace ft
 			return this->it;
 		}
 
-		reference operator*(void)
+		reference operator*(void) const
 		{
 			return *(this->it - 1);
 		};
