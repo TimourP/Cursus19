@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:13:31 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 18:26:36 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/27 09:23:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ namespace ft
 
 	public:
 		reverse_iterator(void) : it(nullptr){};
+
 		explicit reverse_iterator(iterator_type it) : it(it){};
+
 		template <class It>
 		reverse_iterator(const reverse_iterator<It> &rev_it) : it(rev_it.base()){};
+
 		~reverse_iterator(){};
 
 		iterator_type base(void) const

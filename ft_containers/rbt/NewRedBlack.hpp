@@ -26,7 +26,8 @@ RBTNode::RBTNode(void)
 {
 }
 
-RBTNode::RBTNode(int key, RBTNode *parent) {
+RBTNode::RBTNode(int key, RBTNode *parent)
+{
 	this->key = key;
 	this->parent = parent;
 	this->is_black = false;
@@ -65,8 +66,10 @@ void printRBTRec(const std::string &prefix, const RBTNode *node, bool isLeft)
 	}
 }
 
-void get_len_real(const RBTNode *node) {
-	if (node) {
+void get_len_real(const RBTNode *node)
+{
+	if (node)
+	{
 		node_count++;
 		get_len_real(node->left_child);
 		get_len_real(node->right_child);
@@ -79,18 +82,21 @@ public:
 	RedBlackTree(void);
 	~RedBlackTree(void);
 
-	void print(void) { 
+	void print(void)
+	{
 		node_count = 0;
 		printRBTRec("", this->root, false);
 		std::cout << node_count << std::endl;
 	};
 
-	void get_len(void){ 
+	void get_len(void)
+	{
 		get_len_real(this->root);
 		std::cout << node_count << std::endl;
 	};
 	void delete_node(int key);
-	void destroy(void) { 
+	void destroy(void)
+	{
 		this->destroy(this->root);
 		this->root = NULL;
 	};
@@ -106,6 +112,8 @@ private:
 	void left_rotate(RBTNode *x);
 	void right_rotate(RBTNode *x);
 	void balance(RBTNode *newNode);
+	void rbTransplant(RBTNode *u, RBTNode *v);
+	void deleteFix(RBTNode *x);
 };
 
 RedBlackTree::RedBlackTree()
@@ -158,84 +166,111 @@ void RedBlackTree::insert(int key)
 	}
 }
 
-
 // take parent to make left rotation
-void RedBlackTree::left_rotate(RBTNode *x) {
+void RedBlackTree::left_rotate(RBTNode *x)
+{
 	RBTNode *y = x->right_child;
 
 	x->right_child = y->left_child;
-	if (y->left_child) {
-	  y->left_child->parent = x;
+	if (y->left_child)
+	{
+		y->left_child->parent = x;
 	}
 	y->parent = x->parent;
-	if (!x->parent) {
-	  this->root = y;
-	} else if (x == x->parent->left_child) {
-	  x->parent->left_child = y;
-	} else {
-	  x->parent->right_child = y;
+	if (!x->parent)
+	{
+		this->root = y;
+	}
+	else if (x == x->parent->left_child)
+	{
+		x->parent->left_child = y;
+	}
+	else
+	{
+		x->parent->right_child = y;
 	}
 	y->left_child = x;
 	x->parent = y;
 }
 
 // take parent to make right rotation
-void RedBlackTree::right_rotate(RBTNode *x) {
+void RedBlackTree::right_rotate(RBTNode *x)
+{
 	RBTNode *y = x->left_child;
 
 	x->left_child = y->right_child;
-	if (y->right_child) {
-	  y->right_child->parent = x;
+	if (y->right_child)
+	{
+		y->right_child->parent = x;
 	}
 	y->parent = x->parent;
-	if (!x->parent) {
-	  this->root = y;
-	} else if (x == x->parent->right_child) {
-	  x->parent->right_child = y;
-	} else {
-	  x->parent->left_child = y;
+	if (!x->parent)
+	{
+		this->root = y;
+	}
+	else if (x == x->parent->right_child)
+	{
+		x->parent->right_child = y;
+	}
+	else
+	{
+		x->parent->left_child = y;
 	}
 	y->right_child = x;
 	x->parent = y;
 }
 
-void RedBlackTree::balance(RBTNode *newNode) {
+void RedBlackTree::balance(RBTNode *newNode)
+{
 	RBTNode *z;
 	RBTNode *p;
 
 	z = newNode;
 	p = newNode->parent;
 	if (!p || p->is_black)
-		return ;
+		return;
 	// if p is the left child of his parent
-	if (p->parent && p->parent->left_child == p) {
+	if (p->parent && p->parent->left_child == p)
+	{
 		// if the right child of the parent of p is a red child
-		if (p->parent->right_child && !p->parent->right_child->is_black) {
+		if (p->parent->right_child && !p->parent->right_child->is_black)
+		{
 			p->is_black = true;
 			p->parent->right_child->is_black = true;
 			p->parent->is_black = false;
 			balance(p->parent);
-		} else if (p->right_child == z) {
+		}
+		else if (p->right_child == z)
+		{
 			newNode = p;
 			left_rotate(newNode);
 			balance(newNode);
-		} else if (p->parent) {
+		}
+		else if (p->parent)
+		{
 			p->is_black = true;
 			p->parent->is_black = false;
 			right_rotate(p->parent);
 			balance(newNode);
 		}
-	} else {
-		if (p->parent && p->parent->left_child && !p->parent->left_child->is_black) {
+	}
+	else
+	{
+		if (p->parent && p->parent->left_child && !p->parent->left_child->is_black)
+		{
 			p->is_black = true;
 			p->parent->left_child->is_black = true;
 			p->parent->is_black = false;
 			balance(p->parent);
-		} else if (p->left_child == newNode) {
+		}
+		else if (p->left_child == newNode)
+		{
 			newNode = p;
 			right_rotate(p);
 			balance(newNode);
-		} else {
+		}
+		else
+		{
 			p->is_black = true;
 			p->parent->is_black = false;
 			left_rotate(p->parent);
@@ -271,64 +306,159 @@ void RedBlackTree::insert(int key, RBTNode *leaf)
 	}
 }
 
-RBTNode *minimum_value(RBTNode *from) {
+RBTNode *minimum_value(RBTNode *from)
+{
 	if (from->left_child)
 		return minimum_value(from->left_child);
 	return from;
 }
 
+void RedBlackTree::deleteFix(RBTNode *x)
+{
+	RBTNode *s;
+	while (x != this->root && !x->is_black)
+	{
+		if (x == x->parent->left_child)
+		{
+			s = x->parent->right_child;
+			if (!s->is_black)
+			{
+				s->is_black = false;
+				x->parent->is_black = true;
+				left_rotate(x->parent);
+				s = x->parent->right_child;
+			}
+
+			if (!s->left_child->is_black && !s->right_child->is_black)
+			{
+				s->is_black = true;
+				x = x->parent;
+			}
+			else
+			{
+				if (!s->right_child->is_black)
+				{
+					s->left_child->is_black = false;
+					s->is_black = true;
+					right_rotate(s);
+					s = x->parent->right_child;
+				}
+
+				s->is_black = x->parent->is_black;
+				x->parent->is_black = false;
+				s->right_child->is_black = false;
+				left_rotate(x->parent);
+				x = root;
+			}
+		}
+		else
+		{
+			s = x->parent->left_child;
+			if (s->is_black)
+			{
+				s->is_black = false;
+				x->parent->is_black = true;
+				right_rotate(x->parent);
+				s = x->parent->left_child;
+			}
+
+			if (!s->right_child->is_black && !s->right_child->is_black)
+			{
+				s->is_black = true;
+				x = x->parent;
+			}
+			else
+			{
+				if (!s->left_child->is_black)
+				{
+					s->right_child->is_black = false;
+					s->is_black = true;
+					left_rotate(s);
+					s = x->parent->left_child;
+				}
+
+				s->is_black = x->parent->is_black;
+				x->parent->is_black = false;
+				s->left_child->is_black = false;
+				right_rotate(x->parent);
+				x = root;
+			}
+		}
+	}
+	x->is_black = true;
+}
+
+RBTNode *minimum(RBTNode *node)
+{
+	while (node->left_child != NULL)
+	{
+		node = node->left_child;
+	}
+	return node;
+}
+
+void RedBlackTree::rbTransplant(RBTNode *u, RBTNode *v)
+{
+	if (u->parent == nullptr)
+	{
+		this->root = v;
+	}
+	else if (u == u->parent->left_child)
+	{
+		u->parent->left_child = v;
+	}
+	else
+	{
+		u->parent->right_child = v;
+	}
+	v->parent = u->parent;
+}
+
 void RedBlackTree::delete_node(int key)
 {
-	RBTNode *nodeToBeDeleted = this->search(key);
+	RBTNode *z;
 	RBTNode *x;
 	RBTNode *y;
-	int originalColor = nodeToBeDeleted->is_black;
 
-	if (!nodeToBeDeleted)
-		return ;
-	if (nodeToBeDeleted == this->root && !nodeToBeDeleted->right_child && !nodeToBeDeleted->left_child) {
-		delete nodeToBeDeleted;
-		this->root = NULL;
+	z = search(key);
+
+	y = z;
+	int y_original_color = y->is_black;
+	if (z->left_child == NULL)
+	{
+		x = z->right_child;
+		rbTransplant(z, z->right_child);
 	}
-	else if (!nodeToBeDeleted->left_child) {
-		if (!nodeToBeDeleted->right_child) {
-			if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
-				nodeToBeDeleted->parent->right_child = NULL;
-			else
-				nodeToBeDeleted->parent->left_child = NULL;
-			delete nodeToBeDeleted;
-			return;
-		}
-		x = nodeToBeDeleted->right_child;
-		x->parent = nodeToBeDeleted->parent;
-		if (!nodeToBeDeleted->parent)
-			this->root = x;
-		else if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
-			nodeToBeDeleted->parent->right_child = x;
-		else
-			nodeToBeDeleted->parent->left_child = x;
-		delete nodeToBeDeleted;
-	} else if (!nodeToBeDeleted->right_child) {
-		x = nodeToBeDeleted->left_child;
-		x->parent = nodeToBeDeleted->parent;
-		if (!nodeToBeDeleted->parent)
-			this->root = x;
-		else if (nodeToBeDeleted->parent->right_child == nodeToBeDeleted)
-			nodeToBeDeleted->parent->right_child = x;
-		else
-			nodeToBeDeleted->parent->left_child = x;
-		delete nodeToBeDeleted;
-	} else {
-		y = minimum_value(nodeToBeDeleted->right_child);
-		originalColor = y->is_black;
+	else if (z->right_child == NULL)
+	{
+		x = z->left_child;
+		rbTransplant(z, z->left_child);
+	}
+	else
+	{
+		y = minimum(z->right_child);
+		y_original_color = y->is_black;
 		x = y->right_child;
-		if (y->parent == nodeToBeDeleted) {
+		if (y->parent == z)
+		{
 			x->parent = y;
-			y->left_child = x;
-		} else {
-			
 		}
-		
+		else
+		{
+			rbTransplant(y, y->right_child);
+			y->right_child = z->right_child;
+			y->right_child->parent = y;
+		}
+
+		rbTransplant(z, y);
+		y->left_child = z->left_child;
+		y->left_child->parent = y;
+		y->is_black = z->is_black;
+	}
+	delete z;
+	if (y_original_color == 0)
+	{
+		deleteFix(x);
 	}
 }
 
