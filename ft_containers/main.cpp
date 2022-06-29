@@ -6,11 +6,11 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 18:29:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/29 11:24:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
+#include "containers/vector.hpp"
 #include <unistd.h>
 #include <time.h>
 #include <vector>
@@ -21,7 +21,7 @@ template <typename T>
 void showVector(ft::vector<T> &vect)
 {
 	int i = -1;
-	unsigned int size = vect.size();
+	T size = vect.size();
 	std::cout << "[ ";
 
 	while (++i < size)
@@ -98,12 +98,12 @@ void cmp(const TESTED_NAMESPACE::vector<T, Alloc> &lhs, const TESTED_NAMESPACE::
 	std::cout << "gt: " << (lhs > rhs) << " | ge: " << (lhs >= rhs) << std::endl;
 }
 
-int main(void)
+int		main(void)
 {
 	const int size = 5;
 	TESTED_NAMESPACE::vector<TESTED_TYPE> vct(size);
 	TESTED_NAMESPACE::vector<TESTED_TYPE>::reverse_iterator it = vct.rbegin();
-	TESTED_NAMESPACE::vector<TESTED_TYPE>::const_reverse_iterator ite = vct.rbegin();
+	TESTED_NAMESPACE::vector<TESTED_TYPE>::reverse_iterator ite = vct.rbegin();
 
 	for (int i = 0; i < size; ++i)
 		it[i] = (size - i) * 5;
@@ -111,6 +111,7 @@ int main(void)
 	it = it + 5;
 	it = 1 + it;
 	it = it - 4;
+
 	std::cout << *(it += 2) << std::endl;
 	std::cout << *(it -= 1) << std::endl;
 
@@ -126,3 +127,4 @@ int main(void)
 	printSize(vct, true);
 	return (0);
 }
+

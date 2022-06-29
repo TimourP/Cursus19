@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 18:59:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/29 11:54:01 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace ft
 		std::cout << toprint << std::endl;
 	}
 
-	template <class T, class Allocator = std::allocator<T>>
+	template <class T, class Allocator = std::allocator<T> >
 	class vector
 	{
 
@@ -85,9 +85,9 @@ namespace ft
 		vector(const vector &x)
 			: _alloc(x._alloc), _size(0)
 		{
-			iterator begin = x.begin();
-			iterator end = x.end();
-			for (iterator i = begin; i != end; i++)
+			const_iterator begin = x.begin();
+			const_iterator end = x.end();
+			for (const_iterator i = begin; i != end; i++)
 				this->_size++;
 			int i = 0;
 			this->_data = this->_alloc.allocate(this->_size);
@@ -105,9 +105,9 @@ namespace ft
 			this->clear();
 			if (this->_data)
 				this->_alloc.deallocate(this->_data, this->_capacity);
-			iterator begin = rhs.begin();
-			iterator end = rhs.end();
-			for (iterator i = begin; i != end; i++)
+			const_iterator begin = rhs.begin();
+			const_iterator end = rhs.end();
+			for (const_iterator i = begin; i != end; i++)
 				this->_size++;
 			int i = 0;
 			this->_data = this->_alloc.allocate(this->_size);
@@ -127,43 +127,36 @@ namespace ft
 			this->_alloc.deallocate(this->_data, this->_capacity);
 		};
 
-		iterator begin(void) const
+		iterator begin(void)
 		{
 			return iterator(this->_data);
 		};
 
-		const_iterator cbegin(void) const
+		const_iterator begin(void) const
 		{
 			return const_iterator(this->_data);
 		};
 
-		iterator end(void) const
+		iterator end(void) 
 		{
 			return iterator(this->_data + this->_size);
 		};
-		const_iterator cend(void) const
+
+		const_iterator end(void) const
 		{
 			return const_iterator(this->_data + this->_size);
 		};
-
+		
 		reverse_iterator rbegin(void) const
 		{
-			return reverse_iterator(this->_data);
-		};
-
-		const_reverse_iterator crbegin(void) const
-		{
-			return const_reverse_iterator(this->_data);
+			return reverse_iterator(this->_data + this->_size);
 		};
 
 		reverse_iterator rend(void) const
 		{
-			return reverse_iterator(this->_data + this->_size);
+			return reverse_iterator(this->_data);
 		};
-		const_reverse_iterator crend(void) const
-		{
-			return const_reverse_iterator(this->_data + this->_size);
-		};
+		
 
 		// Returns the number of elements in the vector.
 		// Constant complexity because get size attribute

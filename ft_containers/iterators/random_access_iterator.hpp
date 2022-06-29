@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:00:26 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 17:56:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/29 11:53:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ namespace ft
 
 		random_access_iterator operator+(difference_type n) const
 		{
-			return random_access_iterator(this->p + n);
+			return this->p + n;
 		}
 
 		random_access_iterator operator-(difference_type n) const
 		{
-			return random_access_iterator(this->p - n);
+			return this->p - n;
 		}
 
 		random_access_iterator &operator++(void)
@@ -171,7 +171,7 @@ namespace ft
 		const ft::random_access_iterator<Iterator> &lhs,
 		const ft::random_access_iterator<Iterator2> &rhs)
 	{
-		return (lhs.base() - rhs.base());
+		return lhs.base() - rhs.base();
 	};
 }
 

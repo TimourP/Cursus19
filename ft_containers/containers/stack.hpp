@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:32:59 by Tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 19:00:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/29 09:57:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace ft
 {
-	template <class T, class Container = ft::vector<T>>
+	template <class T, class Container = ft::vector<T> >
 	class stack
 	{
 	public:
