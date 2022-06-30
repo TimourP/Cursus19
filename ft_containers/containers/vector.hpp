@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/29 11:54:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/30 15:42:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ namespace ft
 	{
 
 	public:
-		typedef T value_type;
-		typedef Allocator allocator_type;
-		typedef typename allocator_type::reference reference;
-		typedef typename allocator_type::const_reference const_reference;
-		typedef typename allocator_type::pointer pointer;
-		typedef ft::random_access_iterator<T> iterator;
-		typedef ft::random_access_iterator<const T> const_iterator;
-		typedef ft::reverse_iterator<iterator> reverse_iterator;
-		typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
-		typedef int difference_type;
-		typedef size_t size_type;
+		typedef T											value_type;
+		typedef Allocator									allocator_type;
+		typedef typename allocator_type::reference			reference;
+		typedef typename allocator_type::const_reference	const_reference;
+		typedef typename allocator_type::pointer			pointer;
+		typedef ft::random_access_iterator<T>				iterator;
+		typedef ft::random_access_iterator<const T>			const_iterator;
+		typedef ft::reverse_iterator<iterator>				reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+		typedef int											difference_type;
+		typedef size_t										size_type;
 
 	public:
 		// empty constructor if allocator type is not given

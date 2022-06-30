@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:32:59 by Tpetit            #+#    #+#             */
-/*   Updated: 2022/06/29 09:57:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/30 15:42:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ namespace ft
 	class stack
 	{
 	public:
-		typedef T value_type;
-		typedef Container container_type;
-		typedef size_t size_type;
+		typedef T			value_type;
+		typedef Container	container_type;
+		typedef size_t		size_type;
 
 	protected:
 		container_type c;

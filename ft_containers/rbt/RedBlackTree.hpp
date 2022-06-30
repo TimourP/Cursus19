@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/29 14:36:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/06/30 16:53:54 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,38 +156,13 @@ namespace ft
 	const std::string reset("\033[0m");
 
 	template <class Key, class T>
-	void printRBTRec(const std::string &prefix, const Node<Key, T> *node, bool isLeft)
-	{
-		if (node != nullptr)
-		{
-			std::cout << prefix;
-
-			std::cout << (isLeft ? "├──" : "└──");
-
-			// print the value of the node
-			if (node->color == BLACK)
-				std::cout << node->value.first << std::endl;
-			else
-				std::cout << red << node->value.first << reset << std::endl;
-
-			// enter the next tree level - left and right branch
-			printRBTRec(prefix + (isLeft ? "│   " : "    "), node->right, true);
-			printRBTRec(prefix + (isLeft ? "│   " : "    "), node->left, false);
-		}
-		else
-		{
-			std::cout << prefix;
-			std::cout << (isLeft ? "├──" : "└──");
-			std::cout << std::endl;
-		}
-	}
-
-	template <class Key, class T>
 	class RBTree
 	{
 		typedef Node<const Key, T> node_type;
+		typedef size_t										size_type;
 
-		node_type *root;
+		node_type *root;	
+		node_type *end;
 
 		// left rotates the given node
 		void leftRotate(node_type *x)
@@ -334,6 +309,46 @@ namespace ft
 				return x->right;
 		}
 
+		 node_type * swapValues(node_type *u, node_type *v) {
+
+			node_type *newV = new node_type(u->value);
+			newV->left = v->left;
+			if (newV->left)
+				newV->left->parent = newV;
+			newV->right = v->right;
+			if (newV->right)
+				newV->right->parent = newV;
+			newV->color = v->color;
+			newV->parent = v->parent;
+			if (newV->parent && v->isOnLeft())
+				v->parent->left = newV;
+			else if (newV->parent)
+				v->parent->right = newV;
+
+			node_type *newU = new node_type(v->value);
+			newU->left = u->left;
+			if (newU->left)
+				newU->left->parent = newU;
+			newU->right = u->right;
+			if (newU->right)
+				newU->right->parent = newU;
+			newU->color = u->color;
+			newU->parent = u->parent;
+			if (newU->parent && u->isOnLeft())
+				u->parent->left = newU;
+			else if (newU->parent)
+				u->parent->right = newU;
+
+			if (v == root)
+				root = newV;
+			if (u == root)
+				root = newU;
+			
+			delete u;
+			delete v;
+			return newU;
+		}
+
 		// deletes the given node
 		void deleteNode(node_type *v)
 		{
@@ -387,11 +402,10 @@ namespace ft
 				if (v == root)
 				{
 					// v is root, assign the value of u to v, and delete u
-					node_type *newNode = new node_type(v->value);
-					newNode->color = u->color;
 					delete v;
-					delete u;
-					v = newNode;
+					root = u;
+					root->parent = NULL;
+					root->color = BLACK;
 				}
 				else
 				{
@@ -421,8 +435,7 @@ namespace ft
 			}
 
 			// v has 2 children, swap values with successor and recurse
-			//swapValues(u, v);
-			deleteNode(u);
+			deleteNode(swapValues(u, v));
 		}
 
 		void fixDoubleBlack(node_type *x)
@@ -511,30 +524,83 @@ namespace ft
 			}
 		}
 
+		node_type *max_node(void) {
+			node_type *tmp = root;
+
+			while (tmp->right)
+				tmp = tmp->right;
+			return tmp;
+		}
+
+		void printRBTRec(const std::string &prefix, node_type *node, bool isLeft) const
+		{
+			if (node != nullptr && node != end)
+			{
+				std::cout << prefix;
+
+				std::cout << (isLeft ? "├──" : "└──");
+
+				// print the value of the node
+				if (node->color == BLACK)
+					std::cout << node->value.first << std::endl;
+				else
+					std::cout << red << node->value.first << reset << std::endl;
+
+				// enter the next tree level - left and right branch
+				printRBTRec(prefix + (isLeft ? "│   " : "    "), node->right, true);
+				printRBTRec(prefix + (isLeft ? "│   " : "    "), node->left, false);
+			}
+			else if (node != end)
+			{
+				std::cout << prefix;
+				std::cout << (isLeft ? "├──" : "└──");
+				std::cout << std::endl;
+			} else
+			{
+				std::cout << prefix;
+
+				std::cout << (isLeft ? "├──" : "└──");
+
+				// print the value of the node
+				std::cout << red << " end" << reset << std::endl;
+			}
+			
+		}
+
 	public:
-		// constructor
 		// initialize root
 		typedef pair<const Key, T> value_type;
-		RBTree() { root = NULL; }
 
-		node_type *getRoot() { return root; }
+		RBTree() {
+			root = NULL;
+			ft::pair<int, int> p;
+			end = new node_type(p);
+		}
 
-		void print(void)
+		node_type *getRoot() {
+			return root;
+		}
+
+		void print(void) const
 		{
-			printRBTRec("", this->root, false);
+			printRBTRec("", root, false);
 		};
+
+		bool empty(void) const {
+			return !this->root;
+		}	
 
 		// searches for given value
 		// if found returns the node (used for delete)
 		// else returns the last node while traversing (used in insert)
-		node_type *search(Key n)
+		node_type *search(Key n) const
 		{
 			node_type *temp = root;
 			while (temp != NULL)
 			{
 				if (n < temp->value.first)
 				{
-					if (temp->left == NULL)
+					if (temp->left == NULL || temp->left == end)
 						break;
 					else
 						temp = temp->left;
@@ -545,7 +611,7 @@ namespace ft
 				}
 				else
 				{
-					if (temp->right == NULL)
+					if (temp->right == NULL || temp->right == end)
 						break;
 					else
 						temp = temp->right;
@@ -591,6 +657,12 @@ namespace ft
 				// fix red red voilaton if exists
 				fixRedRed(newNode);
 			}
+
+			node_type *max_n = max_node();
+			if (newNode == max_n) {
+				newNode->right = end;
+				end->parent = newNode;
+			}
 		}
 
 		// utility function that deletes the node with given value
@@ -604,7 +676,6 @@ namespace ft
 
 			if (v->value.first != n)
 			{
-				std::cout << "No node found to delete with value:" << n << std::endl;
 				return;
 			}
 
