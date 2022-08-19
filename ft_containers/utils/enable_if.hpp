@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:00:39 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/23 11:09:59 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:32:10 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ namespace ft
 
 	template <>
 	struct is_integral<char> : public is_integral_struct<true, char> {};
-
-	template <>
-	struct is_integral<char16_t> : public is_integral_struct<true, char16_t> {};
-
-	template <>
-	struct is_integral<char32_t> : public is_integral_struct<true, char32_t> {};
 
 	template <>
 	struct is_integral<wchar_t> : public is_integral_struct<true, wchar_t> {};

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/30 16:53:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -534,7 +534,7 @@ namespace ft
 
 		void printRBTRec(const std::string &prefix, node_type *node, bool isLeft) const
 		{
-			if (node != nullptr && node != end)
+			if (node != NULL && node != end)
 			{
 				std::cout << prefix;
 

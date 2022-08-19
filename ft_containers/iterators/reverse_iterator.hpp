@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:13:31 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/29 11:46:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ namespace ft
 		Iterator it;
 
 	public:
-		reverse_iterator(void) : it(nullptr){};
+		reverse_iterator(void) : it(NULL){};
 
 		explicit reverse_iterator(iterator_type it) : it(it){};
 

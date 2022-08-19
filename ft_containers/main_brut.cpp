@@ -6,19 +6,17 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:26:27 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/25 18:57:16 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:29:20 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rbt/NewRedBlack.hpp"
-#include "rbt/BinaryTree.hpp"
+#include "rbt/RedBlackTree.hpp"
 #include <unistd.h>
 #include <time.h>
 
 int main(void)
 {
-	RedBlackTree rbt;
-	BinaryTree bt;
+	RBTree rbt;
 
 	srand(time(NULL));
 

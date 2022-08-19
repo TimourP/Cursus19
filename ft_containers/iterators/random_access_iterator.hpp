@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:00:26 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/29 11:53:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ namespace ft
 		pointer p;
 
 	public:
-		random_access_iterator(void) : p(nullptr){};
+		random_access_iterator(void) : p(NULL){};
 		random_access_iterator(pointer p) : p(p){};
 		explicit random_access_iterator(iterator_type it) : p(it.p){};
 		~random_access_iterator(){};

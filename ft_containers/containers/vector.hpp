@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/30 15:42:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace ft
 	public:
 		// empty constructor if allocator type is not given
 		explicit vector(const allocator_type &alloc = allocator_type())
-			: _alloc(alloc), _size(0), _capacity(0), _data(nullptr){};
+			: _alloc(alloc), _size(0), _capacity(0), _data(NULL){};
 
 		explicit vector(size_type n, const value_type &val = value_type(),
 						const allocator_type &alloc = allocator_type())
@@ -66,7 +66,7 @@ namespace ft
 
 		template <class InputIterator>
 		vector(InputIterator first, InputIterator last,
-			   const allocator_type &alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = nullptr)
+			   const allocator_type &alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 			: _alloc(alloc), _size(0)
 		{
 			for (InputIterator i = first; i != last; i++)
@@ -285,7 +285,7 @@ namespace ft
 
 		// Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
 		template <class InputIterator>
-		void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = nullptr)
+		void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 		{
 			size_type size = 0;
 			for (InputIterator i = first; i != last; i++)
@@ -400,7 +400,7 @@ namespace ft
 		};
 
 		template <class InputIterator>
-		void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = nullptr)
+		void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 		{
 			size_type i = iterator_distance(this->begin(), position);
 			size_type count_to_ins = iterator_distance(first, last);
