@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redBlackTreeMain.cpp                               :+:      :+:    :+:   */
+/*   less.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 14:53:48 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 12:36:10 by tpetit           ###   ########.fr       */
+/*   Created: 2022/08/20 12:02:32 by tpetit            #+#    #+#             */
+/*   Updated: 2022/08/20 12:45:24 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RedBlackTree.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <time.h>
 
-int main(void)
+#ifndef LESS_H
+# define LESS_H
+
+namespace ft
 {
-	ft::RBTree<int, int> rbt;
-
-	srand(time(NULL));
-
-	for (size_t i = 0; i < 1000; i++)
+	template <class Arg1, class Arg2, class Result>
+	struct binary_function
 	{
-		ft::pair<int, int> p(rand() % 1000 + 1, 3);
-		rbt.insert(p);
-	}
-	rbt.print();
-	for (size_t i = 0; i < 1000; i++)
+		typedef Arg1	first_argument_type;
+		typedef Arg2	second_argument_type;
+		typedef Result	result_type;
+	};
+	
+	template <class T>
+	struct less : public binary_function<T, T, bool>
 	{
-		rbt.deleteByKey(i);
-	}
-	rbt.print();
+		bool operator()(const T& x, const T& y) const { return x < y; }
+	};
 }
+
+#endif

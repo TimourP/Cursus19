@@ -6,12 +6,12 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/06/30 16:29:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 12:03:31 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef MAP_H
+#define MAP_H
 
 #include <string>
 #include <iostream>
@@ -117,4 +117,4 @@ namespace ft
 	};
 }
 
-#endif // VECTOR_H
+#endif // MAP_H

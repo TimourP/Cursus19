@@ -6,12 +6,12 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:32:59 by Tpetit            #+#    #+#             */
-/*   Updated: 2022/06/30 15:42:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 12:03:44 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-#define MAP_H
+#ifndef STACK_H
+#define STACK_H
 
 #include "vector.hpp"
 
@@ -120,4 +120,4 @@ namespace ft
 	};
 }
 
-#endif // MAP_H
+#endif // STACK_H

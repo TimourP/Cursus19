@@ -6,15 +6,20 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 12:45:57 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "RBTNode.hpp"
+#include "../utils/less.hpp"
+#include <memory>
+
+#ifndef RED_BLACK_TREE_H
+# define RED_BLACK_TREE_H
 
 namespace ft 
 {
-
 	template <class T1, class T2>
 	class pair
 	{
@@ -62,104 +67,129 @@ namespace ft
 	bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
 	{ return !(lhs<rhs); }
 
-	enum COLOR
-	{
-		RED,
-		BLACK
-	};
-
-	template <class Key, class T>
-	class Node
-	{
-	public:
-		typedef pair<const Key, T> value_type;
-
-		value_type value;
-		COLOR color;
-		Node *left, *right, *parent;
-
-		Node(const Key& key, const T& val) : value(key, val)
-		{
-			parent = left = right = NULL;
-
-			// Node is created during insertion
-			// Node is red at insertion
-			color = RED;
-		}
-
-		Node(const value_type& val) : value(val)
-		{
-			parent = left = right = NULL;
-
-			// Node is created during insertion
-			// Node is red at insertion
-			color = RED;
-		}
-
-		// returns pointer to uncle
-		Node *uncle()
-		{
-			// If no parent or grandparent, then no uncle
-			if (parent == NULL or parent->parent == NULL)
-				return NULL;
-
-			if (parent->isOnLeft())
-				// uncle on right
-				return parent->parent->right;
-			else
-				// uncle on left
-				return parent->parent->left;
-		}
-
-		// check if node is left child of parent
-		bool isOnLeft() { return this == parent->left; }
-
-		// returns pointer to sibling
-		Node *sibling()
-		{
-			// sibling null if no parent
-			if (parent == NULL)
-				return NULL;
-
-			if (isOnLeft())
-				return parent->right;
-
-			return parent->left;
-		}
-
-		// moves node down and moves given node in its place
-		void moveDown(Node *nParent)
-		{
-			if (parent != NULL)
-			{
-				if (isOnLeft())
-				{
-					parent->left = nParent;
-				}
-				else
-				{
-					parent->right = nParent;
-				}
-			}
-			nParent->parent = parent;
-			parent = nParent;
-		}
-
-		bool hasRedChild()
-		{
-			return (left != NULL and left->color == RED) or
-				(right != NULL and right->color == RED);
-		}
-	};
-
 	const std::string red("\033[0;31m");
 	const std::string reset("\033[0m");
 
-	template <class Key, class T>
+	template <class Key, class T, class Alloc = std::allocator<T>, class Compare = ft::less<T> >
 	class RBTree
 	{
-		typedef Node<const Key, T> node_type;
-		typedef size_t										size_type;
+	public:
+		typedef ft::pair<Key, T> value_type;
+		typedef RBTNode<value_type, Compare> node_type;
+		typedef size_t size_type;
+
+		RBTree() {
+			root = NULL;
+			ft::pair<int, int> p;
+			end = new node_type(p);
+		}
+
+		node_type *getRoot() {
+			return root;
+		}
+
+		void print(void) const
+		{
+			printRBTRec("", root, false);
+		};
+
+		bool empty(void) const {
+			return !this->root;
+		}	
+
+		// searches for given value
+		// if found returns the node (used for delete)
+		// else returns the last node while traversing (used in insert)
+		node_type *search(Key n) const
+		{
+			node_type *temp = root;
+			while (temp != NULL)
+			{
+				if (n < temp->value.first)
+				{
+					if (temp->left == NULL || temp->left == end)
+						break;
+					else
+						temp = temp->left;
+				}
+				else if (n == temp->value.first)
+				{
+					break;
+				}
+				else
+				{
+					if (temp->right == NULL || temp->right == end)
+						break;
+					else
+						temp = temp->right;
+				}
+			}
+
+			return temp;
+		}
+
+		// inserts the given value to tree
+		void insert(value_type n)
+		{
+			node_type *newNode = new node_type(n);
+
+			if (root == NULL)
+			{
+				// when root is null
+				// simply insert value at root
+				newNode->color = BLACK;
+				root = newNode;
+			}
+			else
+			{
+				node_type *temp = search(n.first);
+
+				if (temp->value == n)
+				{
+					// return if value already exists
+					return;
+				}
+
+				// if value is not found, search returns the node
+				// where the value is to be inserted
+
+				// connect new node to correct node
+				newNode->parent = temp;
+
+				if (n < temp->value)
+					temp->left = newNode;
+				else
+					temp->right = newNode;
+
+				// fix red red voilaton if exists
+				fixRedRed(newNode);
+			}
+
+			node_type *max_n = max_node();
+			if (newNode == max_n) {
+				newNode->right = end;
+				end->parent = newNode;
+			}
+		}
+
+		// utility function that deletes the node with given value
+		void deleteByKey(Key n)
+		{
+			if (root == NULL)
+				// Tree is empty
+				return;
+
+			node_type *v = search(n);
+
+			if (v->value.first != n)
+			{
+				return;
+			}
+
+			deleteNode(v);
+		}
+		
+	private:
 
 		node_type *root;	
 		node_type *end;
@@ -435,7 +465,25 @@ namespace ft
 			}
 
 			// v has 2 children, swap values with successor and recurse
-			deleteNode(swapValues(u, v));
+			
+			node_type *tmp_v_parent = v->parent;
+			node_type *tmp_v_left = v->left;
+			node_type *tmp_v_right = v->right;
+			
+			v->parent = u->parent;
+			v->left = u->left;
+			v->right = u->right;
+			
+			u->parent = tmp_v_parent;
+			u->left = tmp_v_left;
+			u->right = tmp_v_right;
+			
+			if (u->parent == NULL)
+				root = u;
+			if (v->parent == NULL)
+				root = v;
+			
+			deleteNode(v);
 		}
 
 		void fixDoubleBlack(node_type *x)
@@ -567,119 +615,8 @@ namespace ft
 			
 		}
 
-	public:
-		// initialize root
-		typedef pair<const Key, T> value_type;
-
-		RBTree() {
-			root = NULL;
-			ft::pair<int, int> p;
-			end = new node_type(p);
-		}
-
-		node_type *getRoot() {
-			return root;
-		}
-
-		void print(void) const
-		{
-			printRBTRec("", root, false);
-		};
-
-		bool empty(void) const {
-			return !this->root;
-		}	
-
-		// searches for given value
-		// if found returns the node (used for delete)
-		// else returns the last node while traversing (used in insert)
-		node_type *search(Key n) const
-		{
-			node_type *temp = root;
-			while (temp != NULL)
-			{
-				if (n < temp->value.first)
-				{
-					if (temp->left == NULL || temp->left == end)
-						break;
-					else
-						temp = temp->left;
-				}
-				else if (n == temp->value.first)
-				{
-					break;
-				}
-				else
-				{
-					if (temp->right == NULL || temp->right == end)
-						break;
-					else
-						temp = temp->right;
-				}
-			}
-
-			return temp;
-		}
-
-		// inserts the given value to tree
-		void insert(value_type n)
-		{
-			node_type *newNode = new node_type(n);
-
-			if (root == NULL)
-			{
-				// when root is null
-				// simply insert value at root
-				newNode->color = BLACK;
-				root = newNode;
-			}
-			else
-			{
-				node_type *temp = search(n.first);
-
-				if (temp->value == n)
-				{
-					// return if value already exists
-					return;
-				}
-
-				// if value is not found, search returns the node
-				// where the value is to be inserted
-
-				// connect new node to correct node
-				newNode->parent = temp;
-
-				if (n < temp->value)
-					temp->left = newNode;
-				else
-					temp->right = newNode;
-
-				// fix red red voilaton if exists
-				fixRedRed(newNode);
-			}
-
-			node_type *max_n = max_node();
-			if (newNode == max_n) {
-				newNode->right = end;
-				end->parent = newNode;
-			}
-		}
-
-		// utility function that deletes the node with given value
-		void deleteByKey(Key n)
-		{
-			if (root == NULL)
-				// Tree is empty
-				return;
-
-			node_type *v = search(n);
-
-			if (v->value.first != n)
-			{
-				return;
-			}
-
-			deleteNode(v);
-		}
+	
 	};
 }
+
+#endif
