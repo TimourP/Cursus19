@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 12:45:57 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 14:03:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,74 +14,37 @@
 #include "RBTNode.hpp"
 #include "../utils/less.hpp"
 #include <memory>
+#include "Pair.hpp"
 
 #ifndef RED_BLACK_TREE_H
 # define RED_BLACK_TREE_H
 
 namespace ft 
 {
-	template <class T1, class T2>
-	class pair
-	{
-
-		public:
-			typedef T1	first_type;
-			typedef T2	second_type;
-
-			first_type first;
-			second_type second;
-
-			pair(void) : first(0), second(0) {};
-			template<class U, class V>
-			pair (const pair<U,V>& pr) : first(pr.first), second(pr.second) {};
-			pair (const first_type& a, const second_type& b): first(a), second(b) {};
-			
-	};
-
-	template <class T1, class T2>
-  	pair<T1,T2> make_pair (T1 x, T2 y) {
-		return pair<T1,T2>(x, y);
-	};
-
-	template <class T1, class T2>
-	bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return lhs.first==rhs.first && lhs.second==rhs.second; }
-
-	template <class T1, class T2>
-	bool operator!= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return !(lhs==rhs); }
-
-	template <class T1, class T2>
-	bool operator<  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return lhs.first<rhs.first || (!(rhs.first<lhs.first) && lhs.second<rhs.second); }
-
-	template <class T1, class T2>
-	bool operator<= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return !(rhs<lhs); }
-
-	template <class T1, class T2>
-	bool operator>  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return rhs<lhs; }
-
-	template <class T1, class T2>
-	bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
-	{ return !(lhs<rhs); }
-
 	const std::string red("\033[0;31m");
 	const std::string reset("\033[0m");
 
-	template <class Key, class T, class Alloc = std::allocator<T>, class Compare = ft::less<T> >
+	template <class Key, class T, class Alloc = std::allocator<ft::pair<Key, T> >, class Compare = ft::less<ft::pair<Key, T> > >
 	class RBTree
 	{
 	public:
-		typedef ft::pair<Key, T> value_type;
-		typedef RBTNode<value_type, Compare> node_type;
-		typedef size_t size_type;
+		typedef ft::pair<Key, T>									value_type;
+		typedef RBTNode<value_type, Compare>						node_type;
+		typedef typename Alloc::template rebind<node_type>::other	allocator_type;
+		typedef typename allocator_type::reference					reference;
+		typedef typename allocator_type::const_reference			const_reference;
+		typedef typename allocator_type::pointer					pointer;
+		typedef size_t												size_type;
 
-		RBTree() {
-			root = NULL;
+		RBTree() : root(NULL) {
 			ft::pair<int, int> p;
-			end = new node_type(p);
+			end = alloc.allocate(1);
+			alloc.construct(end, node_type(p));
+		}
+		
+		~RBTree() {
+			alloc.destroy(end);
+			alloc.deallocate(end, 1);
 		}
 
 		node_type *getRoot() {
@@ -124,6 +87,8 @@ namespace ft
 						temp = temp->right;
 				}
 			}
+			if (!temp)
+				return end;
 
 			return temp;
 		}
@@ -131,7 +96,8 @@ namespace ft
 		// inserts the given value to tree
 		void insert(value_type n)
 		{
-			node_type *newNode = new node_type(n);
+			node_type *newNode = alloc.allocate(1);
+			alloc.construct(newNode, node_type(n));
 
 			if (root == NULL)
 			{
@@ -191,8 +157,9 @@ namespace ft
 		
 	private:
 
-		node_type *root;	
-		node_type *end;
+		node_type		*root;	
+		node_type		*end;
+		allocator_type	alloc;
 
 		// left rotates the given node
 		void leftRotate(node_type *x)
@@ -339,46 +306,6 @@ namespace ft
 				return x->right;
 		}
 
-		 node_type * swapValues(node_type *u, node_type *v) {
-
-			node_type *newV = new node_type(u->value);
-			newV->left = v->left;
-			if (newV->left)
-				newV->left->parent = newV;
-			newV->right = v->right;
-			if (newV->right)
-				newV->right->parent = newV;
-			newV->color = v->color;
-			newV->parent = v->parent;
-			if (newV->parent && v->isOnLeft())
-				v->parent->left = newV;
-			else if (newV->parent)
-				v->parent->right = newV;
-
-			node_type *newU = new node_type(v->value);
-			newU->left = u->left;
-			if (newU->left)
-				newU->left->parent = newU;
-			newU->right = u->right;
-			if (newU->right)
-				newU->right->parent = newU;
-			newU->color = u->color;
-			newU->parent = u->parent;
-			if (newU->parent && u->isOnLeft())
-				u->parent->left = newU;
-			else if (newU->parent)
-				u->parent->right = newU;
-
-			if (v == root)
-				root = newV;
-			if (u == root)
-				root = newU;
-			
-			delete u;
-			delete v;
-			return newU;
-		}
-
 		// deletes the given node
 		void deleteNode(node_type *v)
 		{
@@ -412,7 +339,6 @@ namespace ft
 							v->sibling()->color = RED;
 					}
 
-					// delete v from the tree
 					if (v->isOnLeft())
 					{
 						parent->left = NULL;
@@ -422,7 +348,8 @@ namespace ft
 						parent->right = NULL;
 					}
 				}
-				delete v;
+				alloc.destroy(v);
+				alloc.deallocate(v, 1);
 				return;
 			}
 
@@ -431,8 +358,8 @@ namespace ft
 				// v has 1 child
 				if (v == root)
 				{
-					// v is root, assign the value of u to v, and delete u
-					delete v;
+					alloc.destroy(v);
+					alloc.deallocate(v, 1);
 					root = u;
 					root->parent = NULL;
 					root->color = BLACK;
@@ -448,7 +375,8 @@ namespace ft
 					{
 						parent->right = u;
 					}
-					delete v;
+					alloc.destroy(v);
+					alloc.deallocate(v, 1);
 					u->parent = parent;
 					if (uvBlack)
 					{

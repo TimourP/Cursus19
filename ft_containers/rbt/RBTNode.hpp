@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 12:41:10 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 13:38:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 
 		value_type value;
 		COLOR color;
-		RBTNode *left, *right, *parent;
+		pointer left, right, parent;
 
 		RBTNode(const value_type& val) : value(val)
 		{
@@ -44,6 +44,11 @@ namespace ft
 			// RBTNode is created during insertion
 			// RBTNode is red at insertion
 			color = RED;
+		}
+		
+		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent)
+		{
+			std::cout << "Copy" << std::endl;
 		}
 
 		// returns pointer to uncle
