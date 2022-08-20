@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 16:29:18 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 19:30:53 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ namespace ft
 	{
 		
 	public:
-		typedef ft::pair<Key, T> value_type;
-		typedef ft::RBTNode<Key, T, Compare> node_type;
+		typedef ft::pair<const Key, T> value_type;
+		typedef ft::RBTNode<const Key, T, Compare> node_type;
 		typedef Compare key_compare;
 		typedef node_type* pointer;
 
-		RBTNode(const value_type& val, const key_compare &compare) : value(val), compare(compare)
+		RBTNode(const value_type& val, const key_compare &compare, pointer end) : value(val), compare(compare), end(end)
 		{
 			parent = left = right = NULL;
 
@@ -44,7 +44,7 @@ namespace ft
 			color = RED;
 		}
 		
-		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent), compare(copy.compare)
+		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent), end(end), compare(copy.compare)
 		{
 		}
 
@@ -102,6 +102,54 @@ namespace ft
 			return (left != NULL and left->color == RED) || (right != NULL and right->color == RED);
 		}
 		
+		
+		pointer		iterate(void) const {
+			const node_type	*k = this;
+			node_type		*right = k->right;
+			node_type		*parent = k->parent;
+			
+			if (right)
+				return node_type::get_smallest(right);
+			while (parent && parent->right == k)
+			{
+				k = parent;
+				parent = k->parent;
+			}
+			if (parent && parent->left == k)
+				return parent;
+			return end;
+		}
+		pointer		reverse_iterate(void) const {
+			if (!parent && !left && !right)
+				return end;
+			const node_type	*k = this;
+			node_type	*left = k->left;
+			node_type	*parent = k->left;
+			if (left)
+				return node_type::get_biggest(left);
+			while (parent && parent->left == k)
+			{
+				k = parent;
+				parent = k->parent;
+			}
+			if (parent)
+				return parent;
+			return end;
+		}
+
+		static pointer		get_smallest(pointer ptr) {
+			while (ptr && ptr->left)
+				ptr = ptr->left;
+			return ptr;
+		}
+		
+		static pointer		get_biggest(pointer ptr) {
+			while (ptr && ptr->right)
+				ptr = ptr->right;
+			return ptr;
+		}
+		
+		
 		bool	operator==(node_type const &rhs) const {
 			return !compare(value.first, rhs.value.first) && !compare(rhs.value.first, value.first);
 		}
@@ -128,7 +176,7 @@ namespace ft
 
 		value_type value;
 		COLOR color;
-		pointer left, right, parent;
+		pointer left, right, parent, end;
 		key_compare compare;
 		
 	};

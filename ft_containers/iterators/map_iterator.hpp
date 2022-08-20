@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 11:27:42 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 12:11:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 19:42:45 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,165 +15,91 @@
 
 #include <iostream>
 #include "iterator_traits.hpp"
+#include "../rbt/RBTNode.hpp"
 #include "../utils/less.hpp"
 
 namespace ft
 {
-	template <class T, class Compare = ft::less<T>, class Node = RBTNode<T, Compare> >
-	class random_access_iterator : public ft::iterator<ft::random_access_iterator_tag, T>
+	template <class Key, class T, class Compare = less<T> >
+	class map_iterator
 	{
 
 	public:
-		typedef ft::iterator<ft::random_access_iterator_tag, T> iterator_type;
-		typedef typename ft::iterator<ft::random_access_iterator_tag, T>::iterator_category iterator_category;
-		typedef typename ft::iterator<ft::random_access_iterator_tag, T>::value_type value_type;
-		typedef typename ft::iterator<ft::random_access_iterator_tag, T>::difference_type difference_type;
-		typedef typename ft::iterator<ft::random_access_iterator_tag, T>::pointer pointer;
-		typedef typename ft::iterator<ft::random_access_iterator_tag, T>::reference reference;
+		typedef RBTNode<Key, T, Compare>				Node;
+		typedef pair<Key, T>							value_type;
+		typedef pair<Key, T>&							reference;
+		typedef pair<Key, T>*							pointer;
+		typedef Node*									node_pointer;
+		typedef map_iterator<Key, T, Compare>			iterator;
 
 	protected:
-		pointer p;
+		node_pointer p;
 
 	public:
-		random_access_iterator(void) : p(NULL){};
-		random_access_iterator(pointer p) : p(p){};
-		explicit random_access_iterator(iterator_type it) : p(it.p){};
-		~random_access_iterator(){};
-
-		pointer base(void) const
-		{
+		map_iterator(void) {}
+		map_iterator(map_iterator const &copy) : p(copy.p) {}
+		map_iterator(node_pointer ptr) : p(ptr) {}
+		~map_iterator(void) {}
+		
+		operator			map_iterator<const Key, const T, Compare >() const {
+			const iterator &it = *this;
+			return reinterpret_cast<const map_iterator<const Key, const T, Compare >& >(it);
+		}
+		operator			node_pointer() const {
+			return this->p;
+		}
+		
+		node_pointer const	&base(void) const {
 			return this->p;
 		}
 
-		operator random_access_iterator<const T>() const { return this->p; };
-
-		reference operator*(void) const
-		{
-			return *this->p;
-		};
-
-		reference operator[](difference_type n) const
-		{
-			return *(this->p + n);
-		};
-
-		random_access_iterator operator+(difference_type n) const
-		{
-			return this->p + n;
-		}
-
-		random_access_iterator operator-(difference_type n) const
-		{
-			return this->p - n;
-		}
-
-		random_access_iterator &operator++(void)
-		{
-			this->p++;
+		iterator			&operator=(map_iterator const &rhs) {
+			p = rhs.p;
 			return *this;
 		}
-
-		random_access_iterator operator++(int)
-		{
-			random_access_iterator temp = *this;
-			++(*this);
-			return temp;
+		
+		reference			operator*(void) const {
+			return p->value;
 		}
-
-		random_access_iterator &operator--(void)
-		{
-			this->p--;
+		
+		pointer				operator->(void) const {
+			return &p->value;
+		}
+		
+		iterator			&operator++(void) {
+			p = p->iterate();
 			return *this;
 		}
-
-		random_access_iterator operator--(int)
-		{
-			random_access_iterator temp = *this;
-			--(*this);
-			return temp;
+		
+		iterator			operator++(int) {
+			map_iterator	tmp(*this);
+			p = p->iterate();
+			return tmp;
 		}
-
-		random_access_iterator &operator+=(difference_type n)
-		{
-			this->p += n;
-			return (*this);
-		};
-
-		random_access_iterator &operator-=(difference_type n)
-		{
-			this->p -= n;
-			return (*this);
-		};
-
-		pointer operator->() const
-		{
-			return &(operator*());
+		
+		iterator			&operator--(void) {
+			p = p->reverse_iterate();
+			return *this;
+		}
+		
+		iterator			operator--(int) {
+			map_iterator	tmp(*this);
+			p = p->reverse_iterate();
+			return tmp;
 		}
 	};
-
-	template <class Iterator, class Iterator2>
-	bool operator==(const random_access_iterator<Iterator> &lhs,
-					const random_access_iterator<Iterator2> &rhs)
+	
+	template <class Key1, class Key2, class T1, class T2, class Compare>
+	bool									operator==(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T2, Compare> &right)
 	{
-		return lhs.base() == rhs.base();
-	};
+		return left.base() == reinterpret_cast<typename map_iterator<Key1, T1, Compare>::node_pointer>(right.base());
+	}
 
-	template <class Iterator, class Iterator2>
-	bool operator!=(const random_access_iterator<Iterator> &lhs,
-					const random_access_iterator<Iterator2> &rhs)
+	template <class Key1, class Key2, class T1, class T2, class Compare>
+	bool									operator!=(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T2, Compare> &right)
 	{
-		return lhs.base() != rhs.base();
-	};
-
-	template <class Iterator, class Iterator2>
-	bool operator<(const random_access_iterator<Iterator> &lhs,
-				   const random_access_iterator<Iterator2> &rhs)
-	{
-		return lhs.base() < rhs.base();
-	};
-
-	template <class Iterator, class Iterator2>
-	bool operator<=(const random_access_iterator<Iterator> &lhs,
-					const random_access_iterator<Iterator2> &rhs)
-	{
-		return lhs.base() <= rhs.base();
-	};
-
-	template <class Iterator, class Iterator2>
-	bool operator>(const random_access_iterator<Iterator> &lhs,
-				   const random_access_iterator<Iterator2> &rhs)
-	{
-		return lhs.base() > rhs.base();
-	};
-
-	template <class Iterator, class Iterator2>
-	bool operator>=(const random_access_iterator<Iterator> &lhs,
-					const random_access_iterator<Iterator2> &rhs)
-	{
-		return lhs.base() >= rhs.base();
-	};
-
-	template <class Iterator>
-	random_access_iterator<Iterator> operator+(typename random_access_iterator<Iterator>::difference_type n,
-											   const random_access_iterator<Iterator> &it)
-	{
-		return it + n;
-	};
-
-	template <class Iterator>
-	typename random_access_iterator<Iterator>::difference_type operator-(const random_access_iterator<Iterator> &lhs,
-																		 const random_access_iterator<Iterator> &rhs)
-	{
-		return lhs.base() - rhs.base();
-	};
-
-	template <class Iterator, class Iterator2>
-	typename ft::random_access_iterator<Iterator>::difference_type operator-(
-		const ft::random_access_iterator<Iterator> &lhs,
-		const ft::random_access_iterator<Iterator2> &rhs)
-	{
-		return lhs.base() - rhs.base();
-	};
+		return !(left == right);
+	}
 }
 
 #endif //MAP_ITERATOR_H

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 17:15:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 19:22:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ namespace ft
 	class RBTree
 	{
 	public:
-		typedef ft::pair<Key, T>									value_type;
-		typedef RBTNode<Key, T, Compare>							node_type;
+		typedef ft::pair<const Key, T>								value_type;
+		typedef RBTNode<const Key, T, Compare>						node_type;
 		typedef typename Alloc::template rebind<node_type>::other	allocator_type;
 		typedef typename allocator_type::reference					reference;
 		typedef typename allocator_type::const_reference			const_reference;
@@ -40,7 +40,7 @@ namespace ft
 		RBTree(const key_compare &comp = key_compare()) : root(NULL), compare(comp) {
 			ft::pair<int, int> p;
 			end = alloc.allocate(1);
-			alloc.construct(end, node_type(p, compare));
+			alloc.construct(end, node_type(p, compare, root));
 		}
 		
 		~RBTree() {
@@ -51,6 +51,10 @@ namespace ft
 		node_type *getRoot() {
 			return root;
 		}
+		
+		node_type *getEnd(void) {
+			return end;
+		}
 
 		void print(void) const
 		{
@@ -59,14 +63,14 @@ namespace ft
 
 		bool empty(void) const {
 			return !this->root;
-		}	
+		}
 
 		// searches for given value
 		// if found returns the node (used for delete)
 		// else returns the last node while traversing (used in insert)
 		node_type *search(value_type n) const
 		{
-			node_type tmp(n, compare);
+			node_type tmp(n, compare, end);
 			node_type *temp = root;
 			while (temp != NULL)
 			{
@@ -99,8 +103,8 @@ namespace ft
 		void insert(value_type n)
 		{
 			node_type *newNode = alloc.allocate(1);
-			alloc.construct(newNode, node_type(n, compare));
-			node_type tmp(n, compare);
+			alloc.construct(newNode, node_type(n, compare, end));
+			node_type tmp(n, compare, end);
 
 			if (root == NULL)
 			{
