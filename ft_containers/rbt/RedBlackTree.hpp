@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 19:22:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 19:52:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ namespace ft
 	class RBTree
 	{
 	public:
+		typedef Key													key_type;
+		typedef T													mapped_type;
 		typedef ft::pair<const Key, T>								value_type;
 		typedef RBTNode<const Key, T, Compare>						node_type;
 		typedef typename Alloc::template rebind<node_type>::other	allocator_type;
@@ -98,6 +100,22 @@ namespace ft
 
 			return temp;
 		}
+		
+		void unAttachEnd(void) {
+			if (end->parent) {
+				if (end->isOnLeft())
+					end->parent->left = NULL;
+				else
+					end->parent->right = NULL;
+			}
+			end->parent = NULL;
+		}
+		
+		void attachEnd(void) {
+			node_type *temp = root->get_biggest(root);
+			temp->right = end;
+			end->parent = temp;
+		}
 
 		// inserts the given value to tree
 		void insert(value_type n)
@@ -105,6 +123,7 @@ namespace ft
 			node_type *newNode = alloc.allocate(1);
 			alloc.construct(newNode, node_type(n, compare, end));
 			node_type tmp(n, compare, end);
+			unAttachEnd();
 
 			if (root == NULL)
 			{
@@ -137,12 +156,7 @@ namespace ft
 				// fix red red voilaton if exists
 				fixRedRed(newNode);
 			}
-
-			node_type *max_n = max_node();
-			if (newNode == max_n && 0) {
-				newNode->right = end;
-				end->parent = newNode;
-			}
+			attachEnd();
 		}
 
 		// utility function that deletes the node with given value

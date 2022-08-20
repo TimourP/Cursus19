@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:53:48 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 17:15:55 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 19:53:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int main(void)
 {
 	
-	ft::RBTree<int, int, ft::more<int>> rbt;
+	ft::RBTree<int, int, ft::less<int>> rbt;
 
 	srand(time(NULL));
 
