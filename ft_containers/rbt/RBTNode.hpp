@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 13:38:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 16:29:18 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #ifndef RBT_NODE_H
 # define RBT_NODE_H
+
+#include "Pair.hpp"
 
 enum COLOR
 {
@@ -23,21 +25,17 @@ enum COLOR
 
 namespace ft 
 {
-	template <class T, class Compare>
+	template <class Key, class T,class Compare>
 	class RBTNode
 	{
 		
 	public:
-		typedef T value_type;
-		typedef ft::RBTNode<value_type, Compare> node_type;
-		typedef Compare value_compare;
+		typedef ft::pair<Key, T> value_type;
+		typedef ft::RBTNode<Key, T, Compare> node_type;
+		typedef Compare key_compare;
 		typedef node_type* pointer;
 
-		value_type value;
-		COLOR color;
-		pointer left, right, parent;
-
-		RBTNode(const value_type& val) : value(val)
+		RBTNode(const value_type& val, const key_compare &compare) : value(val), compare(compare)
 		{
 			parent = left = right = NULL;
 
@@ -46,16 +44,15 @@ namespace ft
 			color = RED;
 		}
 		
-		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent)
+		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent), compare(copy.compare)
 		{
-			std::cout << "Copy" << std::endl;
 		}
 
 		// returns pointer to uncle
 		pointer uncle()
 		{
 			// If no parent or grandparent, then no uncle
-			if (parent == NULL or parent->parent == NULL)
+			if (parent == NULL || parent->parent == NULL)
 				return NULL;
 
 			if (parent->isOnLeft())
@@ -102,9 +99,38 @@ namespace ft
 
 		bool hasRedChild()
 		{
-			return (left != NULL and left->color == RED) or
-				(right != NULL and right->color == RED);
+			return (left != NULL and left->color == RED) || (right != NULL and right->color == RED);
 		}
+		
+		bool	operator==(node_type const &rhs) const {
+			return !compare(value.first, rhs.value.first) && !compare(rhs.value.first, value.first);
+		}
+		
+		bool	operator!=(node_type const &rhs) const {
+			return !(*this == rhs);
+		}
+		
+		bool	operator<(node_type const &rhs) const {
+			return compare(value.first, rhs.value.first);
+		}
+		
+		bool	operator>(node_type const &rhs) const {
+			return compare(rhs.value.first, value.first);
+		}
+		
+		bool	operator<=(node_type const &rhs) const {
+			return !(this > rhs);
+		}
+		
+		bool	operator>=(node_type const &rhs) const {
+			return !(this < rhs);
+		}
+
+		value_type value;
+		COLOR color;
+		pointer left, right, parent;
+		key_compare compare;
+		
 	};
 }
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:02:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 12:45:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 16:49:06 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ namespace ft
 	struct less : public binary_function<T, T, bool>
 	{
 		bool operator()(const T& x, const T& y) const { return x < y; }
+	};
+	
+	template <class T>
+	struct more : public binary_function<T, T, bool>
+	{
+		bool operator()(const T& x, const T& y) const { return x > y; }
 	};
 }
 

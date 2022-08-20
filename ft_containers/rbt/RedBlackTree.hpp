@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 14:03:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/08/20 17:15:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,23 @@ namespace ft
 	const std::string red("\033[0;31m");
 	const std::string reset("\033[0m");
 
-	template <class Key, class T, class Alloc = std::allocator<ft::pair<Key, T> >, class Compare = ft::less<ft::pair<Key, T> > >
+	template <class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator<ft::pair<Key, T> > >
 	class RBTree
 	{
 	public:
 		typedef ft::pair<Key, T>									value_type;
-		typedef RBTNode<value_type, Compare>						node_type;
+		typedef RBTNode<Key, T, Compare>							node_type;
 		typedef typename Alloc::template rebind<node_type>::other	allocator_type;
 		typedef typename allocator_type::reference					reference;
 		typedef typename allocator_type::const_reference			const_reference;
 		typedef typename allocator_type::pointer					pointer;
+		typedef Compare												key_compare;
 		typedef size_t												size_type;
 
-		RBTree() : root(NULL) {
+		RBTree(const key_compare &comp = key_compare()) : root(NULL), compare(comp) {
 			ft::pair<int, int> p;
 			end = alloc.allocate(1);
-			alloc.construct(end, node_type(p));
+			alloc.construct(end, node_type(p, compare));
 		}
 		
 		~RBTree() {
@@ -63,19 +64,20 @@ namespace ft
 		// searches for given value
 		// if found returns the node (used for delete)
 		// else returns the last node while traversing (used in insert)
-		node_type *search(Key n) const
+		node_type *search(value_type n) const
 		{
+			node_type tmp(n, compare);
 			node_type *temp = root;
 			while (temp != NULL)
 			{
-				if (n < temp->value.first)
+				if (tmp < *temp)
 				{
 					if (temp->left == NULL || temp->left == end)
 						break;
 					else
 						temp = temp->left;
 				}
-				else if (n == temp->value.first)
+				else if (tmp == *temp)
 				{
 					break;
 				}
@@ -97,7 +99,8 @@ namespace ft
 		void insert(value_type n)
 		{
 			node_type *newNode = alloc.allocate(1);
-			alloc.construct(newNode, node_type(n));
+			alloc.construct(newNode, node_type(n, compare));
+			node_type tmp(n, compare);
 
 			if (root == NULL)
 			{
@@ -108,9 +111,9 @@ namespace ft
 			}
 			else
 			{
-				node_type *temp = search(n.first);
+				node_type *temp = search(n);
 
-				if (temp->value == n)
+				if (*temp == tmp)
 				{
 					// return if value already exists
 					return;
@@ -122,7 +125,7 @@ namespace ft
 				// connect new node to correct node
 				newNode->parent = temp;
 
-				if (n < temp->value)
+				if (*newNode < *temp)
 					temp->left = newNode;
 				else
 					temp->right = newNode;
@@ -132,14 +135,14 @@ namespace ft
 			}
 
 			node_type *max_n = max_node();
-			if (newNode == max_n) {
+			if (newNode == max_n && 0) {
 				newNode->right = end;
 				end->parent = newNode;
 			}
 		}
 
 		// utility function that deletes the node with given value
-		void deleteByKey(Key n)
+		void deleteByKey(value_type n)
 		{
 			if (root == NULL)
 				// Tree is empty
@@ -147,7 +150,7 @@ namespace ft
 
 			node_type *v = search(n);
 
-			if (v->value.first != n)
+			if (v != n)
 			{
 				return;
 			}
@@ -160,6 +163,7 @@ namespace ft
 		node_type		*root;	
 		node_type		*end;
 		allocator_type	alloc;
+		const key_compare	compare;
 
 		// left rotates the given node
 		void leftRotate(node_type *x)
@@ -312,7 +316,7 @@ namespace ft
 			node_type *u = BSTreplace(v);
 
 			// True when u and v are both black
-			bool uvBlack = ((u == NULL or u->color == BLACK) and (v->color == BLACK));
+			bool uvBlack = ((u == NULL || u->color == BLACK) and (v->color == BLACK));
 			node_type *parent = v->parent;
 
 			if (u == NULL)
@@ -353,7 +357,7 @@ namespace ft
 				return;
 			}
 
-			if (v->left == NULL or v->right == NULL)
+			if (v->left == NULL || v->right == NULL)
 			{
 				// v has 1 child
 				if (v == root)
