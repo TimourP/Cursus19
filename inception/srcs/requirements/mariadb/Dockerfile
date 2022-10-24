@@ -13,4 +13,4 @@ RUN apt-get install -y net-tools telnet
 # copy config who will be use by CMD
 COPY tools/config.sh /tmp
 
-CMD ["sh", "/tmp/config.sh"]
+ENTRYPOINT ["sh", "/tmp/config.sh"]

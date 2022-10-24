@@ -19,4 +19,3 @@ GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%.%.%.%' IDEN
 FLUSH PRIVILEGES;"
 
 # sleep in order to allow me to open shell inside of this container
-sleep infinity
