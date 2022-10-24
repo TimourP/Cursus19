@@ -15,11 +15,13 @@ sleep 2
 # it will create user if not exist and identified it with password
 
 mysql -e "\
-ALTER USER 'root'@'%' IDENTIFIED BY '$WP_DATABASE_PWD';
 CREATE USER '$WP_DATABASE_USR'@'%' IDENTIFIED BY '$WP_DATABASE_PWD';
 CREATE DATABASE IF NOT EXISTS $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
 GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%';
 FLUSH PRIVILEGES;"
+
+mysql -e "\
+ALTER USER 'root'@'%' IDENTIFIED BY '$WP_DATABASE_PWD';"
 
 # mysqladmin -u root password $WP_DATABASE_NAME;
 
