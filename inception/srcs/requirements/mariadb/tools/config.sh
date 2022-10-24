@@ -13,8 +13,9 @@ sleep 2
 # use -e flag in order to pass param
 # create database with database_name if not exist and grant privileges to database user
 # it will create user if not exist and identified it with password
+mysqladmin -u root password $WP_DATABASE_NAME;
+
 mysql -e "\
-ALTER USER 'root'@'localhost' IDENTIFIED BY '$WP_DATABASE_NAME';
 CREATE DATABASE IF NOT EXISTS $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
 GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%.%.%.%' IDENTIFIED BY '$WP_DATABASE_PWD';
 FLUSH PRIVILEGES;"
