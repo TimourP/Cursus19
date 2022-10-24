@@ -14,7 +14,10 @@ clean: stop
 fclean: clean
 	@ docker system prune --volumes -fa
 
-run: 
+run:
+	@ mkdir /home/tpetit/data
+	@ mkdir /home/tpetit/data/wordpress
+	@ mkdir /home/tpetit/data/database
 	@ docker compose -f srcs/docker-compose.yml up --build
 
 .PHONY: linux stop clean run all

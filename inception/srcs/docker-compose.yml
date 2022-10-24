@@ -61,5 +61,15 @@ networks:
 
 volumes:
   html_data:
+    driver: local
+      driver_opts:
+      device: /home/tpetit/data/wordpress
+      type: volume
+      o: bind
 
   mysql_data:
+    driver: local
+    driver_opts:
+      device: /home/tpetit/data/database
+      type: volume
+      o: bind
