@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # install mariadb packages
-RUN apt-get install -y mariadb-server mariadb-client
+RUN apt-get install -y mariadb-server
 
 # just tools to debug
 RUN apt-get install -y net-tools telnet
