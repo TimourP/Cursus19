@@ -30,3 +30,5 @@ fi
 
 # sleep in order to allow me to open shell inside of this container
 service mysql start --datadir=/var/lib/mysql
+service mysql stop --datadir=/var/lib/mysql
+mysqld_safe --datadir=/var/lib/mysql
