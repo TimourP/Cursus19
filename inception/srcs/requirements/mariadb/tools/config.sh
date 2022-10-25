@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
+if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
     # setup mysql config file in order to acces it remotely
     sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
