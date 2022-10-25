@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
+if [ ! -d /var/lib/mysql/opefij ]; then
     # setup mysql config file in order to acces it remotely
     sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -29,7 +29,5 @@ if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
 fi
 
 # sleep in order to allow me to open shell inside of this container
-service mysql start --datadir=/var/lib/mysql
-service mysql stop --datadir=/var/lib/mysql
-mysqladmin -u root password $WP_DATABASE_PWD;
+
 mysqld_safe --datadir=/var/lib/mysql
