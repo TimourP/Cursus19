@@ -29,4 +29,4 @@ if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
 fi
 
 # sleep in order to allow me to open shell inside of this container
-mysqld_safe --datadir=/var/lib/mysql
+mysqld_safe --datadir=/var/lib/mysql --user=root --password=$WP_DATABASE_PWD
