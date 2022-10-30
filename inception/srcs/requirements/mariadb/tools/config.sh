@@ -1,43 +1,27 @@
 #!/bin/sh
 
-if [ ! -d "/run/mysqld" ]; then
-	mkdir -p /run/mysqld
-	chown -R mysql:mysql /run/mysqld
+# setup mysql config file in order to acces it remotely
+if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
+    sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+
+    # start mysql service
+    service mysql start --datadir=/var/lib/mysql
+
+    # sleep to be sure service is on (it is just because i'm paranoid)
+    sleep 2
+
+    # use -e flag in order to pass param
+    # create database with database_name if not exist and grant privileges to database user
+    # it will create user if not exist and identified it with password
+    mysql -e "\
+    CREATE DATABASE IF NOT EXISTS $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
+    GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%.%.%.%' IDENTIFIED BY '$WP_DATABASE_PWD';
+    FLUSH PRIVILEGES;"
+    mysqladmin -u root password $WP_DATABASE_PWD
+    service mysql stop --datadir=/var/lib/mysql
 fi
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
-	
-	chown -R mysql:mysql /var/lib/mysql
-
-	# init database
-	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
-
-	tfile=`mktemp`
-	if [ ! -f "$tfile" ]; then
-		return 1
-	fi
-
-	# https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw
-	cat << EOF > $tfile
-USE mysql;
-FLUSH PRIVILEGES;
-DELETE FROM	mysql.user WHERE User='';
-DROP DATABASE test;
-DELETE FROM mysql.db WHERE Db='test';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-ALTER USER 'root'@'localhost' IDENTIFIED BY '$WP_DATABASE_PWD';
-CREATE DATABASE $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER '$WP_DATABASE_USR'@'%' IDENTIFIED by '$WP_DATABASE_PWD';
-GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%';
-FLUSH PRIVILEGES;
-EOF
-	# run init.sql
-	/usr/bin/mysqld --user=mysql --bootstrap < $tfile
-	rm -f $tfile
-fi
-
-# allow remote connections
-sed -i "s|skip-networking|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
-sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/my.cnf.d/mariadb-server.cnf
+# sleep in order to allow me to open shell inside of this container
 
 exec /usr/bin/mysqld --user=mysql --console
