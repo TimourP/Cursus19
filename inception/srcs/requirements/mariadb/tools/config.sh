@@ -19,4 +19,5 @@ GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%.%.%.%' IDEN
 FLUSH PRIVILEGES;"
 
 # sleep in order to allow me to open shell inside of this container
-sleep infinity
+mysqladmin -u root password $WP_DATABASE_PWD
+mysqld_safe --datadir=/var/lib/mysql
