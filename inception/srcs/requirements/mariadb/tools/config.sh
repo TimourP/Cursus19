@@ -17,6 +17,7 @@ if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
     mysql -e "\
     CREATE DATABASE IF NOT EXISTS $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
     GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'%.%.%.%' IDENTIFIED BY '$WP_DATABASE_PWD';
+    CREATE USER 'TESTBIS'@'localhost' identified by '';
     FLUSH PRIVILEGES;"
     mysqladmin -u root password $WP_DATABASE_PWD
     service mysql stop --datadir=/var/lib/mysql
@@ -24,4 +25,4 @@ fi
 
 # sleep in order to allow me to open shell inside of this container
 
-exec /usr/bin/mysqld --user=mysql --console
+mysqld_safe --user=TESTBIS
