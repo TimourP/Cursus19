@@ -15,8 +15,8 @@ if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
     # it will create user if not exist and identified it with password
     mysql -e "\
     CREATE DATABASE IF NOT EXISTS $WP_DATABASE_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;
-    GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO '$WP_DATABASE_USR'@'localhost' IDENTIFIED BY '$WP_DATABASE_PWD';
-    CREATE USER 'TESTBIS'@'localhost' identified by '';
+    CREATE USER IF NOT EXISTS $WP_DATABASE_USR IDENTIFIED BY '$WP_DATABASE_PWD'
+    GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO $WP_DATABASE_USR;
     FLUSH PRIVILEGES;"
     mysqladmin -u root password $WP_DATABASE_PWD
     service mysql stop
