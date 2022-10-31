@@ -46,13 +46,12 @@ namespace ft
 			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 			typedef int											difference_type;
 			typedef size_t										size_type;
+			typedef typename	ft::RBTree<key_type, mapped_type, key_compare, allocator_type>		tree_type;
 
 			// Constructors
 			
 			explicit map (const key_compare& comp = key_compare(),
-			const allocator_type& alloc = allocator_type()) :tree(comp), _alloc(alloc), _size(0) {
-				
-			};
+			const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), _size(0) {};
 
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
@@ -63,13 +62,17 @@ namespace ft
 			// Destructor
 			~map() {};
 			
-			map& operator=( const map& other );
+			map& operator=( const map& other ) {
+				clear();
+				insert(x.begin(), x.end());
+				return *this;
+			};
 			
 			mapped_type& at( const Key& key );
 			
 			const mapped_type& at( const Key& key ) const;
 			
-			mapped_type& operator[]( const Key& key );
+			mapped_type& operator[]( const Key& key ) {};
 			
 			iterator begin(void) {
 				if (empty())
@@ -77,29 +80,51 @@ namespace ft
 				return iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
 			}
 			
-			const_iterator begin() const;
+			const_iterator begin() const {
+				if (empty())
+					return end();
+				return const_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+			};
 			
 			iterator end(void) {
 				return iterator(tree.getEnd());
 			}
 			
-			const_iterator end() const;
+			const_iterator end() const {
+				return const_iterator(tree.getEnd());
+			};
 			
-			reverse_iterator rbegin();
+			reverse_iterator rbegin() {
+				return reverse_iterator(tree.getEnd());
+			};
 			
-			const_reverse_iterator rbegin() const;
+			const_reverse_iterator rbegin() const {
+				return const_reverse_iterator(tree.getEnd());
+			};
 			
-			reverse_iterator rend();
+			reverse_iterator rend() {
+				if (empty())
+					return reverse_iterator(tree.getEnd());
+				return reverse_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+			};
 			
-			const_reverse_iterator rend() const;
+			const_reverse_iterator rend() const {
+				if (empty())
+					return const_reverse_iterator(tree.getEnd());
+				return const_reverse_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+			};
 			
 			bool empty() const {
 				return this->tree.empty();
 			};
 
-			size_type size() const;
+			size_type size() const {
+				return tree.get_size();
+			};
 			
-			size_type max_size() const;
+			size_type max_size() const {
+				return _alloc.max_size();
+			};
 
 			pair<iterator,bool> void insert (const value_type& val) {
 				this->tree.insert(val);

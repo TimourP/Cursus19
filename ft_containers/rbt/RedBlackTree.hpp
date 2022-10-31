@@ -39,7 +39,7 @@ namespace ft
 		typedef Compare												key_compare;
 		typedef size_t												size_type;
 
-		RBTree(const key_compare &comp = key_compare()) : root(NULL), compare(comp) {
+		RBTree(const key_compare &comp = key_compare(), const allocator_type & alloc = allocator_type()) : root(NULL), compare(comp), size(0) {
 			ft::pair<int, int> p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
@@ -131,6 +131,7 @@ namespace ft
 				// simply insert value at root
 				newNode->color = BLACK;
 				root = newNode;
+				size = 1;
 			}
 			else
 			{
@@ -141,6 +142,7 @@ namespace ft
 					// return if value already exists
 					return;
 				}
+				size++;
 
 				// if value is not found, search returns the node
 				// where the value is to be inserted
@@ -175,12 +177,18 @@ namespace ft
 
 			deleteNode(v);
 		}
+
+		size_t get_size( void )
+		{
+			return size;
+		}
 		
 	private:
 
 		node_type		*root;	
 		node_type		*end;
 		allocator_type	alloc;
+		size_t			size;
 		const key_compare	compare;
 
 		// left rotates the given node
@@ -370,6 +378,7 @@ namespace ft
 						parent->right = NULL;
 					}
 				}
+				size--;
 				alloc.destroy(v);
 				alloc.deallocate(v, 1);
 				return;
@@ -411,6 +420,7 @@ namespace ft
 						u->color = BLACK;
 					}
 				}
+				size--;
 				return;
 			}
 
