@@ -1,6 +1,9 @@
 # Give owner and group for the the DB which is normally automatically created in this folder 
 chown -R mysql:mysql /var/lib/mysql
 
+sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+
 #Just checking if the DB has been correctly created in the right path
 if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
 	service mysql start --datadir=/var/lib/mysql
