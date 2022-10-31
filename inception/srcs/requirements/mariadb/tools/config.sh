@@ -1,7 +1,7 @@
 #!/bin/sh
 chown -R mysql:mysql /var/lib/mysql
 # setup mysql config file in order to acces it remotely
-if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
+if [ ! -d /var/lib/mysql/$WP_DATABASE_PWD ]; then
     sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
@@ -28,6 +28,7 @@ if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
     service mysql stop --datadir=/var/lib/mysql
 else
 	# Create a folder for the daemon (mysql server’s socket file)
+    echo "je passe ici"
 	mkdir -p /var/run/mysqld
 	#Setting up .pid and .sock since they're not automatically set
 	touch /var/run/mysqld/mysqlf.pid
