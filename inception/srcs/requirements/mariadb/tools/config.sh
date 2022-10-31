@@ -29,3 +29,5 @@ fi
 # sleep in order to allow me to open shell inside of this container
 
 mysql --user=$WP_DATABASE_NAME --password=$WP_DATABASE_PWD
+
+sleep infinity
