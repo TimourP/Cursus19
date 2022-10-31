@@ -19,7 +19,6 @@ if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
     GRANT ALL PRIVILEGES ON $WP_DATABASE_NAME.* TO $WP_DATABASE_USR;
     FLUSH PRIVILEGES;"
     mysqladmin -u root password $WP_DATABASE_PWD
-    service mysql stop
 else
 	# Create a folder for the daemon (mysql server’s socket file)
     echo "je passe ici"
@@ -28,6 +27,6 @@ else
 fi
 # sleep in order to allow me to open shell inside of this container
 
-mysql --user=$WP_DATABASE_NAME --password=$WP_DATABASE_PWD
+mysql --user=$WP_DATABASE_USR --password=$WP_DATABASE_PWD
 
 sleep infinity
