@@ -1,10 +1,10 @@
 
 chown -R mysql:mysql /var/lib/mysql
 
-if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
+sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
-    sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-server.cnf
-    sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+if [ ! -d /var/lib/mysql/$WP_DATABASE_NAME ]; then
 
 	service mysql start --datadir=/var/lib/mysql
 
