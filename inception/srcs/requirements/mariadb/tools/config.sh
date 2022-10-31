@@ -23,10 +23,10 @@ else
 	# Create a folder for the daemon (mysql server’s socket file)
     echo "je passe ici"
 	#Setting up .pid and .sock since they're not automatically set
-	service mysql start
+	# service mysql start
 fi
 # sleep in order to allow me to open shell inside of this container
 
-mysql --user=$WP_DATABASE_USR --password=$WP_DATABASE_PWD
+# mysql --user=$WP_DATABASE_USR --password=$WP_DATABASE_PWD
 
 sleep infinity
