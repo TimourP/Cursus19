@@ -12,7 +12,7 @@ sed -i "s/define( 'DB_USER', '' );/define( 'DB_USER', '$WP_DATABASE_USR' );/" /t
 sed -i "s/define( 'DB_PASSWORD', '' );/define( 'DB_PASSWORD', '$WP_DATABASE_PWD' );/" /tmp/wp-config.php
 sed -i "s/define( 'DB_HOST', '' );/define( 'DB_HOST', '$MYSQL_HOST' );/" /tmp/wp-config.php
 
-if [ ! -f "/home/tpetit/data/wordpress/index.html" ]; then
+if ! wp core is-installed --allow-root; then
 
 	mv /tmp/index.html /var/www/html/index.html
 
