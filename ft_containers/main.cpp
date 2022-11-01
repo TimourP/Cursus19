@@ -17,13 +17,19 @@
 
 
 int main(void) {
-	ft::map<int, int> my_map;
+	ft::map<int, int> map_crois;
+	ft::map<int, int> map_dec;
 	ft::pair<int, int> p(2, 3);
 	ft::pair<int, int> p2(3, 3);
-	my_map.insert(p);
-	my_map.insert(p2);
+	map_crois.insert(p);
+	map_crois.insert(p2);
+	map_dec.insert(p);
+
+	map_crois.swap(map_dec);
+
+	map_crois.clear();
 	
-	for (ft::map<int, int>::iterator it = my_map.begin(); it != my_map.end(); it++)
+	for (ft::map<int, int>::iterator it = map_crois.begin(); it != map_crois.end(); it++)
 	{
 		std::cout << (*it).first << std::endl;
 	}

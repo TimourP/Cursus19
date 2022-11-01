@@ -183,9 +183,29 @@ namespace ft
 			deleteNode(v);
 		}
 
+		void deleteIterator(iterator n)
+		{
+			deleteNode(n);
+		}
+
 		size_t get_size( void )
 		{
 			return size;
+		}
+
+		void	swap(RBTree *rhs)
+		{
+			node_type	*tmp_end = end;
+			node_type	*tmp_root = root;
+			size_t			tmp_size = size;
+
+			end = rhs->end;
+			root = rhs->root;
+			size = rhs->size;
+
+			rhs->end = tmp_end;
+			rhs->root = tmp_root;
+			rhs->size = tmp_size;
 		}
 		
 	private:
