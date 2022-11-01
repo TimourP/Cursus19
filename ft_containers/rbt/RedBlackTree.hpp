@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 19:52:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/01 09:25:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../utils/less.hpp"
 #include <memory>
 #include "Pair.hpp"
+#include "../iterators/map_iterator.hpp"
 
 #ifndef RED_BLACK_TREE_H
 # define RED_BLACK_TREE_H
@@ -38,8 +39,10 @@ namespace ft
 		typedef typename allocator_type::pointer					pointer;
 		typedef Compare												key_compare;
 		typedef size_t												size_type;
+		typedef Compare												value_compare;
+		typedef ft::map_iterator<const key_type, mapped_type, value_compare>				iterator;
 
-		RBTree(const key_compare &comp = key_compare(), const allocator_type & alloc = allocator_type()) : root(NULL), compare(comp), size(0) {
+		RBTree(const key_compare &comp = key_compare(), const allocator_type & allocat = allocator_type()) : root(NULL), alloc(allocat), compare(comp), size(0) {
 			ft::pair<int, int> p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
@@ -118,7 +121,7 @@ namespace ft
 		}
 
 		// inserts the given value to tree
-		void insert(value_type n)
+		iterator insert(value_type n)
 		{
 			node_type *newNode = alloc.allocate(1);
 			alloc.construct(newNode, node_type(n, compare, end));
@@ -132,6 +135,7 @@ namespace ft
 				newNode->color = BLACK;
 				root = newNode;
 				size = 1;
+				return newNode;
 			}
 			else
 			{
@@ -140,7 +144,7 @@ namespace ft
 				if (*temp == tmp)
 				{
 					// return if value already exists
-					return;
+					return end;
 				}
 				size++;
 
@@ -156,6 +160,7 @@ namespace ft
 					temp->right = newNode;
 
 				// fix red red voilaton if exists
+				return newNode;
 				fixRedRed(newNode);
 			}
 			attachEnd();

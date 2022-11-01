@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 19:30:53 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/01 09:13:52 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ namespace ft
 			color = RED;
 		}
 		
-		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent), end(end), compare(copy.compare)
+		RBTNode(const node_type &copy) : value(copy.value), color(copy.color), left(copy.left), right(copy.right), parent(copy.parent), end(copy.end), compare(copy.compare)
 		{
 		}
 

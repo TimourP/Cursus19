@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/21 09:06:03 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/01 09:54:49 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace ft
 			// Constructors
 			
 			explicit map (const key_compare& comp = key_compare(),
-			const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), _size(0) {};
+				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), _size(0) {};
 
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
@@ -64,7 +64,7 @@ namespace ft
 			
 			map& operator=( const map& other ) {
 				clear();
-				insert(x.begin(), x.end());
+				//insert(x.begin(), x.end());
 				return *this;
 			};
 			
@@ -126,11 +126,15 @@ namespace ft
 				return _alloc.max_size();
 			};
 
-			pair<iterator,bool> void insert (const value_type& val) {
-				this->tree.insert(val);
+			pair<iterator,bool> insert (const value_type& val) {
+				iterator node = this->tree.insert(val);
+				return ft::make_pair(node, false);
 			};
 			
-			iterator insert( iterator hint, const value_type& value );
+			iterator insert( iterator hint, const value_type& value ) {
+				iterator node = this->tree.insert(value);
+				return node;
+			};
 
 			template <class InputIterator>
 			void insert (InputIterator first, InputIterator last);
