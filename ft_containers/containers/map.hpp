@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 15:26:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 16:18:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ namespace ft
 			};
 
 			void erase (iterator position) {
-				tree.deleteIterator(position);
+				tree.deleteByKey(*position);
 			};
 
 			size_type erase (const key_type& k) {
@@ -180,7 +180,6 @@ namespace ft
 
 			void erase (iterator first, iterator last) {
 				iterator tmp;
-
 				while (first != last)
 				{
 					tmp = first;

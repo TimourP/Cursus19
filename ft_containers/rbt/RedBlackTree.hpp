@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 15:09:50 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:01:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ namespace ft
 				if (*temp == tmp)
 				{
 					// return if value already exists
+					attachEnd();
 					return end;
 				}
 				size++;
@@ -164,8 +165,8 @@ namespace ft
 					temp->right = newNode;
 
 				// fix red red voilaton if exists
-				attachEnd();
 				fixRedRed(newNode);
+				attachEnd();
 				return newNode;
 			}
 		}
@@ -181,6 +182,7 @@ namespace ft
 
 			if (v->value != n)
 			{
+				attachEnd();
 				return;
 			}
 
@@ -216,64 +218,45 @@ namespace ft
 		}
 
 		node_type *lower_bound(key_type k) const {
-			node_type *tmp = root;
-			node_type *prev;
+			node_type *rush_until = root;
+			node_type *prev = rush_until;
 
-			while (tmp != end && tmp)
+			while (rush_until && rush_until != end)
 			{
-				prev = tmp;
-				if (tmp->value.first == k) {
-					return tmp;
-				} else if (tmp->value.first > k) {
-					tmp = tmp->left;
-				} else {
-					tmp = tmp->right;
-				}
+				prev = rush_until;
+				if (rush_until->value.first == k)
+					return rush_until;
+				else if (rush_until->value.first > k)
+					rush_until = rush_until->right;
+				else
+					rush_until = rush_until->left;
 			}
-			if (prev->value.first > k)
-				return prev;
-			else {
-				if (prev == node_type::get_biggest(root))
-					return end;
-				while (prev->parent->right == prev)
-					prev = prev->parent;	
-			}
-			return prev->parent;
+			if (!prev || prev == end)
+				return end;
+			else if (prev->value.first < k)
+				return prev->iterate();
+			return prev;
 		}
 
 		node_type *upper_bound(key_type k) const {
-			node_type *tmp = root;
-			node_type *prev;
+			node_type *rush_until = root;
+			node_type *prev = rush_until;
 
-			while (tmp != end && tmp)
+			while (rush_until && rush_until != end)
 			{
-				prev = tmp;
-				if (tmp->value.first == k) {
-					break;
-				} else if (tmp->value.first > k) {
-					tmp = tmp->left;
-				} else {
-					tmp = tmp->right;
-				}
+				prev = rush_until;
+				if (rush_until->value.first == k)
+					return rush_until->iterate();
+				else if (rush_until->value.first > k)
+					rush_until = rush_until->right;
+				else
+					rush_until = rush_until->left;
 			}
-			if (tmp != end && tmp) {
-				if (tmp->right != end)
-					return node_type::get_smallest(root);
-				if (tmp == node_type::get_biggest(root))
-					return end;
-				while (tmp->parent && tmp==tmp->parent->right)
-					prev = prev->parent;
-				return tmp->parent;
-			} else {
-				if (prev == node_type::get_biggest(root)) {
-					return end;
-				}
-				if (prev == node_type::get_smallest(root))
-					return node_type::get_smallest(root);
-				while (tmp->parent && tmp == tmp->parent->right)
-					tmp = tmp->parent;
-				return tmp->parent;
-			}
+			if (!prev || prev == end)
+				return end;
+			else if (prev->value.first < k)
+				return prev->iterate();
+			return prev;
 		}
 		
 	private:
@@ -435,10 +418,10 @@ namespace ft
 			node_type *u = BSTreplace(v);
 
 			// True when u and v are both black
-			bool uvBlack = ((u == NULL || u->color == BLACK) and (v->color == BLACK));
+			bool uvBlack = ((u == NULL || u==end || u->color == BLACK) and (v->color == BLACK));
 			node_type *parent = v->parent;
 
-			if (u == NULL)
+			if (u == NULL || u==end)
 			{
 				// u is NULL therefore v is leaf
 				if (v == root)
@@ -457,7 +440,7 @@ namespace ft
 					else
 					{
 						// u or v is red
-						if (v->sibling() != NULL)
+						if (v->sibling() != NULL || v->sibling() != end)
 							// sibling is not null, make it red"
 							v->sibling()->color = RED;
 					}
@@ -477,7 +460,7 @@ namespace ft
 				return;
 			}
 
-			if (v->left == NULL || v->right == NULL)
+			if (v->left == NULL || v->left == end || v->right == NULL || v->end == end)
 			{
 				// v has 1 child
 				if (v == root)
@@ -546,7 +529,7 @@ namespace ft
 				return;
 
 			node_type *sibling = x->sibling(), *parent = x->parent;
-			if (sibling == NULL)
+			if (sibling == NULL || sibling == end)
 			{
 				// No sibiling, double black pushed up
 				fixDoubleBlack(parent);

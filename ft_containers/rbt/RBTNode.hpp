@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 15:12:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:04:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ namespace ft
 		// check if node is left child of parent
 		bool isOnLeft() { return this == parent->left; }
 
+		void setEnd(pointer n_end) {
+			if (!end && 0)
+				end = n_end;
+		}
+
 		// returns pointer to sibling
 		pointer sibling()
 		{
@@ -121,11 +126,14 @@ namespace ft
 				return parent;
 			return end;
 		}
+
 		pointer		reverse_iterate(void) const {
-			std::cout << "hoho" << std::endl;
+			if (!end && parent) {
+				return parent;
+			}
 			if (!parent && !left && !right)
 				return end;
-			std::cout << "hoho" << std::endl;
+			
 			const node_type	*k = this;
 			node_type	*left = k->left;
 			node_type	*parent = k->left;
@@ -142,13 +150,13 @@ namespace ft
 		}
 
 		static pointer		get_smallest(pointer ptr) {
-			while (ptr && ptr->left)
+			while (ptr && ptr->end && ptr->left)
 				ptr = ptr->left;
 			return ptr;
 		}
 		
 		static pointer		get_biggest(pointer ptr) {
-			while (ptr && ptr->right)
+			while (ptr && ptr->end && ptr->right)
 				ptr = ptr->right;
 			return ptr;
 		}
