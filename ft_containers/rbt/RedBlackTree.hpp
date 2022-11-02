@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/01 09:25:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 10:45:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ namespace ft
 		typedef Compare												value_compare;
 		typedef ft::map_iterator<const key_type, mapped_type, value_compare>				iterator;
 
-		RBTree(const key_compare &comp = key_compare(), const allocator_type & allocat = allocator_type()) : root(NULL), alloc(allocat), compare(comp), size(0) {
+		RBTree(const key_compare &comp = key_compare(), const allocator_type & allocat = allocator_type()) : root(NULL), alloc(allocat), size(0), compare(comp) {
 			ft::pair<int, int> p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
@@ -53,11 +53,13 @@ namespace ft
 			alloc.deallocate(end, 1);
 		}
 
-		node_type *getRoot() {
+		node_type *getRoot() const
+		{
 			return root;
 		}
 		
-		node_type *getEnd(void) {
+		node_type *getEnd(void) const
+		{
 			return end;
 		}
 
@@ -188,7 +190,7 @@ namespace ft
 			deleteNode(n);
 		}
 
-		size_t get_size( void )
+		size_t get_size( void ) const
 		{
 			return size;
 		}

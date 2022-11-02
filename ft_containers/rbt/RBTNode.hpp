@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/01 09:13:52 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 10:26:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 		typedef Compare key_compare;
 		typedef node_type* pointer;
 
-		RBTNode(const value_type& val, const key_compare &compare, pointer end) : value(val), compare(compare), end(end)
+		RBTNode(const value_type& val, const key_compare &compare, pointer end) : value(val), end(end), compare(compare)
 		{
 			parent = left = right = NULL;
 

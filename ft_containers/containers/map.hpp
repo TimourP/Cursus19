@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/01 09:54:49 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 10:52:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ namespace ft
 			
 			map& operator=( const map& other ) {
 				clear();
-				//insert(x.begin(), x.end());
+				insert(other.begin(), other.end());
 				return *this;
 			};
 			
@@ -73,20 +73,18 @@ namespace ft
 			
 			const mapped_type& at( const Key& key ) const;
 			
-			mapped_type& operator[]( const Key& key ) {
-
-			};
+			mapped_type& operator[]( const Key& key );
 			
 			iterator begin(void) {
 				if (empty())
 					return end();
-				return iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+				return iterator(node_type::get_smallest(tree.getRoot()));
 			}
 			
 			const_iterator begin() const {
 				if (empty())
 					return end();
-				return const_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+				return iterator(node_type::get_smallest(tree.getRoot()));
 			};
 			
 			iterator end(void) {
@@ -94,7 +92,7 @@ namespace ft
 			}
 			
 			const_iterator end() const {
-				return const_iterator(tree.getEnd());
+				return (iterator(tree.getEnd()));
 			};
 			
 			reverse_iterator rbegin() {
@@ -108,13 +106,13 @@ namespace ft
 			reverse_iterator rend() {
 				if (empty())
 					return reverse_iterator(tree.getEnd());
-				return reverse_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+				return reverse_iterator(node_type::get_smallest(tree.getRoot()));
 			};
 			
 			const_reverse_iterator rend() const {
 				if (empty())
 					return const_reverse_iterator(tree.getEnd());
-				return const_reverse_iterator(RBTNode<key_type, mapped_type, value_compare>::get_smallest(tree.getRoot()));
+				return const_reverse_iterator(node_type::get_smallest(tree.getRoot()));
 			};
 			
 			bool empty() const {
@@ -135,6 +133,7 @@ namespace ft
 			};
 			
 			iterator insert( iterator hint, const value_type& value ) {
+				(void)hint;
 				iterator node = this->tree.insert(value);
 				return node;
 			};
@@ -185,11 +184,11 @@ namespace ft
 
 
 			pair<const_iterator,const_iterator> equal_range (const key_type& k) const {
-				return make_pair(lower_bound(k), upper_bound(k));
+				return ft::make_pair(lower_bound(k), upper_bound(k));
 			};
 
 			pair<iterator,iterator>             equal_range (const key_type& k) {
-				return make_pair(lower_bound(k), upper_bound(k));
+				return ft::make_pair(lower_bound(k), upper_bound(k));
 			};
 
 			size_type count (const key_type& k) const;

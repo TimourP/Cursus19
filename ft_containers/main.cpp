@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/01 09:27:32 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 10:37:19 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int main(void) {
 	map_crois.swap(map_dec);
 
 	map_crois.clear();
+
+	map_crois.size();
 	
 	for (ft::map<int, int>::iterator it = map_crois.begin(); it != map_crois.end(); it++)
 	{
