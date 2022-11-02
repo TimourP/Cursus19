@@ -92,7 +92,6 @@ namespace ft
 				value_type val = ft::make_pair(key, mapped_type());
 				node_type *tmp = tree.search(val);
 				if (tmp != tree.getEnd()) {
-					std::cout << "ee" << std::endl;
 					return tmp->value.second;
 				}
 				return (*this->tree.insert(val)).second;
@@ -127,14 +126,10 @@ namespace ft
 			};
 			
 			reverse_iterator rend() {
-				if (empty())
-					return reverse_iterator(tree.getEnd());
 				return reverse_iterator(node_type::get_smallest(tree.getRoot()));
 			};
 			
 			const_reverse_iterator rend() const {
-				if (empty())
-					return const_reverse_iterator(tree.getEnd());
 				return const_reverse_iterator(node_type::get_smallest(tree.getRoot()));
 			};
 			
