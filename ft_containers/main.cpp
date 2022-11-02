@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 11:46:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 12:08:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int main(void) {
 	{
 		std::cout << (*it).first << std::endl;
 	}
+	std::cout << map_crois.value_comp()(1, 2) << std::endl;
 	return 0;
 }

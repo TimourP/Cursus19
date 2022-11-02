@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 11:46:43 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 12:17:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <vector>
 #include <iterator>
 #include <stdexcept>
+#include <algorithm>
 #include "../rbt/RedBlackTree.hpp"
 #include "../rbt/RBTNode.hpp"
 #include "../iterators/map_iterator.hpp"
@@ -52,13 +53,15 @@ namespace ft
 			// Constructors
 			
 			explicit map (const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), _size(0) {};
+				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), key_c(comp), value_c(comp), _size(0) {};
 
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type());
+				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), key_c(comp), value_c(comp), _size(0) {
+					insert(first, last);
+				};
 
-			map (const map& x);
+			map (const map& x) : tree(x.key_c, x._alloc), _alloc(x._alloc), key_c(x.key_c), value_c(x.value_c), _size(x.size()) {};
 
 			// Destructor
 			~map() {};
