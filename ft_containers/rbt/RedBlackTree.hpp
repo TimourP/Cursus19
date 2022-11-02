@@ -46,6 +46,15 @@ namespace ft
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
 		}
+
+		RBTree(const RBTree<Key, T, Compare, Alloc> & src) : root(NULL), alloc(src.alloc), size(src.size), compare(src.compare) {
+			value_type p;
+			end = alloc.allocate(1);
+			alloc.construct(end, node_type(p, compare, root));
+			for (node_type *node = node_type::get_smallest(src.root); node != src.end; node = node->iterate())
+				this->insert(node->value);
+			return ;
+		};
 		
 		~RBTree() {
 			alloc.destroy(end);

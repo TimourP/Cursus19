@@ -73,7 +73,7 @@ namespace ft
 					insert(first, last);
 				};
 
-			map (const map& x) : tree(x.key_c, x._alloc), _alloc(x._alloc), key_c(x.key_c), value_c(x.value_c), _size(x.size()) {};
+			map (const map& x) : tree(x.tree), _alloc(x._alloc), key_c(x.key_c), value_c(x.value_c), _size(x.size()) {};
 
 			// Destructor
 			~map() {};
