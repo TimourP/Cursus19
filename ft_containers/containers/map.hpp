@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 14:10:15 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:26:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ namespace ft
 			typedef ft::map_iterator<const key_type, const mapped_type, key_compare>	const_iterator;
 			typedef ft::reverse_iterator<iterator>				reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
-			typedef int											difference_type;
+			typedef long										difference_type;
 			typedef size_t										size_type;
 			typedef RBTNode<const Key, T, Compare>						node_type;
 			typedef typename	ft::RBTree<const key_type, mapped_type, key_compare, allocator_type>		tree_type;

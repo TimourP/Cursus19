@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:13:31 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:20:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ namespace ft
 
 		reference operator*() const
         {
-            return *(this->it - 1);
+			iterator_type tmp = this->it - 1; 
+            return *(tmp);
         }
 
 		reference operator[](difference_type n) const
 		{
-			return *(this->it - n - 1);
+			iterator_type tmp = this->it - n - 1; 
+			return *(tmp);
 		};
 
 		reverse_iterator operator+(difference_type n) const

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:48:35 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 13:17:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:29:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ namespace ft
 			first_type first;
 			second_type second;
 
-			pair(void) : first(0), second(0) {};
+			pair(void) : first(), second() {};
 			template<class U, class V>
 			pair (const pair<U,V>& pr) : first(pr.first), second(pr.second) {};
 			pair (const first_type& a, const second_type& b): first(a), second(b) {};

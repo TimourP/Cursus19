@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 11:27:42 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 10:49:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:16:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ namespace ft
 		typedef pair<Key, T>*							pointer;
 		typedef Node*									node_pointer;
 		typedef map_iterator<Key, T, Compare>			iterator;
+		typedef ptrdiff_t						difference_type;
+		typedef bidirectional_iterator_tag		iterator_category;
 
 	protected:
 		node_pointer p;

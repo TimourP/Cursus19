@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 14:08:02 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:09:50 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,11 @@ namespace ft
 		}
 		
 		void attachEnd(void) {
-			node_type *temp = root->get_biggest(root);
-			temp->right = end;
-			end->parent = temp;
+			if (root) {
+				node_type *temp = root->get_biggest(root);
+				temp->right = end;
+				end->parent = temp;
+			}
 		}
 
 		// inserts the given value to tree
@@ -136,6 +138,7 @@ namespace ft
 				newNode->color = BLACK;
 				root = newNode;
 				size = 1;
+				attachEnd();
 				return newNode;
 			}
 			else
@@ -161,10 +164,10 @@ namespace ft
 					temp->right = newNode;
 
 				// fix red red voilaton if exists
-				return newNode;
+				attachEnd();
 				fixRedRed(newNode);
+				return newNode;
 			}
-			attachEnd();
 		}
 
 		// utility function that deletes the node with given value
@@ -173,7 +176,7 @@ namespace ft
 			if (root == NULL)
 				// Tree is empty
 				return;
-
+			unAttachEnd();
 			node_type *v = search(n);
 
 			if (v->value != n)
@@ -182,11 +185,14 @@ namespace ft
 			}
 
 			deleteNode(v);
+			attachEnd();
 		}
 
 		void deleteIterator(iterator n)
 		{
+			unAttachEnd();
 			deleteNode(n);
+			attachEnd();
 		}
 
 		size_t get_size( void ) const
@@ -213,7 +219,7 @@ namespace ft
 			node_type *tmp = root;
 			node_type *prev;
 
-			while (tmp != end)
+			while (tmp != end && tmp)
 			{
 				prev = tmp;
 				if (tmp->value.first == k) {
@@ -239,7 +245,7 @@ namespace ft
 			node_type *tmp = root;
 			node_type *prev;
 
-			while (tmp != end)
+			while (tmp != end && tmp)
 			{
 				prev = tmp;
 				if (tmp->value.first == k) {
@@ -250,7 +256,7 @@ namespace ft
 					tmp = tmp->right;
 				}
 			}
-			if (tmp != end) {
+			if (tmp != end && tmp) {
 				if (tmp->right != end)
 					return node_type::get_smallest(root);
 				if (tmp == node_type::get_biggest(root))

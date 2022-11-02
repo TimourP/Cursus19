@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 13:58:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:12:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ namespace ft
 		
 		
 		pointer		iterate(void) const {
+			if (!parent && !left && !right)
+				return end;
 			const node_type	*k = this;
 			node_type		*right = k->right;
 			node_type		*parent = k->parent;
@@ -120,8 +122,10 @@ namespace ft
 			return end;
 		}
 		pointer		reverse_iterate(void) const {
+			std::cout << "hoho" << std::endl;
 			if (!parent && !left && !right)
 				return end;
+			std::cout << "hoho" << std::endl;
 			const node_type	*k = this;
 			node_type	*left = k->left;
 			node_type	*parent = k->left;

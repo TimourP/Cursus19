@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 12:08:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:32:16 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,28 @@
 #include <unistd.h>
 #include <time.h>
 #include <vector>
+#include <list>
 
+#define T1 int
+#define T2 std::string
+typedef ft::pair<const T1, T2> T3;
 
 int main(void) {
-	ft::map<int, int> map_crois;
-	ft::map<int, int> map_dec;
-	ft::pair<int, int> p(2, 3);
-	ft::pair<int, int> p2(3, 3);
-	map_crois.insert(p);
-	map_crois.insert(p2);
-	map_dec.insert(p);
+	ft::map<T1, T2> map_crois;
+	ft::map<T1, T2> map_dec;
 
-	map_crois.swap(map_dec);
+	std::list<T3> lst;
+	unsigned int lst_size = 10;
+	std::cout << std::string((lst_size - 0), 0 + 65) << std::endl;
+	for (unsigned int i = 0; i < lst_size; ++i)
+		lst.push_back(T3(i, std::string((lst_size - i), i + 65)));
+	ft::map<T1, T2> mp(lst.begin(), lst.end());
 
-	map_crois.clear();
-
-	map_crois.size();
-
-	std::cout << (*(map_dec.upper_bound(p.first))).first << std::endl;
-	std::cout << (*(map_dec.find(2))).first << std::endl;
-	std::cout << map_dec[2] << std::endl;
+	// for (ft::map<T1, T2>::iterator i = mp.begin(); i != mp.end(); i++)
+	// {
+	// 	std::cout << (*i).first << std::endl;
+	// }
 	
-	for (ft::map<int, int>::iterator it = map_crois.begin(); it != map_crois.end(); it++)
-	{
-		std::cout << (*it).first << std::endl;
-	}
-	std::cout << map_crois.value_comp()(1, 2) << std::endl;
+
 	return 0;
 }
