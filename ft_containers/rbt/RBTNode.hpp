@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 17:04:23 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 18:21:22 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ namespace ft
 		bool isOnLeft() { return this == parent->left; }
 
 		void setEnd(pointer n_end) {
-			if (!end && 0)
+			if (!end)
 				end = n_end;
 		}
 
@@ -109,36 +109,38 @@ namespace ft
 		
 		
 		pointer		iterate(void) const {
-			if (!parent && !left && !right)
-				return end;
 			const node_type	*k = this;
 			node_type		*right = k->right;
 			node_type		*parent = k->parent;
 			
-			if (right)
+			if (right && right != end)
 				return node_type::get_smallest(right);
 			while (parent && parent->right == k)
 			{
 				k = parent;
 				parent = k->parent;
 			}
-			if (parent && parent->left == k)
+			if (parent && parent != end && parent->left == k)
 				return parent;
+			if (!end)
+				return this->parent->end;
 			return end;
 		}
 
 		pointer		reverse_iterate(void) const {
-			if (!end && parent) {
+			if (!end && this->parent) {
 				return parent;
+			} else if (!end) {
+				return node_type::get_biggest(end);
 			}
 			if (!parent && !left && !right)
 				return end;
-			
 			const node_type	*k = this;
 			node_type	*left = k->left;
-			node_type	*parent = k->left;
-			if (left)
+			node_type	*parent = k->parent;
+			if (left) {
 				return node_type::get_biggest(left);
+			}
 			while (parent && parent->left == k)
 			{
 				k = parent;
@@ -146,6 +148,9 @@ namespace ft
 			}
 			if (parent)
 				return parent;
+			
+			if (!end)
+				return this->parent->end;
 			return end;
 		}
 

@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 17:01:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:18:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int main(void) {
 		lst.push_back(T3(i, 7));
 	ft::map<T1, T2> mp(lst.begin(), lst.end());
 
-	ft::map<T1, T2>::iterator e = mp.end();
-	e--;
+	ft::map<T1, T2>::iterator e = mp.begin();
 	std::cout << (*e).first << std::endl;
 
 	//mp.erase((--mp.end())->first);
