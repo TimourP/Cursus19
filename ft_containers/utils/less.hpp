@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:02:32 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 16:49:06 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:10:07 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,28 @@ namespace ft
 	{
 		bool operator()(const T& x, const T& y) const { return x > y; }
 	};
+
+	template <class InputIterator1, class InputIterator2>
+	bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
+	{ 
+		for (; first1 != last1; ++first1, ++first2)
+  		{
+    		if (first2 == last2 || *first2 < *first1)
+				return false;
+    		else if (*first1 < *first2)
+				return true;
+  		}
+  		return (first2 != last2);
+	}
+
+	template <class InputIterator1, class InputIterator2>
+	bool equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		for (; first1 != last1; ++first1, ++first2)
+			if (!(*first1 == *first2))
+				return false;
+		return true;
+	}
 }
 
 #endif

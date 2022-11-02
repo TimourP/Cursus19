@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 11:25:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:08:02 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ namespace ft
 		typedef typename allocator_type::pointer					pointer;
 		typedef Compare												key_compare;
 		typedef size_t												size_type;
-		typedef Compare												value_compare;
-		typedef ft::map_iterator<const key_type, mapped_type, value_compare>				iterator;
+		typedef ft::map_iterator<const key_type, mapped_type, key_compare>				iterator;
 
 		RBTree(const key_compare &comp = key_compare(), const allocator_type & allocat = allocator_type()) : root(NULL), alloc(allocat), size(0), compare(comp) {
-			ft::pair<int, int> p;
+			value_type p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
 		}
@@ -75,7 +74,7 @@ namespace ft
 		// searches for given value
 		// if found returns the node (used for delete)
 		// else returns the last node while traversing (used in insert)
-		node_type *search(value_type n) const
+		node_type *search(const value_type& n) const
 		{
 			node_type tmp(n, compare, end);
 			node_type *temp = root;
@@ -169,7 +168,7 @@ namespace ft
 		}
 
 		// utility function that deletes the node with given value
-		void deleteByKey(value_type n)
+		void deleteByKey(const value_type n)
 		{
 			if (root == NULL)
 				// Tree is empty
@@ -177,7 +176,7 @@ namespace ft
 
 			node_type *v = search(n);
 
-			if (v != n)
+			if (v->value != n)
 			{
 				return;
 			}
