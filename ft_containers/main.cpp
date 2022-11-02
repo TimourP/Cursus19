@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 10:37:19 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:46:23 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int main(void) {
 	map_crois.clear();
 
 	map_crois.size();
+
+	std::cout << (*(map_dec.upper_bound(p.first))).first << std::endl;
+	std::cout << (*(map_dec.find(2))).first << std::endl;
+	std::cout << map_dec[2] << std::endl;
 	
 	for (ft::map<int, int>::iterator it = map_crois.begin(); it != map_crois.end(); it++)
 	{

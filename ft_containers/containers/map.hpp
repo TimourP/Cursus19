@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 10:52:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:46:43 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,12 @@ namespace ft
 			
 			const mapped_type& at( const Key& key ) const;
 			
-			mapped_type& operator[]( const Key& key );
+			mapped_type& operator[]( const Key& key ) {
+				node_type *tmp = tree.search(make_pair(key, mapped_type()));
+				if (tmp != tree.getEnd())
+					return tmp->value.second;
+				return tree.search(make_pair(key, mapped_type()))->value.second;
+			};
 			
 			iterator begin(void) {
 				if (empty())
@@ -178,8 +183,7 @@ namespace ft
 			};
 
 			allocator_type get_allocator() const {
-				allocator_type	tmp(tree.alloc);
-				return tmp;
+				return allocator_type(tree.alloc);
 			};
 
 
@@ -191,23 +195,44 @@ namespace ft
 				return ft::make_pair(lower_bound(k), upper_bound(k));
 			};
 
-			size_type count (const key_type& k) const;
+			size_type count (const key_type& k) const {
+				if (tree.search(make_pair(k, mapped_type())) == tree.getEnd()) {
+					return 0;
+				}
+				return 1;
+			};
 
-			iterator find( const Key& key );
+			iterator find( const Key& key ) {
+				return iterator(tree.search(make_pair(key, mapped_type())));
+			};
 			
-			const_iterator find( const Key& key ) const;
+			const_iterator find( const Key& key ) const {
+				return iterator(tree.search(make_pair(key, mapped_type())));
+			};
 			
-			iterator lower_bound( const Key& key );
+			iterator lower_bound( const Key& key ) {
+				return iterator(tree.lower_bound(key));
+			};
 			
-			const_iterator lower_bound( const Key& key ) const;
+			const_iterator lower_bound( const Key& key ) const {
+				return iterator(tree.lower_bound(key));
+			};
 			
-			iterator upper_bound( const Key& key );
+			iterator upper_bound( const Key& key ) {
+				return iterator(tree.upper_bound(key));
+			};
 			
-			const_iterator upper_bound( const Key& key ) const;
+			const_iterator upper_bound( const Key& key ) const {
+				return iterator(tree.upper_bound(key));
+			};
 
-			value_compare value_comp() const ;
+			value_compare value_comp() const {
+				return value_c;
+			};
 
-			key_compare key_comp() const;
+			key_compare key_comp() const {
+				return key_c;
+			};
 
 		private:
 			

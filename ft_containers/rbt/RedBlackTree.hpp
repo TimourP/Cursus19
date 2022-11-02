@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 10:45:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:25:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,67 @@ namespace ft
 			rhs->end = tmp_end;
 			rhs->root = tmp_root;
 			rhs->size = tmp_size;
+		}
+
+		node_type *lower_bound(key_type k) const {
+			node_type *tmp = root;
+			node_type *prev;
+
+			while (tmp != end)
+			{
+				prev = tmp;
+				if (tmp->value.first == k) {
+					return tmp;
+				} else if (tmp->value.first > k) {
+					tmp = tmp->left;
+				} else {
+					tmp = tmp->right;
+				}
+			}
+			if (prev->value.first > k)
+				return prev;
+			else {
+				if (prev == node_type::get_biggest(root))
+					return end;
+				while (prev->parent->right == prev)
+					prev = prev->parent;	
+			}
+			return prev->parent;
+		}
+
+		node_type *upper_bound(key_type k) const {
+			node_type *tmp = root;
+			node_type *prev;
+
+			while (tmp != end)
+			{
+				prev = tmp;
+				if (tmp->value.first == k) {
+					break;
+				} else if (tmp->value.first > k) {
+					tmp = tmp->left;
+				} else {
+					tmp = tmp->right;
+				}
+			}
+			if (tmp != end) {
+				if (tmp->right != end)
+					return node_type::get_smallest(root);
+				if (tmp == node_type::get_biggest(root))
+					return end;
+				while (tmp->parent && tmp==tmp->parent->right)
+					prev = prev->parent;
+				return tmp->parent;
+			} else {
+				if (prev == node_type::get_biggest(root)) {
+					return end;
+				}
+				if (prev == node_type::get_smallest(root))
+					return node_type::get_smallest(root);
+				while (tmp->parent && tmp == tmp->parent->right)
+					tmp = tmp->parent;
+				return tmp->parent;
+			}
 		}
 		
 	private:
