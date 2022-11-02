@@ -78,11 +78,12 @@ namespace ft
 		{
 			node_type tmp(n, compare, end);
 			node_type *temp = root;
+			
 			while (temp != NULL)
 			{
 				if (tmp < *temp)
 				{
-					if (temp->left == NULL || temp->left == end)
+					if (temp->left == NULL)
 						break;
 					else
 						temp = temp->left;
@@ -93,7 +94,7 @@ namespace ft
 				}
 				else
 				{
-					if (temp->right == NULL || temp->right == end)
+					if (temp->right == NULL)
 						break;
 					else
 						temp = temp->right;
@@ -226,15 +227,16 @@ namespace ft
 				prev = rush_until;
 				if (rush_until->value.first == k)
 					return rush_until;
-				else if (rush_until->value.first > k)
+				else if (rush_until->value.first < k)
 					rush_until = rush_until->right;
 				else
 					rush_until = rush_until->left;
 			}
 			if (!prev || prev == end)
 				return end;
-			else if (prev->value.first < k)
+			else if (prev->value.first < k) {
 				return prev->iterate();
+			}
 			return prev;
 		}
 
@@ -245,18 +247,24 @@ namespace ft
 			while (rush_until && rush_until != end)
 			{
 				prev = rush_until;
-				if (rush_until->value.first == k)
+				if (rush_until->value.first == k) {
 					return rush_until->iterate();
-				else if (rush_until->value.first > k)
+				}
+				else if (rush_until->value.first < k)
 					rush_until = rush_until->right;
 				else
 					rush_until = rush_until->left;
 			}
 			if (!prev || prev == end)
 				return end;
-			else if (prev->value.first < k)
+			else if (prev->value.first < k) {
 				return prev->iterate();
+			}
 			return prev;
+		}
+
+		allocator_type getAlloc(void) const {
+			return alloc;
 		}
 		
 	private:

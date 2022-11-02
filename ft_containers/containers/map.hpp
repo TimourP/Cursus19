@@ -89,10 +89,13 @@ namespace ft
 			const mapped_type& at( const Key& key ) const;
 			
 			mapped_type& operator[]( const Key& key ) {
-				node_type *tmp = tree.search(ft::make_pair(key, mapped_type()));
-				if (tmp != tree.getEnd())
+				value_type val = ft::make_pair(key, mapped_type());
+				node_type *tmp = tree.search(val);
+				if (tmp != tree.getEnd()) {
+					std::cout << "ee" << std::endl;
 					return tmp->value.second;
-				return tree.search(ft::make_pair(key, mapped_type()))->value.second;
+				}
+				return (*this->tree.insert(val)).second;
 			};
 			
 			iterator begin(void) {
@@ -144,7 +147,7 @@ namespace ft
 			};
 			
 			size_type max_size() const {
-				return _alloc.max_size();
+				return tree.getAlloc().max_size();
 			};
 
 			pair<iterator,bool> insert (const value_type& val) {
@@ -168,7 +171,7 @@ namespace ft
 			};
 
 			void erase (iterator position) {
-				tree.deleteByKey(*position);
+				tree.deleteByKey(ft::make_pair((*position).first, mapped_type()));
 			};
 
 			size_type erase (const key_type& k) {

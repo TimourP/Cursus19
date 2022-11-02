@@ -161,7 +161,7 @@ namespace ft
 		}
 		
 		static pointer		get_biggest(pointer ptr) {
-			while (ptr && ptr->end && ptr->right)
+			while (ptr && ptr->end && ptr->right && ptr->right != ptr->end)
 				ptr = ptr->right;
 			return ptr;
 		}
