@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 14:14:37 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:41:47 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ namespace ft
 			{
 				node_type *temp = search(n);
 
-				if (*temp == tmp)
+				if (*temp == tmp && temp != end)
 				{
 					// return if value already exists
 					attachEnd();
@@ -203,7 +203,7 @@ namespace ft
 			{
 				node_type *temp = search(n);
 
-				if (*temp == tmp)
+				if (*temp == tmp && temp != end)
 				{
 					// return if value already exists
 					attachEnd();
