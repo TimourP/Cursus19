@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 11:27:42 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 14:16:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 10:22:13 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,42 @@ namespace ft
 		}
 	};
 	
-	template <class Key1, class Key2, class T1, class T2, class Compare>
-	bool									operator==(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T2, Compare> &right)
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator==(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, const T1, Compare> &right)
 	{
 		return left.base() == reinterpret_cast<typename map_iterator<Key1, T1, Compare>::node_pointer>(right.base());
 	}
 
-	template <class Key1, class Key2, class T1, class T2, class Compare>
-	bool									operator!=(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T2, Compare> &right)
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator!=(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, const T1, Compare> &right)
 	{
 		return !(left == right);
 	}
+
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator==(const map_iterator<Key1, const T1, Compare> &left, const map_iterator<Key2, T1, Compare> &right)
+	{
+		return left.base() == reinterpret_cast<typename map_iterator<Key1, const T1, Compare>::node_pointer>(right.base());
+	}
+
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator!=(const map_iterator<Key1, const T1, Compare> &left, const map_iterator<Key2, T1, Compare> &right)
+	{
+		return !(left == right);
+	}
+
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator==(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T1, Compare> &right)
+	{
+		return left.base() == reinterpret_cast<typename map_iterator<Key1, T1, Compare>::node_pointer>(right.base());
+	}
+
+	template <class Key1, class Key2, class T1, class Compare>
+	bool									operator!=(const map_iterator<Key1, T1, Compare> &left, const map_iterator<Key2, T1, Compare> &right)
+	{
+		return !(left == right);
+	}
+	
 }
 
 #endif //MAP_ITERATOR_H

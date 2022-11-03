@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 18:11:40 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:19:27 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,31 +88,17 @@ namespace ft
 			node_type tmp(n, compare, end);
 			node_type *temp = root;
 			
-			while (temp != NULL)
+			while (temp && temp != end)
 			{
-				if (tmp < *temp)
-				{
-					if (temp->left == NULL)
-						break;
-					else
-						temp = temp->left;
+				if (tmp == *temp) {
+					return temp;
 				}
-				else if (tmp == *temp)
-				{
-					break;
-				}
+				else if (tmp > *temp)
+					temp = temp->right;
 				else
-				{
-					if (temp->right == NULL)
-						break;
-					else
-						temp = temp->right;
-				}
+					temp = temp->left;
 			}
-			if (!temp)
-				return end;
-
-			return temp;
+			return end;
 		}
 		
 		void unAttachEnd(void) {
@@ -163,6 +149,20 @@ namespace ft
 				}
 				size++;
 
+				if (temp == end) {
+					node_type	*previous = NULL;
+					temp = root;
+					while (temp && temp != end)
+					{
+						previous = temp;
+						if (tmp < *temp)
+							temp = temp->left;
+						else
+							temp = temp->right;
+					}
+					temp = previous;
+				}
+
 				// if value is not found, search returns the node
 				// where the value is to be inserted
 
@@ -182,22 +182,25 @@ namespace ft
 		}
 
 		// utility function that deletes the node with given value
-		void deleteByKey(const value_type n)
+		bool deleteByKey(const value_type n)
 		{
 			if (root == NULL)
 				// Tree is empty
-				return;
+				return false;
+			std::cout << "try delete: " << n.first << std::endl;
 			unAttachEnd();
 			node_type *v = search(n);
 
-			if (v->value != n)
+			if (v == end)
 			{
+				std::cout << "diff" <<std::endl;
 				attachEnd();
-				return;
+				return false;
 			}
 
 			deleteNode(v);
 			attachEnd();
+			return true;
 		}
 
 		void deleteIterator(iterator n)
@@ -429,16 +432,61 @@ namespace ft
 				return x->right;
 		}
 
+		node_type * swapValues(node_type *u, node_type *v) {
+
+			node_type *newV = alloc.allocate(1);
+			alloc.construct(newV, node_type(u->value, compare, end));
+
+			newV->left = v->left;
+			if (newV->left)
+				newV->left->parent = newV;
+			newV->right = v->right;
+			if (newV->right)
+				newV->right->parent = newV;
+			newV->color = v->color;
+			newV->parent = v->parent;
+			if (newV->parent && v->isOnLeft())
+				v->parent->left = newV;
+			else if (newV->parent)
+				v->parent->right = newV;
+
+			node_type *newU = alloc.allocate(1);
+			alloc.construct(newU, node_type(v->value, compare, end));
+			newU->left = u->left;
+			if (newU->left)
+				newU->left->parent = newU;
+			newU->right = u->right;
+			if (newU->right)
+				newU->right->parent = newU;
+			newU->color = u->color;
+			newU->parent = u->parent;
+			if (newU->parent && u->isOnLeft())
+				u->parent->left = newU;
+			else if (newU->parent)
+				u->parent->right = newU;
+
+			if (v == root)
+				root = newU;
+			if (u == root)
+				root = newV;
+			
+			alloc.destroy(v);
+			alloc.deallocate(v, 1);
+			alloc.destroy(u);
+			alloc.deallocate(u, 1);
+			return newU;
+		}
+
 		// deletes the given node
 		void deleteNode(node_type *v)
 		{
 			node_type *u = BSTreplace(v);
 
 			// True when u and v are both black
-			bool uvBlack = ((u == NULL || u==end || u->color == BLACK) and (v->color == BLACK));
+			bool uvBlack = ((u == NULL || u->color == BLACK) and (v->color == BLACK));
 			node_type *parent = v->parent;
 
-			if (u == NULL || u==end)
+			if (u == NULL)
 			{
 				// u is NULL therefore v is leaf
 				if (v == root)
@@ -457,7 +505,7 @@ namespace ft
 					else
 					{
 						// u or v is red
-						if (v->sibling() != NULL || v->sibling() != end)
+						if (v->sibling() != NULL)
 							// sibling is not null, make it red"
 							v->sibling()->color = RED;
 					}
@@ -477,7 +525,7 @@ namespace ft
 				return;
 			}
 
-			if (v->left == NULL || v->left == end || v->right == NULL || v->end == end)
+			if (v->left == NULL || v->right == NULL)
 			{
 				// v has 1 child
 				if (v == root)
@@ -518,25 +566,8 @@ namespace ft
 			}
 
 			// v has 2 children, swap values with successor and recurse
-			
-			node_type *tmp_v_parent = v->parent;
-			node_type *tmp_v_left = v->left;
-			node_type *tmp_v_right = v->right;
-			
-			v->parent = u->parent;
-			v->left = u->left;
-			v->right = u->right;
-			
-			u->parent = tmp_v_parent;
-			u->left = tmp_v_left;
-			u->right = tmp_v_right;
-			
-			if (u->parent == NULL)
-				root = u;
-			if (v->parent == NULL)
-				root = v;
-			
-			deleteNode(v);
+
+			deleteNode(swapValues(u, v));
 		}
 
 		void fixDoubleBlack(node_type *x)
@@ -546,7 +577,7 @@ namespace ft
 				return;
 
 			node_type *sibling = x->sibling(), *parent = x->parent;
-			if (sibling == NULL || sibling == end)
+			if (sibling == NULL)
 			{
 				// No sibiling, double black pushed up
 				fixDoubleBlack(parent);

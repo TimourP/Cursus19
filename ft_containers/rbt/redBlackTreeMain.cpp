@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:53:48 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/20 19:53:33 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:46:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,23 @@
 int main(void)
 {
 	
-	ft::RBTree<int, int, ft::less<int>> rbt;
+	ft::RBTree<int, int, ft::less<int> > rbt;
+	ft::pair<int, int> test;
 
 	srand(time(NULL));
 
 	for (size_t i = 0; i < 10; i++)
 	{
 		ft::pair<int, int> p(rand() % 100 + 1, 3);
+		if (i == 1) {
+			std::cout << p.first << std::endl;
+			test = p;
+		}
 		rbt.insert(p);
 	}
+	rbt.unAttachEnd();
 	rbt.print();
+	rbt.deleteByKey(test);
+	rbt.print();
+	rbt.attachEnd();
 }
