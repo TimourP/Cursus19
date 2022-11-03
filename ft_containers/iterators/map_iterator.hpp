@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 11:27:42 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 10:22:13 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:02:09 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 namespace ft
 {
 	template <class Key, class T, class Compare = less<T> >
-	class map_iterator
+	class map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, ft::pair<Key, T> >
 	{
 
 	public:

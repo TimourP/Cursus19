@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:13:31 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 14:20:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:19:33 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
 	public:
 		reverse_iterator(void) : it(NULL){};
 
-		explicit reverse_iterator(iterator_type it) : it(it){};
+		explicit reverse_iterator(iterator_type nit) : it(nit){};
 
 		template <class It>
 		reverse_iterator(const reverse_iterator<It> &rev_it) : it(rev_it.base()){};
@@ -50,14 +50,14 @@ namespace ft
 
 		reference operator*() const
         {
-			iterator_type tmp = this->it - 1; 
-            return *(tmp);
+			iterator_type tmp = this->it; 
+            return *(--tmp);
         }
 
 		reference operator[](difference_type n) const
 		{
-			iterator_type tmp = this->it - n - 1; 
-			return *(tmp);
+			iterator_type tmp = this->it - n; 
+			return *(--tmp);
 		};
 
 		reverse_iterator operator+(difference_type n) const
@@ -78,7 +78,6 @@ namespace ft
 
 		reverse_iterator operator++(int)
 		{
-			std::cout << "hehe" << std::endl;
 			reverse_iterator temp = *this;
 			--this->it;
 			return temp;
