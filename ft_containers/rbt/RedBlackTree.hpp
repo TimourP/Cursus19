@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 12:19:27 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 13:40:04 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ namespace ft
 					attachEnd();
 					return end;
 				}
+				// std::cout << "insert value" << std::endl;
 				size++;
 
 				if (temp == end) {
@@ -187,13 +188,13 @@ namespace ft
 			if (root == NULL)
 				// Tree is empty
 				return false;
-			std::cout << "try delete: " << n.first << std::endl;
+			// std::cout << "try delete: " << n.first << std::endl;
 			unAttachEnd();
 			node_type *v = search(n);
 
 			if (v == end)
 			{
-				std::cout << "diff" <<std::endl;
+				// std::cout << "diff" <<std::endl;
 				attachEnd();
 				return false;
 			}
@@ -466,14 +467,14 @@ namespace ft
 				u->parent->right = newU;
 
 			if (v == root)
-				root = newU;
-			if (u == root)
 				root = newV;
+			if (u == root)
+				root = newU;
 			
-			alloc.destroy(v);
-			alloc.deallocate(v, 1);
-			alloc.destroy(u);
-			alloc.deallocate(u, 1);
+			// alloc.destroy(v);
+			// alloc.deallocate(v, 1);
+			// alloc.destroy(u);
+			// alloc.deallocate(u, 1);
 			return newU;
 		}
 

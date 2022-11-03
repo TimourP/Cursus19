@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 11:34:24 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 13:56:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ namespace ft
 				{
 					tmp = first;
 					first++;
-					tree.deleteIterator(tmp);
+					tree.deleteByKey(ft::make_pair((*tmp).first, mapped_type()));
 				}
 			}
 

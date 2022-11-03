@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:53:48 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 11:46:21 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:41:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(void)
 		rbt.insert(p);
 	}
 	rbt.unAttachEnd();
+	std::cout << "-------" << std::endl;
 	rbt.print();
 	rbt.deleteByKey(test);
 	rbt.print();
