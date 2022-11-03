@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 13:40:04 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 14:14:37 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ namespace ft
 				{
 					// return if value already exists
 					attachEnd();
-					return end;
+					return temp;
 				}
 				// std::cout << "insert value" << std::endl;
 				size++;
@@ -179,6 +179,68 @@ namespace ft
 				fixRedRed(newNode);
 				attachEnd();
 				return newNode;
+			}
+		}
+
+		pair<iterator, bool> insert(value_type n, bool flag)
+		{
+			node_type *newNode = alloc.allocate(1);
+			alloc.construct(newNode, node_type(n, compare, end));
+			node_type tmp(n, compare, end);
+			unAttachEnd();
+
+			if (root == NULL)
+			{
+				// when root is null
+				// simply insert value at root
+				newNode->color = BLACK;
+				root = newNode;
+				size = 1;
+				attachEnd();
+				return ft::make_pair(newNode, true);
+			}
+			else
+			{
+				node_type *temp = search(n);
+
+				if (*temp == tmp)
+				{
+					// return if value already exists
+					attachEnd();
+					return ft::make_pair(temp, false);;
+				}
+				// std::cout << "insert value" << std::endl;
+				size++;
+
+				if (temp == end) {
+					node_type	*previous = NULL;
+					temp = root;
+					while (temp && temp != end)
+					{
+						previous = temp;
+						if (tmp < *temp)
+							temp = temp->left;
+						else
+							temp = temp->right;
+					}
+					temp = previous;
+				}
+
+				// if value is not found, search returns the node
+				// where the value is to be inserted
+
+				// connect new node to correct node
+				newNode->parent = temp;
+
+				if (*newNode < *temp)
+					temp->left = newNode;
+				else
+					temp->right = newNode;
+
+				// fix red red voilaton if exists
+				fixRedRed(newNode);
+				attachEnd();
+				return ft::make_pair(newNode, true);
 			}
 		}
 

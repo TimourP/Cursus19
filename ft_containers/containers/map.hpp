@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 13:56:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 14:15:15 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,7 @@ namespace ft
 			};
 
 			pair<iterator,bool> insert (const value_type& val) {
-				iterator node = this->tree.insert(val);
-				return ft::make_pair(node, false);
+				return this->tree.insert(val, true);
 			};
 			
 			iterator insert( iterator hint, const value_type& value ) {
