@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 15:41:47 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 16:22:17 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ namespace ft
 			value_type p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
+			end->setEnd(end);
 		}
 
 		RBTree(const RBTree<Key, T, Compare, Alloc> & src) : root(NULL), alloc(src.alloc), size(src.size), compare(src.compare) {
 			value_type p;
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
+			end->setEnd(end);
 			for (node_type *node = node_type::get_smallest(src.root); node != src.end; node = node->iterate())
 				this->insert(node->value);
 			return ;
@@ -88,7 +90,7 @@ namespace ft
 			node_type tmp(n, compare, end);
 			node_type *temp = root;
 			
-			while (temp && temp != end)
+			while (temp)
 			{
 				if (tmp == *temp) {
 					return temp;
@@ -103,10 +105,7 @@ namespace ft
 		
 		void unAttachEnd(void) {
 			if (end->parent) {
-				if (end->isOnLeft())
-					end->parent->left = NULL;
-				else
-					end->parent->right = NULL;
+				end->parent->right = NULL;
 			}
 			end->parent = NULL;
 		}

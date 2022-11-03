@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 15:40:01 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 16:21:58 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,12 +160,12 @@ namespace ft
 				while (first != last)
 				{
 					tree.insert(*first);
-					first++;
+					++first;
 				}
 			};
 
 			void erase (iterator position) {
-				tree.deleteByKey(ft::make_pair((*position).first, mapped_type()));
+				tree.deleteByKey(*position);
 			};
 
 			size_type erase (const key_type& k) {
@@ -178,8 +178,8 @@ namespace ft
 				while (first != last)
 				{
 					tmp = first;
-					first++;
-					tree.deleteByKey(ft::make_pair((*tmp).first, mapped_type()));
+					++first;
+					tree.deleteByKey(*tmp);
 				}
 			}
 

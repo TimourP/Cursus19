@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/02 18:21:22 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/03 16:22:39 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ namespace ft
 			}
 			if (parent && parent != end && parent->left == k)
 				return parent;
-			if (!end)
-				return this->parent->end;
 			return end;
 		}
 
@@ -148,9 +146,6 @@ namespace ft
 			}
 			if (parent)
 				return parent;
-			
-			if (!end)
-				return this->parent->end;
 			return end;
 		}
 

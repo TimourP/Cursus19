@@ -2,6 +2,7 @@ exams_prepa/
 gcc_script.sh
 .vscode
 containers_test/
+container_test_lucas/
 
 # compiled output
 /dist
