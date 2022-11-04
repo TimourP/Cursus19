@@ -247,10 +247,10 @@ namespace ft
 			
 			ft::RBTree<key_type, mapped_type, key_compare, Allocator> tree;
 			allocator_type _alloc;
-			size_type _size;
-			size_type _max_size;
 			key_compare key_c;
 			value_compare value_c;
+			size_type _size;
+			size_type _max_size;
 	};
 
 	template <class Key, class T, class Compare, class Alloc>

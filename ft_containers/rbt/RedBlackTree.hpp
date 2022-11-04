@@ -187,6 +187,7 @@ namespace ft
 			alloc.construct(newNode, node_type(n, compare, end));
 			node_type tmp(n, compare, end);
 			unAttachEnd();
+			(void)flag;
 
 			if (root == NULL)
 			{
