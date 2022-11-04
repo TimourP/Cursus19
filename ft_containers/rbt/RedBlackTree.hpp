@@ -494,237 +494,163 @@ namespace ft
 				return x->right;
 		}
 
-		node_type * swapValues(node_type *u, node_type *v) {
-
-			node_type *newV = alloc.allocate(1);
-			alloc.construct(newV, node_type(u->value, compare, end));
-
-			newV->left = v->left;
-			if (newV->left)
-				newV->left->parent = newV;
-			newV->right = v->right;
-			if (newV->right)
-				newV->right->parent = newV;
-			newV->color = v->color;
-			newV->parent = v->parent;
-			if (newV->parent && v->isOnLeft())
-				v->parent->left = newV;
-			else if (newV->parent)
-				v->parent->right = newV;
-
-			node_type *newU = alloc.allocate(1);
-			alloc.construct(newU, node_type(v->value, compare, end));
-			newU->left = u->left;
-			if (newU->left)
-				newU->left->parent = newU;
-			newU->right = u->right;
-			if (newU->right)
-				newU->right->parent = newU;
-			newU->color = u->color;
-			newU->parent = u->parent;
-			if (newU->parent && u->isOnLeft())
-				u->parent->left = newU;
-			else if (newU->parent)
-				u->parent->right = newU;
-
-			if (v == root)
-				root = newV;
-			if (u == root)
-				root = newU;
-			
-			// alloc.destroy(v);
-			// alloc.deallocate(v, 1);
-			// alloc.destroy(u);
-			// alloc.deallocate(u, 1);
-			return newU;
+		void replace_node(node_type *parent, node_type *k, node_type *replacer) {
+			if (!parent)
+				root = replacer;
+			else if (k == parent->left)
+				parent->left = replacer;
+			else
+				parent->right = replacer;
+			if (replacer)
+				replacer->parent = parent;
+			alloc.destroy(k);
+			alloc.deallocate(k, 1);
+			return ;
 		}
 
+		void transplant_node(node_type *parent, node_type *k, node_type *replacer) {
+			if (!parent)
+				root = replacer;
+			else if (k == parent->left)
+				parent->left = replacer;
+			else
+				parent->right = replacer;
+			if (replacer)
+				replacer->parent = parent;
+			return ;
+		}
+
+		pair<node_type*, bool> create_child(node_type *parent, bool is_left) {
+			node_type	*child = (is_left ? parent->left : parent->right);
+			if (child)
+				return pair<node_type*, bool>(child, false);
+			node_type	*new_node = alloc.allocate(1);
+			alloc.construct(new_node, node_type(value_type(), compare, end));
+			new_node->color = BLACK;
+			is_left ? parent->left = new_node : parent->right = new_node;
+			return pair<node_type*, bool>(new_node, true);
+		}
+
+		bool is_black(node_type *k) {
+			if (!k || k->color == BLACK)
+				return true;
+			return false;
+		}
+
+		bool is_red(node_type *k) {
+			if (!k || k->color == RED)
+				return true;
+			return false;
+		}
+
+		void fix_deletion(node_type *k) {
+			while (root != k && this->is_black(k))
+			{
+
+				node_type	*parent = k->parent;
+				bool		is_left = (k == k->parent->left);
+				node_type	*brother = is_left ? parent->right : parent->left;
+
+				if (this->is_red(brother))
+				{
+					brother->color = BLACK;
+					parent->color = RED;
+					is_left ? leftRotate(parent) : rightRotate(parent);
+					parent = k->parent;
+					is_left ? brother = parent->right : parent->left;
+				}
+				if (this->is_black(brother) && this->is_black(brother->left) && this->is_black(brother->right))
+				{
+					brother->color = RED;
+					k = parent;
+					parent = parent->parent;
+				}
+				else
+				{
+					if ( (is_left && this->is_black(brother) && this->is_black(brother->right) && this->is_red(brother->left))
+						|| (!is_left && this->is_black(brother) && this->is_black(brother->left) && this->is_red(brother->right)) )
+					{
+						is_left ? brother->left->color = BLACK : brother->right->color = BLACK;
+						brother->color = RED;
+						is_left ? rightRotate(brother) : leftRotate(brother);
+						parent = k->parent;
+						brother = ( is_left ? parent->right : parent->left );
+					}
+				
+					brother->color = parent->color;
+					parent->color = BLACK;
+					is_left ? brother->right->color = BLACK : brother->left->color = BLACK;
+					is_left ? leftRotate(parent) : rightRotate(parent);
+					k = root;
+
+					// is_left ? brother->get_right()->set_color(RBT_BLACK) : brother->get_left()->set_color(RBT_BLACK);
+					// is_left ? this->_left_rotate(parent) : this->_right_rotate(parent);
+					//k = this->_root;
+				}
+			}
+			k->color = BLACK;
+		}
+		
 		// deletes the given node
-		void deleteNode(node_type *v)
+		bool deleteNode(node_type *v)
 		{
-			node_type *u = BSTreplace(v);
-
-			// True when u and v are both black
-			bool uvBlack = ((u == NULL || u->color == BLACK) and (v->color == BLACK));
-			node_type *parent = v->parent;
-
-			if (u == NULL)
+			node_type				*left = v->left;
+			node_type				*right = v->right;
+			pair<node_type*, bool>	check = pair<node_type*, bool>(v, true);
+			COLOR					color = v->color;
+		
+			if (v == end)
+				return false;
+			if (!right)
 			{
-				// u is NULL therefore v is leaf
-				if (v == root)
-				{
-					// v is root, making root null
-					root = NULL;
-				}
-				else
-				{
-					if (uvBlack)
-					{
-						// u and v both black
-						// v is leaf, fix double black at v
-						fixDoubleBlack(v);
-					}
-					else
-					{
-						// u or v is red
-						if (v->sibling() != NULL)
-							// sibling is not null, make it red"
-							v->sibling()->color = RED;
-					}
-
-					if (v->isOnLeft())
-					{
-						parent->left = NULL;
-					}
-					else
-					{
-						parent->right = NULL;
-					}
-				}
-				size--;
-				alloc.destroy(v);
-				alloc.deallocate(v, 1);
-				return;
+				check = this->create_child(v, true);
+				this->replace_node(v->parent, v, check.first);
 			}
-
-			if (v->left == NULL || v->right == NULL)
+			else if (!left)
 			{
-				// v has 1 child
-				if (v == root)
-				{
-					alloc.destroy(v);
-					alloc.deallocate(v, 1);
-					root = u;
-					root->parent = NULL;
-					root->color = BLACK;
-				}
-				else
-				{
-					// Detach v from tree and move u up
-					if (v->isOnLeft())
-					{
-						parent->left = u;
-					}
-					else
-					{
-						parent->right = u;
-					}
-					alloc.destroy(v);
-					alloc.deallocate(v, 1);
-					u->parent = parent;
-					if (uvBlack)
-					{
-						// u and v both black, fix double black at u
-						fixDoubleBlack(u);
-					}
-					else
-					{
-						// u or v red, color u black
-						u->color = BLACK;
-					}
-				}
-				size--;
-				return;
-			}
-
-			// v has 2 children, swap values with successor and recurse
-
-			deleteNode(swapValues(u, v));
-		}
-
-		void fixDoubleBlack(node_type *x)
-		{
-			if (x == root)
-				// Reached root
-				return;
-
-			node_type *sibling = x->sibling(), *parent = x->parent;
-			if (sibling == NULL)
-			{
-				// No sibiling, double black pushed up
-				fixDoubleBlack(parent);
+				check = this->create_child(v, false);
+				this->replace_node(v->parent, v, check.first);
 			}
 			else
 			{
-				if (sibling->color == RED)
-				{
-					// Sibling red
-					parent->color = RED;
-					sibling->color = BLACK;
-					if (sibling->isOnLeft())
-					{
-						// left case
-						rightRotate(parent);
-					}
-					else
-					{
-						// right case
-						leftRotate(parent);
-					}
-					fixDoubleBlack(x);
-				}
+				node_type	*smallest = node_type::get_smallest(right);
+				color = smallest->color;
+				check = this->create_child(smallest, false);
+				if (v == smallest->parent)
+					check.first->parent = smallest; // attention
 				else
 				{
-					// Sibling black
-					if (sibling->hasRedChild())
-					{
-						// at least 1 red children
-						if (sibling->left != NULL and sibling->left->color == RED)
-						{
-							if (sibling->isOnLeft())
-							{
-								// left left
-								sibling->left->color = sibling->color;
-								sibling->color = parent->color;
-								rightRotate(parent);
-							}
-							else
-							{
-								// right left
-								sibling->left->color = parent->color;
-								rightRotate(sibling);
-								leftRotate(parent);
-							}
-						}
-						else
-						{
-							if (sibling->isOnLeft())
-							{
-								// left right
-								sibling->right->color = parent->color;
-								leftRotate(sibling);
-								rightRotate(parent);
-							}
-							else
-							{
-								// right right
-								sibling->right->color = sibling->color;
-								sibling->color = parent->color;
-								leftRotate(parent);
-							}
-						}
-						parent->color = BLACK;
-					}
-					else
-					{
-						// 2 black children
-						sibling->color = RED;
-						if (parent->color == BLACK)
-							fixDoubleBlack(parent);
-						else
-							parent->color = BLACK;
-					}
+					this->transplant_node(smallest->parent, smallest, smallest->right);
+					smallest->right = right;
+					smallest->right->parent = smallest;
 				}
+				this->replace_node(v->parent, v, smallest);
+				smallest->left = left;
+				smallest->left->parent = smallest;
+				smallest->color = v->color;
 			}
+			if (color == BLACK) {
+				this->fix_deletion(check.first);
+				//std::cout << "doit remettre" << std::endl;
+			}
+			if (check.second)
+			{
+				if (check.first->parent)
+					check.first == check.first->parent->left ? check.first->parent->left = NULL : check.first->parent->right = NULL;
+				// if (check.first->get_parent())
+				// 	check.first == check.first->get_parent()->get_left() ? check.first->get_parent()->set_left(NULL) : check.first->get_parent()->set_right(NULL);
+
+				if (check.first == root)
+					root = NULL;
+				alloc.destroy(check.first);
+				alloc.deallocate(check.first, 1);
+			}
+			return true;
 		}
 
-		node_type *max_node(void) {
-			node_type *tmp = root;
+		
 
-			while (tmp->right)
-				tmp = tmp->right;
-			return tmp;
-		}
+		
 
 		void printRBTRec(const std::string &prefix, node_type *node, bool isLeft) const
 		{

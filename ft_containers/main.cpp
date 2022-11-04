@@ -31,20 +31,19 @@ int		main(void)
 	ft::map<T1, T2> m_m;
 	int t1;
 	int t2;
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < 10; i++) {
 		t1 = rand() % 10000;
 		t2 = rand() % 1000000;
-		m.insert(ST3(t1, t2));
-		m_m.insert(MT3(t1, t2));
+		m_m.insert(MT3(i, t2));
 	}
-	for (size_t i = 0; i < m.size() * 10; i++) {
-		t1 = rand() % 10000;
-		m.erase(t1);
-		m_m.erase(t1);
+
+	m_m.erase(m_m.begin(), m_m.end());
+	
+	for (ft::map<T1, T2>::iterator i = m_m.begin(); i != m_m.end(); i++)
+	{
+		std::cout << (*i).first << std::endl;
 	}
-	m.erase(++m.begin(), --m.end());
-	m_m.erase(++m_m.begin(), --m_m.end());
-	std::cout << (*(++m.begin())).first << std::endl;
-	std::cout << (*(++m_m.begin())).first << std::endl;
+	
+
 	return 0;
 }
