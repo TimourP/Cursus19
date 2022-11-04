@@ -37,7 +37,7 @@ int		main(void)
 		m_m.insert(MT3(i, t2));
 	}
 
-	m_m.erase(m_m.begin(), m_m.end());
+	m_m.erase(++m_m.begin(), --m_m.end());
 	
 	for (ft::map<T1, T2>::iterator i = m_m.begin(); i != m_m.end(); i++)
 	{

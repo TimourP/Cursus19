@@ -260,7 +260,9 @@ namespace ft
 				return false;
 			}
 
-			deleteNode(v);
+			bool del = deleteNode(v);
+			if (del)
+				size--;
 			attachEnd();
 			return true;
 		}
@@ -268,7 +270,9 @@ namespace ft
 		void deleteIterator(iterator n)
 		{
 			unAttachEnd();
-			deleteNode(n);
+			bool del = deleteNode(n);
+			if (del)
+				size--;
 			attachEnd();
 		}
 
