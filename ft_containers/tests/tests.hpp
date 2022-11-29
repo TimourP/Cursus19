@@ -22,34 +22,100 @@
 
 void map_test_print(void) {
 	std::ifstream infile("./tests/map_tests.txt");
-	std::stringstream ss;
+	std::stringstream st;
 	std::string str_resp;
 
-	ss << infile.rdbuf();
+	st << infile.rdbuf();
+	std::string f_string = st.str();
 	std::cout << std::endl << std::endl << std::endl;
-	std::cout << KMAG << ss.str() << RST << std::endl;
+	bool full = true;
+	while (f_string.length())
+	{
+		if (full) {
+			size_t next_diff = f_string.find_first_not_of("█") - 1;
+			std::cout << KWHT << f_string.substr(0, next_diff + 1 == std::string::npos ? std::string::npos : next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		} else {
+			size_t next_diff = f_string.find("█");
+			std::cout << KRED << f_string.substr(0, next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		}
+	}
+	
 	std::cout << std::endl << std::endl << std::endl;
 }
 
 void vector_test_print(void) {
 	std::ifstream infile("./tests/vector_tests.txt");
-	std::stringstream ss;
+	std::stringstream st;
 	std::string str_resp;
 
-	ss << infile.rdbuf();
+	st << infile.rdbuf();
+	std::string f_string = st.str();
 	std::cout << std::endl << std::endl << std::endl;
-	std::cout << KMAG << ss.str() << RST << std::endl;
+	bool full = true;
+	while (f_string.length())
+	{
+		if (full) {
+			size_t next_diff = f_string.find_first_not_of("█") - 1;
+			std::cout << KWHT << f_string.substr(0, next_diff + 1 == std::string::npos ? std::string::npos : next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		} else {
+			size_t next_diff = f_string.find("█");
+			std::cout << KYEL << f_string.substr(0, next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		}
+	}
+	
 	std::cout << std::endl << std::endl << std::endl;
 }
 
 void stack_test_print(void) {
 	std::ifstream infile("./tests/stack_tests.txt");
-	std::stringstream ss;
+	std::stringstream st;
 	std::string str_resp;
 
-	ss << infile.rdbuf();
+	st << infile.rdbuf();
+	std::string f_string = st.str();
 	std::cout << std::endl << std::endl << std::endl;
-	std::cout << KMAG << ss.str() << RST << std::endl;
+	bool full = true;
+	while (f_string.length())
+	{
+		if (full) {
+			size_t next_diff = f_string.find_first_not_of("█") - 1;
+			std::cout << KWHT << f_string.substr(0, next_diff + 1 == std::string::npos ? std::string::npos : next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		} else {
+			size_t next_diff = f_string.find("█");
+			std::cout << KCYN << f_string.substr(0, next_diff);
+			if (next_diff == std::string::npos) {
+				break;
+			}
+			f_string = f_string.substr(next_diff);
+			full = !full;
+		}
+	}
+	
 	std::cout << std::endl << std::endl << std::endl;
 }
 

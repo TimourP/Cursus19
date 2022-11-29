@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:27:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 16:30:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:32:29 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,9 @@ void vector_tests(void) {
 	std_vector_empty.insert(std_vector_empty.begin(), 3, 1);
 
 	print_ft_std(ft_vector_empty, std_vector_empty, "Insert count");
+
+	ft_vector_empty.insert(ft_vector_empty.begin(), ft_vector_empty.begin(), ft_vector_empty.end());
+	std_vector_empty.insert(std_vector_empty.begin(), std_vector_empty.begin(), std_vector_empty.end());
 }
 
 #endif
