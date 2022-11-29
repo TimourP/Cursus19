@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 12:29:14 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 13:09:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,11 @@ namespace ft
 			}
 
 			void swap (map& x) {
-				tree.swap(&x.tree);
+				tree.swap(x.tree);
+				size_t tmp_size = _size;
+
+				_size = x._size;
+				x._size = tmp_size;
 			};
 
 			void clear() {

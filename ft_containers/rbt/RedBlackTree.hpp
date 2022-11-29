@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 11:55:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 13:22:12 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,24 @@ namespace ft
 		};
 		
 		~RBTree() {
-			alloc.destroy(end);
-			alloc.deallocate(end, 1);
+			clear_tree(root);
+			if (end) {
+				alloc.destroy(end);
+				alloc.deallocate(end, 1);
+			}
+		}
+
+		void clear_tree(node_type *node) {
+			if (!node)
+				return;
+			if (node->right)
+				clear_tree(node->right);
+			if (node->left)
+				clear_tree(node->left);
+			if (node == end)
+				end = NULL;
+			alloc.destroy(node);
+			alloc.deallocate(node, 1);
 		}
 
 		node_type *getRoot() const
@@ -146,6 +162,8 @@ namespace ft
 				{
 					// return if value already exists
 					attachEnd();
+					alloc.destroy(newNode);
+					alloc.deallocate(newNode, 1);
 					return temp;
 				}
 				// std::cout << "insert value" << std::endl;
@@ -209,6 +227,8 @@ namespace ft
 				{
 					// return if value already exists
 					attachEnd();
+					alloc.destroy(newNode);
+					alloc.deallocate(newNode, 1);
 					return ft::make_pair(temp, false);;
 				}
 				// std::cout << "insert value" << std::endl;
@@ -284,19 +304,19 @@ namespace ft
 			return size;
 		}
 
-		void	swap(RBTree *rhs)
+		void	swap(RBTree& rhs)
 		{
 			node_type	*tmp_end = end;
 			node_type	*tmp_root = root;
 			size_t			tmp_size = size;
 
-			end = rhs->end;
-			root = rhs->root;
-			size = rhs->size;
+			this->end = rhs.getEnd();
+			this->root = rhs.getRoot();
+			this->size = rhs.get_size();
 
-			rhs->end = tmp_end;
-			rhs->root = tmp_root;
-			rhs->size = tmp_size;
+			rhs.end = tmp_end;
+			rhs.root = tmp_root;
+			rhs.size = tmp_size;
 		}
 
 		node_type *lower_bound(key_type k) const {
@@ -559,10 +579,6 @@ namespace ft
 					is_left ? brother->right->color = BLACK : brother->left->color = BLACK;
 					is_left ? leftRotate(parent) : rightRotate(parent);
 					k = root;
-
-					// is_left ? brother->get_right()->set_color(RBT_BLACK) : brother->get_left()->set_color(RBT_BLACK);
-					// is_left ? this->_left_rotate(parent) : this->_right_rotate(parent);
-					//k = this->_root;
 				}
 			}
 			k->color = BLACK;
@@ -614,8 +630,6 @@ namespace ft
 			{
 				if (check.first->parent)
 					check.first == check.first->parent->left ? check.first->parent->left = NULL : check.first->parent->right = NULL;
-				// if (check.first->get_parent())
-				// 	check.first == check.first->get_parent()->get_left() ? check.first->get_parent()->set_left(NULL) : check.first->get_parent()->set_right(NULL);
 
 				if (check.first == root)
 					root = NULL;

@@ -117,6 +117,8 @@ void map_tests(void) {
 
 	print_ft_std(ft_map_empty, std_map_empty, "Erase all");
 
+	ft::map<Key, T> ft_map_empty_bis;
+	std::map<Key, T> std_map_empty_bis;
 	std::srand(time(0));
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -124,9 +126,21 @@ void map_tests(void) {
 		T rand_int2 = std::rand() % 50;
 		ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
 		std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
+
+		rand_int1 = std::rand() % 50;
+		rand_int2 = std::rand() % 50;
+		ft_map_empty_bis.insert(ft::make_pair(rand_int1, rand_int2));
+		std_map_empty_bis.insert(std::make_pair(rand_int1, rand_int2));
 	}
 
-	print_ft_std(ft_map_empty, std_map_empty, "Before swap");
+	print_ft_std(ft_map_empty, std_map_empty, "Before swap map 1");
+	print_ft_std(ft_map_empty_bis, std_map_empty_bis, "Before swap map 2");
+
+	ft_map_empty.swap(ft_map_empty_bis);
+	std_map_empty.swap(std_map_empty_bis);
+
+	print_ft_std(ft_map_empty, std_map_empty, "After swap map 1");
+	print_ft_std(ft_map_empty_bis, std_map_empty_bis, "After swap map 2");
 
 	system("leaks a.out");
 }
