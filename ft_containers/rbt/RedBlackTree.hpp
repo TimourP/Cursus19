@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 10:23:51 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 11:55:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ namespace ft
 			end = alloc.allocate(1);
 			alloc.construct(end, node_type(p, compare, root));
 			end->setEnd(end);
+			if (!size)
+				return;
 			for (node_type *node = node_type::get_smallest(src.root); node != src.end; node = node->iterate())
 				this->insert(node->value);
 			return ;

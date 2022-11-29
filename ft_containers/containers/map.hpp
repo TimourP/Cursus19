@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 16:21:58 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 12:29:14 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ namespace ft
 			// Constructors
 			
 			explicit map (const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), key_c(comp), value_c(comp), _size(0) {};
+				const allocator_type& alloc = allocator_type()) : tree(comp, alloc), _alloc(alloc), key_c(comp), value_c(comp), _size(0) {
+				};
 
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
@@ -73,7 +74,8 @@ namespace ft
 					insert(first, last);
 				};
 
-			map (const map& x) : tree(x.tree), _alloc(x._alloc), key_c(x.key_c), value_c(x.value_c), _size(x.size()) {};
+			map (const map& x) : tree(x.tree), _alloc(x._alloc), key_c(x.key_c), value_c(x.value_c), _size(x.size()) {
+			};
 
 			// Destructor
 			~map() {};
@@ -83,10 +85,6 @@ namespace ft
 				insert(other.begin(), other.end());
 				return *this;
 			};
-			
-			mapped_type& at( const Key& key );
-			
-			const mapped_type& at( const Key& key ) const;
 			
 			mapped_type& operator[]( const Key& key ) {
 				value_type val = ft::make_pair(key, mapped_type());
