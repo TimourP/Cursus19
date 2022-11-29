@@ -61,4 +61,20 @@ void print_ft_std_value(TTest ft_value, TTest std_value, std::string title) {
 	std::cout << std::endl << std::endl;
 }
 
+void print_ft_std_value(size_t ft_value, size_t std_value, std::string title) {
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << "	" << title << std::endl << std::endl;
+	std::cout << "ft : " << ft_value << std::endl;
+	std::cout << "std: " << std_value << std::endl;
+	std::cout << std::endl << std::endl;
+}
+
+void print_ft_std_value(bool ft_value, bool std_value, std::string title) {
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << "	" << title << std::endl << std::endl;
+	std::cout << "ft : " << (ft_value == true ? "True" : "False") << std::endl;
+	std::cout << "std: " << (std_value == true ? "True" : "False") << std::endl;
+	std::cout << std::endl << std::endl;
+}
+
 #endif

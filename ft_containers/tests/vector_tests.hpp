@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:27:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 15:58:00 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:30:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,26 @@ void vector_tests(void) {
 
 	print_ft_std(ft_vector_empty, std_vector_empty, "Empty constructor");
 
+	ft::vector<TTest> ft_vector_size(10);
+	std::vector<TTest> std_vector_size(10);
+
+	print_ft_std(ft_vector_size, std_vector_size, "Size constructor");
+
+	ft::vector<TTest> ft_vector_ite(ft_vector_size.begin(), ft_vector_size.end());
+	std::vector<TTest> std_vector_ite(std_vector_size.begin(), std_vector_size.end());
+
+	print_ft_std(ft_vector_ite, std_vector_ite, "Iterators constructor");
+
+	ft::vector<TTest> ft_vector_copy(ft_vector_size);
+	std::vector<TTest> std_vector_copy(std_vector_size);
+
+	print_ft_std(ft_vector_copy, std_vector_copy, "Iterators constructor");
+
+	ft::vector<TTest> ft_vector_equal = ft_vector_size;
+	std::vector<TTest> std_vector_equal = std_vector_size;
+
+	print_ft_std(ft_vector_equal, std_vector_equal, "Equal operator");
+
 	std::srand(time(0));
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -77,6 +97,37 @@ void vector_tests(void) {
 	print_ft_std(ft_vector_empty, std_vector_empty, "Push");
 
 	print_ft_std_value(ft_vector_empty.size(), std_vector_empty.size(), "Size");
+	print_ft_std_value(ft_vector_empty.max_size(), std_vector_empty.max_size(), "Max size");
+
+	ft_vector_empty.resize(32);
+	std_vector_empty.resize(32);
+
+	print_ft_std_value(ft_vector_empty.capacity(), std_vector_empty.capacity(), "Resize");
+	print_ft_std_value(ft_vector_empty.empty(), std_vector_empty.empty(), "Empty");
+
+	ft_vector_empty.reserve(64);
+	std_vector_empty.reserve(64);
+
+	print_ft_std_value(ft_vector_empty.capacity(), std_vector_empty.capacity(), "Reserve");
+	print_ft_std_value(ft_vector_empty[0], std_vector_empty[0], "Operator[]");
+	print_ft_std_value(ft_vector_empty.at(0), std_vector_empty.at(0), "At");
+	print_ft_std_value(ft_vector_empty.front(), std_vector_empty.front(), "Front");
+	print_ft_std_value(ft_vector_empty.back(), std_vector_empty.back(), "Back");
+
+	ft_vector_empty.assign(ft_vector_copy.begin(), ft_vector_copy.end());
+	std_vector_empty.assign(std_vector_copy.begin(), std_vector_copy.end());
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Assign");
+
+	ft_vector_empty.insert(++ft_vector_empty.begin(), 15);
+	std_vector_empty.insert(++std_vector_empty.begin(), 15);
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Insert");
+
+	ft_vector_empty.insert(ft_vector_empty.begin(), 3, 1);
+	std_vector_empty.insert(std_vector_empty.begin(), 3, 1);
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Insert count");
 }
 
 #endif

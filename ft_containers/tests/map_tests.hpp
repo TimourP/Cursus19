@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:34:52 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 15:55:54 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:00:59 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,6 @@ void map_tests(void) {
 	std_map_empty.clear();
 
 	print_ft_std(ft_map_empty, std_map_empty, "Clear");
-
-	system("leaks a.out");
 }
 
 #endif

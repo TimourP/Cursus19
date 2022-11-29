@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:55:34 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 15:58:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:06:21 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "tests/vector_tests.hpp"
 #include "tests/tests.hpp"
 
-int main(void) {
+int main(int argc, char **argv) {
 
 
 	// vector tests
@@ -29,6 +29,13 @@ int main(void) {
 	// // map tests
 	// map_test_print();
 	// map_tests();
+
+	std::string leaks = "leaks ";
+	std::string prog_name =  argv[0];
+	prog_name = prog_name.substr(2);
+	leaks += prog_name;
+
+	system(leaks.c_str());
 
 	return 0;
 }
