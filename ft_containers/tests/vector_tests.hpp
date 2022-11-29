@@ -119,6 +119,11 @@ void vector_tests(void) {
 
 	print_ft_std(ft_vector_empty, std_vector_empty, "Assign");
 
+	ft_vector_empty.assign(8, 10);
+	std_vector_empty.assign(8, 10);
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Assign count");
+
 	ft_vector_empty.insert(++ft_vector_empty.begin(), 15);
 	std_vector_empty.insert(++std_vector_empty.begin(), 15);
 
@@ -131,6 +136,35 @@ void vector_tests(void) {
 
 	ft_vector_empty.insert(ft_vector_empty.begin(), ft_vector_empty.begin(), ft_vector_empty.end());
 	std_vector_empty.insert(std_vector_empty.begin(), std_vector_empty.begin(), std_vector_empty.end());
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Insert iterator");
+	
+	ft_vector_empty.pop_back();
+	std_vector_empty.pop_back();
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Pop ack");
+
+	ft_vector_empty.erase(ft_vector_empty.begin(), --ft_vector_empty.end());
+	std_vector_empty.erase(std_vector_empty.begin(), --std_vector_empty.end());
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Erase");
+
+	ft::vector<TTest> ft_vector_empty_bis(1, 8);
+	std::vector<TTest> std_vector_empty_bis(1, 8);
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Before swap vector 1");
+	print_ft_std(ft_vector_empty_bis, std_vector_empty_bis, "Before swap vector 2");
+
+	ft_vector_empty.swap(ft_vector_empty_bis);
+	std_vector_empty.swap(std_vector_empty_bis);
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "After swap vector 1");
+	print_ft_std(ft_vector_empty_bis, std_vector_empty_bis, "After swap vector 2");
+
+	ft_vector_empty.clear();
+	std_vector_empty.clear();
+
+	print_ft_std(ft_vector_empty, std_vector_empty, "Clear");
 }
 
 #endif

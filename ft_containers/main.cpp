@@ -16,26 +16,26 @@
 #include "tests/tests.hpp"
 
 int main(int argc, char **argv) {
-
+	(void)argc;
 
 	// vector tests
 	vector_test_print();
-	//vector_tests();
+	vector_tests();
 
-	// // stack tests
+	// stack tests
 	stack_test_print();
-	// stack_tests();
+	stack_tests();
 
-	// // map tests
+	// map tests
 	map_test_print();
-	// map_tests();
+	map_tests();
 
 	std::string leaks = "leaks ";
 	std::string prog_name =  argv[0];
 	prog_name = prog_name.substr(2);
 	leaks += prog_name;
 
-	//system(leaks.c_str());
+	system(leaks.c_str());
 
 	return 0;
 }

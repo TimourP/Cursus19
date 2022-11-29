@@ -41,7 +41,7 @@ void map_test_print(void) {
 			full = !full;
 		} else {
 			size_t next_diff = f_string.find("█");
-			std::cout << KRED << f_string.substr(0, next_diff);
+			std::cout << KCYN << f_string.substr(0, next_diff);
 			if (next_diff == std::string::npos) {
 				break;
 			}
@@ -107,7 +107,7 @@ void stack_test_print(void) {
 			full = !full;
 		} else {
 			size_t next_diff = f_string.find("█");
-			std::cout << KCYN << f_string.substr(0, next_diff);
+			std::cout << KRED << f_string.substr(0, next_diff);
 			if (next_diff == std::string::npos) {
 				break;
 			}
