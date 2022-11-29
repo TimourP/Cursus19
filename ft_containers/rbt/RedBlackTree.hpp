@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 16:22:17 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:23:51 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -467,36 +467,6 @@ namespace ft
 					}
 				}
 			}
-		}
-
-		// find node that do not have a left child
-		// in the subtree of the given node
-		node_type *successor(node_type *x)
-		{
-			node_type *temp = x;
-
-			while (temp->left != NULL)
-				temp = temp->left;
-
-			return temp;
-		}
-
-		// find node that replaces a deleted node in BST
-		node_type *BSTreplace(node_type *x)
-		{
-			// when node have 2 children
-			if (x->left != NULL and x->right != NULL)
-				return successor(x->right);
-
-			// when leaf
-			if (x->left == NULL and x->right == NULL)
-				return NULL;
-
-			// when single child
-			if (x->left != NULL)
-				return x->left;
-			else
-				return x->right;
 		}
 
 		void replace_node(node_type *parent, node_type *k, node_type *replacer) {
