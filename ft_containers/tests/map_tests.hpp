@@ -142,6 +142,15 @@ void map_tests(void) {
 	print_ft_std(ft_map_empty, std_map_empty, "After swap map 1");
 	print_ft_std(ft_map_empty_bis, std_map_empty_bis, "After swap map 2");
 
+	print_ft_std_value((*ft_map_empty.find((*ft_map_empty.begin()).first)).first, (*std_map_empty.find((*std_map_empty.begin()).first)).first, "Find");
+	print_ft_std_value((*ft_map_empty.upper_bound((*ft_map_empty.begin()).first)).first, (*std_map_empty.upper_bound((*std_map_empty.begin()).first)).first, "Upper bound");
+	print_ft_std_value((*ft_map_empty.lower_bound((*ft_map_empty.begin()).first)).first, (*std_map_empty.lower_bound((*std_map_empty.begin()).first)).first, "Lower bound");
+
+	ft_map_empty.clear();
+	std_map_empty.clear();
+
+	print_ft_std(ft_map_empty, std_map_empty, "Clear");
+
 	system("leaks a.out");
 }
 
