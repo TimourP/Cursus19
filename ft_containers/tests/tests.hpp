@@ -17,6 +17,8 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
+#define TTest int
+
 
 void map_test_print(void) {
 	std::ifstream infile("./tests/map_tests.txt");
@@ -49,6 +51,14 @@ void stack_test_print(void) {
 	std::cout << std::endl << std::endl << std::endl;
 	std::cout << KMAG << ss.str() << RST << std::endl;
 	std::cout << std::endl << std::endl << std::endl;
+}
+
+void print_ft_std_value(TTest ft_value, TTest std_value, std::string title) {
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << "	" << title << std::endl << std::endl;
+	std::cout << "ft : " << ft_value << std::endl;
+	std::cout << "std: " << std_value << std::endl;
+	std::cout << std::endl << std::endl;
 }
 
 #endif
