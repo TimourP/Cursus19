@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/30 14:31:25 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 14:40:48 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,62 +136,70 @@ namespace ft
 			}
 		}
 		
-		void fix_insert(node_type *k) {
-			while (is_red(k->parent) && k->parent->parent)
-			{
-				node_type *parent = k->parent;
-				node_type *gparent = parent->parent;
-				bool is_left = (gparent->left == parent);
-				node_type *uncle = (is_left ? gparent->right : gparent->left);
-
-				if (is_red(uncle)) {
-					parent->color = BLACK;
-					uncle->color = BLACK;
-					gparent->color = RED;
-					k = gparent;
-				} else {
-					if (k == (is_left ? parent->right : parent->left)) {
-						k = parent;
-						is_left ? leftRotate(k) : rightRotate(k);
-						parent = k->parent;
-						gparent = parent->parent;
-					}
-					parent->color = BLACK;
-					gparent->color = RED;
-					is_left ? rightRotate(gparent) : leftRotate(gparent);
-				}
-			}
-			root->color = BLACK;
-		}
-
 		pair<iterator, bool> insert(value_type n, bool flag)
 		{
-			(void)flag;
-			node_type *previous = NULL;
-			node_type *z = root;
+			node_type *newNode = alloc.allocate(1);
+			alloc.construct(newNode, node_type(n, compare, end));
+			node_type tmp(n, compare, end);
 
-			while (z)
+			(void)flag;
+
+			if (root == NULL)
 			{
-				previous = z;
-				if (n.first == z->value.first)
-					return pair<node_type*, bool>(z, false);
-				if (n.first < z->value.first)
-					z = z->left;
-				else
-					z = z->right;
+				// when root is null
+				// simply insert value at root
+				unAttachEnd();
+				newNode->color = BLACK;
+				root = newNode;
+				size = 1;
+				attachEnd();
+				return ft::make_pair(newNode, true);
 			}
-			size++;
-			node_type *new_node = alloc.allocate(1);
-			alloc.construct(new_node, node_type(n, compare, end));
-			new_node->parent = previous;
-			if (!previous)
-				root = new_node;
-			else if (new_node < previous)
-				previous->left = new_node;
 			else
-				previous->right = new_node;
-			fix_insert(new_node);
-			return pair<node_type *, bool>(new_node, true);
+			{
+				node_type *temp = search(n);
+				unAttachEnd();
+				if (*temp == tmp && temp != end)
+				{
+					// return if value already exists
+					attachEnd();
+					alloc.destroy(newNode);
+					alloc.deallocate(newNode, 1);
+					return ft::make_pair(temp, false);;
+				}
+				// std::cout << "insert value" << std::endl;
+				size++;
+
+				if (temp == end) {
+					node_type	*previous = NULL;
+					temp = root;
+					while (temp && temp != end)
+					{
+						previous = temp;
+						if (tmp < *temp)
+							temp = temp->left;
+						else
+							temp = temp->right;
+					}
+					temp = previous;
+				}
+
+				// if value is not found, search returns the node
+				// where the value is to be inserted
+
+				// connect new node to correct node
+				newNode->parent = temp;
+
+				if (*newNode < *temp)
+					temp->left = newNode;
+				else
+					temp->right = newNode;
+
+				// fix red red voilaton if exists
+				fixRedRed(newNode);
+				attachEnd();
+				return ft::make_pair(newNode, true);
+			}
 		}
 
 		// utility function that deletes the node with given value
@@ -302,44 +310,120 @@ namespace ft
 		size_t			size;
 		const key_compare	compare;
 
+		void swapColors(node_type *x1, node_type *x2)
+		{
+			COLOR temp;
+			temp = x1->color;
+			x1->color = x2->color;
+			x2->color = temp;
+		}
+
+		void fixRedRed(node_type *x)
+		{
+			// if x is root color it black and return
+			if (x == root)
+			{
+				x->color = BLACK;
+				return;
+			}
+
+			// initialize parent, grandparent, uncle
+			node_type *parent = x->parent, *grandparent = parent->parent,
+				*uncle = x->uncle();
+
+			if (parent->color != BLACK)
+			{
+				if (uncle != NULL && uncle->color == RED)
+				{
+					// uncle red, perform recoloring and recurse
+					parent->color = BLACK;
+					uncle->color = BLACK;
+					grandparent->color = RED;
+					fixRedRed(grandparent);
+				}
+				else
+				{
+					// Else perform LR, LL, RL, RR
+					if (parent->isOnLeft())
+					{
+						if (x->isOnLeft())
+						{
+							// for left right
+							swapColors(parent, grandparent);
+						}
+						else
+						{
+							leftRotate(parent);
+							swapColors(x, grandparent);
+						}
+						// for left left and left right
+						rightRotate(grandparent);
+					}
+					else
+					{
+						if (x->isOnLeft())
+						{
+							// for right left
+							rightRotate(parent);
+							swapColors(x, grandparent);
+						}
+						else
+						{
+							swapColors(parent, grandparent);
+						}
+
+						// for right right and right left
+						leftRotate(grandparent);
+					}
+				}
+			}
+		}
+
 		// left rotates the given node
-		void leftRotate(node_type *k)
+		void leftRotate(node_type *x)
 		{
-			node_type *right = k->right;
-			node_type *child_left = right->left;
+			// new parent will be node's right child
+			node_type *nParent = x->right;
 
-			k->right = child_left;
-			if (child_left)
-				child_left->parent = k;
-			right->parent = k->parent;
-			if (!k->parent)
-				this->root = right;
-			else if (k == k->parent->left)
-				k->parent->left = right;
-			else
-				k->parent->right = right;
-			right->left = k;
-			k->parent = right;
+			// update root if current node is root
+			if (x == root)
+				root = nParent;
+
+			x->moveDown(nParent);
+
+			// connect x with new parent's left element
+			x->right = nParent->left;
+			// connect new parent's left element with node
+			// if it is not null
+			if (nParent->left != NULL)
+				nParent->left->parent = x;
+
+			// connect new parent with x
+			nParent->left = x;
 		}
 
-		void rightRotate(node_type *k)
+		void rightRotate(node_type *x)
 		{
-			node_type *left = k->left;
-			node_type *child_right = left->right;
+			// new parent will be node's left child
+			node_type *nParent = x->left;
 
-			k->left = child_right;
-			if (child_right)
-				child_right->parent = k;
-			left->parent = k->parent;
-			if (!k->parent)
-				this->root = left;
-			else if (k == k->parent->right)
-				k->parent->right = left;
-			else
-				k->parent->left = left;
-			left->right = k;
-			k->parent = left;
+			// update root if current node is root
+			if (x == root)
+				root = nParent;
+
+			x->moveDown(nParent);
+
+			// connect x with new parent's right element
+			x->left = nParent->right;
+			// connect new parent's right element with node
+			// if it is not null
+			if (nParent->right != NULL)
+				nParent->right->parent = x;
+
+			// connect new parent with x
+			nParent->right = x;
 		}
+
 		
 
 		void replace_node(node_type *parent, node_type *k, node_type *replacer) {
