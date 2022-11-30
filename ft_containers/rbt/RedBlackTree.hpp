@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/30 11:15:34 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 11:49:11 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -461,6 +461,7 @@ namespace ft
 				return pair<node_type*, bool>(child, false);
 			node_type	*new_node = alloc.allocate(1);
 			alloc.construct(new_node, node_type(value_type(), compare, end));
+			new_node->parent = parent;
 			new_node->color = BLACK;
 			is_left ? parent->left = new_node : parent->right = new_node;
 			return pair<node_type*, bool>(new_node, true);
