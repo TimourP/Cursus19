@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 13:09:05 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 11:14:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ namespace ft
 				if (tmp != tree.getEnd()) {
 					return tmp->value.second;
 				}
-				return (*this->tree.insert(val)).second;
+				return (*this->tree.insert(val, true).first).second;
 			};
 			
 			iterator begin(void) {
@@ -149,7 +149,7 @@ namespace ft
 			
 			iterator insert( iterator hint, const value_type& value ) {
 				(void)hint;
-				iterator node = this->tree.insert(value);
+				iterator node = this->tree.insert(value, true).first;
 				return node;
 			};
 
@@ -157,7 +157,7 @@ namespace ft
 			void insert (InputIterator first, InputIterator last) {
 				while (first != last)
 				{
-					tree.insert(*first);
+					tree.insert(*first, true);
 					++first;
 				}
 			};
@@ -165,6 +165,10 @@ namespace ft
 			void erase (iterator position) {
 				tree.deleteByKey(*position);
 			};
+
+			void get_root_pub(void) {
+				tree.print();
+			}
 
 			size_type erase (const key_type& k) {
 				bool ret = tree.deleteByKey(ft::make_pair(k, mapped_type()));

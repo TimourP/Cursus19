@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/29 13:22:12 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 11:15:34 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ namespace ft
 			if (!size)
 				return;
 			for (node_type *node = node_type::get_smallest(src.root); node != src.end; node = node->iterate())
-				this->insert(node->value);
+				this->insert(node->value, true);
 			return ;
 		};
 		
@@ -136,83 +136,20 @@ namespace ft
 			}
 		}
 
-		// inserts the given value to tree
-		iterator insert(value_type n)
-		{
-			node_type *newNode = alloc.allocate(1);
-			alloc.construct(newNode, node_type(n, compare, end));
-			node_type tmp(n, compare, end);
-			unAttachEnd();
-
-			if (root == NULL)
-			{
-				// when root is null
-				// simply insert value at root
-				newNode->color = BLACK;
-				root = newNode;
-				size = 1;
-				attachEnd();
-				return newNode;
-			}
-			else
-			{
-				node_type *temp = search(n);
-
-				if (*temp == tmp && temp != end)
-				{
-					// return if value already exists
-					attachEnd();
-					alloc.destroy(newNode);
-					alloc.deallocate(newNode, 1);
-					return temp;
-				}
-				// std::cout << "insert value" << std::endl;
-				size++;
-
-				if (temp == end) {
-					node_type	*previous = NULL;
-					temp = root;
-					while (temp && temp != end)
-					{
-						previous = temp;
-						if (tmp < *temp)
-							temp = temp->left;
-						else
-							temp = temp->right;
-					}
-					temp = previous;
-				}
-
-				// if value is not found, search returns the node
-				// where the value is to be inserted
-
-				// connect new node to correct node
-				newNode->parent = temp;
-
-				if (*newNode < *temp)
-					temp->left = newNode;
-				else
-					temp->right = newNode;
-
-				// fix red red voilaton if exists
-				fixRedRed(newNode);
-				attachEnd();
-				return newNode;
-			}
-		}
 
 		pair<iterator, bool> insert(value_type n, bool flag)
 		{
 			node_type *newNode = alloc.allocate(1);
 			alloc.construct(newNode, node_type(n, compare, end));
 			node_type tmp(n, compare, end);
-			unAttachEnd();
+
 			(void)flag;
 
 			if (root == NULL)
 			{
 				// when root is null
 				// simply insert value at root
+				unAttachEnd();
 				newNode->color = BLACK;
 				root = newNode;
 				size = 1;
@@ -222,7 +159,7 @@ namespace ft
 			else
 			{
 				node_type *temp = search(n);
-
+				unAttachEnd();
 				if (*temp == tmp && temp != end)
 				{
 					// return if value already exists
@@ -269,14 +206,15 @@ namespace ft
 		// utility function that deletes the node with given value
 		bool deleteByKey(const value_type n)
 		{
-			if (root == NULL)
+			if (root == NULL || size == 0)
 				// Tree is empty
 				return false;
 			// std::cout << "try delete: " << n.first << std::endl;
-			unAttachEnd();
+			
 			node_type *v = search(n);
+			unAttachEnd();
 
-			if (v == end)
+			if (v == end || !v)
 			{
 				// std::cout << "diff" <<std::endl;
 				attachEnd();
@@ -535,7 +473,7 @@ namespace ft
 		}
 
 		bool is_red(node_type *k) {
-			if (!k || k->color == RED)
+			if (k &&  k->color == RED)
 				return true;
 			return false;
 		}
