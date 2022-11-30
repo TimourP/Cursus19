@@ -108,26 +108,37 @@ void test_out(void) {
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
-	// ft_map_empty.insert(ft::make_pair(987, 5));
-	// std_map_empty.insert(std::make_pair(987, 5));
+	ft_map_empty.insert(ft::make_pair(987, 5));
+	std_map_empty.insert(std::make_pair(987, 5));
 
-	// print_val_out(ft_map_empty[987], std_map_empty[987], ft_stream, std_stream);
+	print_val_out(ft_map_empty[987], std_map_empty[987], ft_stream, std_stream);
 
-	// for (size_t i = 0; i < 10; i++)
-	// {
-	// 	KeyTest rand_int1 = std::rand() % 100;
-	// 	TTest rand_int2 = std::rand() % 100;
-	// 	ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
-	// 	std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
-	// }
+	for (size_t i = 0; i < 10; i++)
+	{
+		KeyTest rand_int1 = std::rand() % 100;
+		TTest rand_int2 = std::rand() % 100;
+		ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
+		std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
+	}
 
-	// ft_map_empty.erase(ft_map_empty.begin());
-	// std_map_empty.erase(std_map_empty.begin());
+	ft_map_empty.erase(ft_map_empty.begin());
+	std_map_empty.erase(std_map_empty.begin());
 
-	// print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
+	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
-	// ft_map_empty.erase(++ft_map_empty.begin(), ++(++(++ft_map_empty.begin())));
-	// std_map_empty.erase(++std_map_empty.begin(), ++(++(++std_map_empty.begin())));
+	ft_map_empty.erase(++ft_map_empty.begin(), ++(++(++ft_map_empty.begin())));
+	std_map_empty.erase(++std_map_empty.begin(), ++(++(++std_map_empty.begin())));
+
+	for (size_t i = 0; i < 800; i++)
+	{
+		KeyTest rand_int1 = std::rand() % 1000;
+		TTest rand_int2 = std::rand() % 1000;
+		ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
+		std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
+	}
+
+	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	ft_stream.close();
 	std_stream.close();
