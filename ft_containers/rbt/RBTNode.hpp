@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:14:06 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/03 16:22:39 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 13:01:56 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ namespace ft
 		RBTNode(const value_type& val, const key_compare &compare, pointer end) : value(val), end(end), compare(compare)
 		{
 			parent = left = right = NULL;
-
-			// RBTNode is created during insertion
-			// RBTNode is red at insertion
 			color = RED;
 		}
 		

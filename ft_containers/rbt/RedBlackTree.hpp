@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/30 11:49:11 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/11/30 14:31:25 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,92 +135,80 @@ namespace ft
 				end->parent = temp;
 			}
 		}
+		
+		void fix_insert(node_type *k) {
+			while (is_red(k->parent) && k->parent->parent)
+			{
+				node_type *parent = k->parent;
+				node_type *gparent = parent->parent;
+				bool is_left = (gparent->left == parent);
+				node_type *uncle = (is_left ? gparent->right : gparent->left);
 
+				if (is_red(uncle)) {
+					parent->color = BLACK;
+					uncle->color = BLACK;
+					gparent->color = RED;
+					k = gparent;
+				} else {
+					if (k == (is_left ? parent->right : parent->left)) {
+						k = parent;
+						is_left ? leftRotate(k) : rightRotate(k);
+						parent = k->parent;
+						gparent = parent->parent;
+					}
+					parent->color = BLACK;
+					gparent->color = RED;
+					is_left ? rightRotate(gparent) : leftRotate(gparent);
+				}
+			}
+			root->color = BLACK;
+		}
 
 		pair<iterator, bool> insert(value_type n, bool flag)
 		{
-			node_type *newNode = alloc.allocate(1);
-			alloc.construct(newNode, node_type(n, compare, end));
-			node_type tmp(n, compare, end);
-
 			(void)flag;
+			node_type *previous = NULL;
+			node_type *z = root;
 
-			if (root == NULL)
+			while (z)
 			{
-				// when root is null
-				// simply insert value at root
-				unAttachEnd();
-				newNode->color = BLACK;
-				root = newNode;
-				size = 1;
-				attachEnd();
-				return ft::make_pair(newNode, true);
-			}
-			else
-			{
-				node_type *temp = search(n);
-				unAttachEnd();
-				if (*temp == tmp && temp != end)
-				{
-					// return if value already exists
-					attachEnd();
-					alloc.destroy(newNode);
-					alloc.deallocate(newNode, 1);
-					return ft::make_pair(temp, false);;
-				}
-				// std::cout << "insert value" << std::endl;
-				size++;
-
-				if (temp == end) {
-					node_type	*previous = NULL;
-					temp = root;
-					while (temp && temp != end)
-					{
-						previous = temp;
-						if (tmp < *temp)
-							temp = temp->left;
-						else
-							temp = temp->right;
-					}
-					temp = previous;
-				}
-
-				// if value is not found, search returns the node
-				// where the value is to be inserted
-
-				// connect new node to correct node
-				newNode->parent = temp;
-
-				if (*newNode < *temp)
-					temp->left = newNode;
+				previous = z;
+				if (n.first == z->value.first)
+					return pair<node_type*, bool>(z, false);
+				if (n.first < z->value.first)
+					z = z->left;
 				else
-					temp->right = newNode;
-
-				// fix red red voilaton if exists
-				fixRedRed(newNode);
-				attachEnd();
-				return ft::make_pair(newNode, true);
+					z = z->right;
 			}
+			size++;
+			node_type *new_node = alloc.allocate(1);
+			alloc.construct(new_node, node_type(n, compare, end));
+			new_node->parent = previous;
+			if (!previous)
+				root = new_node;
+			else if (new_node < previous)
+				previous->left = new_node;
+			else
+				previous->right = new_node;
+			fix_insert(new_node);
+			return pair<node_type *, bool>(new_node, true);
 		}
 
 		// utility function that deletes the node with given value
 		bool deleteByKey(const value_type n)
 		{
-			if (root == NULL || size == 0)
+			if (root == NULL || size == 0) {
 				// Tree is empty
 				return false;
-			// std::cout << "try delete: " << n.first << std::endl;
+			}
 			
 			node_type *v = search(n);
-			unAttachEnd();
 
 			if (v == end || !v)
 			{
-				// std::cout << "diff" <<std::endl;
-				attachEnd();
 				return false;
 			}
-
+			unAttachEnd();
 			bool del = deleteNode(v);
 			if (del)
 				size--;
@@ -315,119 +303,44 @@ namespace ft
 		const key_compare	compare;
 
 		// left rotates the given node
-		void leftRotate(node_type *x)
+		void leftRotate(node_type *k)
 		{
-			// new parent will be node's right child
-			node_type *nParent = x->right;
+			node_type *right = k->right;
+			node_type *child_left = right->left;
 
-			// update root if current node is root
-			if (x == root)
-				root = nParent;
-
-			x->moveDown(nParent);
-
-			// connect x with new parent's left element
-			x->right = nParent->left;
-			// connect new parent's left element with node
-			// if it is not null
-			if (nParent->left != NULL)
-				nParent->left->parent = x;
-
-			// connect new parent with x
-			nParent->left = x;
+			k->right = child_left;
+			if (child_left)
+				child_left->parent = k;
+			right->parent = k->parent;
+			if (!k->parent)
+				this->root = right;
+			else if (k == k->parent->left)
+				k->parent->left = right;
+			else
+				k->parent->right = right;
+			right->left = k;
+			k->parent = right;
 		}
 
-		void rightRotate(node_type *x)
+		void rightRotate(node_type *k)
 		{
-			// new parent will be node's left child
-			node_type *nParent = x->left;
+			node_type *left = k->left;
+			node_type *child_right = left->right;
 
-			// update root if current node is root
-			if (x == root)
-				root = nParent;
-
-			x->moveDown(nParent);
-
-			// connect x with new parent's right element
-			x->left = nParent->right;
-			// connect new parent's right element with node
-			// if it is not null
-			if (nParent->right != NULL)
-				nParent->right->parent = x;
-
-			// connect new parent with x
-			nParent->right = x;
+			k->left = child_right;
+			if (child_right)
+				child_right->parent = k;
+			left->parent = k->parent;
+			if (!k->parent)
+				this->root = left;
+			else if (k == k->parent->right)
+				k->parent->right = left;
+			else
+				k->parent->left = left;
+			left->right = k;
+			k->parent = left;
 		}
-
-		void swapColors(node_type *x1, node_type *x2)
-		{
-			COLOR temp;
-			temp = x1->color;
-			x1->color = x2->color;
-			x2->color = temp;
-		}
-
-		// fix red red at given node
-		void fixRedRed(node_type *x)
-		{
-			// if x is root color it black and return
-			if (x == root)
-			{
-				x->color = BLACK;
-				return;
-			}
-
-			// initialize parent, grandparent, uncle
-			node_type *parent = x->parent, *grandparent = parent->parent,
-				*uncle = x->uncle();
-
-			if (parent->color != BLACK)
-			{
-				if (uncle != NULL && uncle->color == RED)
-				{
-					// uncle red, perform recoloring and recurse
-					parent->color = BLACK;
-					uncle->color = BLACK;
-					grandparent->color = RED;
-					fixRedRed(grandparent);
-				}
-				else
-				{
-					// Else perform LR, LL, RL, RR
-					if (parent->isOnLeft())
-					{
-						if (x->isOnLeft())
-						{
-							// for left right
-							swapColors(parent, grandparent);
-						}
-						else
-						{
-							leftRotate(parent);
-							swapColors(x, grandparent);
-						}
-						// for left left and left right
-						rightRotate(grandparent);
-					}
-					else
-					{
-						if (x->isOnLeft())
-						{
-							// for right left
-							rightRotate(parent);
-							swapColors(x, grandparent);
-						}
-						else
-						{
-							swapColors(parent, grandparent);
-						}
-
-						// for right right and right left
-						leftRotate(grandparent);
-					}
-				}
-			}
-		}
+		
 
 		void replace_node(node_type *parent, node_type *k, node_type *replacer) {
 			if (!parent)
@@ -474,7 +387,7 @@ namespace ft
 		}
 
 		bool is_red(node_type *k) {
-			if (k &&  k->color == RED)
+			if (k && k->color == RED)
 				return true;
 			return false;
 		}
@@ -493,7 +406,7 @@ namespace ft
 					parent->color = RED;
 					is_left ? leftRotate(parent) : rightRotate(parent);
 					parent = k->parent;
-					is_left ? brother = parent->right : parent->left;
+					brother = is_left ? parent->right : parent->left;
 				}
 				if (this->is_black(brother) && this->is_black(brother->left) && this->is_black(brother->right))
 				{
@@ -512,7 +425,6 @@ namespace ft
 						parent = k->parent;
 						brother = ( is_left ? parent->right : parent->left );
 					}
-				
 					brother->color = parent->color;
 					parent->color = BLACK;
 					is_left ? brother->right->color = BLACK : brother->left->color = BLACK;
@@ -531,7 +443,7 @@ namespace ft
 			pair<node_type*, bool>	check = pair<node_type*, bool>(v, true);
 			COLOR					color = v->color;
 		
-			if (v == end)
+			if (v == end || !v)
 				return false;
 			if (!right)
 			{
@@ -563,7 +475,6 @@ namespace ft
 			}
 			if (color == BLACK) {
 				this->fix_deletion(check.first);
-				//std::cout << "doit remettre" << std::endl;
 			}
 			if (check.second)
 			{
@@ -577,10 +488,6 @@ namespace ft
 			}
 			return true;
 		}
-
-		
-
-		
 
 		void printRBTRec(const std::string &prefix, node_type *node, bool isLeft) const
 		{

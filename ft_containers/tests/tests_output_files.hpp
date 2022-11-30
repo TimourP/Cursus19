@@ -18,7 +18,7 @@
 #define TTest int
 #define KeyTest int
 
-void print_in_out(ft::map<KeyTest, TTest> ft_map, std::map<KeyTest, TTest> std_map, std::ostream& ft_stream, std::ostream& std_stream) {
+void print_in_out(ft::map<KeyTest, TTest>& ft_map, std::map<KeyTest, TTest>& std_map, std::ostream& ft_stream, std::ostream& std_stream) {
 	for (ft::map<KeyTest, TTest>::iterator i = ft_map.begin(); i != ft_map.end(); i++) {
 		if (i != ft_map.begin())
 			ft_stream << ", ";
@@ -36,7 +36,7 @@ void print_in_out(ft::map<KeyTest, TTest> ft_map, std::map<KeyTest, TTest> std_m
 	std_stream << std::endl;
 }
 
-void print_rev_in_out(ft::map<KeyTest, TTest> ft_map, std::map<KeyTest, TTest> std_map, std::ostream& ft_stream, std::ostream& std_stream) {
+void print_rev_in_out(ft::map<KeyTest, TTest>& ft_map, std::map<KeyTest, TTest>& std_map, std::ostream& ft_stream, std::ostream& std_stream) {
 	for (ft::map<KeyTest, TTest>::reverse_iterator i = ft_map.rbegin(); i != ft_map.rend(); i++) {
 		if (i != ft_map.rbegin())
 			ft_stream << ", ";
@@ -70,7 +70,8 @@ void print_val_out(bool ft_value, bool std_value, std::ostream& ft_stream, std::
 }
 
 void test_out(void) {
-	std::ofstream ft_stream, std_stream;
+	std::ofstream ft_stream;
+	std::ofstream std_stream;
 	ft_stream.open("outputs/ft.txt");
 	std_stream.open("outputs/std.txt");
 
@@ -82,6 +83,7 @@ void test_out(void) {
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
 	ft_map_empty.insert(ft::make_pair(10, 5));
+
 	std_map_empty.insert(std::make_pair(10, 5));
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
@@ -100,13 +102,11 @@ void test_out(void) {
 	for (size_t i = 0; i < 100; i++)
 	{
 		KeyTest rand_int1 = std::rand() % 100;
-		ft_map_empty.get_root_pub();
-		std::cout << rand_int1 << std::endl;
 		ft_map_empty.erase(rand_int1);
-		//std_map_empty.erase(rand_int1);
+		std_map_empty.erase(rand_int1);
 	}
 
-	// print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
+	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
 	// ft_map_empty.insert(ft::make_pair(987, 5));
 	// std_map_empty.insert(std::make_pair(987, 5));
