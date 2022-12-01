@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.hpp                                         :+:      :+:    :+:   */
+/*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:54:22 by tpetit            #+#    #+#             */
-/*   Updated: 2022/08/19 20:30:48 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/12/01 11:05:03 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ namespace ft
 			: _alloc(alloc), _size(0)
 		{
 			for (InputIterator i = first; i != last; i++)
-				this->_size++;
+				++this->_size;
 			int i = 0;
 			this->_data = this->_alloc.allocate(this->_size);
 			this->_capacity = this->_size;
 			while (first != last)
 			{
 				this->_alloc.construct(&this->_data[i], *first);
-				i++;
+				++i;
 				++first;
 			}
 		};
@@ -88,14 +88,14 @@ namespace ft
 			const_iterator begin = x.begin();
 			const_iterator end = x.end();
 			for (const_iterator i = begin; i != end; i++)
-				this->_size++;
+				++this->_size;
 			int i = 0;
 			this->_data = this->_alloc.allocate(this->_size);
 			this->_capacity = this->_size;
 			while (begin != end)
 			{
 				this->_alloc.construct(&this->_data[i], *begin);
-				i++;
+				++i;
 				++begin;
 			}
 		};
@@ -108,14 +108,14 @@ namespace ft
 			const_iterator begin = rhs.begin();
 			const_iterator end = rhs.end();
 			for (const_iterator i = begin; i != end; i++)
-				this->_size++;
+				++this->_size;
 			int i = 0;
 			this->_data = this->_alloc.allocate(this->_size);
 			this->_capacity = this->_size;
 			while (begin != end)
 			{
 				this->_alloc.construct(&this->_data[i], *begin);
-				i++;
+				++i;
 				++begin;
 			}
 			return *this;
@@ -289,7 +289,7 @@ namespace ft
 		{
 			size_type size = 0;
 			for (InputIterator i = first; i != last; i++)
-				size++;
+				++size;
 			if (size <= this->_capacity)
 			{
 				for (size_type i = 0; i < this->_capacity; i++)
@@ -355,7 +355,7 @@ namespace ft
 			if (this->_size < this->_capacity)
 			{
 				this->_alloc.construct(&this->_data[this->_size], val);
-				this->_size++;
+				++this->_size;
 			}
 			else
 			{
