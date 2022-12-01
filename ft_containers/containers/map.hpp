@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:35:18 by tpetit            #+#    #+#             */
-/*   Updated: 2022/11/30 12:49:30 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/12/01 11:30:26 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,6 @@ namespace ft
 			void erase (iterator position) {
 				tree.deleteByKey(*position);
 			};
-
-			void get_root_pub(void) {
-				tree.print();
-			}
 
 			size_type erase (const key_type& k) {
 				bool ret = tree.deleteByKey(ft::make_pair(k, mapped_type()));

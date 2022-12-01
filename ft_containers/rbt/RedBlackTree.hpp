@@ -6,7 +6,7 @@
 /*   By: tpetit <tpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 13:09:09 by tpetit            #+#    #+#             */
-/*   Updated: 2022/12/01 11:05:44 by tpetit           ###   ########.fr       */
+/*   Updated: 2022/12/01 11:31:05 by tpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ namespace ft
 					alloc.deallocate(newNode, 1);
 					return ft::make_pair(temp, false);;
 				}
-				// std::cout << "insert value" << std::endl;
 				++size;
 
 				if (temp == end) {
