@@ -87,6 +87,7 @@ void test_out(void) {
 	std_map_empty.insert(std::make_pair(10, 5));
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	std::srand(time(0));
 	for (size_t i = 0; i < 80; i++)
@@ -96,8 +97,10 @@ void test_out(void) {
 		ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
 		std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
 	}
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	for (size_t i = 0; i < 100; i++)
 	{
@@ -105,11 +108,13 @@ void test_out(void) {
 		ft_map_empty.erase(rand_int1);
 		std_map_empty.erase(rand_int1);
 	}
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
 	ft_map_empty.insert(ft::make_pair(987, 5));
 	std_map_empty.insert(std::make_pair(987, 5));
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	print_val_out(ft_map_empty[987], std_map_empty[987], ft_stream, std_stream);
 
@@ -120,14 +125,17 @@ void test_out(void) {
 		ft_map_empty.insert(ft::make_pair(rand_int1, rand_int2));
 		std_map_empty.insert(std::make_pair(rand_int1, rand_int2));
 	}
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	ft_map_empty.erase(ft_map_empty.begin());
 	std_map_empty.erase(std_map_empty.begin());
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	print_in_out(ft_map_empty, std_map_empty, ft_stream, std_stream);
 
 	ft_map_empty.erase(++ft_map_empty.begin(), ++(++(++ft_map_empty.begin())));
 	std_map_empty.erase(++std_map_empty.begin(), ++(++(++std_map_empty.begin())));
+	print_val_out(ft_map_empty.size(), std_map_empty.size(), ft_stream, std_stream);
 
 	for (size_t i = 0; i < 800; i++)
 	{
